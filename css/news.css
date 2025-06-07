@@ -6,6 +6,26 @@ body {
     margin: 0;
 }
 
+/* Стилі для банера з фіолетовою рамкою */
+.top-banner {
+    max-width: 800px;
+    margin: 0 auto 5px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+    margin-top: 40px;
+}
+
+    .top-banner img {
+        width: 100%;
+        max-height: 180px; /* Зменшуємо висоту */
+        object-fit: cover;
+        display: block;
+        filter: brightness(1.2) contrast(1.1);
+    }
+
+
+
 .news-article {
     max-width: 800px;
     margin: 0 auto;
@@ -101,7 +121,17 @@ body {
         height: 315px;
     }
 
+/* Адаптивність для мобільних */
 @media (max-width: 767px) {
+    .top-banner {
+        border-width: 3px;
+        margin: 0 auto 15px auto;
+    }
+
+        .top-banner img {
+            height: 200px;
+        }
+
     .news-article {
         padding: 60px 15px 0 15px;
     }
