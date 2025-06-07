@@ -1,136 +1,75 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Start cookieyes banner -->
-    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/109447536fb98d66e4661b77/script.js"></script> <!-- End cookieyes banner -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackwoodsBlight</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/scripts.js" defer></script>
-    <script src="js/gallery.js" defer></script>
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/109447536fb98d66e4661b77/script.js"></script>
+    <!-- End cookieyes banner -->
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEQF2XC1ZC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-FEQF2XC1ZC');
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Far-Far Forest</title>
+    <link rel="stylesheet" href="LandingPage.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
 </head>
-
-
 <body>
-    <header>
-        <div class="header-container">
-            <img src="images/logo.png" alt="Game Logo" class="logo">
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <!---- <li><a href="features.html">NEWS</a></li>
-                    <li><a href="gallery.html">GALLERY</a></li>
-                    <li><a href="about.html">ABOUT</a></li>  -->
-                    <li><a href="terms.html">TERMS</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-nav">
-                <img src="images/menu.png" alt="Menu Icon" id="menu-icon">
-                <div class="dropdown-menu">
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="features.html">NEWS</a></li>
-                        <li><a href="gallery.html">GALLERY</a></li>
-                        <li><a href="about.html">ABOUT</a></li>
-                        <li><a href="terms.html">TERMS</a></li>
-                    </ul>
+    <img src="images/promo_0.png" alt="Promo 0" class="promo-0" />
+
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="landing-page">
+        <div class="page-inner">
+            <main class="content">
+                <img src="images/promo1.png" alt="Promo 1" />
+                <div class="text-content">
+                    <h2>Far-Far Forest</h2>
+                    <p>Uncover the fairy-tale world, full of magical stories, unbelievable creatures, and shining fireflies. The forest, full of secrets, is waiting for your touch.</p>
+                    <button class="play-button">PLAY</button>
                 </div>
-            </div>
-        </div>
-    </header>
+                <img src="images/promo.png" alt="Promo 2" />
+            </main>
 
-    <div class="slogan-container">
-        <div class="slogan-text">
-            <img src="images/icon-market.png" class="corner-icon">
-            <h3>Blackwood's Blight:</h3>
-            <h4>Turn by turn into the epic tale</h4>
-            <h5>Mobile RPG, Turn Based</h5>
+            <section class="game-section">
+                <div class="game-screenshot">
+                    <img src="images/game-screenshot.png" alt="Game Screenshot" />
+                </div>
+                <div class="game-info">
+                    <h2>REVEAL THE HIDDEN LORE</h2>
+                    <p>Explore the depths of an ancient forest filled with mysteries and wonder. Solve intricate puzzles and discover magical secrets hidden deep within the woods. Uncover ancient lore and piece together a story that has been long forgotten. Traverse breathtaking landscapes, unlock hidden paths, and interact with enchanted objects that bring the forest to life. Let your curiosity guide you through a world where every shadow hides a tale and every clearing offers a new discover</p>
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="images/google-play-badge.png" alt="Get it on Google Play" class="google-play-badge" />
+                    </a>
+                </div>
+            </section>
+
+            <section class="news-section">
+                <div class="news-card">
+                    <a href="news_1.html" class="news-link">
+                        <img src="images/news_1.png" alt="News 1" />
+                        <h3>Yes! We roll out the first release for Android!</h3>
+                        <p>First version is ready to play, and now it's time to reflect on the journey we took to get to this point.</p>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="news_2.html" class="news-link">
+                        <img src="images/news_2.png" alt="News 2" />
+                        <h3>DevLog #Achievements</h3>
+                        <p>A new internal achievements system is here.</p>
+                    </a>
+                </div>
+            </section>
         </div>
+
+        <footer class="footer">
+            <div class="footer-inner">&copy; 2025 POINTS game studio</div>
+        </footer>
     </div>
-
-    <section class="image-gallery">
-        <div class="gallery-container">
-            <img src="images/ss_1.jpg" alt="Screenshot of dungeon crawler scene 1" class="gallery-image" onclick="expandImage(this)" loading="lazy">
-            <img src="images/ss_2.jpg" alt="Screenshot of dungeon crawler scene 2" class="gallery-image" onclick="expandImage(this)" loading="lazy">
-            <img src="images/ss_3.jpg" alt="Screenshot of dungeon crawler scene 3" class="gallery-image" onclick="expandImage(this)" loading="lazy">
-            <img src="images/ss_4.jpg" alt="Screenshot of dungeon crawler scene 4" class="gallery-image" onclick="expandImage(this)" loading="lazy">
-        </div>
-    </section>
-    <section class="section-solid">
-        <h1>Trailer</h1>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/aEaU5J_0gxc" frameborder="0" allowfullscreen></iframe>
-    </section>
-    <div class="site-container">
-        <section class="section-paper">
-            <div class="text-container">
-                <h1>BLACKWOOD'S BLIGHT</h1>
-                <br>
-                <p>• Classic dungeon crawler</p>
-                <p>• Modern gameplay</p>
-                <p>• Deep Lore</p>
-                <p>• Complex combat mechanics</p>
-                <p>• Amazing dungeons full of secrets</p>
-            </div>
-            <div class="logo-container">
-                <img src="images/screenshot_1.png" alt="Main game logo" class="responsive-screenshot_1">
-            </div>
-        </section>
-
-        <section class="section-paper">
-            <div class="text-container">
-                <p>Explore the world by completing quests in handcrafted locations</p>
-                <br>
-                <p>Our dungeons are lovingly designed with a nod to classic D&D, so be prepared for various checks based on your character's attributes. Who knows what might be hidden behind this suspicious wall?</p>
-            </div>
-            <div class="logo-container">
-                <img src="images/map.png" alt="Map of game world" class="responsive-screenshot_1">
-            </div>
-        </section>
-
-        <section class="section-paper">
-            <div class="text-container">
-                <p> Or test yourself in an endless procedurally generated dungeon!</p>
-            </div>
-            <div class="logo-container">
-                <img src="images/ss_2.jpg" alt="Procedurally generated dungeon screenshot" class="responsive-screenshot_1">
-            </div>
-        </section>
-
-
-
-        <section class="section-paper">
-            <h1>Test Header</h1>
-            <p>Test description.</p>
-        </section>
-
-        <section class="section-one">
-            <!-- Content of the second section -->
-        </section>
-
-        <section class="section-two">
-            <!-- Content of the third section -->
-        </section>
-    </div>
-
-    <footer>
-        <p>© 2023 by Points Game Forge. All rights reserved.</p>
-    </footer>
-
-    <script src="js/scripts.js"></script>
 </body>
-
 </html>
