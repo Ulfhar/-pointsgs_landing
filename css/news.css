@@ -23,7 +23,14 @@ body {
         display: block;
     }
 
+.news-video {
+    margin: 2em 0;
+    text-align: center;
+}
 
+    .news-video iframe {
+        border-radius: 8px;
+    }
 
 .news-article {
     max-width: 800px;
