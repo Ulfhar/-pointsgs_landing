@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/109447536fb98d66e4661b77/script.js"></script>
+    <!-- End cookieyes banner -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Far-Far Forest</title>
+    <link rel="stylesheet" href="LandingPage.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <img src="images/promo_0.png" alt="Promo 0" class="promo-0" />
+
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="landing-page">
+        <div class="page-inner">
+            <main class="content">
+                <img src="images/promo1.png" alt="Promo 1" />
+                <div class="text-content">
+                    <h2>Far-Far Forest</h2>
+                    <p>Uncover the fairy-tale world, full of magical stories, unbelievable creatures, and shining fireflies. The forest, full of secrets, is waiting for your touch.</p>
+                    <button class="play-button">PLAY</button>
+                </div>
+                <img src="images/promo.png" alt="Promo 2" />
+            </main>
+
+            <section class="game-section">
+                <div class="game-screenshot">
+                    <img src="images/game-screenshot.png" alt="Game Screenshot" />
+                </div>
+                <div class="game-info">
+                    <h2>REVEAL THE HIDDEN LORE</h2>
+                    <p>Explore the depths of an ancient forest filled with mysteries and wonder. Solve intricate puzzles and discover magical secrets hidden deep within the woods. Uncover ancient lore and piece together a story that has been long forgotten. Traverse breathtaking landscapes, unlock hidden paths, and interact with enchanted objects that bring the forest to life. Let your curiosity guide you through a world where every shadow hides a tale and every clearing offers a new discover</p>
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="images/google-play-badge.png" alt="Get it on Google Play" class="google-play-badge" />
+                    </a>
+                </div>
+            </section>
+
+            <section class="news-section">
+                <div class="news-card">
+                    <a href="news_1.html" class="news-link">
+                        <img src="images/news_1.png" alt="News 1" />
+                        <h3>Yes! We roll out the first release for Android!</h3>
+                        <p>First version is ready to play, and now it's time to reflect on the journey we took to get to this point.</p>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="news_2.html" class="news-link">
+                        <img src="images/news_2.png" alt="News 2" />
+                        <h3>DevLog #Achievements</h3>
+                        <p>A new internal achievements system is here.</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">&copy; 2025 POINTS game studio</div>
+        </footer>
+    </div>
+</body>
+</html>
