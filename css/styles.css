@@ -6,7 +6,7 @@ body, h1, p, ul, li {
 
 body {
     line-height: 1.6;
-    background-color: #000000;
+    background-color: #fff;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
 }
