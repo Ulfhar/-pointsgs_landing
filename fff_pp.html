@@ -33,6 +33,15 @@
     </style>
 </head>
 <body>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+    <link rel="stylesheet" href="css/header.css" />
     <div class="container">
         <h1>Privacy Policy</h1>
         <p>Effective Date: 15/01/2025</p>
@@ -87,7 +96,7 @@
         <p>We may update this Privacy Policy at any time without prior notice. Continued use of the Game after changes means you accept the updated policy.</p>
 
         <h2>10. Contact Us</h2>
-        <p>For any questions or concerns about this Privacy Policy, please contact us via our official Twitter page: <a href="https://x.com/Ulv_Bogdan" target="_blank">https://x.com/Ulv_Bogdan</a></p>
+        <p>For any questions or concerns about this Privacy Policy, please contact us via our email: <a href="mailto:info@points.gs">info@points.gs</a></p>
     </div>
 </body>
 </html>
