@@ -107,10 +107,15 @@
             </section>
 
         </div>
-
-        <footer class="footer">
-            <div class="footer-inner">&copy; 2025 POINTS Game Studio</div>
-        </footer>
     </div>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

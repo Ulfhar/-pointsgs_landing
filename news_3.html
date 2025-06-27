@@ -137,9 +137,18 @@
             modal.style.display = "none";
         };
 
-        modal.onclick = () => {
-            modal.style.display = "none";
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.style.display = "none";
         };
+    </script>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
     </script>
 </body>
 

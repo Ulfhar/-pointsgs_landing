@@ -28,7 +28,7 @@
     <!-- Header Integration -->
     <div id="header-placeholder"></div>
     <script>
-        fetch("header.html")
+        fetch("../header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;
@@ -79,10 +79,13 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <p>&copy; 2025 POINTS Game Studio. All rights reserved.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

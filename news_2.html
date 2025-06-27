@@ -49,14 +49,14 @@
 
         <h1 class="news-title">DevLog #1: Achievements</h1>
 
-        <p class="news-subtitle"><em>Reminder: you’re reading a DevLog — thoughts and reflections from the developer of Far-Far Forest. No AI or GMO — just hand-made.</em></p>
+        <p class="news-subtitle"><em>Reminder: you're reading a DevLog — thoughts and reflections from the developer of Far-Far Forest. No AI or GMO — just hand-made.</em></p>
 
         <section class="news-content">
-            <p>Your game — your achievements. Sounds pretty good, doesn’t it?</p>
+            <p>Your game — your achievements. Sounds pretty good, doesn't it?</p>
             <p>The decision to create my own achievement system, as I recall now, was spontaneous.</p>
-            <p>For some reason, I simply didn’t like how the Play Market achievements looked — monotonous and dull.</p>
+            <p>For some reason, I simply didn't like how the Play Market achievements looked — monotonous and dull.</p>
             <p>Besides, it seemed like a pretty simple task that could be done quickly and would let me take a short break from level design to focus on something else.</p>
-            <p>And this time, the estimate was actually quite successful (which doesn’t happen often, does it?).</p>
+            <p>And this time, the estimate was actually quite successful (which doesn't happen often, does it?).</p>
             <p>So, what do we have now?</p>
 
             <figure class="news-image news-image-original-ratio">
@@ -77,33 +77,33 @@
                         allowfullscreen></iframe>
             </div>
 
-            <p>There was also an idea to make it so that when you unlock an achievement, you’d get a small piece of the world’s lore.</p>
-            <p>Because believe me — there’s a lot to tell!</p>
-            <p>But I couldn’t find a convenient and intuitive way to do it.</p>
-            <p>I thought about adding it to the description, but you can read that even if you haven’t earned the achievement, so that idea didn’t work out.</p>
+            <p>There was also an idea to make it so that when you unlock an achievement, you'd get a small piece of the world's lore.</p>
+            <p>Because believe me — there's a lot to tell!</p>
+            <p>But I couldn't find a convenient and intuitive way to do it.</p>
+            <p>I thought about adding it to the description, but you can read that even if you haven't earned the achievement, so that idea didn't work out.</p>
 
             <p>A few words about the lore and the pain that comes with it.</p>
-            <p>I don’t know how to tell it to you!</p>
-            <p>Or rather, I don’t know how to do it in the way I intended.</p>
-            <p>Since this text is for the “chosen ones,” those who are truly interested, I’ll reveal a few cards (God, how the word “cards” sounds so vile in the context of recent events).</p>
+            <p>I don't know how to tell it to you!</p>
+            <p>Or rather, I don't know how to do it in the way I intended.</p>
+            <p>Since this text is for the "chosen ones," those who are truly interested, I'll reveal a few cards (God, how the word "cards" sounds so vile in the context of recent events).</p>
 
             <blockquote>
                 In the Far-Far Forest, full of wonders and magic, there once lived a King — the Wise Oak.<br><br>
                 His reign was honest and just, yet, as it often happens, not everyone shared those virtues. Even in a fairy tale.<br><br>
                 Deep in the woods, beneath the mountain, grew the one whose cunning and resentment put an end to the ancient order.<br><br>
                 There is no more Oak — Chestnut now reigns. And those who could still defy his wicked will are no more.<br><br>
-                Little fireflies, who once gave their light and strength to the Wise Ruler, now hide from the tyrant’s minions — the forest shadows, echoes of a life long past. They are snatched into ancient lanterns and thrown without will under the roots of the Father of Thorny Fruits — the Great Chestnut.<br><br>
+                Little fireflies, who once gave their light and strength to the Wise Ruler, now hide from the tyrant's minions — the forest shadows, echoes of a life long past. They are snatched into ancient lanterns and thrown without will under the roots of the Father of Thorny Fruits — the Great Chestnut.<br><br>
                 How long does this silent oppression of Evil Will last? Yes, far too long.<br>
                 Will it last forever? No, for a new Light has already been born that will overcome the Darkness.
             </blockquote>
 
-            <p>This is just a part of the story that’s bursting to come out, and I have to tell it to you somehow.</p>
-            <p>I don’t want to do it “in your face,” but I also don’t want to hide it too much.</p>
+            <p>This is just a part of the story that's bursting to come out, and I have to tell it to you somehow.</p>
+            <p>I don't want to do it "in your face," but I also don't want to hide it too much.</p>
             <p>In any case, this was supposed to be a text about achievements, and I got a little carried away.</p>
             <p>But what more can I say about them?</p>
-            <p>They’re here.</p>
-            <p>I made them the way I saw it — and that’s already cool.</p>
-            <p>Now I’m waiting for feedback.</p>
+            <p>They're here.</p>
+            <p>I made them the way I saw it — and that's already cool.</p>
+            <p>Now I'm waiting for feedback.</p>
         </section>
     </article>
 
@@ -128,9 +128,18 @@
             modal.style.display = "none";
         };
 
-        modal.onclick = () => {
-            modal.style.display = "none";
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.style.display = "none";
         };
+    </script>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
     </script>
 </body>
 

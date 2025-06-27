@@ -35,7 +35,7 @@
 <body>
     <div id="header-placeholder"></div>
     <script>
-        fetch("header.html")
+        fetch("../header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;
@@ -107,5 +107,14 @@
         <h2>10. Contact Us</h2>
         <p>For any questions or concerns about this Privacy Policy, please contact us via our email: <a href="mailto:info@points.gs">info@points.gs</a></p>
     </div>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
 </body>
 </html>
