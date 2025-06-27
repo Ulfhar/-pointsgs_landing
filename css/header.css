@@ -7,7 +7,7 @@
     z-index: 100;
 }
 
-.header-inner {
+.fixed-header .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,31 +17,31 @@
 }
 
 @media (min-width: 1024px) {
-    .header-inner {
+    .fixed-header .header-inner {
         padding: 20px 80px;
     }
 }
 
-.logo-img {
+.fixed-header .logo-img {
     height: 30px;
     width: auto;
     object-fit: contain;
     display: block;
 }
 
-.header-nav {
+.fixed-header .header-nav {
     display: flex;
     gap: 20px;
 }
 
-    .header-nav a {
+    .fixed-header .header-nav a {
         color: #808080;
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s, text-shadow 0.3s;
     }
 
-        .header-nav a:hover {
+        .fixed-header .header-nav a:hover {
             color: #fff;
             text-shadow: 2px 2px 10px #fff;
         }
