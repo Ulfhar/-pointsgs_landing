@@ -20,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Times New Roman', Times, serif;
 }
 
+/* Header styles removed to prevent conflicts with header component
 header {
     display: flex;
     align-items: center;
@@ -33,19 +34,19 @@ header {
 }
 
 .header-container {
-    width: 90%; /* ������ ���������� ���� ������� 90% �� ������ ������ */
-    max-width: 1700px; /* ��������� ����������� ������ ��� ������� ������� */
-    margin: 0 auto; /* ������ ��������� */
+    width: 90%;
+    max-width: 1700px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    padding: 0 2vw; /* ��������� ������� ������� �� ������ ���� */
+    padding: 0 2vw;
     box-sizing: border-box;
 }
 
 .logo {
     width: 250px;
     height: 50px;
-    object-fit: contain; /* ��� `cover` ��� ������� ���������� */
+    object-fit: contain;
 }
 
 header nav ul {
@@ -67,6 +68,7 @@ header nav a {
     transition: background-color 0.3s;
     font-family: 'Times New Roman', Times, serif;
 }
+*/
 
 .section-paper {
     width: auto;
@@ -286,6 +288,7 @@ footer {
 }
 
 @media (max-width: 600px) {
+    /* Header styles removed to prevent conflicts with header component
     header {
         padding-left: 10px;
         padding-right: 10px;
@@ -308,6 +311,7 @@ footer {
     header nav li {
         margin: 0 5px;
     }
+    */
 
     h1, h2, h3, h4, h5, h6 {
         font-size: 1em;
