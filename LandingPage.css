@@ -49,54 +49,6 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 0px; 
 }
 
-.fixed-header {
-    background-color: #000;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-}
-
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (min-width: 1024px) {
-    .header-inner {
-        padding: 20px 80px;
-    }
-}
-
-.logo-img {
-    height: 30px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-.header-nav {
-    display: flex;
-    gap: 20px;
-}
-
-    .header-nav a {
-        color: #808080;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s, text-shadow 0.3s;
-    }
-
-        .header-nav a:hover {
-            color: #fff;
-            text-shadow: 2px 2px 10px #fff;
-        }
-
 .content {
     display: flex;
     flex-direction: column;
