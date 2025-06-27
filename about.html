@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Points Game Studio – Indie Mobile Game Developers</title>
+    
+    <!-- Meta Description -->
+    <meta name="description" content="Points Game Studio is an indie developer of magical mobile puzzle games. Learn more about our story, philosophy, and our first title Far-Far Forest.">
+    <link rel="canonical" href="https://points.gs/about.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Points Game Studio">
+    <meta property="og:description" content="We create story-driven mobile puzzle games with magical atmosphere and emotional depth. Discover Far-Far Forest and our studio's vision.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://points.gs/about.html">
+    <meta property="og:image" content="https://points.gs/images/promo_0.png">
+
+    <!-- CSS References -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Header Integration -->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1>About Points Game Studio</h1>
+            
+            <!-- Studio Introduction -->
+            <section class="about-section">
+                <h2>Who We Are</h2>
+                <p><strong>Points Game Studio</strong> is an independent mobile game development team passionate about creating magical, story-rich puzzle platformers. As an <strong>indie game studio</strong>, we focus on original, emotionally engaging experiences that spark imagination and wonder.</p>
+            </section>
+
+            <!-- Our Mission -->
+            <section class="about-section">
+                <h2>Our Mission</h2>
+                <p>Our mission is to develop <strong>mobile games</strong> that blend compelling storytelling, artistic worldbuilding, and meaningful mechanics. We aim to craft experiences that leave a lasting emotional impact and invite players into beautifully immersive fantasy realms.</p>
+            </section>
+
+            <!-- Current Project -->
+            <section class="about-section">
+                <h2>Our First Game: Far-Far Forest</h2>
+                <p><em>Far-Far Forest</em> is our debut title — a <strong>fairy tale puzzle game</strong> set in a forgotten magical forest. Designed for <strong>Android</strong>, the game combines handcrafted 2D levels, atmospheric music, and deep lore with intuitive gameplay. Players uncover ancient secrets by solving puzzles, collecting glowing fireflies, and exploring mysterious ruins.</p>
+            </section>
+
+            <!-- Development Philosophy -->
+            <section class="about-section">
+                <h2>Our Development Approach</h2>
+                <ul>
+                    <li><strong>Story-First:</strong> Each game begins with a strong narrative foundation rooted in myth and emotion.</li>
+                    <li><strong>Artistic Excellence:</strong> Visual design is core to player immersion — every screen is a crafted scene.</li>
+                    <li><strong>Meaningful Mechanics:</strong> Gameplay supports story and mood, not just challenge.</li>
+                    <li><strong>Indie Values:</strong> We value freedom, originality, and building a community of engaged players.</li>
+                </ul>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="about-section">
+                <h2>Connect With Us</h2>
+                <p>We love hearing from fellow players, creators, and dreamers. If you'd like to collaborate, share feedback, or just say hello — drop us a message!</p>
+                <p><strong>Email:</strong> <a href="mailto:info@points.gs">info@points.gs</a></p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>&copy; 2025 POINTS Game Studio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
