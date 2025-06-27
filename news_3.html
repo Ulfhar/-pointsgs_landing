@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Far-Far-Forest - DevLog #2</title>
+    <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <!-- End cookieyes banner -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RSXV2Q3WG2');
+    </script>
+    <style>
+        .news-content ul li {
+            margin-bottom: 1.5em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="top-banner">
+        <img src="images/devlog.png" alt="News 2" />
+    </div>
+
+    <article class="news-article">
+        <div class="news-meta">
+            <p class="news-date">Jun 27, 2025</p>
+            <p class="news-type">DevLog - features</p>
+            <p class="news-author">
+                <a href="https://x.com/Far_Far_Forest" target="_blank">Twitter/X - @Far_Far_Forest</a>
+            </p>
+        </div>
+
+        <h1 class="news-title">DevLog #2: A Beam of Light, Snail Shells, and a Runner Level!</h1>
+
+        <p class="news-subtitle"><em>Reminder: you're reading a DevLog - unfiltered updates from the magical forest.</em></p>
+
+        <section class="news-content">
+            <p>New features? Oh, you bet!</p>
+
+            <ul>
+                <li>
+                    <strong>Beam of Light</strong> - your magical lantern just got even more magical!<br>
+                    Special mushroom glades now amplify the glow of the fireflies,<br>
+                    and from your lamp bursts a mighty beam of light that bounces off crystal surfaces<br>
+                    and opens the way forward if it hits the right spot.
+                </li>
+
+                <li>
+                    <strong>Secrets in Shells</strong> - you can now smash old snail shells<br>
+                    to check if there's something curious hiding inside.
+                </li>
+                <figure class="news-image news-image-original-ratio">
+                    <img src="images/news_images/3/shell.png" alt="Snail shell feature in Far-Far Forest" />
+                    <figcaption>Smash shells to discover hidden secrets</figcaption>
+                </figure>
+
+                <li>
+                    <strong>Ancient Gnome Boulder Traps</strong> - beware, these stone guardians will squash you flat<br>
+                    like a pancake (a green one, to be precise). So keep moving, buddy!
+                </li>
+                <figure class="news-image news-image-original-ratio">
+                    <img src="images/news_images/3/trap-hummers.png" alt="Ancient Gnome Boulder Trap in Far-Far Forest" />
+                    <figcaption>Dangerous boulder traps - keep moving!</figcaption>
+                </figure>
+
+                <li>
+                    <strong>Mushrooms! Mushrooms! Mushrooms!</strong> - a new (actually well-forgotten old) mushroom<br>
+                    that makes you run waay faster!
+                </li>
+
+                <li>
+                    <strong>Effect Indicators</strong> - now you'll know exactly how long you can jump like a Gummi Bear<br>
+                    or dash like the Flash. Super handy, trust me.
+                </li>
+
+                <li>
+                    <strong>Lightflower</strong> - a slightly shy and delicate plant where fireflies love to hide.<br>
+                    But shine a bit of light on it, and it'll bloom in an instant!
+                </li>
+                <figure class="news-image news-image-original-ratio">
+                    <img src="images/news_images/3/flower.png" alt="Lightflower blooming in Far-Far Forest" />
+                    <figcaption>The shy Lightflower blooms when exposed to light</figcaption>
+                </figure>
+
+                <li>
+                    <strong>Bug Fixes</strong> - (of course) no details here, 'cause honestly,<br>
+                    we've already forgotten them.
+                </li>
+            </ul>
+
+            <p>So, what's next?</p>
+            <p>The release is getting pretty close, but there's still a whole forest of work left - literally and figuratively. Four more levels to go, and then the final push: the Hub, where you'll be able to share your light with other plants.</p>
+            <p>Right now we're working on a runner-style level, since we finally have the perfect combo of mushrooms - jump-boosting and speed-boosting - and I gotta say, the mix feels awesome. So we're preparing platforms that crumble under your feet and other cool stuff. It's gonna be a blast!</p>
+        </section>
+    </article>
+
+    <div id="image-modal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="image-modal-content" />
+    </div>
+
+    <script>
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("image-modal-content");
+        const closeBtn = document.querySelector(".image-modal-close");
+
+        document.querySelectorAll(".news-image img").forEach(img => {
+            img.addEventListener("click", () => {
+                modal.style.display = "flex";
+                modalImg.src = img.src;
+            });
+        });
+
+        closeBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        modal.onclick = () => {
+            modal.style.display = "none";
+        };
+    </script>
+</body>
+
+</html>

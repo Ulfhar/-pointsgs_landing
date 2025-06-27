@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .news-card {
-    flex: 1 1 45%;
+    flex: 0 0 calc(50% - 10px);
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -273,6 +273,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .news-card {
-        flex: 1 1 45%;
+        flex: 0 0 calc(50% - 10px);
     }
 }
