@@ -128,7 +128,7 @@ body {
     .news-image img {
         width: 100%;
         max-width: 400px;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 16 / 9;
         object-fit: cover;
         border-radius: 10px;
         cursor: pointer;
@@ -250,6 +250,104 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
+/* Screenshots Slider Styles */
+.screenshots-slider {
+    margin: 40px 0;
+    padding: 20px 0;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.swiper-slide {
+    text-align: center;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.02);
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Invisible navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 50px;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+    cursor: pointer;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: transparent;
+    color: transparent;
+    transform: none;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+/* Custom pagination */
+.swiper-pagination-bullet {
+    background: #6a1b9a;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .screenshots-slider {
+        margin: 30px 0;
+        padding: 15px 0;
+    }
+    
+    .swiper {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    
+    .swiper-slide img {
+        max-height: 300px;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 40px;
+        height: 100%;
+    }
+}
+
+/* Modal styles */
 .image-modal-content {
     max-width: 90%;
     max-height: 90%;
@@ -271,6 +369,39 @@ body {
     font-weight: bold;
     cursor: pointer;
     user-select: none;
+}
+
+/* Invisible modal navigation arrows */
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: transparent;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    width: 80px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    transition: none;
+    z-index: 1001;
+}
+
+.modal-nav:hover {
+    background: transparent;
+}
+
+.modal-nav-prev {
+    left: 0;
+}
+
+.modal-nav-next {
+    right: 0;
 }
 
 @keyframes fadeIn {

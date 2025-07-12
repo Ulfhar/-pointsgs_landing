@@ -26,6 +26,80 @@ body {
     }
 }
 
+/* News Badge Styles */
+.news-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+}
+
+.news-badge-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    gap: 15px;
+}
+
+.news-badge-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.news-badge-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.news-badge-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+.news-badge-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+    .news-badge {
+        margin: 15px 20px;
+        max-width: none;
+    }
+    
+    .news-badge-link {
+        padding: 12px 15px;
+        gap: 12px;
+    }
+    
+    .news-badge-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .news-badge-title {
+        font-size: 0.9rem;
+    }
+}
+
 .page-inner {
     padding: 0 20px;
     max-width: 1200px;

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/news.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Start cookieyes banner -->
     <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
@@ -83,6 +86,28 @@
                 <li>daily rewards 🎁</li>
             </ul>
 
+            <!-- Screenshots Slider -->
+            <div class="screenshots-slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="images/news_images/4/Screenshot_20250712-204733.png" alt="Game Screenshot 1" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/news_images/4/Screenshot_20250712-204720.png" alt="Game Screenshot 2" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/news_images/4/Screenshot_20250712-204824.png" alt="Game Screenshot 3" />
+                        </div>
+                    </div>
+                    <!-- Invisible Navigation arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
             <blockquote>They say every post needs a call to action — and I've got just the thing:</blockquote>
 
             <p><strong>Please test the build!</strong> We're not making this game just for ourselves — we're making it for you ❤️</p>
@@ -99,21 +124,84 @@
 
     <div id="image-modal" class="image-modal">
         <span class="image-modal-close">&times;</span>
+        <div class="modal-nav modal-nav-prev">&lt;</div>
+        <div class="modal-nav modal-nav-next">&gt;</div>
         <img class="image-modal-content" id="image-modal-content" />
     </div>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            
+            // Navigation arrows (invisible but functional)
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            
+            // Responsive breakpoints
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                }
+            }
+        });
+
+        // Modal functionality for slider images
         const modal = document.getElementById("image-modal");
         const modalImg = document.getElementById("image-modal-content");
         const closeBtn = document.querySelector(".image-modal-close");
+        const sliderImages = document.querySelectorAll(".swiper-slide img");
+        let currentImageIndex = 0;
 
-        document.querySelectorAll(".news-image img").forEach(img => {
+        // Function to open modal with specific image
+        function openModal(imageIndex) {
+            currentImageIndex = imageIndex;
+            modal.style.display = "flex";
+            modalImg.src = sliderImages[imageIndex].src;
+        }
+
+        // Function to navigate to next image
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+            modalImg.src = sliderImages[currentImageIndex].src;
+        }
+
+        // Function to navigate to previous image
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + sliderImages.length) % sliderImages.length;
+            modalImg.src = sliderImages[currentImageIndex].src;
+        }
+
+        // Add click events to slider images
+        sliderImages.forEach((img, index) => {
             img.addEventListener("click", () => {
-                modal.style.display = "flex";
-                modalImg.src = img.src;
+                openModal(index);
             });
         });
 
+        // Close modal
         closeBtn.onclick = () => {
             modal.style.display = "none";
         };
@@ -121,6 +209,36 @@
         modal.onclick = (e) => {
             if (e.target === modal) modal.style.display = "none";
         };
+
+        // Modal navigation arrows
+        const modalNavPrev = document.querySelector('.modal-nav-prev');
+        const modalNavNext = document.querySelector('.modal-nav-next');
+
+        modalNavPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImage();
+        });
+
+        modalNavNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImage();
+        });
+
+        // Keyboard navigation in modal
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevImage();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    modal.style.display = "none";
+                }
+            }
+        });
     </script>
 
     <div id="footer-placeholder"></div>
