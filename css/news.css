@@ -6,7 +6,7 @@ body {
     margin: 0;
 }
 
-/* Стилі для банера з фіолетовою рамкою */
+/* пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 .top-banner {
     max-width: 800px;
     margin: 0 auto 5px auto;
@@ -18,7 +18,7 @@ body {
 
     .top-banner img {
         width: 100%;
-        max-height: 180px; /* Зменшуємо висоту */
+        max-height: 180px; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
         object-fit: cover;
         display: block;
     }
@@ -59,6 +59,54 @@ body {
         .news-meta a:hover {
             text-decoration: underline;
         }
+
+.news-author-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f5ff;
+    border-radius: 12px;
+    border-left: 4px solid #6a1b9a;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.news-author-section:hover {
+    background-color: #f0e6f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.2);
+}
+
+.news-author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6a1b9a;
+}
+
+.news-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-author-name {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #6a1b9a;
+    margin: 0;
+}
+
+.news-author-title {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 2px 0 0 0;
+    font-style: italic;
+}
 
 .news-title {
     font-family: 'Lusitana', serif;
@@ -127,7 +175,7 @@ body {
         height: 315px;
     }
 
-/* Адаптивність для мобільних */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 @media (max-width: 767px) {
     .top-banner {
         border-width: 3px;
@@ -167,9 +215,27 @@ body {
         margin: 15px;
         padding: 10px 15px;
     }
+
+    .news-author-section {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .news-author-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .news-author-name {
+        font-size: 1rem;
+    }
+
+    .news-author-title {
+        font-size: 0.8rem;
+    }
 }
 
-/* Стилі для lightbox */
+/* пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ lightbox */
 .image-modal {
     display: none;
     position: fixed;

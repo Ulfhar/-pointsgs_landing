@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Far-Far-Forest - News #4</title>
+    <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <!-- End cookieyes banner -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RSXV2Q3WG2');
+    </script>
+    <style>
+        .news-content ul li {
+            margin-bottom: 1.5em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="top-banner">
+        <img src="images/devlog.png" alt="News 4" />
+    </div>
+
+    <article class="news-article">
+        <a href="https://www.linkedin.com/in/bogdan-kagitin-84bb06127/" target="_blank" class="news-author-section">
+            <img src="images/ava.jpg" alt="Bogdan" class="news-author-avatar">
+            <div class="news-author-info">
+                <p class="news-author-name">Bogdan</p>
+                <p class="news-author-title">Game Developer</p>
+            </div>
+        </a>
+        
+        <div class="news-meta">
+            <p class="news-date">Jul 13, 2025</p>
+            <p class="news-type">DevLog</p>
+            <p class="news-author">
+                <a href="https://x.com/Far_Far_Forest" target="_blank">Twitter/X - @Far_Far_Forest</a>
+            </p>
+        </div>
+
+        <h1 class="news-title">News #4: First Public Test 🌲</h1>
+
+        <p class="news-subtitle"><em>12 levels are ready, Ukrainian localization is in, and we're moving forward!</em></p>
+
+        <section class="news-content">
+            <p>We made the decision a while ago to shift the focus of the game from a pure puzzle-platformer to something with a more relaxed gameplay style.</p>
+
+            <p>So now it's time to test the current levels and gather feedback — <strong>especially on the runner-style level</strong>, which breaks the usual rhythm of the game. It was planned as a change of pace, but we're still unsure how well it fits.</p>
+
+            <blockquote>Next up — the Hub. That's the calm type of gameplay I mentioned at the start. Honestly, we can't wait to begin — we've never done anything like this before, and it sounds really exciting.</blockquote>
+
+            <p>To put it simply, gameplay-wise it's a <strong>farm-like experience</strong>: grow 🌿, upgrade 🔧, unlock new plants 🌼. The overall theme remains the forest, with a sapling oak tree at its center that you can strengthen by bringing it fireflies ✨.</p>
+
+            <p>The key feature? The Hub will be deeply tied to the story. Progressing the hub means revealing more lore — through characters, dialogue, and atmospheric details. If you're into storybook vibes and layered worldbuilding, this should speak to you 📜</p>
+
+            <p>And of course, the Hub will serve practical purposes too:</p>
+            <ul>
+                <li>navigation 🧭</li>
+                <li>notifications (and yes — we have a cool idea for these: <em>spoiler: they'll be styled as a Forest Newspaper</em>) 📰</li>
+                <li>resource collection 💎</li>
+                <li>daily rewards 🎁</li>
+            </ul>
+
+            <blockquote>They say every post needs a call to action — and I've got just the thing:</blockquote>
+
+            <p><strong>Please test the build!</strong> We're not making this game just for ourselves — we're making it for you ❤️</p>
+
+            <p>No ads, no in-app purchases, no nonsense. Have you seen anything like that lately? Then hurry up and give it a try! 🌌</p>
+
+            <p><strong>And then — your feedback is absolutely essential</strong>. How else can we know what worked and what didn't?</p>
+
+            <p><a href="https://forms.gle/ahKBn432X1j97dUq5" target="_blank">📝 Feedback Form</a></p>
+
+            <p><strong>P.S.</strong> Ukrainian was always the core — English is technically the localization 😏</p>
+        </section>
+    </article>
+
+    <div id="image-modal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="image-modal-content" />
+    </div>
+
+    <script>
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("image-modal-content");
+        const closeBtn = document.querySelector(".image-modal-close");
+
+        document.querySelectorAll(".news-image img").forEach(img => {
+            img.addEventListener("click", () => {
+                modal.style.display = "flex";
+                modalImg.src = img.src;
+            });
+        });
+
+        closeBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.style.display = "none";
+        };
+    </script>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+</body>
+
+</html> 
