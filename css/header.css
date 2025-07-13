@@ -23,7 +23,7 @@
 }
 
 .fixed-header .logo-img {
-    height: 30px !important;
+    height: 60px !important;
     width: auto !important;
     object-fit: contain !important;
     display: block !important;
