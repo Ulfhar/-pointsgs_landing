@@ -13,17 +13,17 @@
     align-items: center !important;
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 8px 20px !important;
+    padding: 4px 8px !important;
 }
 
 @media (min-width: 1024px) {
     .fixed-header .header-inner {
-        padding: 20px 80px !important;
+        padding: 10px 24px !important;
     }
 }
 
 .fixed-header .logo-img {
-    height: 60px !important;
+    height: 32px !important;
     width: auto !important;
     object-fit: contain !important;
     display: block !important;
@@ -55,14 +55,14 @@
     font-family: Calibri, Arial, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.35rem;
+    font-size: 1rem;
     color: #fff;
-    margin-left: 6px;
-    letter-spacing: 1px;
-    line-height: 60px;
+    margin-left: 4px;
+    letter-spacing: 0.5px;
+    line-height: 32px;
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 32px;
     padding-top: 0;
     padding-bottom: 0;
 }
