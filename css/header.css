@@ -39,7 +39,7 @@
         text-decoration: none !important;
         font-weight: bold !important;
         transition: color 0.3s, text-shadow 0.3s !important;
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
 
         .fixed-header .header-nav a:hover {
@@ -75,6 +75,24 @@
     color: #fff;
     text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
     text-decoration: none !important;
+}
+
+.fixed-header .logo,
+.fixed-header .logo:visited,
+.fixed-header .logo:active,
+.fixed-header .logo:focus,
+.fixed-header .logo:hover {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.fixed-header .logo-text,
+.fixed-header .logo-text:visited,
+.fixed-header .logo-text:active,
+.fixed-header .logo-text:focus,
+.fixed-header .logo-text:hover {
+    text-decoration: none !important;
+    outline: none !important;
 }
 
 
