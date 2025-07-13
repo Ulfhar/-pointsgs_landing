@@ -46,4 +46,25 @@
             text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
         }
 
+.fixed-header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.fixed-header .logo-text {
+    font-family: Calibri, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    color: #fff;
+    margin-left: 6px;
+    letter-spacing: 1px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 
