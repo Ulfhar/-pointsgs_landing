@@ -35,7 +35,7 @@
 }
 
     .fixed-header .header-nav a {
-        color: #808080 !important;
+        color: #fff !important;
         text-decoration: none !important;
         font-weight: bold !important;
         transition: color 0.3s, text-shadow 0.3s !important;
@@ -43,7 +43,7 @@
 
         .fixed-header .header-nav a:hover {
             color: #fff !important;
-            text-shadow: 2px 2px 10px #fff !important;
+            text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
         }
 
 
