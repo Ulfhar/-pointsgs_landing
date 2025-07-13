@@ -39,6 +39,7 @@
         text-decoration: none !important;
         font-weight: bold !important;
         transition: color 0.3s, text-shadow 0.3s !important;
+        font-size: 11px !important;
     }
 
         .fixed-header .header-nav a:hover {
@@ -65,6 +66,15 @@
     height: 32px;
     padding-top: 0;
     padding-bottom: 0;
+    text-decoration: none !important;
+    transition: color 0.3s, text-shadow 0.3s !important;
+}
+
+.fixed-header .logo:hover .logo-text,
+.fixed-header .logo:focus .logo-text {
+    color: #fff;
+    text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
+    text-decoration: none !important;
 }
 
 
