@@ -21,6 +21,13 @@ function localizePage(strings) {
     if (strings.title) document.title = strings.title;
 }
 
+function attachLangSwitcherListeners() {
+    const uaBtn = document.getElementById('switch-to-ua');
+    const enBtn = document.getElementById('switch-to-en');
+    if (uaBtn) uaBtn.onclick = () => setUserLocale('ua');
+    if (enBtn) enBtn.onclick = () => setUserLocale('en');
+}
+
 function updateLangSwitcherActive(locale) {
     const enBtn = document.getElementById('switch-to-en');
     const uaBtn = document.getElementById('switch-to-ua');
@@ -31,12 +38,10 @@ function updateLangSwitcherActive(locale) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const uaBtn = document.getElementById('switch-to-ua');
-    const enBtn = document.getElementById('switch-to-en');
-    if (uaBtn) uaBtn.onclick = () => setUserLocale('ua');
-    if (enBtn) enBtn.onclick = () => setUserLocale('en');
-
     const locale = getUserLocale();
+
+    // Attach listeners immediately (for static footers)
+    attachLangSwitcherListeners();
     updateLangSwitcherActive(locale);
 
     if (locale !== 'en') {
@@ -45,5 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(strings => {
                 localizePage(strings);
             });
+    }
+
+    // Attach listeners after the footer is loaded dynamically
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        const observer = new MutationObserver(() => {
+            attachLangSwitcherListeners();
+            updateLangSwitcherActive(locale);
+        });
+        observer.observe(footerPlaceholder, { childList: true });
     }
 }); 
