@@ -31,8 +31,8 @@
             <div class="footer-section">
                 <h4>Language</h4>
                 <div style="margin-bottom: 6px; color: #cccccc; font-size: 0.95rem;">Show the web site in:</div>
-                <button id="switch-to-en" style="margin: 0 0.5em 0 0;">English</button>
-                <button id="switch-to-ua" style="margin-left: 0.5em;">Українська 🇺🇦</button>
+                <span id="switch-to-en" class="lang-switcher">English</span>
+                <span id="switch-to-ua" class="lang-switcher">Українська 🇺🇦</span>
             </div>
         </div>
         
@@ -148,5 +148,26 @@
     .footer-inner {
         padding: 0 80px;
     }
+}
+
+/* Add CSS for pure text language switcher and active highlight */
+.lang-switcher {
+    cursor: pointer;
+    color: #cccccc;
+    font-size: 1rem;
+    margin-right: 1em;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+.lang-switcher:last-child {
+    margin-right: 0;
+}
+.lang-switcher.active {
+    color: #fff;
+    text-shadow: 0 0 8px #fff, 0 0 2px #fff;
+    font-weight: bold;
 }
 </style> 

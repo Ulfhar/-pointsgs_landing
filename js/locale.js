@@ -18,8 +18,16 @@ function localizePage(strings) {
             el.textContent = strings[key];
         }
     });
-    // Optionally localize document title
     if (strings.title) document.title = strings.title;
+}
+
+function updateLangSwitcherActive(locale) {
+    const enBtn = document.getElementById('switch-to-en');
+    const uaBtn = document.getElementById('switch-to-ua');
+    if (enBtn && uaBtn) {
+        enBtn.classList.toggle('active', locale === 'en');
+        uaBtn.classList.toggle('active', locale === 'ua');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (uaBtn) uaBtn.onclick = () => setUserLocale('ua');
     if (enBtn) enBtn.onclick = () => setUserLocale('en');
 
-    // Load and apply localization
     const locale = getUserLocale();
+    updateLangSwitcherActive(locale);
     fetch(`js/locales/${locale}.json`)
         .then(res => res.json())
         .then(strings => {
