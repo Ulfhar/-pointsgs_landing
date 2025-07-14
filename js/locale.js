@@ -38,9 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const locale = getUserLocale();
     updateLangSwitcherActive(locale);
-    fetch(`js/locales/${locale}.json`)
-        .then(res => res.json())
-        .then(strings => {
-            localizePage(strings);
-        });
+
+    if (locale !== 'en') {
+        fetch(`js/locales/${locale}.json`)
+            .then(res => res.json())
+            .then(strings => {
+                localizePage(strings);
+            });
+    }
 }); 
