@@ -40,6 +40,11 @@ function updateLangSwitcherActive(locale) {
 document.addEventListener('DOMContentLoaded', function() {
     const locale = getUserLocale();
 
+    // Hide .hide-for-en elements if English
+    document.querySelectorAll('.hide-for-en').forEach(el => {
+        el.style.display = (locale === 'en') ? 'none' : '';
+    });
+
     // Attach listeners immediately (for static footers)
     attachLangSwitcherListeners();
     updateLangSwitcherActive(locale);
