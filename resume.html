@@ -3,12 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bogdan Kagitin — Senior QA Engineer</title>
+  
+  <!-- SEO Meta Tags -->
+  <title>Bogdan Kagitin — Senior QA Engineer | 8+ Years Experience</title>
+  <meta name="description" content="Senior QA Engineer with 8+ years of experience in web, mobile, and desktop testing. Expert in test automation, API testing, and modern QA technologies including Docker and AI-assisted testing.">
+  <meta name="keywords" content="QA Engineer, Software Testing, Test Automation, Selenium, API Testing, Quality Assurance, Senior QA, Test Management">
+  <meta name="author" content="Bogdan Kagitin">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://points.gs/resume.html">
+  <meta property="og:title" content="Bogdan Kagitin — Senior QA Engineer">
+  <meta property="og:description" content="Senior QA Engineer with 8+ years of experience. Expert in test automation, API testing, and modern QA technologies.">
+  <meta property="og:image" content="https://points.gs/images/ava.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://points.gs/resume.html">
+  <meta property="twitter:title" content="Bogdan Kagitin — Senior QA Engineer">
+  <meta property="twitter:description" content="Senior QA Engineer with 8+ years of experience. Expert in test automation, API testing, and modern QA technologies.">
+  <meta property="twitter:image" content="https://points.gs/images/ava.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon_points.png">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bogdan Kagitin",
+    "jobTitle": "Senior QA Engineer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tallinn",
+      "addressCountry": "Estonia"
+    },
+    "email": "kagitin.ulv@gmail.com",
+    "telephone": "+37254583995",
+    "url": "https://points.gs/resume.html",
+    "sameAs": [
+      "https://www.linkedin.com/in/bogdan-kagitin-84bb06127/"
+    ],
+    "knowsAbout": [
+      "Software Testing",
+      "Test Automation",
+      "API Testing",
+      "Quality Assurance",
+      "Selenium",
+      "Docker",
+      "Test Management"
+    ],
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "QA Professional"
+    }
+  }
+  </script>
+  
   <link rel="stylesheet" href="resume.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Progress Indicator -->
+  <div class="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="progress-fill"></div>
+  </div>
+  
+  <!-- Control Buttons -->
+  <div class="control-buttons" role="toolbar" aria-label="Page controls">
+    <button type="button" class="control-btn" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+    <button type="button" class="control-btn" id="printBtn" aria-label="Print or save as PDF" title="Print or save as PDF">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+    </button>
+    <button type="button" class="control-btn" id="backToTop" aria-label="Back to top" title="Back to top" style="display: none;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="container" id="main-content">
     <header class="header">
       <img src="images/ava.jpg" alt="Bogdan Kagitin" class="avatar">
       <a href="https://www.linkedin.com/in/bogdan-kagitin-84bb06127/" target="_blank" rel="noopener noreferrer" class="linkedin-link">
@@ -90,32 +176,69 @@
       <div class="skills-grid">
         <div class="skill-category">
           <h3 class="skill-title">Testing</h3>
-          <p class="skill-items">Functional, Regression, Exploratory, Security, API, UI/UX, Smoke/Sanity, Ad-hoc</p>
+          <p class="skill-items">
+            <span data-tooltip="Systematic testing of software functionality">Functional</span>, 
+            <span data-tooltip="Re-testing previously tested features">Regression</span>, 
+            <span data-tooltip="Unscripted, ad-hoc testing approach">Exploratory</span>, 
+            <span data-tooltip="Testing for vulnerabilities and security flaws">Security</span>, 
+            <span data-tooltip="Testing application programming interfaces">API</span>, 
+            <span data-tooltip="Testing user interface and user experience">UI/UX</span>, 
+            <span data-tooltip="Quick validation of critical functionality">Smoke/Sanity</span>, 
+            <span data-tooltip="Informal testing without formal test cases">Ad-hoc</span>
+          </p>
         </div>
 
         <div class="skill-category">
           <h3 class="skill-title">Test Management</h3>
-          <p class="skill-items">TestRail, JIRA, Confluence, Zephyr, Qmetry</p>
+          <p class="skill-items">
+            <span data-tooltip="Test case management and execution tracking">TestRail</span>, 
+            <span data-tooltip="Issue tracking and project management">JIRA</span>, 
+            <span data-tooltip="Team collaboration and documentation platform">Confluence</span>, 
+            <span data-tooltip="JIRA-native test management solution">Zephyr</span>, 
+            <span data-tooltip="Test management and quality assurance platform">Qmetry</span>
+          </p>
         </div>
 
         <div class="skill-category">
           <h3 class="skill-title">Tools</h3>
-          <p class="skill-items">Postman, Swagger, Fiddler, Requestly, Docker, Jenkins, Kibana, Grafana, DBeaver, Bitbucket</p>
+          <p class="skill-items">
+            <span data-tooltip="API development and testing platform">Postman</span>, 
+            <span data-tooltip="API documentation and testing framework">Swagger</span>, 
+            <span data-tooltip="HTTP debugging proxy tool">Fiddler</span>, 
+            <span data-tooltip="HTTP request modification and testing tool">Requestly</span>, 
+            <span data-tooltip="Containerization platform for applications">Docker</span>, 
+            <span data-tooltip="Continuous integration and deployment server">Jenkins</span>, 
+            <span data-tooltip="Data visualization and exploration platform">Kibana</span>, 
+            <span data-tooltip="Analytics and monitoring platform">Grafana</span>, 
+            <span data-tooltip="Universal database management tool">DBeaver</span>, 
+            <span data-tooltip="Git-based source code repository">Bitbucket</span>
+          </p>
         </div>
 
         <div class="skill-category">
           <h3 class="skill-title">Databases</h3>
-          <p class="skill-items">MySQL, MongoDB</p>
+          <p class="skill-items">
+            <span data-tooltip="Relational database management system">MySQL</span>, 
+            <span data-tooltip="NoSQL document-oriented database">MongoDB</span>
+          </p>
         </div>
 
         <div class="skill-category">
           <h3 class="skill-title">Automation & Scripting</h3>
-          <p class="skill-items">C#, Selenium WebDriver, Unity C# (personal projects), AI-assisted test generation</p>
+          <p class="skill-items">
+            <span data-tooltip="Object-oriented programming language">C#</span>, 
+            <span data-tooltip="Web browser automation framework">Selenium WebDriver</span>, 
+            <span data-tooltip="Game engine scripting (personal projects)">Unity C# (personal projects)</span>, 
+            <span data-tooltip="AI-powered test case and script generation">AI-assisted test generation</span>
+          </p>
         </div>
 
         <div class="skill-category">
           <h3 class="skill-title">Methodologies</h3>
-          <p class="skill-items">Agile / Scrum, Black-box / Gray-box Testing</p>
+          <p class="skill-items">
+            <span data-tooltip="Iterative development framework">Agile / Scrum</span>, 
+            <span data-tooltip="Testing approaches based on knowledge of internal structure">Black-box / Gray-box Testing</span>
+          </p>
         </div>
       </div>
     </section>
@@ -150,6 +273,8 @@
       </div>
     </section>
   </div>
+  
+  <script src="resume.js"></script>
 </body>
 </html>
 

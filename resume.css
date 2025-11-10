@@ -17,15 +17,34 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-light: #9ca3af;
+  --bg-primary: #1f2937;
+  --bg-secondary: #374151;
+  --border-color: #4b5563;
+  --accent-color: #60a5fa;
+  --primary-color: #3b82f6;
+  --primary-hover: #60a5fa;
+  --bg-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--bg-gradient);
   min-height: 100vh;
   padding: 2rem 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -464,22 +483,255 @@ body {
   }
 }
 
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Keyboard Navigation Styles */
+.keyboard-navigation *:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-color);
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* Control Buttons */
+.control-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 999;
+}
+
+.control-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.control-btn:hover {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.control-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.control-btn svg {
+  pointer-events: none;
+}
+
+/* Tooltip Styles */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted var(--accent-color);
+  transition: all 0.2s ease;
+}
+
+[data-tooltip]:hover {
+  color: var(--accent-color);
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  max-width: 250px;
+  white-space: normal;
+  text-align: center;
+}
+
+[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px);
+  border: 6px solid transparent;
+  border-top-color: var(--text-primary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+[data-tooltip]:hover::after {
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* Dark mode tooltip adjustments */
+[data-theme="dark"] [data-tooltip]::before {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] [data-tooltip]::after {
+  border-top-color: var(--bg-secondary);
+}
+
 /* Print Styles */
 @media print {
+  /* Hide interactive elements */
+  .skip-link,
+  .progress-bar,
+  .control-buttons,
+  .linkedin-link {
+    display: none !important;
+  }
+
   body {
     background: white;
     padding: 0;
+    color: #000;
   }
 
   .container {
     box-shadow: none;
     padding: 1rem;
+    max-width: 100%;
   }
 
   .experience-item:hover,
   .skill-category:hover,
   .hobby-tag:hover {
     transform: none;
+  }
+
+  /* Remove tooltips in print */
+  [data-tooltip]::before,
+  [data-tooltip]::after {
+    display: none;
+  }
+
+  /* Optimize colors for print */
+  .section-title::after {
+    background: #000;
+  }
+
+  .experience-item {
+    border-left-color: #000;
+    background: #f9f9f9;
+    page-break-inside: avoid;
+  }
+
+  .skill-category {
+    background: #f9f9f9;
+    page-break-inside: avoid;
+  }
+
+  /* Remove animations in print */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Page breaks */
+  .section {
+    page-break-inside: avoid;
+  }
+
+  .experience-item {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Responsive adjustments for control buttons */
+@media (max-width: 768px) {
+  .control-buttons {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .control-btn {
+    width: 44px;
+    height: 44px;
   }
 }
 
