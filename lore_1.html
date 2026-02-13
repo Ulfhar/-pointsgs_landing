@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Grove - Lore</title>
+    <link rel="icon" type="image/png" href="images/favicon_points.png" />
+    <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RSXV2Q3WG2');
+    </script>
+    <style>
+        /* ============================================
+           LUMEN GROVE - MOONLIT FOREST THEME
+           Production-ready single-file version
+           Colors: Blues/Turquoise with Gold accents
+           ============================================ */
+
+        /* ===== ROOT VARIABLES - MOONLIT FOREST ===== */
+        :root {
+            /* Синя палітра для лісу під місяцем */
+            --color-primary: #1e3a5f;           /* Темно-синій (ніч) */
+            --color-primary-dark: #0f1e3a;      /* Глибокий синій */
+            --color-primary-light: #2d5a8c;     /* Світліший синій */
+            --color-secondary: #1a4d6d;         /* Морська синь */
+            
+            /* Бірюзові відтінки */
+            --color-turquoise: #20b2aa;         /* Бірюза */
+            --color-turquoise-light: #40e0d0;   /* Світла бірюза */
+            --color-cyan: #5dade2;              /* Блакитний */
+            
+            /* Золоті акценти */
+            --color-gold: #ffd700;              /* Яскраве золото */
+            --color-gold-light: #ffe55c;        /* Світле золото */
+            --color-gold-dark: #daa520;         /* Темне золото */
+            
+            /* Фони */
+            --color-bg-dark: #0a1628;           /* Темний фон */
+            --color-bg-medium: #162844;         /* Середній фон */
+            --color-bg-light: #1e3a5f;          /* Світлий фон */
+            --color-bg-gradient-start: #0d1b2a; /* Градієнт початок */
+            --color-bg-gradient-end: #1b3a52;   /* Градієнт кінець */
+            
+            /* Текст */
+            --color-text-light: #e8f4f8;        /* Світлий текст */
+            --color-text-medium: #b8d4e0;       /* Середній текст */
+            --color-text-dark: #8ba6b8;         /* Темний текст */
+            
+            /* Тіні та ефекти */
+            --shadow-soft: 0 4px 24px rgba(32, 178, 170, 0.15);
+            --shadow-medium: 0 8px 32px rgba(32, 178, 170, 0.25);
+            --shadow-strong: 0 12px 48px rgba(32, 178, 170, 0.35);
+            --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+            
+            /* Переходи */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+        }
+
+        /* ===== SMOOTH SCROLL ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== BODY OVERRIDE ===== */
+        body {
+            background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%);
+            color: var(--color-text-light);
+        }
+
+        /* ===== BANNER WITH MOONLIGHT EFFECT ===== */
+        .lore-banner {
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            transition: var(--transition-smooth);
+        }
+        
+        .lore-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(30, 58, 95, 0.5) 0%, 
+                rgba(32, 178, 170, 0.3) 50%, 
+                rgba(15, 30, 58, 0.6) 100%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .lore-banner:hover::before {
+            opacity: 1;
+        }
+
+        /* Місячне сяйво */
+        .lore-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                rgba(64, 224, 208, 0.1) 0%, 
+                transparent 50%);
+            animation: moonGlow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        .lore-banner-placeholder {
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, 
+                var(--color-bg-gradient-start) 0%, 
+                var(--color-primary) 30%, 
+                var(--color-secondary) 70%, 
+                var(--color-bg-gradient-end) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .lore-banner-fallback {
+            font-family: 'Cinzel', 'Roboto Serif', serif;
+            color: var(--color-turquoise-light);
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 20px rgba(64, 224, 208, 0.8),
+                         0 0 40px rgba(32, 178, 170, 0.4);
+            animation: fadeInScale 1s ease, textGlow 3s ease-in-out infinite;
+            z-index: 2;
+            position: relative;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(64, 224, 208, 0.8),
+                             0 0 40px rgba(32, 178, 170, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(64, 224, 208, 1),
+                             0 0 60px rgba(32, 178, 170, 0.6),
+                             0 0 80px rgba(93, 173, 226, 0.3);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lore-banner-placeholder img[src] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: fadeIn 0.8s ease;
+            filter: brightness(0.8) saturate(1.2) hue-rotate(200deg);
+        }
+
+        .lore-banner-placeholder:has(img[src]) .lore-banner-fallback {
+            display: none;
+        }
+
+        .lore-banner-placeholder.banner-image-failed .lore-banner-fallback {
+            display: block;
+        }
+        /* When title is on banner, hide the short fallback so only title shows */
+        .lore-banner-placeholder:has(.lore-banner-title) .lore-banner-fallback {
+            display: none;
+        }
+
+        /* Title on banner (overlay, always visible) */
+        .lore-banner-title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-family: 'Cinzel', 'Roboto Serif', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: var(--color-text-light);
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9),
+                         0 2px 4px rgba(0, 0, 0, 0.8),
+                         0 0 30px rgba(64, 224, 208, 0.4);
+            z-index: 3;
+            line-height: 1.3;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== ARTICLE CONTAINER ===== */
+        .lore-article {
+            animation: slideUp 0.8s ease;
+            background: rgba(10, 22, 40, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== AUTHOR SECTION ===== */
+        .lore-article .news-author-section {
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 95, 0.6) 0%, 
+                rgba(26, 77, 109, 0.6) 100%);
+            border-left: 4px solid var(--color-turquoise);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .lore-article .news-author-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(64, 224, 208, 0.2), 
+                transparent);
+            transition: var(--transition-smooth);
+        }
+
+        .lore-article .news-author-section:hover::before {
+            left: 100%;
+        }
+
+        .lore-article .news-author-section:hover {
+            background: linear-gradient(135deg, 
+                rgba(45, 90, 140, 0.8) 0%, 
+                rgba(32, 178, 170, 0.3) 100%);
+            box-shadow: var(--shadow-medium);
+            transform: translateX(5px);
+            border-left-color: var(--color-gold);
+        }
+
+        .lore-article .news-author-avatar {
+            border: 3px solid var(--color-turquoise);
+            box-shadow: 0 4px 16px rgba(32, 178, 170, 0.4),
+                        0 0 20px rgba(64, 224, 208, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .lore-article .news-author-section:hover .news-author-avatar {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 24px rgba(32, 178, 170, 0.6),
+                        0 0 30px rgba(64, 224, 208, 0.4);
+            border-color: var(--color-gold);
+        }
+
+        .lore-article .news-author-name {
+            color: var(--color-turquoise-light);
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .lore-article .news-author-section:hover .news-author-name {
+            color: var(--color-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .lore-article .news-author-title {
+            color: var(--color-text-medium);
+        }
+
+        /* ===== META SECTION ===== */
+        .lore-article .news-meta,
+        .lore-article .news-meta a {
+            color: var(--color-text-medium);
+            transition: var(--transition-fast);
+        }
+
+        .lore-article .news-meta a:hover {
+            color: var(--color-gold);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+
+        .lore-article .news-type {
+            display: inline-block;
+            background: linear-gradient(135deg, 
+                var(--color-primary) 0%, 
+                var(--color-secondary) 100%);
+            color: var(--color-gold);
+            padding: 0.4em 1em;
+            border-radius: 999px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            box-shadow: 0 4px 12px rgba(32, 178, 170, 0.3),
+                        inset 0 0 20px rgba(64, 224, 208, 0.1);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--color-turquoise);
+        }
+
+        .lore-article .news-type::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .lore-article .news-type:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .lore-article .news-type:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(32, 178, 170, 0.5),
+                        var(--shadow-gold);
+            border-color: var(--color-gold);
+        }
+
+        /* ===== TITLE WITH MAGICAL SHIMMER ===== */
+        .lore-article .news-title {
+            font-family: 'Cinzel', 'Roboto Serif', serif;
+            background: linear-gradient(135deg, 
+                var(--color-turquoise-light) 0%, 
+                var(--color-gold) 30%,
+                var(--color-cyan) 60%,
+                var(--color-gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 1.5em 0;
+            filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.3));
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* ===== CONTENT ===== */
+        .lore-article .news-content {
+            font-family: 'Crimson Text', 'Roboto Serif', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+
+        .lore-article .news-content p {
+            margin-bottom: 1.8em;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .lore-article .news-content p:nth-child(1) { animation-delay: 0.1s; }
+        .lore-article .news-content p:nth-child(2) { animation-delay: 0.2s; }
+        .lore-article .news-content p:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lore-article .news-content em {
+            color: var(--color-turquoise-light);
+            font-style: italic;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(64, 224, 208, 0.3);
+        }
+
+        .lore-article .news-content strong {
+            color: var(--color-gold);
+            font-weight: 700;
+            position: relative;
+            padding: 0 0.2em;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+
+        .lore-article .news-content strong::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-gold), 
+                transparent);
+            opacity: 0.6;
+        }
+
+        /* ===== HEADINGS ===== */
+        .lore-article .lore-heading {
+            font-family: 'Cinzel', 'Roboto Serif', serif;
+            font-size: 1.65rem;
+            color: var(--color-turquoise-light);
+            margin: 2.5em 0 1em 0;
+            padding-bottom: 0.5em;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, 
+                var(--color-turquoise) 0%, 
+                var(--color-gold) 50%, 
+                transparent 100%) 1;
+            position: relative;
+            animation: fadeInLeft 0.8s ease backwards;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.3);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .lore-article .lore-heading::before {
+            content: '✦';
+            position: absolute;
+            left: -1.5em;
+            color: var(--color-gold);
+            opacity: 0.8;
+            animation: pulse 2s ease infinite;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        /* ===== BLOCKQUOTES ===== */
+        .lore-article .news-content blockquote {
+            border-left: 5px solid var(--color-turquoise);
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 95, 0.4) 0%, 
+                rgba(26, 77, 109, 0.3) 100%);
+            color: var(--color-text-light);
+            padding: 1.5em 2em;
+            margin: 2em 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--shadow-soft);
+            font-style: italic;
+            position: relative;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(5px);
+        }
+
+        .lore-article .news-content blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 4em;
+            color: var(--color-gold);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .lore-article .news-content blockquote:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-medium);
+            border-left-color: var(--color-gold);
+        }
+
+        /* ===== LORE ARTICLE IMAGES (no background, no decorative glow) ===== */
+        .lore-article .news-content .news-image {
+            margin: 3em 0;
+            background: none;
+            border: none;
+        }
+
+        .lore-article .news-content .news-image::before,
+        .lore-article .news-content .news-image::after {
+            content: none;
+            display: none;
+        }
+
+        .lore-article .news-content .news-image img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Placeholder only when needed (minimal, no square background / no stars) */
+        .lore-image-placeholder {
+            margin: 3em 0;
+            min-height: 120px;
+            background: transparent;
+            border: 2px dashed var(--color-turquoise);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-medium);
+            font-family: 'Roboto Serif', serif;
+            font-size: 0.95rem;
+        }
+
+        .lore-image-placeholder::before,
+        .lore-image-placeholder::after {
+            content: none;
+            display: none;
+        }
+
+        /* ===== LIST STYLES ===== */
+        .lore-article .news-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lore-article .news-content ul li {
+            margin-bottom: 1.8em;
+            line-height: 1.8;
+            padding-left: 2em;
+            position: relative;
+        }
+
+        .lore-article .news-content ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+            font-size: 1.2em;
+            animation: twinkle 3s ease infinite;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .lore-article .news-content ul li:nth-child(2n)::before {
+            animation-delay: 1s;
+        }
+
+        .lore-article .news-content ul li:nth-child(3n)::before {
+            animation-delay: 2s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== DECORATIVE DIVIDERS ===== */
+        .lore-divider {
+            margin: 3em auto;
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-turquoise), 
+                var(--color-gold),
+                var(--color-turquoise),
+                transparent);
+            position: relative;
+            box-shadow: 0 0 10px rgba(64, 224, 208, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lore-divider::before {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-gold);
+            padding: 0;
+            font-size: 1.2em;
+            width: 1em;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ===== READING PROGRESS BAR ===== */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(30, 58, 95, 0.3);
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .reading-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--color-turquoise), 
+                var(--color-gold),
+                var(--color-turquoise-light));
+            width: 0%;
+            transition: width 0.2s ease;
+            box-shadow: 0 0 15px rgba(64, 224, 208, 0.8),
+                        0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .lore-banner-placeholder {
+                min-height: 120px;
+            }
+
+            .lore-banner-fallback {
+                font-size: 1.5rem;
+            }
+
+            .lore-article .lore-heading {
+                font-size: 1.35rem;
+                padding-left: 0.5em;
+            }
+
+            .lore-article .news-content {
+                font-size: 1.05rem;
+            }
+
+            .lore-image-placeholder {
+                min-height: 200px;
+            }
+
+            .lore-article .lore-heading::before {
+                left: 0;
+                position: relative;
+                margin-right: 0.5em;
+            }
+
+            .lore-divider {
+                width: 150px;
+            }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== SELECTION ===== */
+        ::selection {
+            background: var(--color-turquoise);
+            color: var(--color-bg-dark);
+        }
+
+        ::-moz-selection {
+            background: var(--color-turquoise);
+            color: var(--color-bg-dark);
+        }
+
+        /* ===== FOCUS STYLES ===== */
+        .lore-article a:focus,
+        .lore-article button:focus {
+            outline: 3px solid var(--color-gold);
+            outline-offset: 2px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, 
+                var(--color-turquoise), 
+                var(--color-primary));
+            border-radius: 6px;
+            border: 2px solid var(--color-bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, 
+                var(--color-gold), 
+                var(--color-turquoise));
+        }
+
+        /* ===== MAGICAL PARTICLES (OPTIONAL) ===== */
+        .particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="top-banner lore-banner lore-banner-placeholder" id="lore-banner">
+        <img src="images/lore_banner.png" alt="Lore" onerror="this.onerror=null; this.style.display='none'; document.getElementById('lore-banner').classList.add('banner-image-failed');" />
+        <span class="lore-banner-fallback">📜 Lore</span>
+        <h1 class="lore-banner-title" data-i18n="lore1_title">Lumen Grove — How the Enchanted Forest Grows</h1>
+    </div>
+
+    <article class="news-article lore-article">
+        <a href="https://www.linkedin.com/in/bogdan-kagitin-84bb06127/" target="_blank" class="news-author-section">
+            <img src="images/ava.jpg" alt="Bogdan" class="news-author-avatar">
+            <div class="news-author-info">
+                <p class="news-author-name">Bogdan</p>
+                <p class="news-author-title">Game Developer</p>
+            </div>
+        </a>
+        
+        <div class="news-meta">
+            <p class="news-date" data-i18n="lore1_date">Feb 13, 2026</p>
+            <p class="news-type">Lore</p>
+            <p class="news-author">
+                <a href="https://x.com/Lumen_Grove" target="_blank">Twitter/X - @Lumen_Grove</a>
+            </p>
+        </div>
+
+        <section class="news-content">
+            <p data-i18n="lore1_p1">It often happens that you set out to create one thing, and something entirely different takes shape instead, doesn't it? Yet that is not always a bad turn of events. Sometimes the thing you are working on begins to suggest what it wishes to become.</p>
+
+            <p data-i18n="lore1_p2">That is precisely what happened with the enchanted world of <em>Far-Far Forest</em>. It was meant to tell the story of a mysterious figure in a green hood, gathering fireflies and luring them with the glow of a lantern. Yet it turned out that this creature was only one fragment of a far greater tale. To truly understand it — and to be able to retell it — there had to be a place. A kind of unifying centre for the entire narrative.</p>
+
+            <p data-i18n="lore1_p3">Something akin to a book's cover: the thing that gathers loose pages into a single form — not merely a tool, but a part of the story itself.</p>
+
+            <figure class="news-image news-image-original-ratio reveal">
+                <img src="images/news_images/lore_1/L_3.png" alt="The book cover — story and place" />
+            </figure>
+
+            <div class="lore-divider"></div>
+
+            <h2 class="lore-heading reveal" data-i18n="lore1_heading_place">So, what is this place?</h2>
+
+            <p class="reveal" data-i18n="lore1_p4">There are several ways to answer that. Within the story, it is <em>Contra spem spero</em> — hope against hope — in its purest form. The last island of resistance in a world swallowed by darkness, with no reasonable chance of victory. Its inhabitants live by memories of a bygone age — a kind of golden era — whose return, objectively speaking, is impossible. In many ways it borders on folly: a choice that clearly leads to ruin. I would not even call it hope. It is stubbornness. A refusal to accept the new order of things, even at the cost of life itself.</p>
+
+            <p class="reveal" data-i18n="lore1_p5">And yet — it is here that something extraordinary occurs. A sapling of the Enchanted Oak breaks through the soil. And that means light may yet return to <em>Far-Far Forest</em>. But it begins here — in <strong>Lumen Grove</strong>.</p>
+
+            <figure class="news-image news-image-original-ratio reveal">
+                <img src="images/news_images/lore_1/L_1.png" alt="Lumen Grove / the sapling" />
+            </figure>
+
+            <div class="lore-divider"></div>
+
+            <h2 class="lore-heading reveal" data-i18n="lore1_heading_wrong">So what, then, is wrong?</h2>
+
+            <p class="reveal" data-i18n="lore1_p6">You may have noticed that this fairy-tale world is rather dark. Not merely because there is no sun — only the moon (yes, quite so) — but because even in a night forest, absolute darkness is not a natural state.</p>
+
+            <p class="reveal" data-i18n="lore1_p7">I would put it this way: we know a forest is alive, do we not? But here it is more than alive. Every tree, every stone, every creature is the embodiment of a spirit that has chosen its form according to its nature. Among these incarnate spirits stood the Enchanted Oak — a presence central to the balance of this world.</p>
+
+            <p class="reveal" data-i18n="lore1_p8">This golden tree was home to thousands of fireflies. They illuminated the forest and allowed it to grow in harmony. They were, in a sense, its living current — its vital light.</p>
+
+            <figure class="news-image news-image-original-ratio reveal">
+                <img src="images/news_images/lore_1/L_2.png" alt="The Enchanted Oak / fireflies" />
+            </figure>
+
+            <p class="reveal" data-i18n="lore1_p9">Alas, even in fairy tales, dark roots take hold: envy, deceit, betrayal. A single crooked tree — a small, twisted chestnut that once grew unnoticed in the thickets — made cunning use of others' kindness and clawed its way upwards. Poisoning all around it, it strengthened. Its roots drove deeper, displacing or destroying whatever lay between it and the High Hill.</p>
+
+            <p class="reveal" data-i18n="lore1_p10">Everything changed. The Golden Streams became the Foulwaters. The Bright Groves turned into Thorned Thickets. And only shadows wander now between the trees.</p>
+
+            <p class="reveal" data-i18n="lore1_p11">The Enchanted Oak did not foresee such treachery. By the time it understood what had happened, it was already too late. Poisoned by the waters, weakened and spent, it felt all that befell the forest through its bark, for its spirit was bound to the woodland more deeply than any other.</p>
+
+            <p class="reveal" data-i18n="lore1_p12">In the end, it could endure no more. Its branches bowed in silence, and the great trunk fell.</p>
+
+            <div class="lore-divider"></div>
+
+            <p class="reveal" data-i18n="lore1_p13">Now, upon the High Hill, in a suffocating gloom, towers the usurper — the Withered Chestnut.</p>
+        </section>
+    </article>
+
+    <div id="image-modal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <div class="modal-nav modal-nav-prev">&lt;</div>
+        <div class="modal-nav modal-nav-next">&gt;</div>
+        <img class="image-modal-content" id="image-modal-content" />
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("../footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+    <script src="js/locale.js"></script>
+
+    <!-- ===== EMBEDDED JAVASCRIPT ===== -->
+    <script>
+        /**
+         * LUMEN GROVE - MOONLIT FOREST INTERACTIVE FEATURES
+         * All-in-one JavaScript for production
+         */
+
+        // ===== SMOOTH SCROLL REVEAL =====
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        }
+
+        // ===== PARALLAX BANNER EFFECT =====
+        function initParallaxBanner() {
+            const banner = document.querySelector('.lore-banner');
+            if (!banner) return;
+
+            let ticking = false;
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const scrolled = window.pageYOffset;
+                        const rate = scrolled * 0.5;
+                        const bannerImg = banner.querySelector('img[src]');
+                        
+                        if (bannerImg) {
+                            bannerImg.style.transform = `translateY(${rate}px)`;
+                        }
+                        
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        }
+
+        // ===== READING PROGRESS BAR =====
+        function initReadingProgress() {
+            const progressBar = document.createElement('div');
+            progressBar.className = 'reading-progress';
+            progressBar.innerHTML = '<div class="reading-progress-fill"></div>';
+            document.body.appendChild(progressBar);
+
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        const scrolled = (winScroll / height) * 100;
+                        
+                        const fill = document.querySelector('.reading-progress-fill');
+                        if (fill) {
+                            fill.style.width = scrolled + '%';
+                        }
+                        
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        }
+
+        // ===== FLOATING PARTICLES EFFECT =====
+        function initFloatingParticles() {
+            const banner = document.querySelector('.lore-banner-placeholder');
+            if (!banner) return;
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'particles-canvas';
+            banner.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = banner.offsetWidth;
+            canvas.height = banner.offsetHeight;
+
+            const particles = [];
+            const particleCount = 30;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                    this.color = Math.random() > 0.5 ? 'rgba(64, 224, 208, ' : 'rgba(255, 215, 0, ';
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.fillStyle = this.color + this.opacity + ')';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Glow effect
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color + '0.8)';
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = banner.offsetWidth;
+                canvas.height = banner.offsetHeight;
+            });
+        }
+
+        // ===== SMOOTH ANCHOR LINKS =====
+        function initSmoothAnchors() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href !== '') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // ===== INITIALIZE ALL FEATURES =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollReveal();
+            initParallaxBanner();
+            initReadingProgress();
+            initSmoothAnchors();
+            initFloatingParticles(); // Magical firefly-like particles
+        });
+
+        // ===== PERFORMANCE: REDUCE ANIMATIONS ON LOW-END DEVICES =====
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--transition-smooth', 'none');
+            document.documentElement.style.setProperty('--transition-fast', 'none');
+        }
+    </script>
+</body>
+
+</html>
