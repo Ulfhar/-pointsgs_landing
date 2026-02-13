@@ -659,14 +659,30 @@
             position: absolute;
             top: 50%;
             left: 50%;
+            margin-left: 0;
+            margin-top: 0;
             transform: translate(-50%, -50%);
             color: var(--color-gold);
             padding: 0;
             font-size: 1.2em;
+            line-height: 1;
+            display: block;
             width: 1em;
             text-align: center;
+            box-sizing: content-box;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulseDivider 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDivider {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.15);
+            }
         }
 
         /* ===== READING PROGRESS BAR ===== */
