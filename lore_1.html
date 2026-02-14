@@ -568,6 +568,49 @@
             margin: 0 auto;
         }
 
+        /* ===== PLAY STORE CTA AT END OF ARTICLE ===== */
+        .lore-cta-play {
+            margin: 3em 0 1em 0;
+            text-align: center;
+        }
+
+        .lore-cta-play-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75em;
+            padding: 0.9em 1.6em;
+            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(56, 142, 60, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lore-cta-play-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(56, 142, 60, 0.5);
+        }
+
+        .lore-cta-play-icon {
+            width: 2em;
+            height: 2em;
+            object-fit: contain;
+        }
+
+        .lore-cta-play-text {
+            letter-spacing: 0.02em;
+        }
+
+        .lore-cta-play-sub {
+            margin-top: 0.75em;
+            font-size: 0.95rem;
+            color: var(--color-text-medium);
+            font-style: italic;
+        }
+
         /* Placeholder only when needed (minimal, no square background / no stars) */
         .lore-image-placeholder {
             margin: 3em 0;
@@ -858,6 +901,14 @@
             <p class="reveal" data-i18n="lore1_p12">In the end, it could endure no more. Its branches bowed in silence, and the great trunk fell.</p>
 
             <p class="reveal" data-i18n="lore1_p13">Now, upon the High Hill, in a suffocating gloom, towers the usurper — the Withered Chestnut.</p>
+
+            <div class="lore-cta-play reveal">
+                <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8" target="_blank" rel="noopener" class="lore-cta-play-link">
+                    <img src="images/play-store-round-color-icon.png" alt="" class="lore-cta-play-icon" />
+                    <span class="lore-cta-play-text" data-i18n="lore1_play_cta">Get Lumen Grove on Google Play</span>
+                </a>
+                <p class="lore-cta-play-sub" data-i18n="lore1_play_sub">Explore the forest.</p>
+            </div>
         </section>
     </article>
 
@@ -899,6 +950,10 @@
             modal.onclick = function(e) {
                 if (e.target === modal) modal.style.display = "none";
             };
+
+            window.addEventListener("scroll", function closeModalOnScroll() {
+                if (modal.style.display === "flex") modal.style.display = "none";
+            }, { passive: true });
 
             var modalNavPrev = document.querySelector(".modal-nav-prev");
             var modalNavNext = document.querySelector(".modal-nav-next");
