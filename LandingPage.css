@@ -109,6 +109,141 @@ body {
     }
 }
 
+/* ===== Home banner row: side-scrolling News + Lore (auto-rotate) ===== */
+.home-banner-row {
+    margin: 20px auto;
+    max-width: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .home-banner-row {
+        margin-top: 60px;
+    }
+}
+
+.home-banner-track {
+    display: flex;
+    width: 200%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.home-banner-slide {
+    flex: 0 0 50%;
+    width: 50%;
+    min-height: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.home-banner-slide .news-badge {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Lore banner item (same row, different slide) */
+.lore-banner-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    width: 100%;
+    max-width: 100%;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #6B4423 0%, #8B6914 50%, #5a3820 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(107, 68, 35, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lore-banner-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(139, 105, 20, 0.4);
+}
+
+.lore-banner-icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.lore-banner-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.lore-banner-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.95;
+    margin-bottom: 2px;
+}
+
+.lore-banner-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+    .home-banner-row {
+        margin: 15px 20px;
+        max-width: none;
+    }
+    .lore-banner-item {
+        padding: 12px 15px;
+        gap: 12px;
+    }
+    .lore-banner-icon {
+        font-size: 1.75rem;
+    }
+    .lore-banner-title {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dots under the banner */
+.home-banner-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.home-banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.home-banner-dot:hover {
+    border-color: #888;
+}
+
+.home-banner-dot.active {
+    background: #6a1b9a;
+    border-color: #6a1b9a;
+}
+
+/* When JS sets manual position, pause animation */
+.home-banner-row.home-banner-manual .home-banner-track {
+    animation: none;
+}
+
 .page-inner {
     padding: 0 20px;
     max-width: 1200px;

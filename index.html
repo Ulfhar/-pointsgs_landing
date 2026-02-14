@@ -58,15 +58,34 @@
             });
     </script>
 
-    <!-- News Badge -->
-    <div class="news-badge">
-        <a href="news_4.html" class="news-badge-link">
-            <img src="images/news_images/4/icon_playmarket.png" alt="Latest News" class="news-badge-icon" />
-            <div class="news-badge-content">
-                <span class="news-badge-text">NEW!</span>
-                <span class="news-badge-title">First Public Test Available</span>
+    <!-- Banners row: side-scrolling between News and Lore (auto-rotate) -->
+    <div class="home-banner-row">
+        <div class="home-banner-track">
+            <div class="home-banner-slide">
+                <div class="news-badge">
+                    <a href="news_4.html" class="news-badge-link">
+                        <img src="images/news_images/4/icon_playmarket.png" alt="Latest News" class="news-badge-icon" />
+                        <div class="news-badge-content">
+                            <span class="news-badge-text">NEW!</span>
+                            <span class="news-badge-title">First Public Test Available</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </a>
+            <div class="home-banner-slide">
+                <a href="lore_1.html" class="lore-banner-item">
+                    <span class="lore-banner-icon" aria-hidden="true">📜</span>
+                    <div class="lore-banner-content">
+                        <span class="lore-banner-label">Lore</span>
+                        <span class="lore-banner-title">How the Enchanted Forest Grows</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="home-banner-dots" aria-hidden="true">
+            <button type="button" class="home-banner-dot active" data-index="0" aria-label="Show news"></button>
+            <button type="button" class="home-banner-dot" data-index="1" aria-label="Show lore"></button>
+        </div>
     </div>
 
     <div class="landing-page">
@@ -138,6 +157,43 @@
             .then(data => {
                 document.getElementById("footer-placeholder").innerHTML = data;
             });
+    </script>
+    <script>
+        (function() {
+            var row = document.querySelector(".home-banner-row");
+            var track = document.querySelector(".home-banner-track");
+            var dots = document.querySelectorAll(".home-banner-dot");
+            if (!row || !track || !dots.length) return;
+            var index = 0;
+            var autoInterval = 6000;
+
+            function goTo(i) {
+                index = i;
+                track.style.transform = "translateX(" + (index * -50) + "%)";
+                dots.forEach(function(dot, d) {
+                    dot.classList.toggle("active", d === index);
+                });
+                row.classList.add("home-banner-manual");
+                clearTimeout(row._resume);
+                row._resume = setTimeout(function() {
+                    row.classList.remove("home-banner-manual");
+                }, 100);
+            }
+
+            function next() {
+                goTo((index + 1) % 2);
+            }
+
+            dots.forEach(function(dot, i) {
+                dot.addEventListener("click", function() {
+                    goTo(i);
+                });
+            });
+
+            var tid = setInterval(next, autoInterval);
+            row.addEventListener("mouseenter", function() { clearInterval(tid); });
+            row.addEventListener("mouseleave", function() { tid = setInterval(next, autoInterval); });
+        })();
     </script>
 </body>
 </html>

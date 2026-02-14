@@ -862,7 +862,6 @@
     </article>
 
     <div id="image-modal" class="image-modal">
-        <span class="image-modal-close">&times;</span>
         <div class="modal-nav modal-nav-prev">&lt;</div>
         <div class="modal-nav modal-nav-next">&gt;</div>
         <img class="image-modal-content" id="image-modal-content" />
@@ -872,7 +871,6 @@
         (function initLoreImageModal() {
             const modal = document.getElementById("image-modal");
             const modalImg = document.getElementById("image-modal-content");
-            const closeBtn = document.querySelector(".image-modal-close");
             const loreImages = document.querySelectorAll(".lore-article .news-image img");
             let currentImageIndex = 0;
 
@@ -898,7 +896,6 @@
                 img.addEventListener("click", () => openModal(index));
             });
 
-            if (closeBtn) closeBtn.onclick = () => { modal.style.display = "none"; };
             modal.onclick = function(e) {
                 if (e.target === modal) modal.style.display = "none";
             };
