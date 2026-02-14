@@ -81,6 +81,7 @@
 
         /* ===== BANNER WITH MOONLIGHT EFFECT ===== */
         .lore-banner {
+            margin-top: 40px;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-strong);
@@ -654,37 +655,6 @@
             align-items: center;
         }
 
-        .lore-divider::before {
-            content: '✦';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-left: 0;
-            margin-top: 0;
-            transform: translate(-50%, -50%);
-            color: var(--color-gold);
-            padding: 0;
-            font-size: 1.2em;
-            line-height: 1;
-            display: block;
-            width: 1em;
-            text-align: center;
-            box-sizing: content-box;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-            animation: pulseDivider 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseDivider {
-            0%, 100% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.15);
-            }
-        }
-
         /* ===== READING PROGRESS BAR ===== */
         .reading-progress {
             position: fixed;
@@ -887,8 +857,6 @@
 
             <p class="reveal" data-i18n="lore1_p12">In the end, it could endure no more. Its branches bowed in silence, and the great trunk fell.</p>
 
-            <div class="lore-divider"></div>
-
             <p class="reveal" data-i18n="lore1_p13">Now, upon the High Hill, in a suffocating gloom, towers the usurper — the Withered Chestnut.</p>
         </section>
     </article>
@@ -899,6 +867,55 @@
         <div class="modal-nav modal-nav-next">&gt;</div>
         <img class="image-modal-content" id="image-modal-content" />
     </div>
+
+    <script>
+        (function initLoreImageModal() {
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("image-modal-content");
+            const closeBtn = document.querySelector(".image-modal-close");
+            const loreImages = document.querySelectorAll(".lore-article .news-image img");
+            let currentImageIndex = 0;
+
+            function openModal(imageIndex) {
+                if (!loreImages.length) return;
+                currentImageIndex = (imageIndex + loreImages.length) % loreImages.length;
+                modal.style.display = "flex";
+                modalImg.src = loreImages[currentImageIndex].src;
+            }
+
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % loreImages.length;
+                modalImg.src = loreImages[currentImageIndex].src;
+            }
+
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + loreImages.length) % loreImages.length;
+                modalImg.src = loreImages[currentImageIndex].src;
+            }
+
+            loreImages.forEach((img, index) => {
+                img.style.cursor = "pointer";
+                img.addEventListener("click", () => openModal(index));
+            });
+
+            if (closeBtn) closeBtn.onclick = () => { modal.style.display = "none"; };
+            modal.onclick = function(e) {
+                if (e.target === modal) modal.style.display = "none";
+            };
+
+            var modalNavPrev = document.querySelector(".modal-nav-prev");
+            var modalNavNext = document.querySelector(".modal-nav-next");
+            if (modalNavPrev) modalNavPrev.addEventListener("click", function(e) { e.stopPropagation(); prevImage(); });
+            if (modalNavNext) modalNavNext.addEventListener("click", function(e) { e.stopPropagation(); nextImage(); });
+
+            document.addEventListener("keydown", function(e) {
+                if (modal.style.display !== "flex") return;
+                if (e.key === "ArrowRight") { e.preventDefault(); nextImage(); }
+                else if (e.key === "ArrowLeft") { e.preventDefault(); prevImage(); }
+                else if (e.key === "Escape") { e.preventDefault(); modal.style.display = "none"; }
+            });
+        })();
+    </script>
 
     <div id="footer-placeholder"></div>
     <script>
