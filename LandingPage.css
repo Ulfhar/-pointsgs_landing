@@ -36,15 +36,15 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
     position: relative;
     z-index: 1;
 }
-.promo-0 {
-  display: none;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 20px;
-}
 
+.promo-0 {
+    display: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
 
 @media (max-width: 767px) {
     .promo-0 {
@@ -122,17 +122,17 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
         margin: 15px 20px;
         max-width: none;
     }
-    
+
     .news-badge-link {
         padding: 12px 15px;
         gap: 12px;
     }
-    
+
     .news-badge-icon {
         width: 35px;
         height: 35px;
     }
-    
+
     .news-badge-title {
         font-size: 0.9rem;
     }
@@ -308,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 0px; 
+    padding-top: 0px;
 }
 
 .content {
@@ -319,12 +319,12 @@ h1, h2, h3, h4, h5, h6 {
     flex: 1;
 }
 
-    .content img {
-        max-width: 100%;
-        height: auto;
-        margin: 20px 0;
-        object-fit: contain;
-    }
+.content img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    object-fit: contain;
+}
 
 .text-content {
     max-width: 600px;
@@ -335,15 +335,15 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
-    .text-content h2 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-    }
+.text-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
 
-    .text-content p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
+.text-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
 
 .play-button {
     display: inline-block;
@@ -363,9 +363,9 @@ h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
 }
 
-    .play-button:hover {
-        background-color: #0044aa;
-    }
+.play-button:hover {
+    background-color: #0044aa;
+}
 
 .footer {
     background-color: #000;
@@ -407,15 +407,15 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 0;
 }
 
-    .game-info h2 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-    }
+.game-info h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
 
-    .game-info p {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
+.game-info p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
 
 .google-play-badge {
     max-width: 200px;
@@ -441,9 +441,9 @@ h1, h2, h3, h4, h5, h6 {
     transition: transform 0.3s;
 }
 
-    .news-card:hover {
-        transform: translateY(-5px);
-    }
+.news-card:hover {
+    transform: translateY(-5px);
+}
 
 .news-link {
     display: flex;
@@ -496,35 +496,76 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 100%;
     }
 }
-/* CookieYes: force floating button to bottom-left (safe override) */
+
+/* ===========================
+   CookieYes: HARD override
+   - Revisit button ALWAYS bottom-left
+   - Modal/dialog ALWAYS bottom (bottom-sheet)
+   =========================== */
+
+/* Revisit floating button */
 #cky-consent-btn,
 .cky-consent-btn,
 .cky-btn-revisit-wrapper,
 .cky-revisit-bottom-left,
 .cky-revisit-bottom-right {
+    position: fixed !important;
     top: auto !important;
     bottom: 18px !important;
+    left: 18px !important;
+    right: auto !important;
+    z-index: 2147483647 !important;
 }
 
-/* Choose one side (left). If you want right side — change to right: 18px */
+/* If CookieYes injects inline transforms, kill them */
 #cky-consent-btn,
 .cky-consent-btn,
 .cky-btn-revisit-wrapper {
-    left: 18px !important;
-    right: auto !important;
+    transform: none !important;
 }
 
-/* Ensure it stays above content and is clickable */
-#cky-consent-btn,
-.cky-consent-btn,
-.cky-btn-revisit-wrapper,
-.cky-consent-container,
-.cky-consent-bar,
-.cky-consent-wrapper {
+/* Overlay wrapper (when dialog is open) */
+.cky-overlay,
+.cky-consent-wrapper,
+.cky-consent-container {
     position: fixed !important;
-    z-index: 9999 !important;
+    inset: 0 !important;
+    z-index: 2147483646 !important;
 }
 
+/* Dialog itself: force bottom sheet */
+.cky-consent-bar,
+.cky-notice,
+.cky-consent-container .cky-consent-bar {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    z-index: 2147483647 !important;
+    max-height: min(70vh, 520px) !important;
+    overflow: auto !important;
+}
+
+/* Mobile: keep away from screen edges + safe area */
+@media (max-width: 767px) {
+    #cky-consent-btn,
+    .cky-consent-btn,
+    .cky-btn-revisit-wrapper,
+    .cky-revisit-bottom-left,
+    .cky-revisit-bottom-right {
+        bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+        left: 14px !important;
+    }
+
+    .cky-consent-bar,
+    .cky-notice,
+    .cky-consent-container .cky-consent-bar {
+        padding-bottom: env(safe-area-inset-bottom) !important;
+        max-height: 75vh !important;
+    }
+}
 
 @media (min-width: 768px) {
     .content {
@@ -567,11 +608,14 @@ h1, h2, h3, h4, h5, h6 {
     .news-card {
         flex: 0 0 calc(50% - 10px);
     }
-    
+
+    /* Keep same bottom-left on desktop too */
     #cky-consent-btn,
     .cky-consent-btn,
-    .cky-btn-revisit-wrapper {
-        bottom: 14px !important;
-        left: 14px !important;
+    .cky-btn-revisit-wrapper,
+    .cky-revisit-bottom-left,
+    .cky-revisit-bottom-right {
+        bottom: 18px !important;
+        left: 18px !important;
     }
 }
