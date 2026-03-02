@@ -10,6 +10,8 @@ body {
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
+    /* Reserve space for fixed header (so content doesn't sit under it) */
+    padding-top: 56px;
 }
 
 html {
@@ -147,7 +149,7 @@ body > :not(.body-particles-layer) {
 
 /* ===== Home banner row: side-scrolling News + Lore (auto-rotate) ===== */
 .home-banner-row {
-    margin: 20px auto;
+    margin: 12px auto 20px auto;
     max-width: 400px;
     overflow: hidden;
     position: relative;
@@ -156,8 +158,7 @@ body > :not(.body-particles-layer) {
 
 @media (min-width: 768px) {
     .home-banner-row {
-        /* Keep consistent spacing below fixed header */
-        margin-top: 40px;
+        margin-top: 12px;
     }
 }
 
@@ -239,7 +240,7 @@ body > :not(.body-particles-layer) {
 
 @media (max-width: 767px) {
     .home-banner-row {
-        margin: 15px 20px;
+        margin: 12px 20px 15px 20px;
         max-width: none;
     }
     .lore-banner-item {

@@ -1,24 +1,24 @@
 body {
     font-family: Helvetica, sans-serif;
     background-color: #0a1628;
-    color: #000;
+    color: #e8f4f8;
     line-height: 1.6;
     margin: 0;
 }
 
-/* ���� ��� ������ � ���������� ������ */
+
 .top-banner {
     max-width: 800px;
     margin: 0 auto 5px auto;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
+    box-shadow: 0 4px 12px rgba(32, 178, 170, 0.3);
     margin-top: 40px;
 }
 
     .top-banner img {
         width: 100%;
-        max-height: 180px; /* �������� ������ */
+        max-height: 180px; 
         object-fit: cover;
         display: block;
     }
@@ -39,7 +39,7 @@ body {
 }
 
 .news-meta {
-    color: #6a1b9a;
+    color: #20b2aa;
     font-family: 'Roboto Serif', serif;
     font-size: 0.9rem;
     letter-spacing: 0.05em;
@@ -51,7 +51,7 @@ body {
     }
 
     .news-meta a {
-        color: #6a1b9a;
+        color: #20b2aa;
         text-decoration: none;
         font-weight: 600;
     }
@@ -66,18 +66,18 @@ body {
     gap: 12px;
     margin-bottom: 25px;
     padding: 15px;
-    background-color: #f8f5ff;
+    background-color: #162844;
     border-radius: 12px;
-    border-left: 4px solid #6a1b9a;
+    border-left: 4px solid #20b2aa;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .news-author-section:hover {
-    background-color: #f0e6f6;
+    background-color: #1e3a5f;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.2);
+    box-shadow: 0 4px 12px rgba(32, 178, 170, 0.2);
 }
 
 .news-author-avatar {
@@ -85,7 +85,7 @@ body {
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #6a1b9a;
+    border: 2px solid #20b2aa;
 }
 
 .news-author-info {
@@ -97,13 +97,13 @@ body {
     font-family: 'Roboto Serif', serif;
     font-weight: 600;
     font-size: 1.1rem;
-    color: #6a1b9a;
+    color: #40e0d0;
     margin: 0;
 }
 
 .news-author-title {
     font-size: 0.85rem;
-    color: #666;
+    color: #b8d4e0;
     margin: 2px 0 0 0;
     font-style: italic;
 }
@@ -116,7 +116,7 @@ body {
 
 .news-subtitle {
     font-size: 1rem;
-    color: #333;
+    color: #b8d4e0;
     margin-bottom: 20px;
 }
 
@@ -145,7 +145,7 @@ body {
 
 .news-image figcaption {
     font-size: 0.85rem;
-    color: #555;
+    color: #8ba6b8;
     margin-top: 5px;
 }
 
@@ -157,11 +157,11 @@ body {
         font-family: 'Roboto Serif', serif;
         font-size: 1.2rem;
         font-style: italic;
-        color: #4a148c;
+        color: #40e0d0;
         margin: 20px;
         padding: 10px 20px;
-        border-left: 4px solid #4a148c;
-        background-color: #f0e6f6;
+        border-left: 4px solid #20b2aa;
+        background-color: #162844;
     }
 
 .news-video {
@@ -175,7 +175,6 @@ body {
         height: 315px;
     }
 
-/* ������������ ��� �������� */
 @media (max-width: 767px) {
     .top-banner {
         border-width: 3px;
@@ -235,7 +234,7 @@ body {
     }
 }
 
-/* ���� ��� lightbox */
+/*lightbox */
 .image-modal {
     display: none;
     position: fixed;
@@ -244,7 +243,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(10, 22, 40, 0.9);
     align-items: center;
     justify-content: center;
     animation: fadeIn 0.3s ease;
@@ -262,12 +261,12 @@ body {
     margin: 0 auto;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(32, 178, 170, 0.15);
 }
 
 .swiper-slide {
     text-align: center;
-    background: #fff;
+    background: #1e3a5f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -314,7 +313,7 @@ body {
 
 /* Custom pagination */
 .swiper-pagination-bullet {
-    background: #6a1b9a;
+    background: #20b2aa;
     opacity: 0.5;
     transition: all 0.3s ease;
 }
@@ -352,7 +351,7 @@ body {
     max-width: 90%;
     max-height: 90%;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(32, 178, 170, 0.3);
     transition: transform 0.3s ease;
 }
 
@@ -364,7 +363,7 @@ body {
     position: absolute;
     top: 20px;
     right: 35px;
-    color: #fff;
+    color: #e8f4f8;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;

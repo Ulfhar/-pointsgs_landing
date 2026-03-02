@@ -36,14 +36,14 @@
 <body>
     <div id="header-placeholder"></div>
     <script>
-        fetch("../header.html")
+        fetch("header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;
             });
     </script>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="css/header.css" />
     <div class="container">
         <h1>Privacy Policy</h1>
         <p>
@@ -117,7 +117,7 @@
 
     <div id="footer-placeholder"></div>
     <script>
-        fetch("../footer.html")
+        fetch("footer.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("footer-placeholder").innerHTML = data;

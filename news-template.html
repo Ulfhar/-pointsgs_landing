@@ -9,7 +9,7 @@
 
     <!-- ϳ��������� ���������� ����� -->
     <link rel="stylesheet" href="css/news.css" />
-    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="css/header.css" />
 
 
     <!-- Google serif font -->
@@ -21,7 +21,7 @@
     <!-- ϳ��������� ������ ����� fetch -->
     <div id="header-placeholder"></div>
     <script>
-    fetch("../header.html")
+    fetch("header.html")
       .then(response => response.text())
       .then(data => {
         document.getElementById("header-placeholder").innerHTML = data;

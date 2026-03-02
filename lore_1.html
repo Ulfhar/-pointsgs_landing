@@ -7,7 +7,7 @@
     <title>Lumen Grove - Lore</title>
     <link rel="icon" type="image/png" href="images/favicon_points.png" />
     <link rel="stylesheet" href="css/news.css" />
-    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="css/header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -825,7 +825,7 @@
 <body>
     <div id="header-placeholder"></div>
     <script>
-        fetch("/header.html")
+        fetch("header.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("header-placeholder").innerHTML = data;
@@ -983,7 +983,7 @@
 
     <div id="footer-placeholder"></div>
     <script>
-        fetch("../footer.html")
+        fetch("footer.html")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("footer-placeholder").innerHTML = data;
