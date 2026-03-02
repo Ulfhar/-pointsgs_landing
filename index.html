@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
     <script>
@@ -43,18 +41,27 @@
     <link rel="stylesheet" href="LandingPage.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
+
+    <!-- SAFE FIX: prevent particles layer from intercepting clicks -->
+    <style>
+        .body-particles-layer,
+        .body-particles-layer .particles-canvas {
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
     <img src="images/lumen-grove-mobile-banner.png" alt="Lumen Grove" class="promo-0" />
 
-    
     <script>
         fetch("header.html")
             .then(response => response.text())
             .then(data => {
-                document.getElementById("header-placeholder").innerHTML = data;
-            });
+                var el = document.getElementById("header-placeholder");
+                if (el) el.innerHTML = data;
+            })
+            .catch(() => {});
     </script>
 
     <!-- Banners row: side-scrolling between News and Lore (auto-rotate) -->
@@ -94,7 +101,9 @@
                 <div class="text-content">
                     <h2>Lumen Grove</h2>
                     <p>Uncover the fairy-tale world, full of magical stories, unbelievable creatures, and shining fireflies. The forest, full of secrets, is waiting for your touch.</p>
-                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8" target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8"
+                       target="_blank"
+                       rel="noopener noreferrer">
                         <button class="play-button">PLAY</button>
                     </a>
                 </div>
@@ -108,7 +117,9 @@
                 <div class="game-info">
                     <h2>REVEAL THE HIDDEN LORE</h2>
                     <p>Explore the depths of an ancient forest filled with mysteries and wonder. Solve intricate puzzles and discover magical secrets hidden deep within the woods. Uncover ancient lore and piece together a story that has been long forgotten. Traverse breathtaking landscapes, unlock hidden paths, and interact with enchanted objects that bring the forest to life. Let your curiosity guide you through a world where every shadow hides a tale and every clearing offers a new discovery.</p>
-                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8" target="_blank">
+                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8"
+                       target="_blank"
+                       rel="noopener noreferrer">
                         <img src="images/google-play-badge.png" alt="Get it on Google Play" class="google-play-badge" />
                     </a>
                 </div>
@@ -145,22 +156,30 @@
     <section class="mainpage-video-section" style="max-width:900px;margin:60px auto 0 auto;padding:30px 0 0 0;text-align:center;">
         <h2 data-i18n="mainpage_video_heading" style="font-family:'Lusitana',serif;font-size:1.5em;margin-bottom:1em;">Watch the Latest Lumen Grove Video</h2>
         <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-            <iframe src="https://www.youtube.com/embed/izMsGjT0XbY" title="Lumen Grove Video" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+            <iframe src="https://www.youtube.com/embed/izMsGjT0XbY"
+                    title="Lumen Grove Video"
+                    frameborder="0"
+                    allowfullscreen
+                    loading="lazy"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
         </div>
     </section>
-    
-        <!-- Start cookieyes banner -->
-        <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
-        <!-- End cookieyes banner -->
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <!-- End cookieyes banner -->
 
     <div id="footer-placeholder"></div>
     <script>
         fetch("footer.html")
             .then(response => response.text())
             .then(data => {
-                document.getElementById("footer-placeholder").innerHTML = data;
-            });
+                var el = document.getElementById("footer-placeholder");
+                if (el) el.innerHTML = data;
+            })
+            .catch(() => {});
     </script>
+
     <script>
         (function() {
             var row = document.querySelector(".home-banner-row");
@@ -198,6 +217,7 @@
             row.addEventListener("mouseleave", function() { tid = setInterval(next, autoInterval); });
         })();
     </script>
+
     <script>
         (function initBodyFloatingParticles() {
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
