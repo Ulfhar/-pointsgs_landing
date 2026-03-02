@@ -195,5 +195,99 @@
             row.addEventListener("mouseleave", function() { tid = setInterval(next, autoInterval); });
         })();
     </script>
+    <script>
+        (function initBodyFloatingParticles() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            var layer = document.querySelector('.body-particles-layer');
+            if (!layer) {
+                layer = document.createElement('div');
+                layer.className = 'body-particles-layer';
+                layer.setAttribute('aria-hidden', 'true');
+                document.body.insertBefore(layer, document.body.firstChild);
+            }
+
+            if (layer.querySelector('canvas')) return;
+
+            var canvas = document.createElement('canvas');
+            canvas.className = 'particles-canvas';
+            layer.appendChild(canvas);
+
+            var ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            var dpr = window.devicePixelRatio || 1;
+            var width = 0;
+            var height = 0;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            var particles = [];
+            var particleCount = 40;
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                }
+
+                reset() {
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.35 + 0.15;
+                    this.color = Math.random() > 0.5 ? 'rgba(64, 224, 208, ' : 'rgba(255, 215, 0, ';
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > width) this.x = 0;
+                    if (this.x < 0) this.x = width;
+                    if (this.y > height) this.y = 0;
+                    if (this.y < 0) this.y = height;
+                }
+
+                draw() {
+                    ctx.fillStyle = this.color + this.opacity + ')';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color + '0.8)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                resize();
+                particles = [];
+                for (var i = 0; i < particleCount; i++) particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+
+            init();
+            animate();
+
+            window.addEventListener('resize', init, { passive: true });
+        })();
+    </script>
 </body>
 </html>

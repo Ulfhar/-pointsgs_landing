@@ -8,6 +8,26 @@ body {
     font-family: Helvetica, sans-serif;
     background-color: #0a1628;
     color: #ffffff;
+    position: relative;
+}
+
+/* Fixed particles layer over body background (behind content) */
+.body-particles-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.body-particles-layer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+body > :not(.body-particles-layer) {
+    position: relative;
+    z-index: 1;
 }
 .promo-0 {
   display: none;
