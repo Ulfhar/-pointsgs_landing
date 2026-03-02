@@ -1,71 +1,78 @@
-* {
+/* ===========================
+   Global base
+   =========================== */
+
+   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-body {
+  }
+  
+  html { overflow-x: hidden; }
+  
+  body {
     font-family: Helvetica, sans-serif;
     background-color: #0a1628;
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
-    /* Reserve space for fixed header (so content doesn't sit under it) */
-    padding-top: 48px;
-}
-
-html {
-    overflow-x: hidden;
-}
-
-/* Fixed particles layer over body background (behind content) */
-.body-particles-layer {
+    padding-top: 48px; /* space for fixed header */
+  }
+  
+  /* Fixed particles layer over body background (behind content) */
+  .body-particles-layer {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-}
-
-.body-particles-layer canvas {
+  }
+  
+  .body-particles-layer canvas {
     width: 100%;
     height: 100%;
     display: block;
-}
-
-body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-bar):not(.cky-consent-wrapper):not([id^="cookieyes"]):not([id^="cky-"]) {
+  }
+  
+  /* Keep normal site content above particles, but NOT above CookieYes */
+  body > :not(.body-particles-layer):not([id^="cookieyes"]):not([id^="cky-"]):not([class*="cky-"]) {
     position: relative;
     z-index: 1;
-}
-
-.promo-0 {
+  }
+  
+  /* ===========================
+     Promo banners
+     =========================== */
+  
+  .promo-0 {
     display: none;
     width: 100%;
     max-width: 100%;
     height: auto;
     object-fit: contain;
     margin-bottom: 20px;
-}
-
-@media (max-width: 767px) {
+  }
+  
+  @media (max-width: 767px) {
     .promo-0 {
-        display: block;
-        margin-top: 0%;
-        max-height: 220px;
-        object-fit: cover;
-        margin-bottom: 12px;
+      display: block;
+      margin-top: 0%;
+      max-height: 220px;
+      object-fit: cover;
+      margin-bottom: 12px;
     }
-}
-
-/* Hide promo-1 and promo-2 on mobile */
-@media (max-width: 767px) {
+  
+    /* Hide promo-1 and promo-2 on mobile */
     .promo-1,
     .promo-2 {
-        display: none !important;
+      display: none !important;
     }
-}
-
-/* News Badge Styles */
-.news-badge {
+  }
+  
+  /* ===========================
+     News badge
+     =========================== */
+  
+  .news-badge {
     background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     margin: 20px auto;
     max-width: 400px;
@@ -73,102 +80,97 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.news-badge:hover {
+  }
+  
+  .news-badge:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
-}
-
-.news-badge-link {
+  }
+  
+  .news-badge-link {
     display: flex;
     align-items: center;
     padding: 15px 20px;
     text-decoration: none;
-    color: white;
+    color: #fff;
     gap: 15px;
-}
-
-.news-badge-icon {
+  }
+  
+  .news-badge-icon {
     width: 40px;
     height: 40px;
     object-fit: contain;
     flex-shrink: 0;
-}
-
-.news-badge-content {
+  }
+  
+  .news-badge-content {
     display: flex;
     flex-direction: column;
     flex: 1;
-}
-
-.news-badge-text {
+  }
+  
+  .news-badge-text {
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.9;
     margin-bottom: 2px;
-}
-
-.news-badge-title {
+  }
+  
+  .news-badge-title {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.2;
-}
-
-@media (max-width: 767px) {
+  }
+  
+  @media (max-width: 767px) {
     .news-badge {
-        margin: 15px 20px;
-        max-width: none;
+      margin: 15px 20px;
+      max-width: none;
     }
-
+  
     .news-badge-link {
-        padding: 12px 15px;
-        gap: 12px;
+      padding: 12px 15px;
+      gap: 12px;
     }
-
+  
     .news-badge-icon {
-        width: 35px;
-        height: 35px;
+      width: 35px;
+      height: 35px;
     }
-
-    .news-badge-title {
-        font-size: 0.9rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .news-badge-link {
-        margin-top: 0;
-    }
-    .news-badge {
-        margin-top: 60px;
-    }
-}
-
-/* ===== Home banner row: side-scrolling News + Lore (auto-rotate) ===== */
-.home-banner-row {
+  
+    .news-badge-title { font-size: 0.9rem; }
+  }
+  
+  @media (min-width: 768px) {
+    .news-badge-link { margin-top: 0; }
+    .news-badge { margin-top: 60px; }
+  }
+  
+  /* ===========================
+     Home banner row: News + Lore (auto-rotate)
+     =========================== */
+  
+  .home-banner-row {
     margin: 0 auto 20px auto;
     max-width: 400px;
     overflow: hidden;
     position: relative;
     background: transparent;
-}
-
-@media (min-width: 768px) {
-    .home-banner-row {
-        margin-top: 0;
-    }
-}
-
-.home-banner-track {
+  }
+  
+  @media (min-width: 768px) {
+    .home-banner-row { margin-top: 0; }
+  }
+  
+  .home-banner-track {
     display: flex;
     width: 200%;
     transition: transform 0.6s ease-in-out;
-}
-
-.home-banner-slide {
+  }
+  
+  .home-banner-slide {
     flex: 0 0 50%;
     width: 50%;
     min-height: 1px;
@@ -176,21 +178,19 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
     justify-content: center;
     align-items: center;
     padding: 0 10px;
-}
-
-.home-banner-slide .news-badge {
+  }
+  
+  .home-banner-slide .news-badge {
     margin: 0;
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-}
-
-.home-banner-row .news-badge:hover {
-    box-shadow: none;
-}
-
-/* Lore banner item (same row, different slide) */
-.lore-banner-item {
+  }
+  
+  .home-banner-row .news-badge:hover { box-shadow: none; }
+  
+  /* Lore banner item (same row, different slide) */
+  .lore-banner-item {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -203,67 +203,65 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
     border-radius: 15px;
     box-shadow: none;
     transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.lore-banner-item:hover {
+  }
+  
+  .lore-banner-item:hover {
     transform: translateY(-2px);
     opacity: 0.98;
-}
-
-.lore-banner-icon {
+  }
+  
+  .lore-banner-icon {
     font-size: 2rem;
     line-height: 1;
     flex-shrink: 0;
-}
-
-.lore-banner-content {
+  }
+  
+  .lore-banner-content {
     display: flex;
     flex-direction: column;
     flex: 1;
     min-width: 0;
-}
-
-.lore-banner-label {
+  }
+  
+  .lore-banner-label {
     font-size: 0.8rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.95;
     margin-bottom: 2px;
-}
-
-.lore-banner-title {
+  }
+  
+  .lore-banner-title {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.2;
-}
-
-@media (max-width: 767px) {
+  }
+  
+  @media (max-width: 767px) {
     .home-banner-row {
-        margin: 0 20px 15px 20px;
-        max-width: none;
+      margin: 0 20px 15px 20px;
+      max-width: none;
     }
+  
     .lore-banner-item {
-        padding: 12px 15px;
-        gap: 12px;
+      padding: 12px 15px;
+      gap: 12px;
     }
-    .lore-banner-icon {
-        font-size: 1.75rem;
-    }
-    .lore-banner-title {
-        font-size: 0.9rem;
-    }
-}
-
-/* Dots under the banner */
-.home-banner-dots {
+  
+    .lore-banner-icon { font-size: 1.75rem; }
+    .lore-banner-title { font-size: 0.9rem; }
+  }
+  
+  /* Dots under the banner */
+  .home-banner-dots {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 12px;
-}
-
-.home-banner-dot {
+  }
+  
+  .home-banner-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -272,80 +270,78 @@ body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-
     cursor: pointer;
     padding: 0;
     transition: background 0.2s, border-color 0.2s;
-}
-
-.home-banner-dot:hover {
-    border-color: #888;
-}
-
-.home-banner-dot.active {
+  }
+  
+  .home-banner-dot:hover { border-color: #888; }
+  
+  .home-banner-dot.active {
     background: #6a1b9a;
     border-color: #6a1b9a;
-}
-
-/* When JS sets manual position, pause animation */
-.home-banner-row.home-banner-manual .home-banner-track {
-    animation: none;
-}
-
-.page-inner {
+  }
+  
+  /* When JS sets manual position, pause animation */
+  .home-banner-row.home-banner-manual .home-banner-track { animation: none; }
+  
+  /* ===========================
+     Layout / typography
+     =========================== */
+  
+  .page-inner {
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-@media (min-width: 1024px) {
-    .page-inner {
-        padding: 0 80px;
-    }
-}
-
-h1, h2, h3, h4, h5, h6 {
+  }
+  
+  @media (min-width: 1024px) {
+    .page-inner { padding: 0 80px; }
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Lusitana', serif;
-}
-
-.landing-page {
+  }
+  
+  .landing-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 0px;
-}
-
-.content {
+    padding-top: 0;
+  }
+  
+  .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
     flex: 1;
-}
-
-.content img {
+  }
+  
+  .content img {
     max-width: 100%;
     height: auto;
     margin: 20px 0;
     object-fit: contain;
-}
-
-.text-content {
+  }
+  
+  .text-content {
     max-width: 600px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.text-content h2 {
+  }
+  
+  .text-content h2 {
     font-size: 2rem;
     margin-bottom: 10px;
-}
-
-.text-content p {
+  }
+  
+  .text-content p {
     font-size: 1rem;
     margin-bottom: 20px;
-}
-
-.play-button {
+  }
+  
+  .play-button {
     display: inline-block;
     background-color: #005edb;
     color: #fff;
@@ -361,76 +357,75 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 250px;
     text-align: center;
     white-space: nowrap;
-}
-
-.play-button:hover {
-    background-color: #0044aa;
-}
-
-.footer {
+  }
+  
+  .play-button:hover { background-color: #0044aa; }
+  
+  /* Footer */
+  .footer {
     background-color: #000;
     color: #fff;
     text-align: center;
-}
-
-.footer-inner {
+  }
+  
+  .footer-inner {
     padding: 20px 20px;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-@media (min-width: 1024px) {
-    .footer-inner {
-        padding: 20px 80px;
-    }
-}
-
-.game-section {
+  }
+  
+  @media (min-width: 1024px) {
+    .footer-inner { padding: 20px 80px; }
+  }
+  
+  /* Game section */
+  .game-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 40px 0;
-}
-
-.game-screenshot img {
+  }
+  
+  .game-screenshot img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
     transform: scale(0.8);
-}
-
-.game-info {
+  }
+  
+  .game-info {
     text-align: center;
     max-width: 600px;
     line-height: 1.6;
     padding: 10px 0;
-}
-
-.game-info h2 {
+  }
+  
+  .game-info h2 {
     font-size: 2rem;
     margin-bottom: 15px;
-}
-
-.game-info p {
+  }
+  
+  .game-info p {
     font-size: 1rem;
     margin-bottom: 30px;
-}
-
-.google-play-badge {
+  }
+  
+  .google-play-badge {
     max-width: 200px;
     height: auto;
-}
-
-.news-section {
+  }
+  
+  /* News section */
+  .news-section {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 40px 0;
     justify-content: center;
-}
-
-.news-card {
+  }
+  
+  .news-card {
     flex: 0 0 calc(50% - 10px);
     display: flex;
     flex-direction: column;
@@ -439,34 +434,32 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     transition: transform 0.3s;
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-}
-
-.news-link {
+  }
+  
+  .news-card:hover { transform: translateY(-5px); }
+  
+  .news-link {
     display: flex;
     flex-direction: column;
     flex: 1;
     color: inherit;
     text-decoration: none;
-}
-
-.news-card img {
+  }
+  
+  .news-card img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     flex-shrink: 0;
-}
-
-.news-card h3 {
+  }
+  
+  .news-card h3 {
     font-size: 1.2rem;
     margin: 10px 0 5px;
     text-align: center;
-}
-
-.news-card p {
+  }
+  
+  .news-card p {
     font-size: 0.9rem;
     color: #555;
     text-align: center;
@@ -476,146 +469,125 @@ h1, h2, h3, h4, h5, h6 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-}
-
-@media (max-width: 767px) {
+  }
+  
+  /* Mobile content order */
+  @media (max-width: 767px) {
     .content {
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 10px;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 10px;
     }
-
-    .text-content {
-        order: 1;
-    }
-
+  
+    .text-content { order: 1; }
+  
     .content img {
-        order: 2;
-        width: 100%;
-        max-width: 100%;
+      order: 2;
+      width: 100%;
+      max-width: 100%;
     }
-}
-
-/* ===========================
-   CookieYes: HARD override
-   - Revisit button ALWAYS bottom-left
-   - Modal/dialog ALWAYS bottom (bottom-sheet)
-   =========================== */
-
-/* Revisit floating button */
-#cky-consent-btn,
-.cky-consent-btn,
-.cky-btn-revisit-wrapper,
-.cky-revisit-bottom-left,
-.cky-revisit-bottom-right {
+  }
+  
+  /* Desktop layout */
+  @media (min-width: 768px) {
+    .content {
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+    }
+  
+    .text-content {
+      flex: 1;
+      max-width: 50%;
+      text-align: left;
+    }
+  
+    .content img { max-width: 30%; }
+  
+    .text-content p { font-size: 1.1rem; }
+  
+    .game-section {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+  
+    .game-screenshot,
+    .game-info {
+      flex: 1;
+      max-width: 50%;
+    }
+  
+    .game-info { text-align: left; }
+  }
+  
+  /* ===========================
+     CookieYes: FINAL FIX (mobile + desktop)
+     - Revisit button always bottom-left
+     - Dialog always bottom-sheet
+     - Clicks always work
+     =========================== */
+  
+  /* Always allow clicking CookieYes */
+  [id^="cky-"],
+  [class*="cky-"],
+  #cookieyes,
+  #cookieyes * {
+    pointer-events: auto !important;
+  }
+  
+  /* Keep CookieYes above everything */
+  [id^="cky-"],
+  [class*="cky-"],
+  #cookieyes {
+    z-index: 2147483647 !important;
+  }
+  
+  /* Revisit button: bottom-left */
+  .cky-btn-revisit-wrapper,
+  #cky-consent-btn,
+  [class*="cky-btn-revisit"],
+  [id^="cky-"][id*="revisit"] {
     position: fixed !important;
     top: auto !important;
-    bottom: 18px !important;
-    left: 18px !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+    left: 16px !important;
     right: auto !important;
-    z-index: 2147483647 !important;
-}
-
-/* If CookieYes injects inline transforms, kill them */
-#cky-consent-btn,
-.cky-consent-btn,
-.cky-btn-revisit-wrapper {
     transform: none !important;
-}
-
-/* Overlay wrapper (when dialog is open) */
-.cky-overlay,
-.cky-consent-wrapper,
-.cky-consent-container {
+  }
+  
+  /* Overlay / wrapper fullscreen */
+  .cky-overlay,
+  .cky-consent-wrapper,
+  .cky-consent-container,
+  [id^="cky-"][class*="overlay"],
+  [id^="cky-"][class*="consent"] {
     position: fixed !important;
     inset: 0 !important;
-    z-index: 2147483646 !important;
-}
-
-/* Dialog itself: force bottom sheet */
-.cky-consent-bar,
-.cky-notice,
-.cky-consent-container .cky-consent-bar {
+  }
+  
+  /* Dialog panel (bottom-sheet) */
+  .cky-consent-bar,
+  .cky-notice,
+  [id^="cky-"][class*="consent-bar"],
+  [id^="cky-"][class*="notice"] {
     position: fixed !important;
     left: 0 !important;
     right: 0 !important;
     top: auto !important;
     bottom: 0 !important;
     margin: 0 !important;
-    z-index: 2147483647 !important;
-    max-height: min(70vh, 520px) !important;
+    max-height: 75vh !important;
     overflow: auto !important;
-}
-
-/* Mobile: keep away from screen edges + safe area */
-@media (max-width: 767px) {
-    #cky-consent-btn,
-    .cky-consent-btn,
-    .cky-btn-revisit-wrapper,
-    .cky-revisit-bottom-left,
-    .cky-revisit-bottom-right {
-        bottom: calc(14px + env(safe-area-inset-bottom)) !important;
-        left: 14px !important;
-    }
-
-    .cky-consent-bar,
-    .cky-notice,
-    .cky-consent-container .cky-consent-bar {
-        padding-bottom: env(safe-area-inset-bottom) !important;
-        max-height: 75vh !important;
-    }
-}
-
-@media (min-width: 768px) {
-    .content {
-        flex-direction: row;
-        justify-content: center;
-        gap: 40px;
-    }
-
-    .text-content {
-        flex: 1;
-        max-width: 50%;
-        text-align: left;
-    }
-
-    .content img {
-        max-width: 30%;
-    }
-
-    .text-content p {
-        font-size: 1.1rem;
-    }
-
-    .game-section {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .game-screenshot,
-    .game-info {
-        flex: 1;
-        max-width: 50%;
-    }
-
-    .game-info {
-        text-align: left;
-    }
-
-    .news-card {
-        flex: 0 0 calc(50% - 10px);
-    }
-
-    /* Keep same bottom-left on desktop too */
-    #cky-consent-btn,
-    .cky-consent-btn,
-    .cky-btn-revisit-wrapper,
-    .cky-revisit-bottom-left,
-    .cky-revisit-bottom-right {
-        bottom: 18px !important;
-        left: 18px !important;
-    }
-}
+    transform: none !important;
+  }
+  
+  /* If header has crazy z-index, still keep CookieYes above */
+  header,
+  .header,
+  #header,
+  .site-header {
+    z-index: 1000 !important;
+  }
