@@ -165,10 +165,6 @@
         </div>
     </section>
 
-    <!-- Start cookieyes banner -->
-    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
-    <!-- End cookieyes banner -->
-
     <div id="footer-placeholder"></div>
     <script>
         fetch("footer.html")
@@ -312,5 +308,19 @@
             window.addEventListener('resize', init, { passive: true });
         })();
     </script>
+    <script>
+        window.addEventListener('load', function () {
+          setTimeout(function () {
+            if (document.getElementById('cookieyes')) return;
+      
+            var s = document.createElement('script');
+            s.id = 'cookieyes';
+            s.type = 'text/javascript';
+            s.src = 'https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js';
+            s.async = true;
+            document.body.appendChild(s);
+          }, 1000);
+        });
+      </script>
 </body>
 </html>
