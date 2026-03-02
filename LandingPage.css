@@ -147,13 +147,13 @@
   
   .home-banner-track {
     display: flex;
-    width: 200%;
     transition: transform 0.6s ease-in-out;
+    will-change: transform;
   }
   
   .home-banner-slide {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 0 0 100%;
+    width: 100%;
     min-height: 1px;
     display: flex;
     justify-content: center;
