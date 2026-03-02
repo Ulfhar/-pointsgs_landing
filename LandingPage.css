@@ -32,7 +32,7 @@ html {
     display: block;
 }
 
-body > :not(.body-particles-layer) {
+body > :not(.body-particles-layer):not(.cky-consent-container):not(.cky-consent-bar):not(.cky-consent-wrapper):not([id^="cookieyes"]):not([id^="cky-"]) {
     position: relative;
     z-index: 1;
 }
