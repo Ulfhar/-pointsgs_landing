@@ -49,7 +49,7 @@ body > :not(.body-particles-layer) {
 @media (max-width: 767px) {
     .promo-0 {
         display: block;
-        margin-top: 48px;
+        margin-top: 0%;
         max-height: 220px;
         object-fit: cover;
         margin-bottom: 12px;
