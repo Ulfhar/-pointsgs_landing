@@ -408,16 +408,6 @@ footer {
     }
 }
 
-.particles-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-}
-
 .container {
     max-width: 900px;
     margin: 20px auto;
