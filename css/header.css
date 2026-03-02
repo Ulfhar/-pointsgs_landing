@@ -1,6 +1,6 @@
 .fixed-header {
-    background-color: #482b60 !important;
-    color: #fff !important;
+    background-color: #0a1628 !important;
+    color: #e8f4f8 !important;
     position: fixed !important;
     top: 0 !important;
     width: 100% !important;
@@ -35,7 +35,7 @@
 }
 
     .fixed-header .header-nav a {
-        color: #fff !important;
+        color: #e8f4f8 !important;
         text-decoration: none !important;
         font-weight: bold !important;
         transition: color 0.3s, text-shadow 0.3s !important;
@@ -43,8 +43,8 @@
     }
 
         .fixed-header .header-nav a:hover {
-            color: #fff !important;
-            text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
+            color: #40e0d0 !important;
+            text-shadow: 0 0 8px #40e0d0, 0 0 16px #20b2aa !important;
         }
 
 .fixed-header .logo {
@@ -57,7 +57,7 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 1rem;
-    color: #fff;
+    color: #e8f4f8;
     margin-left: 4px;
     letter-spacing: 0.5px;
     line-height: 32px;
@@ -72,8 +72,8 @@
 
 .fixed-header .logo:hover .logo-text,
 .fixed-header .logo:focus .logo-text {
-    color: #fff;
-    text-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4 !important;
+    color: #ffe55c;
+    text-shadow: 0 0 8px #ffe55c, 0 0 16px #ffd700 !important;
     text-decoration: none !important;
 }
 
@@ -94,5 +94,3 @@
     text-decoration: none !important;
     outline: none !important;
 }
-
-
