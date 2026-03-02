@@ -496,6 +496,35 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 100%;
     }
 }
+/* CookieYes: force floating button to bottom-left (safe override) */
+#cky-consent-btn,
+.cky-consent-btn,
+.cky-btn-revisit-wrapper,
+.cky-revisit-bottom-left,
+.cky-revisit-bottom-right {
+    top: auto !important;
+    bottom: 18px !important;
+}
+
+/* Choose one side (left). If you want right side — change to right: 18px */
+#cky-consent-btn,
+.cky-consent-btn,
+.cky-btn-revisit-wrapper {
+    left: 18px !important;
+    right: auto !important;
+}
+
+/* Ensure it stays above content and is clickable */
+#cky-consent-btn,
+.cky-consent-btn,
+.cky-btn-revisit-wrapper,
+.cky-consent-container,
+.cky-consent-bar,
+.cky-consent-wrapper {
+    position: fixed !important;
+    z-index: 9999 !important;
+}
+
 
 @media (min-width: 768px) {
     .content {
@@ -537,5 +566,12 @@ h1, h2, h3, h4, h5, h6 {
 
     .news-card {
         flex: 0 0 calc(50% - 10px);
+    }
+    
+    #cky-consent-btn,
+    .cky-consent-btn,
+    .cky-btn-revisit-wrapper {
+        bottom: 14px !important;
+        left: 14px !important;
     }
 }
