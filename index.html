@@ -5,7 +5,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-RSXV2Q3WG2');
     </script>
@@ -18,31 +18,16 @@
     <meta name="description" content="Points Game Studio — indie developers of magical mobile puzzle games. Creators of Lumen Grove. Available on Android.">
     <link rel="canonical" href="https://points.gs/" />
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Points Game Studio">
     <meta property="og:description" content="Indie mobile game studio creating story-rich fairy tale experiences. Discover Lumen Grove.">
     <meta property="og:image" content="https://points.gs/images/lumen-grove-mobile-banner.png">
     <meta property="og:url" content="https://points.gs/">
     <meta property="og:type" content="website">
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Points Game Studio",
-      "url": "https://points.gs",
-      "logo": "https://points.gs/images/logo.png",
-      "description": "Points is an independent game studio focused on magical, story-driven mobile games like Lumen Grove.",
-      "sameAs": []
-    }
-    </script>
-
     <link rel="stylesheet" href="LandingPage.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
 
-    <!-- SAFE FIX: prevent particles layer from intercepting clicks -->
     <style>
         .body-particles-layer,
         .body-particles-layer .particles-canvas {
@@ -50,277 +35,154 @@
         }
     </style>
 </head>
+
 <body>
-    <div id="header-placeholder"></div>
-    <img src="images/lumen-grove-mobile-banner.png" alt="Lumen Grove" class="promo-0" />
 
-    <script>
-        fetch("header.html")
-            .then(response => response.text())
-            .then(data => {
-                var el = document.getElementById("header-placeholder");
-                if (el) el.innerHTML = data;
-            })
-            .catch(() => {});
-    </script>
+<div id="header-placeholder"></div>
+<img src="images/lumen-grove-mobile-banner.png" alt="Lumen Grove" class="promo-0" />
 
-    <!-- Banners row: side-scrolling between News and Lore (auto-rotate) -->
-    <div class="home-banner-row">
-        <div class="home-banner-track">
-            <div class="home-banner-slide">
-                <div class="news-badge">
-                    <a href="news_4.html" class="news-badge-link">
-                        <img src="images/news_images/4/icon_playmarket.png" alt="Latest News" class="news-badge-icon" />
-                        <div class="news-badge-content">
-                            <span class="news-badge-text">NEW!</span>
-                            <span class="news-badge-title">First Public Test Available</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="home-banner-slide">
-                <a href="lore_1.html" class="lore-banner-item">
-                    <span class="lore-banner-icon" aria-hidden="true">📜</span>
-                    <div class="lore-banner-content">
-                        <span class="lore-banner-label">Lore</span>
-                        <span class="lore-banner-title">How the Enchanted Forest Grows</span>
+<script>
+fetch("header.html")
+.then(r=>r.text())
+.then(d=>{
+    var el=document.getElementById("header-placeholder");
+    if(el) el.innerHTML=d;
+});
+</script>
+
+<!-- Banner row -->
+<div class="home-banner-row">
+    <div class="home-banner-track">
+
+        <div class="home-banner-slide">
+            <div class="news-badge">
+                <a href="news_4.html" class="news-badge-link">
+                    <img src="images/news_images/4/icon_playmarket.png" class="news-badge-icon" />
+                    <div class="news-badge-content">
+                        <span class="news-badge-text">NEW!</span>
+                        <span class="news-badge-title">First Public Test Available</span>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="home-banner-dots" aria-hidden="true">
-            <button type="button" class="home-banner-dot active" data-index="0" aria-label="Show news"></button>
-            <button type="button" class="home-banner-dot" data-index="1" aria-label="Show lore"></button>
+
+        <div class="home-banner-slide">
+            <a href="lore_1.html" class="lore-banner-item">
+                <span class="lore-banner-icon">📜</span>
+                <div class="lore-banner-content">
+                    <span class="lore-banner-label">Lore</span>
+                    <span class="lore-banner-title">How the Enchanted Forest Grows</span>
+                </div>
+            </a>
         </div>
+
+        <div class="home-banner-slide">
+            <a href="/pillar_1" class="lore-banner-item">
+                <span class="lore-banner-icon">🌿</span>
+                <div class="lore-banner-content">
+                    <span class="lore-banner-label">Guide</span>
+                    <span class="lore-banner-title">What Is Lumen Grove?</span>
+                </div>
+            </a>
+        </div>
+
     </div>
 
-    <div class="landing-page">
-        <div class="page-inner">
-            <main class="content">
-                <img src="images/promo1.png" alt="Promo 1" class="promo-1" />
-                <div class="text-content">
-                    <h2>Lumen Grove</h2>
-                    <p>Uncover the fairy-tale world, full of magical stories, unbelievable creatures, and shining fireflies. The forest, full of secrets, is waiting for your touch.</p>
-                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <button class="play-button">PLAY</button>
-                    </a>
-                </div>
-                <img src="images/promo.png" alt="Promo 2" class="promo-2" />
-            </main>
+    <div class="home-banner-dots"></div>
+</div>
 
-            <section class="game-section">
-                <div class="game-screenshot">
-                    <img src="images/game-screenshot.png" alt="Game Screenshot" />
-                </div>
-                <div class="game-info">
-                    <h2>REVEAL THE HIDDEN LORE</h2>
-                    <p>Explore the depths of an ancient forest filled with mysteries and wonder. Solve intricate puzzles and discover magical secrets hidden deep within the woods. Uncover ancient lore and piece together a story that has been long forgotten. Traverse breathtaking landscapes, unlock hidden paths, and interact with enchanted objects that bring the forest to life. Let your curiosity guide you through a world where every shadow hides a tale and every clearing offers a new discovery.</p>
-                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <img src="images/google-play-badge.png" alt="Get it on Google Play" class="google-play-badge" />
-                    </a>
-                </div>
-            </section>
+<div class="landing-page">
+<div class="page-inner">
 
-            <section class="news-section">
-                <div class="news-card">
-                    <a href="news_4.html" class="news-link">
-                        <img src="images/news_images/4/icon_playmarket.png" alt="DevLog 4" />
-                        <h3>DevLog #4: First Public Test 🌲</h3>
-                        <p>12 levels are ready, Ukrainian localization is in, and we're moving forward!</p>
-                    </a>
-                </div>
-                <div class="news-card">
-                    <a href="news_3.html" class="news-link">
-                        <img src="images/news_images/3/trap-hummers.png" alt="News 3" />
-                        <h3>DevLog #2: A Beam of Light, Snail Shells, and a Runner Level!</h3>
-                        <p>New features including beam of light mechanics, shell smashing, and dangerous boulder traps.</p>
-                    </a>
-                </div>
-                <div class="news-card">
-                    <a href="news_2.html" class="news-link">
-                        <img src="images/news_2.png" alt="News 2" />
-                        <h3>DevLog #Achievements</h3>
-                        <p>A new internal achievements system is here.</p>
-                    </a>
-                </div>
-            </section>
+<main class="content">
+    <img src="images/promo1.png" class="promo-1" />
+    <div class="text-content">
+        <h2>Lumen Grove</h2>
+        <p>Uncover the fairy-tale world full of magical stories and shining fireflies.</p>
+        <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank">
+            <button class="play-button">PLAY</button>
+        </a>
+    </div>
+    <img src="images/promo.png" class="promo-2" />
+</main>
 
-        </div>
+<section class="news-section">
+
+    <!-- Pillar Preview -->
+    <div class="news-card">
+        <a href="/pillar_1" class="news-link">
+            <img src="images/lumen-grove-mobile-banner.png" alt="Lumen Grove Guide" />
+            <h3>Guide: What Is Lumen Grove?</h3>
+            <p>Cozy forest farming, progression systems, decorations, and lore — full overview.</p>
+        </a>
     </div>
 
-    <!-- YouTube Video Section -->
-    <section class="mainpage-video-section" style="max-width:900px;margin:60px auto 0 auto;padding:30px 0 0 0;text-align:center;">
-        <h2 data-i18n="mainpage_video_heading" style="font-family:'Lusitana',serif;font-size:1.5em;margin-bottom:1em;">Watch the Latest Lumen Grove Video</h2>
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-            <iframe src="https://www.youtube.com/embed/izMsGjT0XbY"
-                    title="Lumen Grove Video"
-                    frameborder="0"
-                    allowfullscreen
-                    loading="lazy"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
-        </div>
-    </section>
+    <div class="news-card">
+        <a href="news_4.html" class="news-link">
+            <img src="images/news_images/4/icon_playmarket.png" />
+            <h3>DevLog #4: First Public Test 🌲</h3>
+            <p>12 levels ready, Ukrainian localization added.</p>
+        </a>
+    </div>
 
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch("footer.html")
-            .then(response => response.text())
-            .then(data => {
-                var el = document.getElementById("footer-placeholder");
-                if (el) el.innerHTML = data;
-            })
-            .catch(() => {});
-    </script>
+    <div class="news-card">
+        <a href="news_3.html" class="news-link">
+            <img src="images/news_images/3/trap-hummers.png" />
+            <h3>DevLog #2: A Beam of Light</h3>
+            <p>New mechanics and runner level update.</p>
+        </a>
+    </div>
 
-    <script>
-        (function() {
-            var row = document.querySelector(".home-banner-row");
-            var track = document.querySelector(".home-banner-track");
-            var dots = document.querySelectorAll(".home-banner-dot");
-            if (!row || !track || !dots.length) return;
-            var index = 0;
-            var autoInterval = 3000;
+</section>
 
-            function goTo(i) {
-                index = i;
-                track.style.transform = "translateX(" + (index * -50) + "%)";
-                dots.forEach(function(dot, d) {
-                    dot.classList.toggle("active", d === index);
-                });
-                row.classList.add("home-banner-manual");
-                clearTimeout(row._resume);
-                row._resume = setTimeout(function() {
-                    row.classList.remove("home-banner-manual");
-                }, 100);
-            }
+</div>
+</div>
 
-            function next() {
-                goTo((index + 1) % 2);
-            }
+<script>
+(function(){
+    var row=document.querySelector(".home-banner-row");
+    var track=document.querySelector(".home-banner-track");
+    var dotsWrap=document.querySelector(".home-banner-dots");
+    if(!row||!track||!dotsWrap) return;
 
-            dots.forEach(function(dot, i) {
-                dot.addEventListener("click", function() {
-                    goTo(i);
-                });
-            });
+    var slides=track.querySelectorAll(".home-banner-slide");
+    var total=slides.length;
+    var index=0;
+    var interval=3000;
+    var tid;
 
-            var tid = setInterval(next, autoInterval);
-            row.addEventListener("mouseenter", function() { clearInterval(tid); });
-            row.addEventListener("mouseleave", function() { tid = setInterval(next, autoInterval); });
-        })();
-    </script>
+    for(var i=0;i<total;i++){
+        var b=document.createElement("button");
+        b.className="home-banner-dot"+(i===0?" active":"");
+        b.setAttribute("data-index",i);
+        dotsWrap.appendChild(b);
+    }
 
-    <script>
-        (function initBodyFloatingParticles() {
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function update(){
+        track.style.transform="translateX("+(-100*index)+"%)";
+        var dots=dotsWrap.querySelectorAll(".home-banner-dot");
+        dots.forEach((d,i)=>d.classList.toggle("active",i===index));
+    }
 
-            var layer = document.querySelector('.body-particles-layer');
-            if (!layer) {
-                layer = document.createElement('div');
-                layer.className = 'body-particles-layer';
-                layer.setAttribute('aria-hidden', 'true');
-                document.body.insertBefore(layer, document.body.firstChild);
-            }
+    function go(i){ index=(i+total)%total; update(); }
+    function next(){ go(index+1); }
 
-            if (layer.querySelector('canvas')) return;
+    dotsWrap.addEventListener("click",function(e){
+        if(e.target.classList.contains("home-banner-dot")){
+            go(parseInt(e.target.dataset.index));
+        }
+    });
 
-            var canvas = document.createElement('canvas');
-            canvas.className = 'particles-canvas';
-            layer.appendChild(canvas);
+    function start(){ tid=setInterval(next,interval); }
+    function stop(){ clearInterval(tid); }
 
-            var ctx = canvas.getContext('2d');
-            if (!ctx) return;
+    row.addEventListener("mouseenter",stop);
+    row.addEventListener("mouseleave",start);
 
-            var dpr = window.devicePixelRatio || 1;
-            var width = 0;
-            var height = 0;
+    update();
+    start();
+})();
+</script>
 
-            function resize() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = Math.floor(width * dpr);
-                canvas.height = Math.floor(height * dpr);
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
-
-            var particles = [];
-            var particleCount = 40;
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                    this.x = Math.random() * width;
-                    this.y = Math.random() * height;
-                }
-
-                reset() {
-                    this.size = Math.random() * 2 + 1;
-                    this.speedX = Math.random() * 0.5 - 0.25;
-                    this.speedY = Math.random() * 0.5 - 0.25;
-                    this.opacity = Math.random() * 0.35 + 0.15;
-                    this.color = Math.random() > 0.5 ? 'rgba(64, 224, 208, ' : 'rgba(255, 215, 0, ';
-                }
-
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-
-                    if (this.x > width) this.x = 0;
-                    if (this.x < 0) this.x = width;
-                    if (this.y > height) this.y = 0;
-                    if (this.y < 0) this.y = height;
-                }
-
-                draw() {
-                    ctx.fillStyle = this.color + this.opacity + ')';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = this.color + '0.8)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            function init() {
-                resize();
-                particles = [];
-                for (var i = 0; i < particleCount; i++) particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                for (var i = 0; i < particles.length; i++) {
-                    particles[i].update();
-                    particles[i].draw();
-                }
-                requestAnimationFrame(animate);
-            }
-
-            init();
-            animate();
-
-            window.addEventListener('resize', init, { passive: true });
-        })();
-    </script>
-    <script>
-        window.addEventListener('load', function () {
-          setTimeout(function () {
-            if (document.getElementById('cookieyes')) return;
-      
-            var s = document.createElement('script');
-            s.id = 'cookieyes';
-            s.type = 'text/javascript';
-            s.src = 'https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js';
-            s.async = true;
-            document.body.appendChild(s);
-          }, 1000);
-        });
-      </script>
 </body>
 </html>
