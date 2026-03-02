@@ -33,8 +33,16 @@
     display: block;
   }
   
-  /* Keep normal site content above particles, but NOT above CookieYes */
-  body > :not(.body-particles-layer):not([id^="cookieyes"]):not([id^="cky-"]):not([class*="cky-"]) {
+  /* Header placeholder MUST stay above main content */
+  #header-placeholder {
+    position: relative;
+    z-index: 9999;
+  }
+  
+  /* Keep normal site content above particles, but NOT above CookieYes
+     IMPORTANT: exclude #header-placeholder to avoid trapping the fixed header under z-index:1 stacking contexts */
+  body > :not(.body-particles-layer):not(#header-placeholder)
+  :not([id^="cookieyes"]):not([id^="cky-"]):not([class*="cky-"]) {
     position: relative;
     z-index: 1;
   }
@@ -522,4 +530,3 @@
   
     .game-info { text-align: left; }
   }
-  
