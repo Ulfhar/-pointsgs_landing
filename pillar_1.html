@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lumen Grove — Cozy Forest Farming & Progression Game</title>
     <link rel="icon" type="image/png" href="images/favicon_points.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Guide: What Is Lumen Grove?",
+      "description": "Full overview of Lumen Grove — cozy forest farming, progression systems, decorations, and lore.",
+      "url": "https://points.gs/pillar_1.html",
+      "image": "https://points.gs/images/lumen-grove-mobile-banner.png",
+      "author": { "@id": "https://points.gs/#organization" },
+      "publisher": { "@id": "https://points.gs/#organization" },
+      "about": { "@id": "https://points.gs/#lumen-grove" }
+    }
+    </script>
     <link rel="stylesheet" href="css/news.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
@@ -44,18 +58,19 @@
 
         .pillar-section-title {
             font-family: 'Roboto Serif', serif;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             margin: 2.2em 0 0.6em 0;
-            color: #4a148c;
+            color: #20b2aa;
+            letter-spacing: 0.01em;
         }
 
         .pillar-kicker {
             display: inline-block;
             font-family: 'Roboto Serif', serif;
             font-weight: 600;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #6a1b9a;
+            color: #20b2aa;
             font-size: 0.85rem;
         }
 
@@ -73,19 +88,26 @@
         }
 
         .pillar-card {
-            background: #ffffff;
+            background: #162844;
             border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-            padding: 16px 16px;
-            color: #2c3e50;
+            border: 1px solid rgba(32, 178, 170, 0.18);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            padding: 18px 20px;
+            color: #e8f4f8;
         }
 
         .pillar-card h3 {
             font-family: 'Roboto Serif', serif;
-            font-size: 1.05rem;
-            margin: 0 0 10px 0;
-            color: #2c3e50;
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: #dce8f7;
+            border-bottom: 1px solid rgba(32, 178, 170, 0.25);
+            padding-bottom: 8px;
+        }
+
+        .pillar-card p {
+            color: #c5d3e3;
+            margin: 0.4em 0;
         }
 
         .pillar-card ul {
@@ -95,22 +117,37 @@
 
         .pillar-card li {
             margin: 0.6em 0;
-            color: #2c3e50;
+            color: #c5d3e3;
+        }
+
+        .pillar-card li::marker {
+            color: #20b2aa;
+        }
+
+        .pillar-card strong {
+            color: #dce8f7;
         }
 
         .pillar-image-placeholder {
             margin: 1.8em 0 1.2em 0;
             min-height: 220px;
-            border: 2px dashed rgba(106, 27, 154, 0.35);
+            border: 2px dashed rgba(32, 178, 170, 0.4);
             border-radius: 12px;
-            background: linear-gradient(135deg, #f8f5ff 0%, #f3f3f3 100%);
+            background: linear-gradient(135deg, #0f1d33 0%, #122742 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6a1b9a;
+            color: #7fa8c8;
             font-family: 'Roboto Serif', serif;
+            font-style: italic;
             text-align: center;
             padding: 18px;
+        }
+
+        .news-content > p {
+            color: #c5d3e3;
+            font-size: 1.02rem;
+            line-height: 1.7;
         }
 
         .pillar-cta {
@@ -123,17 +160,18 @@
             align-items: center;
             gap: 0.75em;
             padding: 0.9em 1.6em;
-            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #178a83 100%);
             color: #fff;
             font-weight: 700;
             font-size: 1.1rem;
             border-radius: 12px;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(56, 142, 60, 0.35);
+            box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .pillar-cta a:hover {
-            box-shadow: 0 6px 24px rgba(56, 142, 60, 0.45);
+            box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
             transform: translateY(-2px);
         }
 

@@ -34,6 +34,53 @@
             pointer-events: none;
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://points.gs/#organization",
+          "name": "Points Game Studio",
+          "url": "https://points.gs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://points.gs/images/new_logo_points.png"
+          },
+          "email": "info@points.gs",
+          "founder": {
+            "@type": "Person",
+            "@id": "https://points.gs/about.html#bogdan-kagitin",
+            "name": "Bogdan Kagitin"
+          },
+          "foundingLocation": {
+            "@type": "Place",
+            "name": "Tallinn, Estonia"
+          },
+          "sameAs": [
+            "https://x.com/Lumen_Grove",
+            "https://www.youtube.com/@PointsGameStudio",
+            "https://www.tiktok.com/@lumen_grove"
+          ]
+        },
+        {
+          "@type": "VideoGame",
+          "@id": "https://points.gs/#lumen-grove",
+          "name": "Lumen Grove",
+          "description": "A fairy tale puzzle game set in a forgotten magical forest. Solve puzzles, collect glowing fireflies, and explore mysterious ruins. Available on Android.",
+          "url": "https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest",
+          "image": "https://points.gs/images/lumen-grove-mobile-banner.png",
+          "genre": ["Puzzle", "Fairy Tale", "Casual"],
+          "gamePlatform": "Android",
+          "operatingSystem": "Android",
+          "applicationCategory": "Game",
+          "author": { "@id": "https://points.gs/#organization" },
+          "publisher": { "@id": "https://points.gs/#organization" }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -53,18 +100,6 @@ fetch("header.html")
 <!-- Banner row -->
 <div class="home-banner-row">
     <div class="home-banner-track">
-
-        <div class="home-banner-slide">
-            <div class="news-badge">
-                <a href="news_4.html" class="news-badge-link">
-                    <img src="images/news_images/4/icon_playmarket.png" class="news-badge-icon" />
-                    <div class="news-badge-content">
-                        <span class="news-badge-text">NEW!</span>
-                        <span class="news-badge-title">First Public Test Available</span>
-                    </div>
-                </a>
-            </div>
-        </div>
 
         <div class="home-banner-slide">
             <a href="/lore_1" class="lore-banner-item">
@@ -117,21 +152,6 @@ fetch("header.html")
         </a>
     </div>
 
-    <div class="news-card">
-        <a href="news_4.html" class="news-link">
-            <img src="images/news_images/4/icon_playmarket.png" />
-            <h3>DevLog #4: First Public Test</h3>
-            <p>12 levels ready, Ukrainian localization added.</p>
-        </a>
-    </div>
-
-    <div class="news-card">
-        <a href="news_3.html" class="news-link">
-            <img src="images/news_images/3/trap-hummers.png" />
-            <h3>DevLog #2: A Beam of Light</h3>
-            <p>New mechanics and runner level update.</p>
-        </a>
-    </div>
 
 </section>
 
