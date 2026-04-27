@@ -4,16 +4,16 @@ body {
     color: #e8f4f8;
     line-height: 1.6;
     margin: 0;
+    padding-top: 48px;
 }
 
 
 .top-banner {
     max-width: 800px;
-    margin: 0 auto 5px auto;
+    margin: 16px auto 5px auto;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(32, 178, 170, 0.3);
-    margin-top: 40px;
 }
 
     .top-banner img {

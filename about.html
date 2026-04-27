@@ -23,6 +23,55 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://points.gs/#organization",
+          "name": "Points Game Studio",
+          "url": "https://points.gs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://points.gs/images/new_logo_points.png"
+          },
+          "email": "info@points.gs",
+          "founder": {
+            "@type": "Person",
+            "@id": "https://points.gs/about.html#bogdan-kagitin",
+            "name": "Bogdan Kagitin"
+          },
+          "foundingLocation": {
+            "@type": "Place",
+            "name": "Tallinn, Estonia"
+          },
+          "sameAs": [
+            "https://x.com/Lumen_Grove",
+            "https://www.youtube.com/@PointsGameStudio",
+            "https://www.tiktok.com/@lumen_grove"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://points.gs/about.html#bogdan-kagitin",
+          "name": "Bogdan Kagitin",
+          "jobTitle": "Founder & CEO",
+          "worksFor": { "@id": "https://points.gs/#organization" },
+          "url": "https://points.gs/resume.html",
+          "sameAs": [
+            "https://www.linkedin.com/in/bogdan-kagitin-84bb06127/"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Tallinn",
+            "addressCountry": "EE"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>

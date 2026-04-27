@@ -9,6 +9,7 @@ body {
     background-color: #0a1628;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
+    padding-top: 48px;
 }
 
     body::-webkit-scrollbar {
