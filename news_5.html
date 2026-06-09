@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Grove - DevLog #5: How Weather Made Lumen Grove Feel Truly Alive</title>
+    <link rel="icon" type="image/png" href="images/favicon_points.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "DevLog #5: How Weather Made Lumen Grove Feel Truly Alive",
+      "description": "Why weather matters in cozy games: how Lumen Grove uses atmosphere, immersion, and a living world cycle to feel truly alive.",
+      "url": "https://points.gs/news_5.html",
+      "image": "https://points.gs/images/news_images/5/img_1.png",
+      "datePublished": "2026-06-09",
+      "author": { "@id": "https://points.gs/#organization" },
+      "publisher": { "@id": "https://points.gs/#organization" },
+      "isPartOf": { "@id": "https://points.gs/#lumen-grove" }
+    }
+    </script>
+    <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <!-- End cookieyes banner -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RSXV2Q3WG2');
+    </script>
+    <style>
+        /* Make particle canvas non-interactive so it never blocks clicks. */
+        .body-particles-layer,
+        .body-particles-layer .particles-canvas {
+            pointer-events: none;
+        }
+
+        /* Stacking order: body background -> particles canvas (z-index: 0)
+           -> page content (z-index: 1). Without this, the canvas paints on
+           top of static block content and the footer. */
+        #header-placeholder,
+        .top-banner,
+        .news-article,
+        #footer-placeholder {
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-content ul li {
+            margin-bottom: 1.5em;
+            line-height: 1.6;
+        }
+
+        /* Pillar-style banner (kept in sync with pillar_1.html). */
+        .pillar-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            background: linear-gradient(135deg, #0a1628 0%, #1b3a52 60%, #0d1b2a 100%);
+            color: #fff;
+            position: relative;
+        }
+
+        .pillar-banner-title {
+            font-family: 'Roboto Serif', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 760px;
+            margin: 0;
+        }
+
+        /* Teal accent + pillar-style typography for the subtitle and any
+           section heading inside the article. */
+        .news-article .news-subtitle,
+        .news-article .news-content h2,
+        .news-article .news-content h3 {
+            color: #20b2aa;
+            font-family: 'Roboto Serif', serif;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .news-article .news-subtitle,
+        .news-article .news-content h2 {
+            font-size: 1.4rem;
+            margin: 1.4em 0 0.6em 0;
+        }
+
+        .news-article .news-content h3 {
+            font-size: 1.2rem;
+            margin: 1.2em 0 0.5em 0;
+        }
+
+        /* Paragraph styling matches pillar_1 for consistent reading. */
+        .news-article .news-content p,
+        .news-article .news-content > p {
+            color: #c5d3e3;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        /* Pillar-style text blocks for grouping narrative paragraphs. */
+        .news-block {
+            background: #162844;
+            border-radius: 12px;
+            border: 1px solid rgba(32, 178, 170, 0.18);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            padding: 22px 26px;
+            margin: 1.4em 0;
+        }
+
+        .news-block p {
+            margin: 0.7em 0;
+        }
+
+        .news-block p:first-child {
+            margin-top: 0;
+        }
+
+        .news-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 767px) {
+            .news-block {
+                padding: 18px 18px;
+            }
+        }
+
+        /* YouTube video fills the block width with a 16:9 aspect ratio,
+           overriding the default 560px cap from css/news.css. */
+        .news-block .news-video {
+            margin: 1.8em 0;
+        }
+
+        .news-block .news-video iframe {
+            width: 100%;
+            max-width: none;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* Larger screenshot slider. */
+        .screenshots-slider {
+            margin: 2.4em auto;
+            max-width: 720px;
+        }
+
+        .screenshots-slider .swiper {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .screenshots-slider .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a1628;
+        }
+
+        .screenshots-slider .swiper-slide img {
+            width: 100%;
+            max-height: 560px;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+        }
+
+        .screenshots-slider .swiper-button-next,
+        .screenshots-slider .swiper-button-prev {
+            color: #20b2aa;
+            --swiper-navigation-size: 28px;
+        }
+
+        .screenshots-slider .swiper-pagination-bullet {
+            background: #c5d3e3;
+            opacity: 0.5;
+        }
+
+        .screenshots-slider .swiper-pagination-bullet-active {
+            background: #20b2aa;
+            opacity: 1;
+        }
+
+        /* Centered Play Market CTA at the end of the article. */
+        .news5-cta {
+            margin: 2em 0 1em 0;
+            text-align: center;
+        }
+
+        .news5-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75em;
+            padding: 0.9em 1.6em;
+            background: linear-gradient(135deg, #20b2aa 0%, #178a83 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .news5-cta a:hover {
+            box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .news5-cta img {
+            width: 2em;
+            height: 2em;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="top-banner pillar-banner">
+        <h1 class="pillar-banner-title" data-i18n="news5_title">DevLog #5: How Weather Made Lumen Grove Feel Truly Alive</h1>
+    </div>
+
+    <article class="news-article">
+        <a href="https://www.linkedin.com/in/bogdan-kagitin-84bb06127/" target="_blank" class="news-author-section">
+            <img src="images/ava.jpg" alt="Bogdan" class="news-author-avatar">
+            <div class="news-author-info">
+                <p class="news-author-name">Bogdan</p>
+                <p class="news-author-title">Game Developer</p>
+            </div>
+        </a>
+
+        <div class="news-meta">
+            <p class="news-date">Jun 9, 2026</p>
+            <p class="news-type">DevLog</p>
+            <p class="news-author">
+                <a href="https://x.com/Lumen_Grove" target="_blank">Twitter/X - @Lumen_Grove</a>
+            </p>
+        </div>
+
+        <p class="news-subtitle" data-i18n="news5_subtitle"><em>Why do games need weather at all?</em></p>
+
+        <section class="news-content">
+            <div class="news-block">
+                <p data-i18n="news5_paragraph_1">Why do games need weather at all? Especially if it does not add anything to the gameplay and does not affect the game rules in any way. At first glance, it seems like exactly the kind of feature that should be cut from the scope first, especially when we are talking about early access.</p>
+
+                <p data-i18n="news5_paragraph_2">But this is where context matters, because it defines whether a feature gets cut or receives the green light. The thing is, gameplay alone is often no longer enough. Players want stories even in match-3 games, atmosphere in hidden object games — in other words, depth in places where historically there used to be almost none.</p>
+
+                <p data-i18n="news5_paragraph_3">And when we talk about cozy games, which is exactly what Lumen Grove is, the priority of features like this grows significantly. Weather is primarily about atmosphere. It creates mood, adds a sense of reality, and makes it easier to believe in this imaginary fairytale world. That, in turn, can lead to the highly desired feeling of flow.</p>
+
+                <p data-i18n="news5_paragraph_4">So in this context, anything that supports atmosphere becomes a high-priority candidate, not the other way around.</p>
+
+                <!-- Screenshots Slider -->
+                <div class="screenshots-slider">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="images/news_images/5/img_1.png" alt="Lumen Grove weather — screenshot 1" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/news_images/5/img_2.png" alt="Lumen Grove weather — screenshot 2" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/news_images/5/img_3.png" alt="Lumen Grove weather — screenshot 3" />
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <p data-i18n="news5_paragraph_5">Moving forward, in order to make the right decision, it is worth asking a few questions and establishing a foundation to build on later. Even fairytale worlds live by their own rules, and those rules should not be broken without a good reason.</p>
+
+                <p data-i18n="news5_paragraph_6">For me, these were questions like: how realistic should the weather be? What is allowed, and what is not? Is the weather connected to in-game events? And most importantly — what should the player get from this feature?</p>
+
+                <p data-i18n="news5_paragraph_7">I decided that, in addition to atmosphere and visuals, weather should bring a sense of variety and change to the life cycle of the world. During one play session, the player can see one or two weather changes, so the &ldquo;internal&rdquo; time does not feel like it is moving too fast. And if the player opens the game several times during the day, they are guaranteed to see different states of the grove. It could be rain, mist over the river, or even auroras with a touch of gentle snow.</p>
+
+                <section class="news-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XXYTCvjqAFQ" title="Lumen Grove Weather" frameborder="0" allowfullscreen></iframe>
+                </section>
+
+                <p data-i18n="news5_paragraph_8">At this stage, this is my favorite feature in the game. This small detail, at first glance, added the tiny missing drop that instantly raised the level of immersion, improving the overall player experience and making the world feel more layered.</p>
+
+                <p data-i18n="news5_cta">Follow the link to visit Lumen Grove and step into its fairytale world.</p>
+
+                <div class="news5-cta">
+                    <a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest&hl=en-US&ah=xbTHk3BzY0pZJ_aEWw5XNs6xmB8" target="_blank">
+                        <span data-i18n="news5_play_link">🌲 Visit Lumen Grove on Google Play</span>
+                        <img src="images/play-store-round-color-icon.png" alt="Google Play" />
+                    </a>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <div id="image-modal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <div class="modal-nav modal-nav-prev">&lt;</div>
+        <div class="modal-nav modal-nav-next">&gt;</div>
+        <img class="image-modal-content" id="image-modal-content" />
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Initialize Swiper for the screenshots slider.
+        const swiper = new Swiper('.screenshots-slider .swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.screenshots-slider .swiper-button-next',
+                prevEl: '.screenshots-slider .swiper-button-prev',
+            },
+            pagination: {
+                el: '.screenshots-slider .swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Modal for fullscreen image viewing with prev/next navigation.
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("image-modal-content");
+        const closeBtn = document.querySelector(".image-modal-close");
+        const sliderImages = document.querySelectorAll(".screenshots-slider .swiper-slide img");
+        let currentImageIndex = 0;
+
+        function openModal(i) {
+            currentImageIndex = i;
+            modal.style.display = "flex";
+            modalImg.src = sliderImages[i].src;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+            modalImg.src = sliderImages[currentImageIndex].src;
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + sliderImages.length) % sliderImages.length;
+            modalImg.src = sliderImages[currentImageIndex].src;
+        }
+
+        sliderImages.forEach((img, i) => {
+            img.addEventListener("click", () => openModal(i));
+        });
+
+        closeBtn.onclick = () => { modal.style.display = "none"; };
+        modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
+        document.querySelector('.modal-nav-prev').addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImage();
+        });
+        document.querySelector('.modal-nav-next').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImage();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display !== 'flex') return;
+            if (e.key === 'ArrowRight') { e.preventDefault(); nextImage(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); prevImage(); }
+            else if (e.key === 'Escape') { e.preventDefault(); modal.style.display = "none"; }
+        });
+    </script>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+    <script src="js/locale.js"></script>
+
+    <!-- Floating particles background (same as home page). -->
+    <script src="js/particles-bg.js"></script>
+    <script>initFloatingParticlesOnBody();</script>
+</body>
+
+</html>

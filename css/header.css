@@ -37,9 +37,10 @@
     .fixed-header .header-nav a {
         color: #e8f4f8 !important;
         text-decoration: none !important;
-        font-weight: bold !important;
+        font-weight: 900 !important;
         transition: color 0.3s, text-shadow 0.3s !important;
-        font-size: 12px !important;
+        font-size: 14px !important;
+        letter-spacing: 0.02em !important;
     }
 
         .fixed-header .header-nav a:hover {
@@ -54,11 +55,11 @@
 
 .fixed-header .logo-text {
     font-family: Calibri, Arial, sans-serif;
-    font-weight: bold;
+    font-weight: 900;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: #e8f4f8;
-    margin-left: 4px;
+    margin-left: 6px;
     letter-spacing: 0.5px;
     line-height: 32px;
     display: flex;

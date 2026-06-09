@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Grove — DevLog</title>
+    <link rel="icon" type="image/png" href="images/favicon_points.png" />
+    <meta name="description" content="Behind-the-scenes development updates from Lumen Grove — a cozy forest farming game by Points Game Studio." />
+    <link rel="canonical" href="https://points.gs/devlog.html" />
+
+    <meta property="og:title" content="Lumen Grove — DevLog" />
+    <meta property="og:description" content="Behind-the-scenes development updates from Lumen Grove." />
+    <meta property="og:url" content="https://points.gs/devlog.html" />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
+    <!-- End cookieyes banner -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RSXV2Q3WG2');
+    </script>
+
+    <style>
+        /* Make particle canvas non-interactive so it never blocks clicks. */
+        .body-particles-layer,
+        .body-particles-layer .particles-canvas {
+            pointer-events: none;
+        }
+
+        /* Stacking order: body background -> particles canvas (z-index: 0)
+           -> page content (z-index: 1). Without this, the canvas paints on
+           top of static block content and the footer. */
+        #header-placeholder,
+        .top-banner,
+        .devlog-intro,
+        .devlog-list,
+        #footer-placeholder {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pillar-style banner (kept in sync with pillar_1.html). */
+        .pillar-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            background: linear-gradient(135deg, #0a1628 0%, #1b3a52 60%, #0d1b2a 100%);
+            color: #fff;
+            position: relative;
+        }
+
+        .pillar-banner-title {
+            font-family: 'Roboto Serif', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 760px;
+            margin: 0;
+        }
+
+        .devlog-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px 0 20px;
+            text-align: center;
+        }
+
+        .devlog-intro p {
+            color: #c5d3e3;
+            font-size: 1.02rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .devlog-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .devlog-card {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            background: #162844;
+            border-radius: 12px;
+            border: 1px solid rgba(32, 178, 170, 0.18);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            padding: 24px 28px 24px 36px;
+            color: #e8f4f8;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.5s ease;
+            /* Native lazy rendering: browser skips painting off-screen cards. */
+            content-visibility: auto;
+            /* Reserve approximate space so the scrollbar stays stable. */
+            contain-intrinsic-size: auto 180px;
+        }
+
+        /* JS-driven fade-in for cards revealed via IntersectionObserver.
+           Applied only when JS runs; no-JS users see all cards immediately. */
+        .devlog-card.lazy-hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .devlog-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #20b2aa;
+        }
+
+        .devlog-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(32, 178, 170, 0.25);
+            border-color: rgba(32, 178, 170, 0.4);
+        }
+
+        .devlog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #20b2aa;
+            font-family: 'Roboto Serif', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .devlog-card-badge {
+            background: rgba(32, 178, 170, 0.15);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .devlog-card-title {
+            font-family: 'Roboto Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #dce8f7;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+
+        .devlog-card-excerpt {
+            color: #c5d3e3;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 767px) {
+            .devlog-card {
+                padding: 18px 18px 18px 26px;
+            }
+
+            .devlog-card-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <div class="top-banner pillar-banner">
+        <h1 class="pillar-banner-title" data-i18n="devlog_banner_title">DevLog</h1>
+    </div>
+
+    <section class="devlog-intro">
+        <p data-i18n="devlog_intro">Behind-the-scenes notes from the Lumen Grove team — features, design decisions, and lessons learned along the way.</p>
+    </section>
+
+    <section class="devlog-list">
+
+        <a href="news_5.html" class="devlog-card">
+            <div class="devlog-card-meta">
+                <span class="devlog-card-badge">DevLog #5</span>
+                <span class="devlog-card-date">Jun 9, 2026</span>
+            </div>
+            <h2 class="devlog-card-title">How Weather Made Lumen Grove Feel Truly Alive</h2>
+            <p class="devlog-card-excerpt">Why do games need weather at all? On atmosphere, immersion, and the rhythm of a living world.</p>
+        </a>
+
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+
+    <!-- Lazy fade-in for off-screen DevLog cards. -->
+    <script>
+        (function () {
+            // Bail out if IntersectionObserver is not supported — cards remain visible.
+            if (!('IntersectionObserver' in window)) return;
+
+            var cards = document.querySelectorAll('.devlog-card');
+            if (cards.length === 0) return;
+
+            // Cards within the initial viewport stay visible immediately; the rest
+            // start hidden and fade in once they enter the viewport.
+            var initialBatch = 3;
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('lazy-hidden');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '120px 0px' });
+
+            cards.forEach(function (card, i) {
+                if (i >= initialBatch) {
+                    card.classList.add('lazy-hidden');
+                    observer.observe(card);
+                }
+            });
+        })();
+    </script>
+
+    <script src="js/locale.js"></script>
+
+    <!-- Floating particles background (same as home page). -->
+    <script src="js/particles-bg.js"></script>
+    <script>initFloatingParticlesOnBody();</script>
+</body>
+
+</html>
