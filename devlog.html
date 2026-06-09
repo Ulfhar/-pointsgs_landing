@@ -38,9 +38,10 @@
         }
 
         /* Stacking order: body background -> particles canvas (z-index: 0)
-           -> page content (z-index: 1). Without this, the canvas paints on
-           top of static block content and the footer. */
-        #header-placeholder,
+           -> page content (z-index: 1) -> fixed header (z-index: 999, from
+           css/header.css, in root context). DO NOT include #header-placeholder
+           here — making it positioned traps the fixed-header inside a low-z
+           stacking context, so content would paint on top of the header. */
         .top-banner,
         .devlog-intro,
         .devlog-list,
@@ -259,6 +260,9 @@
     <!-- Floating particles background (same as home page). -->
     <script src="js/particles-bg.js"></script>
     <script>initFloatingParticlesOnBody();</script>
+
+    <!-- Reading progress indicator at the top of the viewport. -->
+    <script src="js/reading-progress.js"></script>
 </body>
 
 </html>

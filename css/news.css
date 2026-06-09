@@ -4,7 +4,9 @@ body {
     color: #e8f4f8;
     line-height: 1.6;
     margin: 0;
-    padding-top: 48px;
+    /* Must be >= the height of the fixed header on the widest viewport
+       (~52px on desktop with the bold nav). 60px keeps an 8px safety gap. */
+    padding-top: 60px;
 }
 
 

@@ -9,7 +9,9 @@ body {
     background-color: #0a1628;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
-    padding-top: 48px;
+    /* Match fixed header height with a small safety gap (header is ~52px
+       on desktop with the bold nav; 60px keeps clearance). */
+    padding-top: 60px;
 }
 
     body::-webkit-scrollbar {

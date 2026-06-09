@@ -14,8 +14,14 @@ function setUserLocale(locale) {
 function localizePage(strings) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (strings[key]) {
-            el.textContent = strings[key];
+        const val = strings[key];
+        if (val === undefined || val === null) return;
+        // If the translation contains HTML tags (e.g. <strong>), use innerHTML
+        // so the markup is preserved. Otherwise stick to textContent.
+        if (typeof val === 'string' && /<[a-z][\s\S]*?>/i.test(val)) {
+            el.innerHTML = val;
+        } else {
+            el.textContent = val;
         }
     });
     if (strings.title) document.title = strings.title;

@@ -12,7 +12,8 @@
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
-    padding-top: 48px;
+    /* Match fixed header height with a safety gap (~52px on desktop). */
+    padding-top: 60px;
   }
   
   .body-particles-layer {
