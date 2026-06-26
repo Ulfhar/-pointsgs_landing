@@ -45,6 +45,10 @@
             pointer-events: none;
         }
 
+        .news-article {
+            padding-top: 40px;
+        }
+
         .top-banner,
         .news-article,
         #footer-placeholder {
@@ -52,37 +56,58 @@
             z-index: 1;
         }
 
-        /* Pillar-style banner */
-        .pillar-banner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            background: linear-gradient(135deg, #0a1628 0%, #1b3a52 60%, #0d1b2a 100%);
-            color: #fff;
-            position: relative;
+        /* Image banner */
+        .article-img-banner {
+            max-width: 800px;
+            margin: 16px auto 5px auto;
+            border-radius: 16px;
             overflow: hidden;
+            position: relative;
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45);
         }
 
-        .pillar-banner::after {
-            content: '';
+        .article-img-banner img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .article-img-banner-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at center, rgba(32,178,170,0.08) 0%, transparent 70%);
-            pointer-events: none;
+            display: flex;
+            align-items: flex-end;
+            padding: 28px 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
         }
 
-        .pillar-banner-title {
+        .article-img-banner-title {
             font-family: 'Roboto Serif', serif;
-            font-size: clamp(1.3rem, 3vw, 1.85rem);
+            font-size: clamp(1.1rem, 2.8vw, 1.65rem);
             font-weight: 600;
-            text-align: center;
-            padding: 1.5rem 1.5rem;
-            max-width: 720px;
+            color: #fffe90;
+            line-height: 1.6;
             margin: 0;
-            line-height: 1.35;
-            position: relative;
-            z-index: 1;
+            background: #123d6ccc;
+            padding: 3px 10px;
+            border-radius: 5px;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            .article-img-banner {
+                margin: 0 0 5px 0;
+                border-radius: 0;
+            }
+            .article-img-banner img {
+                max-height: 260px;
+            }
+            .article-img-banner-overlay {
+                padding: 18px 16px;
+            }
         }
 
         /* Section headings */
@@ -629,8 +654,11 @@
             .then(d => { document.getElementById("header-placeholder").innerHTML = d; });
     </script>
 
-    <div class="top-banner pillar-banner">
-        <h1 class="pillar-banner-title" data-i18n="news6_banner_title">From Farm to Safe Haven: How Cozy Games Became the Language of Emotional Comfort</h1>
+    <div class="article-img-banner">
+        <img src="images/cozy-game-article-images/cozy-banner.png" alt="Cozy games article banner" />
+        <div class="article-img-banner-overlay">
+            <h1 class="article-img-banner-title" data-i18n="news6_banner_title">From Farm to Safe Haven: How Cozy Games Became the Language of Emotional Comfort</h1>
+        </div>
     </div>
 
     <article class="news-article">
