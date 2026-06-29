@@ -7,6 +7,46 @@
     <title>Lumen Grove - Terms and Conditions</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto 60px auto;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 { color: #2c3e50; margin-bottom: 4px; }
+        h2 { color: #2c3e50; margin-top: 2em; }
+        h3 { color: #34495e; margin-top: 1.4em; }
+        .meta { color: #666; font-size: 0.9rem; margin-bottom: 2em; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 1em 0; }
+        th { background: #f0f4f8; text-align: left; padding: 8px 12px; font-size: 0.9rem; }
+        td { padding: 8px 12px; border-top: 1px solid #e8e8e8; font-size: 0.9rem; vertical-align: top; }
+        ul { padding-left: 1.4em; }
+        li { margin-bottom: 0.4em; }
+        .disclaimer {
+            background: #f8f9fa;
+            border-left: 3px solid #bdc3c7;
+            padding: 12px 16px;
+            margin: 1em 0;
+            font-size: 0.95rem;
+        }
+        .agreement {
+            margin-top: 2.5em;
+            padding-top: 1.5em;
+            border-top: 1px solid #e8e8e8;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -17,149 +57,133 @@
                 document.getElementById("header-placeholder").innerHTML = data;
             });
     </script>
+
     <div class="container">
-        <h1 data-i18n="title">Terms and Conditions</h1>
-        <p><strong data-i18n="last_updated">Last updated: 20/06/2025</strong></p>
-        
-        <p data-i18n="read_terms"><strong>Please read these Terms and Conditions ("Terms") carefully. By downloading, installing, or using Lumen Grove (the "Game"), you agree to be bound by these Terms.</strong></p>
+        <h1>Terms and Conditions</h1>
+        <p class="meta">Last Updated: 20/06/2025</p>
 
-        <h2 data-i18n="definitions">1. Definitions</h2>
-        <div class="definitions">
-            <ul>
-                <li><strong>Game:</strong> The Lumen Grove software application, including all related updates, patches, and in-game content, ads, and in-app purchases.</li>
-                <li><strong>User:</strong> Any individual or entity that downloads, installs, accesses, or uses the Game.</li>
-                <li><strong>User Content (UGC):</strong> Any text, images, audio, video, or other materials submitted by a User through the Game.</li>
-                <li><strong>Personal Data:</strong> Any information relating to an identified or identifiable natural person.</li>
-                <li><strong>API/SDK:</strong> Any application programming interfaces or software development kits provided by the developer.</li>
-                <li><strong>Ads:</strong> Third-party advertisements served in the Game via ad networks.</li>
-                <li><strong>In-App Purchases (IAP):</strong> Virtual goods, subscriptions, or other paid content offered within the Game.</li>
-            </ul>
-        </div>
+        <p>Please read these Terms carefully. By downloading, installing, or using <strong>Lumen Grove</strong> (the "Game"), you agree to be bound by these Terms. If you do not agree, do not install or use the Game.</p>
 
-        <h2 data-i18n="entire_agreement">2. Entire Agreement</h2>
-        <p>These Terms, together with any end-user license agreement, privacy policy, or other legal notices published by the developer, constitute the entire agreement and supersede all prior agreements.</p>
+        <h2>1. Developer</h2>
+        <p>
+            The Game is developed and published by <strong>Bogdan Kagitin</strong>, an individual developer based in Estonia.<br>
+            Contact: <a href="mailto:info@points.gs">info@points.gs</a>
+        </p>
 
-        <h2 data-i18n="eligibility">3. Eligibility and Use by Minors</h2>
+        <h2>2. Definitions</h2>
         <ul>
-            <li><strong>Age Rating 3+:</strong> The Game is designed for children aged 3 and up.</li>
-            <li><strong>Use by Minors (under 18):</strong> Installation and use by anyone under 18 years old is permitted only with the prior consent and under the direct supervision of a parent or legal guardian.</li>
-            <li><strong>Use by Children under 3:</strong> Use by children under 3 years old is strongly discouraged and, if attempted, remains entirely at the risk of the supervising adult.</li>
-            <li><strong>Parental Responsibility:</strong> Parents/legal guardians are responsible for monitoring playtime, enforcing appropriate device settings (e.g., screen time limits), and ensuring compliance with all local regulations regarding minors' use of software.</li>
+            <li><strong>Game</strong> — The Lumen Grove mobile application, including all updates and downloadable content</li>
+            <li><strong>User</strong> — Any person who downloads, installs, or uses the Game</li>
+            <li><strong>IAP</strong> — One-time in-app purchases of virtual goods offered within the Game</li>
+            <li><strong>Ads</strong> — Third-party advertisements displayed in the Game</li>
+            <li><strong>SDK</strong> — Third-party software development kits integrated into the Game</li>
         </ul>
 
-        <h2>4. License Grant and Restrictions</h2>
-        <h3>4.1. License Grant</h3>
-        <p>Subject to compliance, you have a limited, non-exclusive, non-transferable, revocable license to install and use the Game for personal, non-commercial purposes.</p>
-        
-        <h3>4.2. Prohibited Uses</h3>
+        <h2>3. Eligibility and Use by Minors</h2>
+        <ul>
+            <li>The Game is rated <strong>3+</strong> and may be used by children of all ages</li>
+            <li>Use by anyone under 18 requires prior consent and active supervision of a parent or legal guardian</li>
+            <li>Parents and guardians are responsible for managing IAP and screen-time settings on the child's device</li>
+            <li>By allowing a minor to use the Game, the parent or guardian accepts these Terms on the minor's behalf</li>
+        </ul>
+
+        <h2>4. License</h2>
+        <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the Game on your personal device for personal, non-commercial purposes only.</p>
         <p>You may not:</p>
         <ul>
-            <li>Decompile, reverse-engineer, disassemble, derive source code, or create derivative works.</li>
-            <li>Exploit bugs or use cheats, bots, hacks, or other unauthorized third-party software.</li>
-            <li>Rent, lease, sublicense, share, or otherwise transfer your license.</li>
-            <li>Use the Game or any API/SDK for any commercial, illegal, or sanction-evading purposes.</li>
+            <li>Decompile, reverse-engineer, or disassemble the Game</li>
+            <li>Use cheats, bots, hacks, or unauthorised software</li>
+            <li>Redistribute, sell, or sublicense the Game</li>
+            <li>Use the Game for any unlawful purpose</li>
         </ul>
-        
-        <h3>4.3. Limited Warranties</h3>
-        <div class="highlight">
-            <p><strong>THE GAME IS PROVIDED "AS IS" WITH ALL FAULTS. NO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, UPTIME, OR ERROR-FREE OPERATION ARE PROVIDED.</strong></p>
-        </div>
-        
-        <h3>4.4. Export Control</h3>
-        <p>You may not export, re-export, or transfer any Game component or SDK to countries or persons subject to trade restrictions or sanctions.</p>
 
         <h2>5. Intellectual Property</h2>
-        <p>All rights, title, and interest in and to the Game (including graphics, audio, code, designs, ads integrations, and IAP assets) are owned or licensed by the developer. No rights are granted beyond those in these Terms.</p>
-        <p><strong>Fair-use Backup:</strong> Users may create a single backup copy of the Game for personal use only.</p>
+        <p>All content in the Game — graphics, audio, code, and design — is owned by or licensed to the developer. No intellectual property rights are transferred to you under these Terms.</p>
 
-        <h2>6. User Content</h2>
-        <h3>6.1. Submission</h3>
-        <p>Upload UGC only when expressly invited.</p>
-        
-        <h3>6.2. UGC License</h3>
-        <p>By submitting UGC, you grant the developer a perpetual, irrevocable, royalty-free license to use, reproduce, modify, distribute, display, and create derivative works solely for operation, promotion, and improvement of the Game.</p>
-        
-        <h3>6.3. Moderation</h3>
-        <p>We may review, refuse, remove, or modify any UGC at our discretion.</p>
-        
-        <h3>6.4. Vulnerability Disclosure</h3>
-        <p>You agree to report any security vulnerabilities privately to <a href="mailto:info@points.gs">info@points.gs</a> and refrain from public disclosure without consent.</p>
-
-        <h2>7. Account Suspension and Termination</h2>
-        <p>We may suspend or terminate your access for violations, interference with others, or fraudulent behavior. Notice will be provided, and you have 14 days to cure before permanent termination.</p>
-        <p><strong>Appeals Procedure:</strong> Submit appeals within 14 days via <a href="mailto:info@points.gs">info@points.gs</a>; we aim to respond within 90 days.</p>
-
-        <h2>8. Ads and In-App Purchases</h2>
-        <h3>8.1. Ads Integration</h3>
-        <p>The Game displays third-party advertisements. The developer:</p>
+        <h2>6. In-App Purchases</h2>
         <ul>
-            <li>Is not responsible for ad content, accuracy, or any actions resulting from ads.</li>
-            <li>May modify, pause, or remove ads at any time without notice.</li>
-            <li>Uses ad networks that may collect non-identifiable usage data; see Privacy Policy.</li>
-        </ul>
-        
-        <h3>8.2. In-App Purchases</h3>
-        <p>The Game offers IAP for virtual goods and subscriptions:</p>
-        <ul>
-            <li>All IAP transactions are final and non-refundable except as required by law or store policy.</li>
-            <li>The developer reserves the right to change prices, content, and availability of IAP at any time.</li>
-            <li>Subscriptions auto-renew unless cancelled in the store settings; Users are responsible for managing renewals.</li>
-            <li>Access to subscription features may be modified, suspended, or terminated by the developer at any time.</li>
+            <li>The Game offers one-time purchases of virtual goods, processed exclusively by <strong>Google Play</strong></li>
+            <li>The developer does not directly receive payments from users and is not a party to any financial transaction between a user and Google Play</li>
+            <li>All refund requests must be submitted to Google Play in accordance with Google's refund policy</li>
+            <li>Virtual goods have no real-world monetary value and cannot be transferred or redeemed outside the Game</li>
+            <li>The developer reserves the right to modify or remove IAP content at any time</li>
         </ul>
 
-        <h2>9. Indemnification</h2>
-        <p>You agree to indemnify, defend, and hold harmless the developer, affiliates, and licensors from any claims, damages, losses, liabilities, costs, or expenses (including reasonable attorneys' fees) arising from your breach of these Terms or your use of the Game, including any claims related to ads or IAP.</p>
+        <h2>7. Advertisements</h2>
+        <p>The Game displays third-party advertisements through <strong>Google AdMob</strong> (Google LLC). The developer:</p>
+        <ul>
+            <li>Is not responsible for ad content or any outcomes resulting from ads</li>
+            <li>Configures ads in compliance with applicable child-directed advertising regulations</li>
+            <li>May modify or remove ads at any time without notice</li>
+        </ul>
+        <p>Ad networks may collect non-identifiable data as described in our <a href="fff_pp.html">Privacy Policy</a>.</p>
 
-        <h2>10. Limitation of Liability</h2>
-        <div class="highlight">
-            <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</strong></p>
-            <ul>
-                <li><strong>Cap on Damages:</strong> The developer's aggregate liability under or in connection with these Terms shall not exceed €0 per User.</li>
-                <li><strong>Exclusion of Consequential Damages:</strong> NO INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, OR SPECIAL DAMAGES, INCLUDING LOSS OF DATA, PROFITS, OR REVENUE.</li>
-                <li><strong>Time-Bar on Claims:</strong> All disputes or claims must be brought within 12 months from the date they arose; any claim filed thereafter is waived.</li>
-                <li><strong>No Class Actions:</strong> Users waive any right to join or bring class actions or collective arbitrations.</li>
-            </ul>
+        <h2>8. Anonymous Authentication</h2>
+        <p>At first launch, the Game assigns an anonymous identifier to your installation. This identifier is not linked to your name, email, or payment information and is used solely to save and restore your game progress. Uninstalling the Game may permanently delete your progress.</p>
+
+        <h2>9. Third-Party Services</h2>
+        <p>The Game integrates the following third-party services:</p>
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Provider</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Unity Analytics</td>
+                <td>Unity Technologies, Inc.</td>
+                <td>Gameplay behaviour tracking</td>
+            </tr>
+            <tr>
+                <td>Google AdMob</td>
+                <td>Google LLC</td>
+                <td>In-game advertising</td>
+            </tr>
+            <tr>
+                <td>Unity Cloud Save</td>
+                <td>Unity Technologies, Inc.</td>
+                <td>Progress and settings storage</td>
+            </tr>
+        </table>
+        <p>Unity services are governed by Unity Technologies' Terms of Service: <a href="https://unity.com/legal/terms-of-service" target="_blank">unity.com/legal/terms-of-service</a>.<br>
+        Google AdMob is governed by Google's Terms of Service: <a href="https://policies.google.com/terms" target="_blank">policies.google.com/terms</a>.<br>
+        The developer is not responsible for the data practices or service availability of these third parties.</p>
+
+        <h2>10. Disclaimers and Limitation of Liability</h2>
+        <div class="disclaimer">
+            THE GAME IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND.
         </div>
+        <p>To the maximum extent permitted by applicable law:</p>
+        <ul>
+            <li>We disclaim all warranties, express or implied, including fitness for a particular purpose, merchantability, and error-free operation</li>
+            <li>All purchases are processed by Google Play. The developer does not directly receive payments from users and is not a party to any financial transaction between a user and Google Play. Financial claims relating to purchases must be directed to Google Play</li>
+            <li>We are not liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Game</li>
+            <li>Our total aggregate liability for any non-financial claims arising from your use of the Game shall not exceed the maximum amount permitted under applicable mandatory law</li>
+        </ul>
+        <p>Nothing in these Terms limits or excludes liability that cannot be excluded under mandatory applicable law, including Estonian consumer protection law and EU consumer rights directives.</p>
 
-        <h2>11. Insurance Recommendation</h2>
-        <p>Users are advised to obtain their own cyber, liability, and professional insurance to cover potential losses related to use of the Game.</p>
+        <h2>11. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless the developer from any claims, damages, losses, or expenses (including reasonable legal fees) arising from your breach of these Terms or your misuse of the Game.</p>
 
-        <h2>12. API/SDK and Third-Party Services</h2>
-        <h3>12.1. API/SDK Terms</h3>
-        <p>Use of any API/SDK is subject to separate license terms, rate limits, quotas, and support policies. Unauthorized use or distribution of SDK code is prohibited.</p>
-        
-        <h3>12.2. Third-Party Ads and Services</h3>
-        <p>The developer makes no warranties regarding third-party ad networks, analytics, or other services. Integrations may be modified or terminated at any time without liability.</p>
+        <h2>12. Updates and Maintenance</h2>
+        <p>We may update, modify, or discontinue the Game at any time. Critical security updates may be applied automatically. We are not liable for any impact such changes may have on your experience or saved progress.</p>
 
-        <h2>13. Automatic Updates and Disabling</h2>
-        <p>Critical security patches and updates may be installed automatically without prior notice. The developer is not liable for any results of such updates or for disabling non-compliant or outdated versions to maintain security and integrity.</p>
+        <h2>13. Governing Law and Disputes</h2>
+        <p>These Terms are governed by the laws of <strong>Estonia</strong>. Disputes shall be resolved in the competent courts of Estonia. Nothing in these Terms prevents you from exercising statutory consumer rights under applicable EU or Estonian law.</p>
 
-        <h2>13a. Security Measures and Disclaimer</h2>
-        <p>The developer employs reasonable commercial efforts to maintain the security and integrity of the Game, including implementing industry-standard security practices, regular vulnerability patches, and monitoring for threats. However, the Game is provided without any warranty of absolute security or freedom from vulnerabilities.</p>
-        <p>The developer shall not be liable for any damages, losses, or liabilities resulting from unauthorized access, breaches, or cyberattacks by third parties, provided that the developer has implemented and maintained reasonable security measures.</p>
+        <h2>14. Modifications</h2>
+        <p>We may update these Terms at any time. Changes take effect 30 days after posting in-game or on the official website. Continued use of the Game after that date constitutes acceptance.</p>
 
-        <h2>14. Force Majeure</h2>
-        <p>The developer is not liable for delays or failures due to events beyond our control, including natural disasters, war, labor disputes, government actions, sanctions, third-party service failures, or infrastructure outages. Obligations resume promptly after the event ends.</p>
+        <h2>15. Severability</h2>
+        <p>If any provision of these Terms is found invalid or unenforceable, the remaining provisions continue in full force.</p>
 
-        <h2>15. Governing Law and Dispute Resolution</h2>
-        <p>These Terms are governed by Estonian law. All disputes shall be resolved exclusively in the courts of Estonia; international arbitration and foreign courts are excluded.</p>
+        <h2>16. Contact</h2>
+        <p>
+            Bogdan Kagitin<br>
+            <a href="mailto:info@points.gs">info@points.gs</a>
+        </p>
 
-        <h2>16. Assignment and Affiliates</h2>
-        <p>The developer may assign rights or delegate obligations under these Terms to affiliates or successors without your consent. These Terms apply to such successors and assigns.</p>
-
-        <h2>17. Modification of Terms</h2>
-        <p>We may update these Terms at any time by posting a revised version in-game or on the official website. Changes take effect 30 days after posting. Continued use after that date constitutes acceptance.</p>
-
-        <h2>18. Severability and Waiver</h2>
-        <p>If any provision is invalid or unenforceable, remaining provisions remain in full force. Waiving a breach does not waive any subsequent breach.</p>
-
-        <h2>19. Contact Information</h2>
-        <p>For questions, security reports, or appeals, contact us at:</p>
-        <p><strong>Email:</strong> <a href="mailto:info@points.gs">info@points.gs</a></p>
-
-        <div class="highlight">
-            <p><strong>By using the Game, you acknowledge that you have read, understood, and agree to these Terms.</strong></p>
-        </div>
+        <p class="agreement">By using the Game, you confirm that you have read and agree to these Terms.</p>
     </div>
 
     <div id="footer-placeholder"></div>
