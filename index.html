@@ -643,9 +643,15 @@
         }
 
         .home-socials {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
+        }
+
+        @media (min-width: 600px) {
+            .home-socials {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .home-social-link {
@@ -680,6 +686,195 @@
         #footer-placeholder {
             position: relative;
             z-index: 1;
+        }
+
+        /* ---------- About + Contact unified block ---------- */
+        html { scroll-behavior: smooth; }
+
+        .home-about-unified {
+            background: #162844;
+            border: 1px solid rgba(32, 178, 170, 0.18);
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            display: grid;
+            grid-template-columns: 1fr;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .home-about-unified {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .home-about-left {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .home-about-lead {
+            font-family: 'Roboto Serif', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #dce8f7;
+            margin: 0 0 14px 0;
+        }
+
+        .home-about-left p {
+            color: #c5d3e3;
+            line-height: 1.65;
+            margin: 0 0 10px 0;
+            font-family: 'Roboto Serif', serif;
+            font-size: 0.95rem;
+        }
+
+        .home-about-left p strong { color: #dce8f7; }
+
+        .home-about-right {
+            padding: 36px 40px;
+            border-top: 1px solid rgba(32, 178, 170, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .home-about-right {
+                border-top: none;
+                border-left: 1px solid rgba(32, 178, 170, 0.15);
+            }
+        }
+
+        .home-about-right-title {
+            font-family: 'Roboto Serif', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #dce8f7;
+            margin: 0 0 6px 0;
+        }
+
+        .home-contact-sub {
+            color: #8ba6b8;
+            font-size: 0.88rem;
+            margin: 0 0 22px 0;
+            line-height: 1.5;
+        }
+
+        .home-contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .home-contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .home-contact-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .home-contact-field label {
+            font-family: 'Roboto Serif', serif;
+            font-size: 0.82rem;
+            color: #8ba6b8;
+            letter-spacing: 0.02em;
+        }
+
+        .home-contact-field label span { color: #e05555; margin-left: 2px; }
+
+        .home-contact-field input,
+        .home-contact-field textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(32, 178, 170, 0.22);
+            border-radius: 8px;
+            padding: 11px 14px;
+            color: #e8f4f8;
+            font-family: 'Roboto Serif', serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            resize: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .home-contact-field input::placeholder,
+        .home-contact-field textarea::placeholder {
+            color: rgba(197, 211, 227, 0.35);
+        }
+
+        .home-contact-field input:focus,
+        .home-contact-field textarea:focus {
+            border-color: #20b2aa;
+            box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.12);
+        }
+
+        .home-contact-field input.fc-error,
+        .home-contact-field textarea.fc-error {
+            border-color: #e05555;
+            box-shadow: 0 0 0 3px rgba(224, 85, 85, 0.1);
+        }
+
+        .home-contact-field textarea { min-height: 88px; }
+
+        .fc-field-error {
+            font-size: 0.78rem;
+            color: #e07070;
+            margin-top: 4px;
+            font-family: 'Roboto Serif', serif;
+            display: none;
+        }
+
+        .fc-field-error.visible { display: block; }
+
+        .home-contact-submit {
+            align-self: flex-start;
+            margin-top: 10px;
+            padding: 13px 44px;
+            background: linear-gradient(135deg, #20b2aa 0%, #178a83 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Roboto Serif', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
+        }
+
+        .home-contact-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
+        }
+
+        .home-contact-submit:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .home-contact-success {
+            display: none;
+            padding: 20px 0 0 0;
+            color: #40e0d0;
+            font-family: 'Roboto Serif', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .fc-rate-msg {
+            font-size: 0.85rem;
+            color: #e07070;
+            font-family: 'Roboto Serif', serif;
+            margin-top: 8px;
+            display: none;
         }
     </style>
 
@@ -950,28 +1145,69 @@ fetch("header.html")
         </div>
     </section>
 
-    <!-- ===== Studio + Social ===== -->
+    <!-- ===== About Points.GS + Contact ===== -->
+    <section id="about" class="home-section">
+        <div class="home-about-unified" data-aos="fade-up">
+            <!-- Left: About -->
+            <div class="home-about-left">
+                <span class="home-section-kicker" style="margin-bottom:10px;" data-i18n="home_about_pts_kicker">Who we are</span>
+                <h2 class="home-section-title" style="margin:0 0 20px 0;" data-i18n="home_about_pts_title">About Points.GS</h2>
+                <p class="home-about-lead" data-i18n="home_about_pts_lead">We believe games should have their own identity.</p>
+                <p data-i18n="home_about_pts_p1">Points.GS is an independent game studio behind <strong>Lumen Grove</strong> — a cozy mobile game about growing a magical forest, shaping your own place, and discovering the stories hidden within it.</p>
+                <p data-i18n="home_about_pts_p2">We believe a good game is more than a collection of features. Every system should have a reason to exist, connect with the rest of the game, and contribute to the experience as a whole.</p>
+                <p data-i18n="home_about_pts_p3">Our approach combines creativity with a product mindset. We explore ideas, put them in front of players, learn from how people actually play, and keep improving through iteration.</p>
+                <p data-i18n="home_about_pts_p4">We want to create games that feel distinct — not because they follow a formula, but because everything in them belongs together and serves a clear idea.</p>
+            </div>
+
+            <!-- Right: Contact form -->
+            <div class="home-about-right">
+                <h3 class="home-about-right-title" data-i18n="home_contact_title">Get in Touch</h3>
+                <p class="home-contact-sub" data-i18n="home_contact_sub">Feel free to send us your questions or suggestions on any matter.</p>
+                <form class="home-contact-form" id="contactForm" novalidate>
+                    <!-- Honeypot: hidden from real users, bots fill it -->
+                    <div style="display:none;" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <div class="home-contact-row">
+                        <div class="home-contact-field">
+                            <label data-i18n="home_contact_fname">First Name <span>*</span></label>
+                            <input type="text" name="firstName" required />
+                        </div>
+                        <div class="home-contact-field">
+                            <label data-i18n="home_contact_lname">Last Name <span>*</span></label>
+                            <input type="text" name="lastName" required />
+                        </div>
+                    </div>
+                    <div class="home-contact-field">
+                        <label data-i18n="home_contact_email">Email <span>*</span></label>
+                        <input type="email" name="email" required />
+                    </div>
+                    <div class="home-contact-field">
+                        <label data-i18n="home_contact_msg">Write a message <span>*</span></label>
+                        <textarea name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="home-contact-submit" data-i18n="home_contact_btn">Submit</button>
+                </form>
+                <div class="home-contact-success" id="contactSuccess">
+                    <p data-i18n="home_contact_success">Thanks for reaching out! We'll get back to you soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Social ===== -->
     <section class="home-section">
         <div class="home-section-header" data-aos="fade-up">
             <span class="home-section-kicker" data-i18n="home_studio_kicker">Stay close</span>
             <h2 class="home-section-title" data-i18n="home_studio_title">Made by a small studio. Built with you.</h2>
         </div>
 
-        <div class="home-bottom-grid">
-            <div class="home-card" data-aos="fade-up">
-                <h3 class="home-card-title" data-i18n="home_studio_card_title">About Points Game Studio</h3>
-                <p data-i18n="home_studio_p1">We're a small independent team based in Tallinn, Estonia. Lumen Grove is our love letter to fairy tales, cozy worlds and quiet wonder — designed for players who like to take their time.</p>
-                <p data-i18n="home_studio_p2">If you want a deeper look at how we work and where we're going, the About page tells the longer story.</p>
-                <a href="about.html" class="home-teaser-more" data-i18n="home_studio_more">About the studio →</a>
-            </div>
-
-            <div class="home-socials" data-aos="fade-up" data-aos-delay="120">
-                <a class="home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
-                <a class="home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
-                <a class="home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
-                <a class="home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
-                <a class="home-social-link" href="/devlog" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
-            </div>
+        <div class="home-socials" data-aos="fade-up">
+            <a class="home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
+            <a class="home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
+            <a class="home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
+            <a class="home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
+            <a class="home-social-link" href="/devlog" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
         </div>
     </section>
 
@@ -1020,6 +1256,138 @@ fetch("header.html")
         offset: 80,
         anchorPlacement: 'top-bottom',
     });
+</script>
+
+<!-- About Us → scroll to center -->
+<script>
+    document.addEventListener('click', function(e) {
+        var link = e.target.closest('a[href$="#about"]');
+        if (link) {
+            var target = document.querySelector('#about');
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+</script>
+
+<!-- Contact form: validation + honeypot + rate limit -->
+<script>
+(function() {
+    var RATE_LIMIT_MS = 10 * 60 * 1000;
+    var form = document.getElementById('contactForm');
+    var successEl = document.getElementById('contactSuccess');
+    var submitBtn = form.querySelector('.home-contact-submit');
+
+    function fieldError(input, msg) {
+        input.classList.add('fc-error');
+        var err = input.parentNode.querySelector('.fc-field-error');
+        if (!err) {
+            err = document.createElement('span');
+            err.className = 'fc-field-error';
+            input.parentNode.appendChild(err);
+        }
+        err.textContent = msg;
+        err.classList.add('visible');
+    }
+
+    function fieldOk(input) {
+        input.classList.remove('fc-error');
+        var err = input.parentNode.querySelector('.fc-field-error');
+        if (err) err.classList.remove('visible');
+    }
+
+    function isValidEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+    }
+
+    form.querySelectorAll('input, textarea').forEach(function(f) {
+        f.addEventListener('input', function() { fieldOk(f); });
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Honeypot check
+        if (form.querySelector('[name="website"]').value) return;
+
+        // Rate limit
+        try {
+            var last = localStorage.getItem('pts_contact_ts');
+            if (last && Date.now() - parseInt(last, 10) < RATE_LIMIT_MS) {
+                var rateMsg = form.querySelector('.fc-rate-msg');
+                if (!rateMsg) {
+                    rateMsg = document.createElement('p');
+                    rateMsg.className = 'fc-rate-msg';
+                    submitBtn.after(rateMsg);
+                }
+                rateMsg.textContent = 'Please wait a few minutes before sending another message.';
+                rateMsg.style.display = 'block';
+                return;
+            }
+        } catch (_) {}
+
+        // Validate
+        var fn = form.querySelector('[name="firstName"]');
+        var ln = form.querySelector('[name="lastName"]');
+        var em = form.querySelector('[name="email"]');
+        var mg = form.querySelector('[name="message"]');
+        var ok = true;
+
+        if (!fn.value.trim()) { fieldError(fn, 'Required'); ok = false; } else fieldOk(fn);
+        if (!ln.value.trim()) { fieldError(ln, 'Required'); ok = false; } else fieldOk(ln);
+        if (!isValidEmail(em.value)) { fieldError(em, 'Enter a valid email address'); ok = false; } else fieldOk(em);
+        var msgVal = mg.value.trim();
+        if (msgVal.length < 10) { fieldError(mg, 'Message is too short (min 10 characters)'); ok = false; }
+        else if (msgVal.length > 2000) { fieldError(mg, 'Message is too long (max 2000 characters)'); ok = false; }
+        else fieldOk(mg);
+
+        if (!ok) return;
+
+        // Submit
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        try { localStorage.setItem('pts_contact_ts', Date.now().toString()); } catch (_) {}
+
+        fetch('https://formspree.io/f/xkjggyon', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                firstName: fn.value.trim(),
+                lastName:  ln.value.trim(),
+                email:     em.value.trim(),
+                message:   mg.value.trim()
+            })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.ok) {
+                form.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+                try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
+                var errP = form.querySelector('.fc-send-error');
+                if (!errP) {
+                    errP = document.createElement('p');
+                    errP.className = 'fc-rate-msg';
+                    errP.style.display = 'block';
+                    submitBtn.after(errP);
+                }
+                errP.textContent = 'Something went wrong. Please try again or email us directly at info@points.gs';
+                errP.style.display = 'block';
+            }
+        })
+        .catch(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
+        });
+    });
+})();
 </script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
