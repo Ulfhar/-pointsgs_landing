@@ -144,6 +144,26 @@
             padding: 18px;
         }
 
+        .pillar-img {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+            margin: 1.8em 0 1.2em 0;
+        }
+
+        .pillar-img-wide {
+            max-height: 340px;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .pillar-img-screen {
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .news-content > p {
             color: #c5d3e3;
             font-size: 1.02rem;
@@ -213,9 +233,11 @@
             <h2 class="pillar-section-title" data-i18n="pillar1_hero_heading">A Living Forest That Grows With You</h2>
             <p data-i18n="pillar1_hero_description">Lumen Grove is a lore-driven cozy forest farming and progression game set in a magical world shaped by memory, restoration, and quiet change. You care for a magical grove, help it grow, and restore its forgotten greatness.</p>
 
-            <div class="pillar-image-placeholder" aria-hidden="true" data-i18n="pillar1_image_hero">
-                Image placeholder — hero/banner screenshot
-            </div>
+            <img
+                src="images/cozy-game-article-images/cozy-banner.png"
+                alt="Lumen Grove — cozy forest farming mobile game banner"
+                class="pillar-img pillar-img-wide"
+            />
 
             <div class="pillar-two-col">
                 <div class="pillar-card">
@@ -275,9 +297,11 @@
                 </div>
             </div>
 
-            <div class="pillar-image-placeholder" aria-hidden="true" data-i18n="pillar1_image_decor">
-                Image placeholder — hub / decor close-ups
-            </div>
+            <img
+                src="images/cozy-game-article-images/lg%20Screenshot_20260626-203324.png"
+                alt="Lumen Grove — in-game screenshot, grove hub with decorations"
+                class="pillar-img pillar-img-screen"
+            />
 
             <h2 class="pillar-section-title" data-i18n="pillar1_liveOps_title">LiveOps-ready world</h2>
             <div class="pillar-card">

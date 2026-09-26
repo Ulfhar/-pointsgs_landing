@@ -32,6 +32,19 @@
   </url>
 
   <url>
+    <loc>https://points.gs/news_7.html</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://points.gs/news_6.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://points.gs/news_5.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
