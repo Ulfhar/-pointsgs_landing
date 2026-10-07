@@ -1,4 +1,5 @@
 User-agent: *
+# Keep pages crawlable so crawlers can read canonical and noindex metadata.
 Allow: /
 
 Sitemap: https://points.gs/sitemap.xml

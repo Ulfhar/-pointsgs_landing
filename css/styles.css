@@ -6,7 +6,7 @@ body, h1, p, ul, li {
 
 body {
     line-height: 1.6;
-    background-color: #0a1628;
+    background-color: #040a12;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     /* Match fixed header height with a small safety gap (header is ~52px
@@ -79,7 +79,7 @@ header nav a {
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
-    background-color: #000000;
+    background-color: #040a12;
     padding: 0px;
     display: flex;
     justify-content: space-between;
@@ -91,7 +91,7 @@ header nav a {
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
-    background-color: #000;
+    background-color: #040a12;
     padding: 50px 0;
 }
 
@@ -129,7 +129,7 @@ iframe {
 }
 
 footer {
-    background-color: black;
+    background-color: #040a12;
     color: #fff;
     text-align: center;
     padding: 30px 0;

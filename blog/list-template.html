@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+{{head}}
+</head>
+<body class="blog-page" data-static-locale="{{language}}">
+    <a class="skip-link" href="#main-content">{{skip_label}}</a>
+{{header}}
+    <main id="main-content" class="blog-index" tabindex="-1">
+        <header class="devlog-intro">
+            <p class="article-kind">POINTS.GS</p>
+            <h1 class="news-title">{{blog_label}}</h1>
+            <p>{{intro}}</p>
+        </header>
+        <section class="devlog-list" aria-label="{{posts_label}}">
+{{cards}}
+        </section>
+    </main>
+{{footer}}
+    <script src="{{prefix}}js/locale.js" defer></script>
+    <script src="{{prefix}}js/news.js" defer></script>
+    <script src="{{prefix}}js/particles-bg.js" defer></script>
+</body>
+</html>

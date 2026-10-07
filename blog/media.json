@@ -1,0 +1,1115 @@
+{
+  "images/ava.jpg": {
+    "width": 800,
+    "height": 800,
+    "original_bytes": 135751,
+    "src": "images/blog/images-ava-9e5715e7-128.webp",
+    "srcset": "images/blog/images-ava-9e5715e7-64.webp 64w, images/blog/images-ava-9e5715e7-128.webp 128w, images/blog/images-ava-9e5715e7-480.webp 480w, images/blog/images-ava-9e5715e7-800.webp 800w",
+    "sizes": "50px",
+    "fullsrc": "images/blog/images-ava-9e5715e7-full.webp",
+    "src_bytes": 3430,
+    "full_bytes": 100824,
+    "full_width": 800,
+    "full_height": 800,
+    "variants": [
+      {
+        "src": "images/blog/images-ava-9e5715e7-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1218
+      },
+      {
+        "src": "images/blog/images-ava-9e5715e7-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 3430
+      },
+      {
+        "src": "images/blog/images-ava-9e5715e7-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 35062
+      },
+      {
+        "src": "images/blog/images-ava-9e5715e7-800.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 100824
+      }
+    ]
+  },
+  "images/cozy-game-article-images/BaldursGate-3-Campsite_Night.png": {
+    "width": 2561,
+    "height": 1856,
+    "original_bytes": 8772756,
+    "src": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-480.webp 480w, images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-800.webp 800w, images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-full.webp",
+    "src_bytes": 90092,
+    "full_bytes": 559524,
+    "full_width": 1920,
+    "full_height": 1391,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-480.webp",
+        "width": 480,
+        "height": 348,
+        "bytes": 34160
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-800.webp",
+        "width": 800,
+        "height": 580,
+        "bytes": 90092
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-baldursgate-3-campsite-night-4a9d9809-1200.webp",
+        "width": 1200,
+        "height": 870,
+        "bytes": 209078
+      }
+    ]
+  },
+  "images/cozy-game-article-images/StardewValley_12-1.png": {
+    "width": 960,
+    "height": 540,
+    "original_bytes": 53814,
+    "src": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-480.webp 480w, images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-800.webp 800w, images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-960.webp 960w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-full.webp",
+    "src_bytes": 41802,
+    "full_bytes": 54060,
+    "full_width": 960,
+    "full_height": 540,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 17854
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 41802
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-12-1-b660808f-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 54060
+      }
+    ]
+  },
+  "images/cozy-game-article-images/StardewValley_4.png": {
+    "width": 960,
+    "height": 540,
+    "original_bytes": 57890,
+    "src": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-480.webp 480w, images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-800.webp 800w, images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-960.webp 960w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-full.webp",
+    "src_bytes": 159484,
+    "full_bytes": 183958,
+    "full_width": 960,
+    "full_height": 540,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 64462
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 159484
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-stardewvalley-4-ecbf0357-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 183958
+      }
+    ]
+  },
+  "images/cozy-game-article-images/animal-crossing-2.jpg": {
+    "width": 720,
+    "height": 405,
+    "original_bytes": 97313,
+    "src": "images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-720.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-480.webp 480w, images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-720.webp 720w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-full.webp",
+    "src_bytes": 60690,
+    "full_bytes": 60690,
+    "full_width": 720,
+    "full_height": 405,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 35416
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-2-dba354d8-720.webp",
+        "width": 720,
+        "height": 405,
+        "bytes": 60690
+      }
+    ]
+  },
+  "images/cozy-game-article-images/animal-crossing-3.png": {
+    "width": 1919,
+    "height": 1034,
+    "original_bytes": 1944808,
+    "src": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-480.webp 480w, images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-800.webp 800w, images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-full.webp",
+    "src_bytes": 50436,
+    "full_bytes": 153210,
+    "full_width": 1919,
+    "full_height": 1034,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-480.webp",
+        "width": 480,
+        "height": 259,
+        "bytes": 24726
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-800.webp",
+        "width": 800,
+        "height": 431,
+        "bytes": 50436
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-3-855e5f83-1200.webp",
+        "width": 1200,
+        "height": 647,
+        "bytes": 86600
+      }
+    ]
+  },
+  "images/cozy-game-article-images/animal-crossing.png": {
+    "width": 1919,
+    "height": 1034,
+    "original_bytes": 1951535,
+    "src": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-480.webp 480w, images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-800.webp 800w, images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-full.webp",
+    "src_bytes": 50266,
+    "full_bytes": 139820,
+    "full_width": 1919,
+    "full_height": 1034,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-480.webp",
+        "width": 480,
+        "height": 259,
+        "bytes": 26406
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-800.webp",
+        "width": 800,
+        "height": 431,
+        "bytes": 50266
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-animal-crossing-25bb5047-1200.webp",
+        "width": 1200,
+        "height": 647,
+        "bytes": 83738
+      }
+    ]
+  },
+  "images/cozy-game-article-images/cozy-banner.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3249797,
+    "src": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-1200.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-480.webp 480w, images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-800.webp 800w, images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-full.webp",
+    "src_bytes": 114292,
+    "full_bytes": 218636,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 25406
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 58874
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 114292
+      }
+    ],
+    "ogsrc": "images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg",
+    "og_width": 1200,
+    "og_height": 554,
+    "og_bytes": 146922
+  },
+  "images/cozy-game-article-images/dragon-age-camp.png": {
+    "width": 1196,
+    "height": 754,
+    "original_bytes": 1143937,
+    "src": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-480.webp 480w, images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-800.webp 800w, images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-1196.webp 1196w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-full.webp",
+    "src_bytes": 58130,
+    "full_bytes": 101850,
+    "full_width": 1196,
+    "full_height": 754,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-480.webp",
+        "width": 480,
+        "height": 303,
+        "bytes": 25286
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-800.webp",
+        "width": 800,
+        "height": 504,
+        "bytes": 58130
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-dragon-age-camp-0989a3de-1196.webp",
+        "width": 1196,
+        "height": 754,
+        "bytes": 101850
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-181259.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2944189,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-full.webp",
+    "src_bytes": 54504,
+    "full_bytes": 179388,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 24758
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 54504
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-181259-b5e8542d-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 100050
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203300.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3269968,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-full.webp",
+    "src_bytes": 59476,
+    "full_bytes": 216622,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 25860
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 59476
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203300-ede37107-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 110834
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203324.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2416792,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-full.webp",
+    "src_bytes": 58454,
+    "full_bytes": 172648,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 27732
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 58454
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203324-f30d4648-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 98854
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203348.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 1567146,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-full.webp",
+    "src_bytes": 44434,
+    "full_bytes": 131974,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 21446
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 44434
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203348-abdc93fa-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 75774
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203408.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2491687,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-full.webp",
+    "src_bytes": 51788,
+    "full_bytes": 150988,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 24594
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 51788
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203408-b4d67fec-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 86718
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203415.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2790503,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-full.webp",
+    "src_bytes": 61552,
+    "full_bytes": 170058,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 30342
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 61552
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203415-85fe53f0-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 101458
+      }
+    ]
+  },
+  "images/cozy-game-article-images/lg Screenshot_20260626-203445.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2641041,
+    "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-480.webp 480w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-800.webp 800w, images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-full.webp",
+    "src_bytes": 52412,
+    "full_bytes": 147352,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 26524
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 52412
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-lg-screenshot-20260626-203445-69194b61-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 87406
+      }
+    ]
+  },
+  "images/cozy-game-article-images/skyrim garden view.png": {
+    "width": 1584,
+    "height": 887,
+    "original_bytes": 2566011,
+    "src": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-800.webp",
+    "srcset": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-480.webp 480w, images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-800.webp 800w, images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-full.webp",
+    "src_bytes": 107612,
+    "full_bytes": 312648,
+    "full_width": 1584,
+    "full_height": 887,
+    "variants": [
+      {
+        "src": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-480.webp",
+        "width": 480,
+        "height": 269,
+        "bytes": 40532
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-800.webp",
+        "width": 800,
+        "height": 448,
+        "bytes": 107612
+      },
+      {
+        "src": "images/blog/images-cozy-game-article-images-skyrim-garden-view-804bfd27-1200.webp",
+        "width": 1200,
+        "height": 672,
+        "bytes": 209570
+      }
+    ]
+  },
+  "images/favicon_points.png": {
+    "width": 512,
+    "height": 512,
+    "original_bytes": 13071,
+    "src": "images/favicon_points.png",
+    "srcset": "",
+    "sizes": "32px",
+    "fullsrc": "images/favicon_points.png",
+    "src_bytes": 13071,
+    "full_bytes": 13071,
+    "variants": [],
+    "passthrough": true
+  },
+  "images/halloween/h1.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2416641,
+    "src": "images/blog/images-halloween-h1-36e8dc00-800.webp",
+    "srcset": "images/blog/images-halloween-h1-36e8dc00-480.webp 480w, images/blog/images-halloween-h1-36e8dc00-800.webp 800w, images/blog/images-halloween-h1-36e8dc00-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-h1-36e8dc00-full.webp",
+    "src_bytes": 48138,
+    "full_bytes": 151052,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-h1-36e8dc00-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 22706
+      },
+      {
+        "src": "images/blog/images-halloween-h1-36e8dc00-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 48138
+      },
+      {
+        "src": "images/blog/images-halloween-h1-36e8dc00-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 84984
+      }
+    ],
+    "ogsrc": "images/blog/images-halloween-h1-36e8dc00-og.jpg",
+    "og_width": 1200,
+    "og_height": 554,
+    "og_bytes": 126427
+  },
+  "images/halloween/h2.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2573373,
+    "src": "images/blog/images-halloween-h2-87337033-800.webp",
+    "srcset": "images/blog/images-halloween-h2-87337033-480.webp 480w, images/blog/images-halloween-h2-87337033-800.webp 800w, images/blog/images-halloween-h2-87337033-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-h2-87337033-full.webp",
+    "src_bytes": 41102,
+    "full_bytes": 130602,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-h2-87337033-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 19496
+      },
+      {
+        "src": "images/blog/images-halloween-h2-87337033-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 41102
+      },
+      {
+        "src": "images/blog/images-halloween-h2-87337033-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 71478
+      }
+    ]
+  },
+  "images/halloween/h3.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3296587,
+    "src": "images/blog/images-halloween-h3-b4fcd731-800.webp",
+    "srcset": "images/blog/images-halloween-h3-b4fcd731-480.webp 480w, images/blog/images-halloween-h3-b4fcd731-800.webp 800w, images/blog/images-halloween-h3-b4fcd731-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-h3-b4fcd731-full.webp",
+    "src_bytes": 50110,
+    "full_bytes": 177114,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-h3-b4fcd731-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 22864
+      },
+      {
+        "src": "images/blog/images-halloween-h3-b4fcd731-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 50110
+      },
+      {
+        "src": "images/blog/images-halloween-h3-b4fcd731-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 91530
+      }
+    ]
+  },
+  "images/lumen-grove-mobile-banner.png": {
+    "width": 1500,
+    "height": 500,
+    "original_bytes": 77189,
+    "src": "images/blog/images-lumen-grove-mobile-banner-0af2c613-800.webp",
+    "srcset": "images/blog/images-lumen-grove-mobile-banner-0af2c613-480.webp 480w, images/blog/images-lumen-grove-mobile-banner-0af2c613-800.webp 800w, images/blog/images-lumen-grove-mobile-banner-0af2c613-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-lumen-grove-mobile-banner-0af2c613-full.webp",
+    "src_bytes": 21666,
+    "full_bytes": 49096,
+    "full_width": 1500,
+    "full_height": 500,
+    "variants": [
+      {
+        "src": "images/blog/images-lumen-grove-mobile-banner-0af2c613-480.webp",
+        "width": 480,
+        "height": 160,
+        "bytes": 11356
+      },
+      {
+        "src": "images/blog/images-lumen-grove-mobile-banner-0af2c613-800.webp",
+        "width": 800,
+        "height": 267,
+        "bytes": 21666
+      },
+      {
+        "src": "images/blog/images-lumen-grove-mobile-banner-0af2c613-1200.webp",
+        "width": 1200,
+        "height": 400,
+        "bytes": 35526
+      }
+    ],
+    "ogsrc": "images/blog/images-lumen-grove-mobile-banner-0af2c613-og.jpg",
+    "og_width": 1200,
+    "og_height": 400,
+    "og_bytes": 62549
+  },
+  "images/new_logo_points.png": {
+    "width": 363,
+    "height": 310,
+    "original_bytes": 24111,
+    "src": "images/blog/images-new-logo-points-a1d9f4b0-128.webp",
+    "srcset": "images/blog/images-new-logo-points-a1d9f4b0-64.webp 64w, images/blog/images-new-logo-points-a1d9f4b0-128.webp 128w, images/blog/images-new-logo-points-a1d9f4b0-363.webp 363w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-new-logo-points-a1d9f4b0-full.webp",
+    "src_bytes": 4552,
+    "full_bytes": 15082,
+    "full_width": 363,
+    "full_height": 310,
+    "variants": [
+      {
+        "src": "images/blog/images-new-logo-points-a1d9f4b0-64.webp",
+        "width": 64,
+        "height": 55,
+        "bytes": 2268
+      },
+      {
+        "src": "images/blog/images-new-logo-points-a1d9f4b0-128.webp",
+        "width": 128,
+        "height": 109,
+        "bytes": 4552
+      },
+      {
+        "src": "images/blog/images-new-logo-points-a1d9f4b0-363.webp",
+        "width": 363,
+        "height": 310,
+        "bytes": 15082
+      }
+    ]
+  },
+  "images/news_images/5/img_1.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2680498,
+    "src": "images/blog/images-news-images-5-img-1-1602de9f-800.webp",
+    "srcset": "images/blog/images-news-images-5-img-1-1602de9f-480.webp 480w, images/blog/images-news-images-5-img-1-1602de9f-800.webp 800w, images/blog/images-news-images-5-img-1-1602de9f-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-5-img-1-1602de9f-full.webp",
+    "src_bytes": 47288,
+    "full_bytes": 167598,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-5-img-1-1602de9f-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 20536
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-1-1602de9f-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 47288
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-1-1602de9f-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 87272
+      }
+    ],
+    "ogsrc": "images/blog/images-news-images-5-img-1-1602de9f-og.jpg",
+    "og_width": 1200,
+    "og_height": 554,
+    "og_bytes": 121422
+  },
+  "images/news_images/5/img_2.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3170153,
+    "src": "images/blog/images-news-images-5-img-2-85080a52-800.webp",
+    "srcset": "images/blog/images-news-images-5-img-2-85080a52-480.webp 480w, images/blog/images-news-images-5-img-2-85080a52-800.webp 800w, images/blog/images-news-images-5-img-2-85080a52-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-5-img-2-85080a52-full.webp",
+    "src_bytes": 56464,
+    "full_bytes": 194974,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-5-img-2-85080a52-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 25066
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-2-85080a52-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 56464
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-2-85080a52-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 105558
+      }
+    ]
+  },
+  "images/news_images/5/img_3.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2984744,
+    "src": "images/blog/images-news-images-5-img-3-f521ea76-800.webp",
+    "srcset": "images/blog/images-news-images-5-img-3-f521ea76-480.webp 480w, images/blog/images-news-images-5-img-3-f521ea76-800.webp 800w, images/blog/images-news-images-5-img-3-f521ea76-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-5-img-3-f521ea76-full.webp",
+    "src_bytes": 51434,
+    "full_bytes": 189162,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-5-img-3-f521ea76-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 21950
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-3-f521ea76-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 51434
+      },
+      {
+        "src": "images/blog/images-news-images-5-img-3-f521ea76-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 95694
+      }
+    ]
+  },
+  "images/news_images/lore_1/L_1.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2624174,
+    "src": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-800.webp",
+    "srcset": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-480.webp 480w, images/blog/images-news-images-lore-1-l-1-d6fef9f4-800.webp 800w, images/blog/images-news-images-lore-1-l-1-d6fef9f4-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-full.webp",
+    "src_bytes": 55662,
+    "full_bytes": 186358,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 25454
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 55662
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-1-d6fef9f4-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 100508
+      }
+    ]
+  },
+  "images/news_images/lore_1/L_2.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2228547,
+    "src": "images/blog/images-news-images-lore-1-l-2-d5ac807a-800.webp",
+    "srcset": "images/blog/images-news-images-lore-1-l-2-d5ac807a-480.webp 480w, images/blog/images-news-images-lore-1-l-2-d5ac807a-800.webp 800w, images/blog/images-news-images-lore-1-l-2-d5ac807a-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-lore-1-l-2-d5ac807a-full.webp",
+    "src_bytes": 35930,
+    "full_bytes": 125532,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-lore-1-l-2-d5ac807a-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 16016
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-2-d5ac807a-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 35930
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-2-d5ac807a-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 65402
+      }
+    ]
+  },
+  "images/news_images/lore_1/L_3.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2312902,
+    "src": "images/blog/images-news-images-lore-1-l-3-fad91cfa-800.webp",
+    "srcset": "images/blog/images-news-images-lore-1-l-3-fad91cfa-480.webp 480w, images/blog/images-news-images-lore-1-l-3-fad91cfa-800.webp 800w, images/blog/images-news-images-lore-1-l-3-fad91cfa-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-lore-1-l-3-fad91cfa-full.webp",
+    "src_bytes": 45770,
+    "full_bytes": 148004,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-lore-1-l-3-fad91cfa-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 21026
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-3-fad91cfa-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 45770
+      },
+      {
+        "src": "images/blog/images-news-images-lore-1-l-3-fad91cfa-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 79836
+      }
+    ],
+    "ogsrc": "images/blog/images-news-images-lore-1-l-3-fad91cfa-og.jpg",
+    "og_width": 1200,
+    "og_height": 554,
+    "og_bytes": 114858
+  },
+  "images/play-store-round-color-icon.png": {
+    "width": 512,
+    "height": 512,
+    "original_bytes": 42227,
+    "src": "images/blog/images-play-store-round-color-icon-e85b2938-128.webp",
+    "srcset": "images/blog/images-play-store-round-color-icon-e85b2938-64.webp 64w, images/blog/images-play-store-round-color-icon-e85b2938-128.webp 128w, images/blog/images-play-store-round-color-icon-e85b2938-480.webp 480w, images/blog/images-play-store-round-color-icon-e85b2938-512.webp 512w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-play-store-round-color-icon-e85b2938-full.webp",
+    "src_bytes": 2038,
+    "full_bytes": 7502,
+    "full_width": 512,
+    "full_height": 512,
+    "variants": [
+      {
+        "src": "images/blog/images-play-store-round-color-icon-e85b2938-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 1024
+      },
+      {
+        "src": "images/blog/images-play-store-round-color-icon-e85b2938-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 2038
+      },
+      {
+        "src": "images/blog/images-play-store-round-color-icon-e85b2938-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 8402
+      },
+      {
+        "src": "images/blog/images-play-store-round-color-icon-e85b2938-512.webp",
+        "width": 512,
+        "height": 512,
+        "bytes": 7502
+      }
+    ]
+  },
+  "images/soc-media-logo/linked in logo.png": {
+    "width": 541,
+    "height": 541,
+    "original_bytes": 15701,
+    "src": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-128.webp",
+    "srcset": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-64.webp 64w, images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-128.webp 128w, images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-480.webp 480w, images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-541.webp 541w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-full.webp",
+    "src_bytes": 1062,
+    "full_bytes": 3694,
+    "full_width": 541,
+    "full_height": 541,
+    "variants": [
+      {
+        "src": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 656
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 1062
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 3270
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-linked-in-logo-d5d695fd-541.webp",
+        "width": 541,
+        "height": 541,
+        "bytes": 3694
+      }
+    ]
+  },
+  "images/soc-media-logo/tik-tok-logo.png": {
+    "width": 540,
+    "height": 540,
+    "original_bytes": 16869,
+    "src": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-128.webp",
+    "srcset": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-64.webp 64w, images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-128.webp 128w, images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-480.webp 480w, images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-540.webp 540w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-full.webp",
+    "src_bytes": 1014,
+    "full_bytes": 3796,
+    "full_width": 540,
+    "full_height": 540,
+    "variants": [
+      {
+        "src": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 636
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 1014
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 3348
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-540.webp",
+        "width": 540,
+        "height": 540,
+        "bytes": 3796
+      }
+    ]
+  },
+  "images/soc-media-logo/x-logo.png": {
+    "width": 540,
+    "height": 540,
+    "original_bytes": 25722,
+    "src": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-128.webp",
+    "srcset": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-64.webp 64w, images/blog/images-soc-media-logo-x-logo-e8f7fad2-128.webp 128w, images/blog/images-soc-media-logo-x-logo-e8f7fad2-480.webp 480w, images/blog/images-soc-media-logo-x-logo-e8f7fad2-540.webp 540w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-full.webp",
+    "src_bytes": 1926,
+    "full_bytes": 7194,
+    "full_width": 540,
+    "full_height": 540,
+    "variants": [
+      {
+        "src": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 986
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 1926
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 6392
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-x-logo-e8f7fad2-540.webp",
+        "width": 540,
+        "height": 540,
+        "bytes": 7194
+      }
+    ]
+  }
+}

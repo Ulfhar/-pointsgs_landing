@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+/.tmp/
+/public/videos/hero-source.mp4

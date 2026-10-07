@@ -8,7 +8,7 @@
   
   body {
     font-family: Helvetica, sans-serif;
-    background-color: #0a1628;
+    background-color: #040a12;
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
@@ -514,7 +514,6 @@
     .game-info { text-align: left; }
   }
   
-  header,
   .header,
   #header,
   .site-header {

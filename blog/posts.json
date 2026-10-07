@@ -1,0 +1,66 @@
+{
+  "site_url": "https://points.gs",
+  "posts": [
+    {
+      "slug": "news_7",
+      "date": "2026-09-26",
+      "author": "bogdan",
+      "cover": "images/halloween/h1.png",
+      "cover_alt": {"en": "Lumen Grove during the Halloween seasonal event", "uk": "Lumen Grove під час сезонної події Halloween"},
+      "title": {"en": "Lumen Grove Halloween Update — A New Seasonal Event for Our Cozy Mobile Game", "uk": "Lumen Grove Halloween — перша сезонна подія у нашій затишній мобільній грі"},
+      "seo_title": {"en": "Lumen Grove Halloween Event | Cozy Mobile Game Update", "uk": "Halloween у Lumen Grove — сезонна подія та нова прогресія"},
+      "description": {"en": "Discover Lumen Grove's first Halloween event: seasonal mini-games, quests, decorations, a new lore chapter and a reworked Magic Oak progression system.", "uk": "Перша Halloween-подія у Lumen Grove: сезонні мініігри, завдання, декорації, нова глава лору та оновлена прогресія Чарівного Дуба."},
+      "summary": {"en": "Our first Halloween event brings seasonal adventures and the biggest change yet to Magic Oak progression.", "uk": "Перша Halloween-подія приносить сезонні пригоди та найбільші зміни у прогресії Чарівного Дуба."},
+      "kind": {"en": "DevLog #6", "uk": "Щоденник розробки #6"}
+    },
+    {
+      "slug": "news_6",
+      "date": "2026-06-26",
+      "author": "bogdan",
+      "long_read": true,
+      "cover": "images/cozy-game-article-images/cozy-banner.png",
+      "cover_alt": {"en": "A peaceful moonlit forest in Lumen Grove", "uk": "Спокійний ліс Lumen Grove у місячному світлі"},
+      "title": {"en": "From Farm to Safe Haven: How Cozy Games Became the Language of Emotional Comfort", "uk": "Від ферми до безпечного прихистку: як затишні ігри стали мовою емоційного комфорту"},
+      "seo_title": {"en": "What Makes a Game Cozy? Comfort, Control and Game Design", "uk": "Що робить гру затишною? Комфорт, свобода та геймдизайн"},
+      "description": {"en": "What makes a game cozy? Explore how Stardew Valley, Animal Crossing and modern game design build comfort through safety, rhythm and player control.", "uk": "Що робить гру затишною? Як Stardew Valley, Animal Crossing і сучасний геймдизайн створюють комфорт через безпеку, ритм і свободу гравця."},
+      "summary": {"en": "What actually makes a game cozy — and why psychology matters more than aesthetics.", "uk": "Що насправді робить гру затишною — і чому психологія важливіша за естетику."},
+      "kind": {"en": "Article", "uk": "Стаття"}
+    },
+    {
+      "slug": "news_5",
+      "date": "2026-06-09",
+      "author": "bogdan",
+      "cover": "images/news_images/5/img_1.png",
+      "cover_alt": {"en": "Changing weather over the magical forest in Lumen Grove", "uk": "Зміна погоди над чарівним лісом у Lumen Grove"},
+      "title": {"en": "How Weather Made Lumen Grove Feel Truly Alive", "uk": "Як погода у Lumen Grove зробила гру по-справжньому живою"},
+      "seo_title": {"en": "How Weather Brought Lumen Grove to Life | DevLog #5", "uk": "Як погода оживила Lumen Grove — щоденник розробки #5"},
+      "description": {"en": "Why weather matters in cozy games: how Lumen Grove uses rain, mist and changing skies to create atmosphere, immersion and the rhythm of a living world.", "uk": "Навіщо затишним іграм погода: як дощ, туман і зміни неба у Lumen Grove створюють атмосферу, занурення та ритм живого світу."},
+      "summary": {"en": "Why do games need weather? A look at atmosphere, immersion and the rhythm of a living world.", "uk": "Для чого іграм погода? Про атмосферу, занурення та ритм живого світу."},
+      "kind": {"en": "DevLog #5", "uk": "Щоденник розробки #5"}
+    },
+    {
+      "slug": "pillar_1",
+      "date": "2026-03",
+      "author": "studio",
+      "cover": "images/cozy-game-article-images/cozy-banner.png",
+      "cover_alt": {"en": "The magical forest at the heart of Lumen Grove", "uk": "Чарівний ліс у серці Lumen Grove"},
+      "title": {"en": "Lumen Grove — Cozy Forest Farming, Growth and Wonder", "uk": "Lumen Grove — затишна лісова ферма, вирощування та чарівний світ"},
+      "seo_title": {"en": "Lumen Grove Guide | Cozy Forest Farming and Progression", "uk": "Знайомство з Lumen Grove — затишна лісова ферма та розвиток"},
+      "description": {"en": "Meet Lumen Grove: a cozy mobile forest farming game with layered progression, decorations, dynamic weather and a story of restoring a magical world.", "uk": "Знайомтеся з Lumen Grove: затишна мобільна лісова ферма з розвитком, декораціями, динамічною погодою та історією відновлення чарівного світу."},
+      "summary": {"en": "A guide to the forest, its farming loops, decorations, progression and unfolding story.", "uk": "Знайомство з лісом, фермерством, декораціями, розвитком та історією світу."},
+      "kind": {"en": "Guide", "uk": "Про гру"}
+    },
+    {
+      "slug": "lore_1",
+      "date": "2026-02-13",
+      "author": "bogdan",
+      "cover": "images/lumen-grove-mobile-banner.png",
+      "cover_alt": {"en": "Lumen Grove, the last island of light in Far Far Forest", "uk": "Lumen Grove — останній острівець світла у Far Far Forest"},
+      "title": {"en": "Lumen Grove — How the Enchanted Forest Grows", "uk": "Lumen Grove — як росте чарівний ліс"},
+      "seo_title": {"en": "Lumen Grove Lore | How the Enchanted Forest Grows", "uk": "Лор Lumen Grove — як росте чарівний ліс"},
+      "description": {"en": "Discover the story behind Lumen Grove: the Enchanted Oak, the fireflies and a last island of light in the dark world of Far Far Forest.", "uk": "Історія світу Lumen Grove: Чарівний Дуб, світлячки та останній острівець світла у темному лісі Far Far Forest."},
+      "summary": {"en": "The story of the Enchanted Oak, its fireflies and a forest that still remembers the light.", "uk": "Історія Чарівного Дуба, його світлячків і лісу, який досі пам’ятає світло."},
+      "kind": {"en": "Lore", "uk": "Лор"}
+    }
+  ]
+}

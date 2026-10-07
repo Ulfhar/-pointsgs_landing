@@ -14,18 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="images/favicon_points.png" />
 
-    <title>Points Game Studio — Indie Mobile Game Developers</title>
-    <meta name="description" content="Points Game Studio — indie developers of magical mobile puzzle games. Creators of Lumen Grove. Available on Android.">
+    <title data-i18n="home_meta_title">Lumen Grove — Cozy Forest Farming on Android | Points.GS</title>
+    <meta name="description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
     <link rel="canonical" href="https://points.gs/" />
 
-    <meta property="og:title" content="Points Game Studio">
-    <meta property="og:description" content="Indie mobile game studio creating story-rich fairy tale experiences. Discover Lumen Grove.">
-    <meta property="og:image" content="https://points.gs/images/lumen-grove-mobile-banner.png">
+    <meta property="og:title" data-i18n-content="home_meta_title" content="Lumen Grove — Cozy Forest Farming on Android | Points.GS">
+    <meta property="og:description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
+    <meta property="og:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="554">
     <meta property="og:url" content="https://points.gs/">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" data-i18n-content="home_meta_title" content="Lumen Grove — Cozy Forest Farming on Android | Points.GS">
+    <meta name="twitter:description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
+    <meta name="twitter:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
 
-    <link rel="stylesheet" href="LandingPage.css" />
-    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="LandingPage.css?v=75f3c233b931" />
+    <link rel="stylesheet" href="css/header.css?v=0a37a04d7ce9" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&family=Roboto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <!-- Swiper CSS for the home screenshots slider. -->
@@ -50,23 +56,66 @@
             padding: 0 20px 80px 20px;
         }
 
-        /* ---------- Hero (centered, generous breathing room) ---------- */
+        /* ---------- Hero and game download banner ---------- */
+        body { padding-top: var(--home-header-height, 60px); }
+
         .home-hero {
+            --home-promo-shift: clamp(56px, 7.8svh, 80px);
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            z-index: 1;
+            display: grid;
+            align-items: stretch;
+            text-align: center;
+            min-height: clamp(560px, 78svh, 800px);
+            padding: 16px 20px 52px;
+            margin: 0;
+        }
+
+        .home-hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: #040a12 url('public/videos/hero-poster.jpg?v=ee95743ede10') center 52% / cover;
+        }
+
+        .home-hero-video {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 52%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .home-hero.is-video-playing .home-hero-video { opacity: 1; }
+
+        .home-hero-content {
             position: relative;
             z-index: 1;
-            text-align: center;
-            padding: 100px 20px 40px 20px;
-            max-width: 880px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            width: 100%;
+            max-width: 1040px;
             margin: 0 auto;
         }
 
         @media (max-width: 767px) {
             body {
-                padding-top: 72px !important;
+                padding-top: var(--home-header-height, 72px) !important;
             }
             .home-hero {
-                padding: 56px 16px 24px 16px;
+                --home-promo-shift: calc((100svh - var(--home-header-height, 72px)) / 10);
+                min-height: calc(100svh - var(--home-header-height, 72px));
+                padding: 16px 16px 32px;
             }
+            .home-hero-media { background-position: 52% center; }
+            .home-hero-video { object-position: 52% center; }
         }
 
         .home-hero-kicker {
@@ -75,34 +124,160 @@
             font-weight: 600;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #20b2aa;
+            color: #72eee0;
             font-size: 0.85rem;
             margin-bottom: 18px;
+            text-shadow: 0 2px 4px #040a12, 0 0 12px #040a12;
         }
 
         .home-hero-title {
             font-family: 'Lusitana', serif;
             font-size: clamp(2.6rem, 5.6vw, 4.2rem);
             color: #ffe55c;
-            text-shadow: 0 0 24px rgba(255, 215, 0, 0.25);
+            text-shadow: 0 2px 5px #040a12, 0 0 24px rgba(255, 215, 0, 0.25);
             margin: 0 0 16px 0;
             line-height: 1.05;
+            text-wrap: balance;
+            max-width: 800px;
+            margin-inline: auto;
         }
 
         .home-hero-tagline {
             font-family: 'Roboto Serif', serif;
-            font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-            color: #c5d3e3;
+            font-size: clamp(1rem, 1.4vw, 1.1rem);
+            color: #ffffff;
             line-height: 1.65;
-            max-width: 680px;
-            margin: 0 auto 28px auto;
+            max-width: 600px;
+            margin: 12px 0 22px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.95), 0 0 12px rgba(4, 10, 18, 0.9);
+        }
+
+        .home-game-promo {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 176px minmax(0, 1fr);
+            align-items: center;
+            align-self: center;
+            gap: 32px;
+            padding: 32px;
+            margin: calc(28px + var(--home-promo-shift) * 2) auto 22px;
+            width: 100%;
+            max-width: 960px;
+            text-align: left;
+            border-radius: 24px;
+            background: rgb(7 9 24 / 88%);
+        }
+
+        .home-game-icon {
+            display: block;
+            width: 176px;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            border-radius: 24%;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-game-copy { min-width: 0; }
+        .home-game-name {
+            margin: 0;
+            color: #ffffff;
+            font-family: 'Roboto Serif', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 14px rgba(4, 10, 18, 0.75);
+        }
+
+        .home-store-link {
+            display: inline-flex;
+            align-items: center;
+            max-width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .home-store-badge {
+            display: block;
+            width: 214px;
+            max-width: 100%;
+            height: auto;
+            border-radius: inherit;
+        }
+
+        .home-store-link:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 12px rgba(64, 224, 208, 0.4));
+        }
+
+        .home-promo-socials {
+            display: inline-flex;
+            flex: 0 0 auto;
+            gap: 8px;
+        }
+
+        .home-promo-social-link {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .home-promo-social-link img {
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .home-promo-social-link:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.65));
+        }
+
+        .home-store-label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 600px) {
+            .home-game-promo {
+                grid-template-columns: minmax(0, 1fr);
+                justify-items: center;
+                gap: 20px;
+                padding: 24px 20px;
+                margin-top: calc(28px + var(--home-promo-shift));
+                text-align: center;
+            }
+            .home-game-icon { width: 112px; }
+            .home-store-badge { width: 204px; }
+            .home-game-promo .home-hero-cta { justify-content: center; }
         }
 
         .home-hero-cta {
             display: flex;
-            gap: 14px;
-            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-start;
             flex-wrap: wrap;
+        }
+
+        .home-hero-cta .home-btn-secondary {
+            font-size: 0.95rem;
+            padding: 0.85em 1em;
+            color: #ffffff;
+            background: rgba(4, 10, 18, 0.8);
         }
 
         .home-btn-primary,
@@ -115,17 +290,22 @@
             font-weight: 700;
             font-size: 1.05rem;
             text-decoration: none;
+            max-width: 100%;
+            min-height: 44px;
+            justify-content: center;
+            text-align: center;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             font-family: 'Roboto Serif', serif;
         }
 
         .home-btn-primary {
-            background: linear-gradient(135deg, #20b2aa 0%, #178a83 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #70d8ca 0%, #55c3b6 100%);
+            color: #071826;
             box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
         }
 
         .home-btn-primary:hover {
+            color: #071826;
             transform: translateY(-2px);
             box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
         }
@@ -139,6 +319,50 @@
         .home-btn-secondary:hover {
             border-color: #40e0d0;
             color: #40e0d0;
+        }
+
+        .home-btn-primary:focus-visible,
+        .home-btn-secondary:focus-visible,
+        .home-store-link:focus-visible,
+        .home-promo-social-link:focus-visible,
+        .home-main a:focus-visible,
+        .home-faq summary:focus-visible {
+            outline: 3px solid #ffe55c;
+            outline-offset: 4px;
+        }
+
+        #gameplay, #halloween { scroll-margin-top: 80px; }
+
+        /* Seasonal spotlight uses the current game's artwork and existing palette. */
+        .home-halloween {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            align-items: center;
+            gap: 28px;
+            margin-top: 0 !important;
+            padding: 28px;
+            background: #162844;
+            border-radius: 16px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        }
+        .home-halloween-copy { min-width: 0; }
+        .home-halloween .home-section-kicker { color: #ffe0a0; }
+        .home-halloween .home-section-title { font-size: 1.55rem; line-height: 1.35; }
+        .home-halloween p { margin: 16px 0 20px; color: #c5d3e3; line-height: 1.65; }
+        .home-halloween img { display: block; width: 100%; height: auto; border-radius: 12px; }
+        .home-halloween-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+        .home-halloween-cta .home-btn-primary { font-size: 0.95rem; }
+        .home-halloween-cta .home-teaser-more { display: inline-flex; align-items: center; min-height: 44px; }
+        @media (max-width: 767px) {
+            .home-halloween { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 22px; }
+            .home-hero-cta .home-btn-primary, .home-hero-cta .home-btn-secondary { width: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .home-hero-video { display: none; transition: none; }
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+            .home-btn-primary, .home-btn-secondary, .home-store-link, .home-promo-social-link, .home-teaser { transition: none; }
+            .home-btn-primary:hover, .home-store-link:hover, .home-promo-social-link:hover, .home-teaser:hover { transform: none; }
         }
 
         /* ---------- Showcase: big, breathing screenshots block ---------- */
@@ -184,7 +408,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0a1628;
+            background: #040a12;
         }
 
         .home-screenshots-slider .swiper-slide img {
@@ -486,93 +710,6 @@
             color: #40e0d0;
             font-weight: 600;
             font-size: 0.9rem;
-        }
-
-        /* ---------- Roadmap (horizontal timeline with a connecting line) ---------- */
-        .home-roadmap-wrap {
-            position: relative;
-        }
-
-        .home-roadmap {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (min-width: 768px) {
-            .home-roadmap {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 18px;
-            }
-
-            /* The connector line behind the cards, slightly offset from the
-               top so it crosses through the stage badges. */
-            .home-roadmap-wrap::before {
-                content: '';
-                position: absolute;
-                top: 38px;
-                left: 6%;
-                right: 6%;
-                height: 2px;
-                background: linear-gradient(90deg,
-                    rgba(32, 178, 170, 0.6) 0%,
-                    rgba(255, 215, 0, 0.5) 55%,
-                    rgba(176, 196, 222, 0.4) 100%);
-                z-index: 0;
-            }
-        }
-
-        .home-roadmap-step {
-            background: #162844;
-            border: 1px solid rgba(32, 178, 170, 0.18);
-            border-radius: 12px;
-            padding: 20px 22px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-roadmap-stage {
-            display: inline-block;
-            font-family: 'Roboto Serif', serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .home-roadmap-stage.done {
-            background: rgba(32, 178, 170, 0.2);
-            color: #40e0d0;
-        }
-
-        .home-roadmap-stage.now {
-            background: rgba(255, 215, 0, 0.18);
-            color: #ffe55c;
-        }
-
-        .home-roadmap-stage.next {
-            background: rgba(176, 196, 222, 0.12);
-            color: #b8d4e0;
-        }
-
-        .home-roadmap-title {
-            font-family: 'Roboto Serif', serif;
-            font-weight: 600;
-            color: #dce8f7;
-            margin: 0 0 4px 0;
-            font-size: 1.05rem;
-        }
-
-        .home-roadmap-text {
-            color: #c5d3e3;
-            font-size: 0.88rem;
-            line-height: 1.45;
-            margin: 0;
         }
 
         /* ---------- FAQ ---------- */
@@ -912,10 +1049,10 @@
           "@type": "VideoGame",
           "@id": "https://points.gs/#lumen-grove",
           "name": "Lumen Grove",
-          "description": "A fairy tale puzzle game set in a forgotten magical forest. Solve puzzles, collect glowing fireflies, and explore mysterious ruins. Available on Android.",
+          "description": "A cozy forest farming and restoration game for Android. Grow plants, help woodland residents, earn Light through everyday acts of kindness, and give it to the Magic Oak to help the forest grow.",
           "url": "https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest",
-          "image": "https://points.gs/images/lumen-grove-mobile-banner.png",
-          "genre": ["Puzzle", "Fairy Tale", "Casual"],
+          "image": "https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg",
+          "genre": ["Simulation", "Farming", "Casual"],
           "gamePlatform": "Android",
           "operatingSystem": "Android",
           "applicationCategory": "Game",
@@ -936,23 +1073,59 @@ fetch("header.html")
 .then(d=>{
     var el=document.getElementById("header-placeholder");
     if(el) el.innerHTML=d;
+    var header=el && el.querySelector('.fixed-header');
+    if(header) {
+        var measureHeader=function() {
+            document.documentElement.style.setProperty('--home-header-height', Math.ceil(header.getBoundingClientRect().height) + 'px');
+        };
+        measureHeader();
+        if('ResizeObserver' in window) new ResizeObserver(measureHeader).observe(header);
+        else window.addEventListener('resize', measureHeader);
+    }
 });
 </script>
 
-<!-- ===== Hero (centered text + CTAs) ===== -->
+<!-- ===== Video hero with game icon and Google Play download banner ===== -->
 <header class="home-hero">
-    <span class="home-hero-kicker" data-i18n="home_hero_kicker">Points Game Studio · Built for Wonder</span>
-    <h1 class="home-hero-title">Lumen Grove</h1>
-    <p class="home-hero-tagline" data-i18n="home_hero_tagline">A cozy fairy-tale forest where you grow plants, gather glowing fireflies, and slowly bring a forgotten magical grove back to life.</p>
-    <div class="home-hero-cta">
-        <a class="home-btn-primary" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener" data-i18n="home_play_btn">
-            🌲 Play on Google Play
-        </a>
-        <a class="home-btn-secondary" href="/lore_1" data-i18n="home_read_story_btn">
-            📜 Read the Story
-        </a>
+    <div class="home-hero-media" aria-hidden="true">
+        <video class="home-hero-video" autoplay muted loop playsinline preload="none" poster="public/videos/hero-poster.jpg?v=ee95743ede10" width="1440" height="618" tabindex="-1" aria-hidden="true" disablepictureinpicture>
+            <source data-src="public/videos/hero-loop.webm?v=ede9d4631af2" type='video/webm; codecs="vp9"'>
+            <source data-src="public/videos/hero-loop.mp4?v=256bd2110bd9" type="video/mp4">
+        </video>
+    </div>
+    <div class="home-hero-content">
+    <div class="home-hero-brand">
+        <span class="home-hero-kicker" data-i18n="home_hero_kicker">Points Game Studio · Built for Wonder</span>
+        <h1 class="home-hero-title" data-i18n="home_hero_title">Lumen Grove</h1>
+    </div>
+    <div class="home-game-promo" aria-labelledby="home-game-name">
+        <img class="home-game-icon" src="images/homePage_images/nur-icon-192.webp" srcset="images/homePage_images/nur-icon-192.webp 192w, images/homePage_images/nur-icon-384.webp 384w" sizes="(max-width: 600px) 112px, 176px" width="1080" height="1080" alt="" decoding="async">
+        <div class="home-game-copy">
+            <h2 id="home-game-name" class="home-game-name">Lumen Grove</h2>
+            <p class="home-hero-tagline" data-i18n="home_hero_tagline">Grow a magical grove, help its woodland residents, and turn small acts of kindness into Light for the Magic Oak. Make this little forest your own.</p>
+            <div class="home-hero-cta">
+                <a class="home-store-link" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer">
+                    <img class="home-store-badge" src="images/google-play-badge.png" width="1321" height="389" alt="" aria-hidden="true" decoding="async">
+                    <span class="home-store-label" data-i18n="home_play_btn">Get Lumen Grove on Google Play</span>
+                </a>
+                <a class="home-btn-secondary" href="#gameplay" data-i18n="home_watch_btn">▶ Watch gameplay</a>
+                <nav class="home-promo-socials" aria-label="Lumen Grove social profiles">
+                    <a class="home-promo-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="X — @Lumen_Grove" title="X — @Lumen_Grove">
+                        <img src="images/blog/images-soc-media-logo-x-logo-e8f7fad2-64.webp" width="32" height="32" alt="" aria-hidden="true" decoding="async">
+                    </a>
+                    <a class="home-promo-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="YouTube — @Lumen_Grove" title="YouTube — @Lumen_Grove">
+                        <img src="images/soc-media-logo/youtube-logo.svg" width="32" height="32" alt="" aria-hidden="true" decoding="async">
+                    </a>
+                    <a class="home-promo-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" aria-label="TikTok — @lumen_grove" title="TikTok — @lumen_grove">
+                        <img src="images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-64.webp" width="32" height="32" alt="" aria-hidden="true" decoding="async">
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
     </div>
 </header>
+<script src="js/hero-video.js?v=31bade526ec5"></script>
 
 <!-- ===== Showcase: large screenshots carousel sitting on its own ===== -->
 <section class="home-showcase" data-aos="zoom-in" data-aos-duration="900">
@@ -974,7 +1147,22 @@ fetch("header.html")
     <p class="home-showcase-caption" data-i18n="home_showcase_caption">Lumen Grove · Screenshots from the grove</p>
 </section>
 
-<main class="home-main">
+<main class="home-main" id="main-content">
+
+    <!-- Seasonal spotlight: update this block when the featured event changes. -->
+    <section id="halloween" class="home-section home-halloween" aria-labelledby="halloween-title">
+        <div class="home-halloween-copy">
+            <span class="home-section-kicker" data-i18n="home_halloween_kicker">Seasonal event · Now in the grove</span>
+            <h2 id="halloween-title" class="home-section-title" data-i18n="home_halloween_title">🎃 Halloween Has Arrived in Lumen Grove</h2>
+            <p data-i18n="home_halloween_text">The grove has changed. Discover a spooky new atmosphere, seasonal decorations, special tasks, seasonal mini-games, and the story of the Raven King.</p>
+            <div class="home-halloween-cta">
+                <a class="home-btn-primary" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" data-i18n="home_halloween_play">Play the event on Android</a>
+                <a class="home-teaser-more" href="news_7.html" data-locale-page="news_7.html" data-i18n="home_halloween_more">Explore the Halloween Event →</a>
+            </div>
+        </div>
+        <img src="images/blog/images-halloween-h2-87337033-800.webp" srcset="images/blog/images-halloween-h2-87337033-480.webp 480w, images/blog/images-halloween-h2-87337033-800.webp 800w, images/blog/images-halloween-h2-87337033-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 80px), 480px" width="3120" height="1440" alt="" loading="lazy" decoding="async">
+    </section>
+
 
     <!-- ===== What is Lumen Grove? ===== -->
     <section class="home-section">
@@ -985,17 +1173,17 @@ fetch("header.html")
 
         <div class="home-about-grid">
             <div class="home-card" data-aos="fade-up">
-                <p data-i18n="home_about_p1">Lumen Grove is a lore-driven cozy forest farming and progression game set in a magical world shaped by memory, restoration, and quiet change. You care for an enchanted grove, help it grow, and restore its forgotten greatness — one firefly at a time.</p>
-                <a href="/pillar_1" class="home-teaser-more" data-i18n="home_about_more">Read the full guide →</a>
+                <p data-i18n="home_about_p1">Lumen Grove is a cozy mobile game about restoring a magical forest. Plant and harvest, help woodland residents, decorate your own little grove, and uncover its forgotten stories. Caring for the forest earns Light, which helps the Magic Oak grow.</p>
+                <a href="pillar_1.html" data-locale-page="pillar_1.html" class="home-teaser-more" data-i18n="home_about_more">Read the full guide →</a>
             </div>
 
             <div class="home-card" data-aos="fade-up" data-aos-delay="120">
                 <h3 class="home-card-title" data-i18n="home_glance_title">At a glance</h3>
                 <ul>
-                    <li data-i18n="home_glance_1"><strong>Cozy forest farming</strong> with a persistent hub</li>
-                    <li data-i18n="home_glance_2"><strong>Lore-driven progression</strong> through the Enchanted Oak</li>
-                    <li data-i18n="home_glance_3"><strong>Themed decor packs</strong> of 8 items each</li>
-                    <li data-i18n="home_glance_4"><strong>Dynamic weather</strong> for a living world</li>
+                    <li data-i18n="home_glance_1"><strong>Grow your own grove</strong> with plants to nurture and harvest</li>
+                    <li data-i18n="home_glance_2"><strong>Small acts of kindness</strong> bring Light to the Magic Oak</li>
+                    <li data-i18n="home_glance_3"><strong>Make it your own</strong> with woodland and seasonal decorations</li>
+                    <li data-i18n="home_glance_4"><strong>A living forest</strong> with changing weather and hidden stories</li>
                 </ul>
             </div>
         </div>
@@ -1005,56 +1193,63 @@ fetch("header.html")
     <section class="home-section">
         <div class="home-section-header" data-aos="fade-up">
             <span class="home-section-kicker" data-i18n="home_features_kicker">What you'll find</span>
-            <h2 class="home-section-title" data-i18n="home_features_title">Core features</h2>
+            <h2 class="home-section-title" data-i18n="home_features_title">A little forest to call your own</h2>
         </div>
 
         <div class="home-features-grid">
             <div class="home-feature" data-aos="fade-up">
                 <span class="home-feature-icon">🌿</span>
                 <div>
-                    <h3 class="home-feature-title" data-i18n="home_feat_1_title">Cozy farming</h3>
-                    <p class="home-feature-text" data-i18n="home_feat_1_text">Plant, grow, and harvest in a persistent forest hub. Short upgrades give immediate satisfaction.</p>
+                    <h3 class="home-feature-title" data-i18n="home_feat_1_title">Grow something lovely</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_1_text">Plant, nurture, and harvest. Watch your little patch of forest become a thriving grove.</p>
                 </div>
             </div>
             <div class="home-feature" data-aos="fade-up" data-aos-delay="80">
                 <span class="home-feature-icon">📜</span>
                 <div>
-                    <h3 class="home-feature-title" data-i18n="home_feat_2_title">Lore-driven world</h3>
-                    <p class="home-feature-text" data-i18n="home_feat_2_text">Every plant, character and ruin carries a piece of the story. The forest grows as the lore unfolds.</p>
+                    <h3 class="home-feature-title" data-i18n="home_feat_2_title">Discover the forest's stories</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_2_text">Get to know the woodland residents and uncover the memories hidden among the trees and ruins.</p>
                 </div>
             </div>
             <div class="home-feature" data-aos="fade-up" data-aos-delay="160">
                 <span class="home-feature-icon">🎨</span>
                 <div>
-                    <h3 class="home-feature-title" data-i18n="home_feat_3_title">Decoration packs</h3>
-                    <p class="home-feature-text" data-i18n="home_feat_3_text">Themed sets of eight items — mushroom, gothic, celtic and more — to customise your grove.</p>
+                    <h3 class="home-feature-title" data-i18n="home_feat_3_title">Decorate your way</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_3_text">Choose mushroom, gothic, Celtic, and seasonal decorations to give the grove your own touch.</p>
                 </div>
             </div>
             <div class="home-feature" data-aos="fade-up">
                 <span class="home-feature-icon">🌦️</span>
                 <div>
-                    <h3 class="home-feature-title" data-i18n="home_feat_4_title">Dynamic weather</h3>
-                    <p class="home-feature-text" data-i18n="home_feat_4_text">Rain, mist, gentle snow and auroras shift through the day to make the world feel alive.</p>
+                    <h3 class="home-feature-title" data-i18n="home_feat_4_title">Feel the world change</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_4_text">Rain, mist, gentle snow, and auroras bring a different mood to the forest.</p>
                 </div>
             </div>
             <div class="home-feature" data-aos="fade-up" data-aos-delay="80">
                 <span class="home-feature-icon">✨</span>
                 <div>
-                    <h3 class="home-feature-title" data-i18n="home_feat_6_title">Built for the long run</h3>
-                    <p class="home-feature-text" data-i18n="home_feat_6_text">Designed for LiveOps from day one — new plants, decor, story chapters and seasonal events.</p>
+                    <h3 class="home-feature-title" data-i18n="home_feat_6_title">Discover something new</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_6_text">Seasonal events bring a fresh atmosphere, special tasks, decorations, and new stories to explore.</p>
+                </div>
+            </div>
+            <div class="home-feature" data-aos="fade-up" data-aos-delay="160">
+                <span class="home-feature-icon" aria-hidden="true">💛</span>
+                <div>
+                    <h3 class="home-feature-title" data-i18n="home_feat_5_title">Kindness helps the forest grow</h3>
+                    <p class="home-feature-text" data-i18n="home_feat_5_text">Plant, harvest, clear new areas, and help residents to earn Light. Give it to the Magic Oak and help it grow stronger.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== Watch the game ===== -->
-    <section class="home-section">
+    <section id="gameplay" class="home-section">
         <div class="home-section-header" data-aos="fade-up">
             <span class="home-section-kicker" data-i18n="home_watch_kicker">In motion</span>
             <h2 class="home-section-title" data-i18n="home_watch_title">Watch the latest Lumen Grove video</h2>
         </div>
         <div class="home-video" data-aos="zoom-in" data-aos-duration="800">
-            <iframe src="https://www.youtube.com/embed/5q9p_AMW3gA" title="Lumen Grove — Latest Video" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/R-oSJKmGpqw" title="Lumen Grove — Gameplay Video" loading="lazy" frameborder="0" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -1066,17 +1261,17 @@ fetch("header.html")
         </div>
 
         <div class="home-two-col">
-            <a href="news_7.html" class="home-teaser" data-aos="fade-up">
+            <a href="news_7.html" data-locale-page="news_7.html" class="home-teaser" data-aos="fade-up">
                 <div class="home-teaser-meta" data-i18n="home_devlog6_meta">
                     <span class="home-teaser-badge">DevLog #6</span>
                     Sep 26, 2026
                 </div>
                 <h3 class="home-teaser-title" data-i18n="home_devlog6_title">Lumen Grove Halloween Update — A New Seasonal Event for Our Cozy Mobile Game</h3>
-                <p class="home-teaser-text" data-i18n="home_devlog6_text">The first seasonal event arrives — mini-games, quests, new decorations, a new lore chapter, and a reworked Magic Oak progression.</p>
+                <p class="home-teaser-text" data-i18n="home_devlog6_text">The first seasonal event is here — mini-games, quests, new decorations, a new lore chapter, and a reworked Magic Oak progression.</p>
                 <span class="home-teaser-more" data-i18n="home_devlog6_more">Read the post →</span>
             </a>
 
-            <a href="/lore_1" class="home-teaser" data-aos="fade-up" data-aos-delay="120">
+            <a href="lore_1.html" data-locale-page="lore_1.html" class="home-teaser" data-aos="fade-up" data-aos-delay="120">
                 <div class="home-teaser-meta" data-i18n="home_lore_meta">
                     <span class="home-teaser-badge">Lore</span>
                     The Far-Far Forest
@@ -1086,40 +1281,6 @@ fetch("header.html")
                 <span class="home-teaser-more" data-i18n="home_lore_more">Read the story →</span>
             </a>
         </div>
-    </section>
-
-    <!-- ===== Roadmap ===== -->
-    <section class="home-section">
-        <div class="home-section-header" data-aos="fade-up">
-            <span class="home-section-kicker" data-i18n="home_roadmap_kicker">What's next</span>
-            <h2 class="home-section-title" data-i18n="home_roadmap_title">Roadmap</h2>
-            <p class="home-section-sub" data-i18n="home_roadmap_sub">Lumen Grove is built in public, one milestone at a time. Here's where we are.</p>
-        </div>
-
-      <div class="home-roadmap-wrap">
-        <div class="home-roadmap">
-            <div class="home-roadmap-step" data-aos="fade-up">
-                <span class="home-roadmap-stage done" data-i18n="home_roadmap_done">Done</span>
-                <h3 class="home-roadmap-title" data-i18n="home_roadmap_1_title">Dialogue System</h3>
-                <p class="home-roadmap-text" data-i18n="home_roadmap_1_text">Story moments, character lines and localized narrative text now guide players through the grove.</p>
-            </div>
-            <div class="home-roadmap-step" data-aos="fade-up" data-aos-delay="100">
-                <span class="home-roadmap-stage done" data-i18n="home_roadmap_done">Done</span>
-                <h3 class="home-roadmap-title" data-i18n="home_roadmap_2_title">Dynamic Weather</h3>
-                <p class="home-roadmap-text" data-i18n="home_roadmap_2_text">Rain, mist, aurora and gentle snow make the grove feel alive throughout the day.</p>
-            </div>
-            <div class="home-roadmap-step" data-aos="fade-up" data-aos-delay="200">
-                <span class="home-roadmap-stage done" data-i18n="home_roadmap_done">Done</span>
-                <h3 class="home-roadmap-title" data-i18n="home_roadmap_3_title">Early Access on Google Play</h3>
-                <p class="home-roadmap-text" data-i18n="home_roadmap_3_text">Lumen Grove is now live in Early Access, gathering real player feedback and improving with each update.</p>
-            </div>
-            <div class="home-roadmap-step" data-aos="fade-up" data-aos-delay="300">
-                <span class="home-roadmap-stage now" data-i18n="home_roadmap_now">Now</span>
-                <h3 class="home-roadmap-title" data-i18n="home_roadmap_4_title">Halloween Event</h3>
-                <p class="home-roadmap-text" data-i18n="home_roadmap_4_text">The first seasonal event in Lumen Grove — mini-games, quests, new decorations, a new lore chapter, and a reworked Magic Oak progression system.</p>
-            </div>
-        </div>
-      </div>
     </section>
 
     <!-- ===== FAQ ===== -->
@@ -1132,15 +1293,15 @@ fetch("header.html")
         <div class="home-faq" data-aos="fade-up">
             <details>
                 <summary data-i18n="home_faq_q1">What kind of game is Lumen Grove?</summary>
-                <p data-i18n="home_faq_a1">A lore-driven cozy forest farming and progression game with a short puzzle-platformer module connected to the narrative.</p>
+                <p data-i18n="home_faq_a1">A cozy forest farming and restoration game for Android. Grow plants, decorate your grove, help its residents, and discover the stories of a magical world.</p>
             </details>
             <details>
-                <summary data-i18n="home_faq_q2">What's the core gameplay loop?</summary>
-                <p data-i18n="home_faq_a2">Plant and place plants, grow them, collect resources and fireflies, invest in the Enchanted Oak, decorate the grove and unlock new layers of the world.</p>
+                <summary data-i18n="home_faq_q2">How do I help the forest grow?</summary>
+                <p data-i18n="home_faq_a2">Plant and harvest, clear new areas, and help the forest residents. These everyday actions earn Light. Give that Light to the Magic Oak to help it grow and level up, while you keep restoring and decorating the grove.</p>
             </details>
             <details>
                 <summary data-i18n="home_faq_q3">Where can I play it?</summary>
-                <p data-i18n="home_faq_a3">Currently in early access on Android via Google Play. iOS is on the long-term roadmap.</p>
+                <p data-i18n="home_faq_a3">Lumen Grove is available on Android through Google Play.</p>
             </details>
         </div>
     </section>
@@ -1203,11 +1364,11 @@ fetch("header.html")
         </div>
 
         <div class="home-socials" data-aos="fade-up">
-            <a class="home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
-            <a class="home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
-            <a class="home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
-            <a class="home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
-            <a class="home-social-link" href="/devlog" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
+            <a class="home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
+            <a class="home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
+            <a class="home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
+            <a class="home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener noreferrer" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
+            <a class="home-social-link" href="devlog.html" data-locale-page="devlog.html" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
         </div>
     </section>
 
@@ -1222,7 +1383,7 @@ fetch("header.html")
         });
 </script>
 
-<script src="js/particles-bg.js"></script>
+<script src="js/particles-bg.js?v=a2363a0a4d39"></script>
 <script>initFloatingParticlesOnBody();</script>
 
 <!-- Swiper for the home screenshots slider. -->
@@ -1391,6 +1552,6 @@ fetch("header.html")
 </script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
-<script src="js/locale.js"></script>
+<script src="js/locale.js?v=df8ba98c3603"></script>
 </body>
 </html>

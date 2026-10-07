@@ -1,67 +1,55 @@
-// Reading progress bar — a thin gradient fill at the top of the viewport
-// that grows as the user scrolls. Injects its own styles + DOM, so any page
-// can opt in with a single <script src="js/reading-progress.js"></script>.
+/* Opt-in progress for the article text; page chrome and footer do not count. */
 (function () {
-    // Inject styles once per document.
-    if (!document.getElementById('reading-progress-styles')) {
-        const style = document.createElement('style');
-        style.id = 'reading-progress-styles';
-        style.textContent =
-            '.reading-progress {' +
-            '  position: fixed;' +
-            '  top: 0;' +
-            '  left: 0;' +
-            '  width: 100%;' +
-            '  height: 4px;' +
-            '  background: rgba(30, 58, 95, 0.3);' +
-            '  z-index: 9999;' +
-            '  backdrop-filter: blur(5px);' +
-            '  -webkit-backdrop-filter: blur(5px);' +
-            '  pointer-events: none;' +
-            '}' +
-            '.reading-progress-fill {' +
-            '  height: 100%;' +
-            '  width: 0%;' +
-            '  background: linear-gradient(90deg, #40e0d0, #ffe55c, #20b2aa);' +
-            '  transition: width 0.2s ease;' +
-            '  box-shadow: 0 0 15px rgba(64, 224, 208, 0.8),' +
-            '              0 0 30px rgba(255, 215, 0, 0.4);' +
-            '}';
-        document.head.appendChild(style);
-    }
-
+    'use strict';
     function init() {
-        // Bail if already initialized (defensive against double-include).
-        if (document.querySelector('.reading-progress')) return;
-
-        const bar = document.createElement('div');
+        var article = document.querySelector('article[data-reading-progress], .news-content[data-reading-progress]');
+        if (!article || document.querySelector('.reading-progress')) return;
+        var content = article.matches('.news-content') ? article : article.querySelector('.news-content');
+        if (!content) return;
+        var bar = document.createElement('div');
         bar.className = 'reading-progress';
-        const fill = document.createElement('div');
+        bar.setAttribute('aria-hidden', 'true');
+        var fill = document.createElement('div');
         fill.className = 'reading-progress-fill';
         bar.appendChild(fill);
         document.body.appendChild(bar);
-
-        let ticking = false;
+        var start = 0, end = 0, ticking = false;
+        function paint() {
+            var position = window.scrollY || document.documentElement.scrollTop;
+            var progress = end > start ? (position - start) / (end - start) : (position >= start ? 1 : 0);
+            fill.style.width = Math.max(0, Math.min(1, progress)) * 100 + '%';
+            ticking = false;
+        }
+        function measure() {
+            var rect = content.getBoundingClientRect();
+            var header = document.querySelector('.fixed-header');
+            var headerHeight = header ? header.getBoundingClientRect().height : 0;
+            var position = window.scrollY || document.documentElement.scrollTop;
+            start = Math.max(0, rect.top + position - headerHeight - 12);
+            end = rect.bottom + position - window.innerHeight;
+            paint();
+        }
         function onScroll() {
             if (ticking) return;
             ticking = true;
-            window.requestAnimationFrame(function () {
-                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const pct = height > 0 ? (scrollTop / height) * 100 : 0;
-                fill.style.width = pct + '%';
-                ticking = false;
-            });
+            window.requestAnimationFrame(paint);
         }
-
         window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
-        onScroll(); // initial paint
+        window.addEventListener('resize', measure, { passive: true });
+        window.addEventListener('load', measure, { once: true });
+        article.querySelectorAll('.article-toc details').forEach(function (details) {
+            details.addEventListener('toggle', measure);
+        });
+        if ('ResizeObserver' in window) {
+            var observer = new ResizeObserver(measure);
+            observer.observe(content);
+            if (article !== content) observer.observe(article);
+            var header = document.querySelector('.fixed-header');
+            if (header) observer.observe(header);
+        }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+        measure();
     }
-
-    if (document.body) {
-        init();
-    } else {
-        document.addEventListener('DOMContentLoaded', init);
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
 })();

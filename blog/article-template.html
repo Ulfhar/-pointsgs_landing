@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+{{head}}
+</head>
+<body class="blog-page" data-static-locale="{{language}}">
+    <a class="skip-link" href="#main-content">{{skip_label}}</a>
+{{header}}
+    <main id="main-content" tabindex="-1">
+        <nav class="breadcrumbs" aria-label="{{breadcrumb_label}}">
+            <a href="{{blog_url}}">{{blog_label}}</a><span aria-hidden="true">/</span><span aria-current="page">{{kind}}</span>
+        </nav>
+        <article class="news-article"{{progress}}>
+            <header class="article-header">
+                <p class="article-kind">{{kind}}</p>
+                <h1 class="news-title">{{title}}</h1>
+                <p class="news-subtitle">{{summary}}</p>
+                {{author_block}}
+                <div class="article-byline">
+                    <time datetime="{{date}}">{{date_label}}</time>
+                    <span aria-hidden="true">·</span><span class="reading-time">{{reading_time}}</span>
+                </div>
+            </header>
+            {{cover}}
+            {{toc}}
+            <section class="news-content" aria-label="{{content_label}}">
+{{content}}
+            </section>
+            {{related}}
+        </article>
+    </main>
+{{footer}}
+    <script src="{{prefix}}js/locale.js" defer></script>
+    <script src="{{prefix}}js/news.js" defer></script>
+    <script src="{{prefix}}js/particles-bg.js" defer></script>
+    {{progress_script}}
+</body>
+</html>
