@@ -44,6 +44,12 @@ Both final cropped videos were independently probed and fully decoded without er
 
 | Asset | Format | Dimensions | Duration / frame rate | Size |
 | --- | --- | --- | --- | --- |
-| `press-gameplay.mp4` | H.264 High, YUV420p, faststart; mono AAC, 44.1 kHz | 1872 × 864 | 134.35 s / 30 fps | 38,837,234 bytes |
+| `press-gameplay.mp4` | H.264 High, YUV420p, faststart; mono AAC, 44.1 kHz | 1560 × 720 | Full recording, 134.367 s / 30 fps | 16,754,482 bytes (16.8 MB) |
 
-This version preserves the recording's full 13:6 frame without cropping. Video uses `libx264` at CRF 23 and audio uses AAC at 128 kbps. The complete video and audio streams were decoded successfully, and the source recording and homepage loops were preserved.
+This version preserves the recording's full 13:6 frame without cropping or shortening it. It is encoded directly from the local `hero-source.mp4`, at half the original pixel dimensions, with Lanczos scaling and 30 fps. The original recording and homepage loops are preserved.
+
+Video uses two-pass `libx264` with the `slow` preset, an average bitrate of `900k`, a maximum bitrate of `1200k`, a `2400k` buffer, and YUV420p. Audio uses AAC at `96k`, preserving the source's channels and 44.1 kHz sample rate. The MP4 uses `+faststart`. Two-pass encoding controls the total download size while allocating more detail to complex frames.
+
+The complete media archive is 48,999,121 bytes (49.0 MB), below 50 MB, and retains all 17 original images, the full gameplay recording, and its sound. The rebuilt MP4's duration and streams were verified, its `moov` atom precedes `mdat`, and both video and audio were fully decoded without errors. The archive passed CRC checks and all 18 media files match their source files. Visual comparisons at 5, 46, 90, and 126 seconds confirmed readable UI and lore text; fine water and foliage textures soften slightly with the smaller file.
+
+After subsequent rebuilds, repeat the size, duration, stream, faststart, complete decode, archive integrity, and visual checks before publishing.
