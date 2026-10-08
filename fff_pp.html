@@ -98,9 +98,19 @@
                 <td>Tenjin, Inc. (US)</td>
                 <td>Marketing attribution and user acquisition analytics</td>
             </tr>
+            <tr>
+                <td>Firebase Analytics (Google Analytics for Firebase)</td>
+                <td>Google LLC</td>
+                <td>In-game event analytics, session tracking, and first-session funnel analysis. Purchases are collected automatically via Play Billing integration. Advertising features (ad_storage, ad_personalization) are disabled.</td>
+            </tr>
+            <tr>
+                <td>Firebase Crashlytics</td>
+                <td>Google LLC</td>
+                <td>Crash reporting and error monitoring. Collects crash stack traces, app state at the time of the crash, device information, and a pseudonymous Crashlytics installation ID. Your Unity Gaming Services Player ID (UGS PlayerId) is submitted as a Crashlytics user identifier for crash grouping purposes.</td>
+            </tr>
         </table>
         <p>Unity Technologies operates as an <strong>independent data controller</strong> for data collected through Unity SDKs and processes it under their own Privacy Policy: <a href="https://unity.com/legal/privacy-policy" target="_blank">unity.com/legal/privacy-policy</a>.</p>
-        <p>Google LLC operates as an <strong>independent data controller</strong> for data collected through Google AdMob and processes it under Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+        <p>Google LLC operates as an <strong>independent data controller</strong> for data collected through Google AdMob, Firebase Analytics, and Firebase Crashlytics, and processes it under Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>. For Firebase-specific data practices, see: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
         <p>Tenjin, Inc. operates as an <strong>independent data controller</strong> for attribution data and processes it under their Privacy Policy: <a href="https://www.tenjin.com/privacy" target="_blank">tenjin.com/privacy</a>.</p>
 
         <h3>2.3 Anonymous Authentication</h3>
@@ -148,9 +158,10 @@
         <h2>6. Third-Party Services and Independent Data Collection</h2>
         <p>Our third-party SDK providers collect data under their own privacy policies and terms, independently of our instructions. We are not responsible for their data practices.</p>
         <p>Unity Technologies may collect device identifiers and usage data for their own analytics, fraud prevention, and product improvement. We encourage you to review their Privacy Policy at <a href="https://unity.com/legal/privacy-policy" target="_blank">unity.com/legal/privacy-policy</a>.</p>
+        <p>Google LLC (Firebase Analytics, Firebase Crashlytics, Google AdMob) may collect device identifiers, gameplay events, crash data, and app diagnostics for their own product improvement and analytics purposes, independently of our instructions. We encourage you to review Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a> and Firebase's privacy documentation at <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
 
         <h2>7. International Data Transfers</h2>
-        <p>Unity Technologies, Google LLC, and Tenjin, Inc. are based in the United States. Data processed through their SDKs may be transferred to the US or other countries outside the EEA. Such transfers are subject to appropriate safeguards, including Standard Contractual Clauses (SCCs) approved by the European Commission. See each provider's Privacy Policy for details.</p>
+        <p>Unity Technologies, Google LLC, and Tenjin, Inc. are based in the United States. Data processed through their SDKs — including Firebase Analytics and Firebase Crashlytics — may be transferred to the US or other countries outside the EEA. Such transfers are subject to appropriate safeguards, including Standard Contractual Clauses (SCCs) approved by the European Commission. See each provider's Privacy Policy for details.</p>
 
         <h2>8. Data Retention</h2>
         <table>
@@ -188,8 +199,9 @@
         <h2>10. Analytics and Advertising Opt-Out</h2>
         <p>You may opt out of analytics and personalised advertising at any time:</p>
         <ul>
-            <li><strong>iOS:</strong> Settings → Privacy → Tracking</li>
-            <li><strong>Android:</strong> Settings → Google → Ads → Opt out of Ads Personalisation</li>
+            <li><strong>Android (ad personalisation):</strong> Settings → Google → Ads → Opt out of Ads Personalisation</li>
+            <li><strong>Firebase Analytics:</strong> the Game does not provide an in-app analytics toggle. To disable Firebase Analytics data collection, you may contact us at <a href="mailto:info@points.gs">info@points.gs</a> or delete and refrain from reinstalling the Game. Advertising features (ad_storage, ad_personalization) are already disabled in this application.</li>
+            <li><strong>Firebase Crashlytics:</strong> crash reports are collected to maintain game stability. Crashlytics uses a pseudonymous installation ID and cannot be linked back to you personally.</li>
             <li>Or contact us directly at <a href="mailto:info@points.gs">info@points.gs</a></li>
         </ul>
 
