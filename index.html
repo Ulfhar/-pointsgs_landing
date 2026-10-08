@@ -14,24 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="images/favicon_points.png" />
 
-    <title data-i18n="home_meta_title">Lumen Grove — Cozy Forest Farming on Android | Points.GS</title>
-    <meta name="description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
+    <title data-i18n="home_meta_title">Lumen Grove: Cozy Forest Farm — Android, iOS Planned | Points.GS</title>
+    <meta name="description" data-i18n-content="home_meta_description" content="Lumen Grove, a cozy forest farming game by Points Game Studio. Android available now; iOS planned. Grow plants, earn Light, and help the Magic Oak grow.">
     <link rel="canonical" href="https://points.gs/" />
 
-    <meta property="og:title" data-i18n-content="home_meta_title" content="Lumen Grove — Cozy Forest Farming on Android | Points.GS">
-    <meta property="og:description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
+    <meta property="og:title" data-i18n-content="home_meta_title" content="Lumen Grove: Cozy Forest Farm — Android, iOS Planned | Points.GS">
+    <meta property="og:description" data-i18n-content="home_meta_description" content="Lumen Grove, a cozy forest farming game by Points Game Studio. Android available now; iOS planned. Grow plants, earn Light, and help the Magic Oak grow.">
     <meta property="og:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="554">
     <meta property="og:url" content="https://points.gs/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" data-i18n-content="home_meta_title" content="Lumen Grove — Cozy Forest Farming on Android | Points.GS">
-    <meta name="twitter:description" data-i18n-content="home_meta_description" content="Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.">
+    <meta name="twitter:title" data-i18n-content="home_meta_title" content="Lumen Grove: Cozy Forest Farm — Android, iOS Planned | Points.GS">
+    <meta name="twitter:description" data-i18n-content="home_meta_description" content="Lumen Grove, a cozy forest farming game by Points Game Studio. Android available now; iOS planned. Grow plants, earn Light, and help the Magic Oak grow.">
     <meta name="twitter:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
 
     <link rel="stylesheet" href="LandingPage.css?v=75f3c233b931" />
-    <link rel="stylesheet" href="css/header.css?v=0a37a04d7ce9" />
+    <link rel="stylesheet" href="css/header.css?v=6c4f797fe90d" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&family=Roboto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <!-- Swiper CSS for the home screenshots slider. -->
@@ -189,6 +189,10 @@
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 14px rgba(4, 10, 18, 0.75);
         }
+
+        .home-platform-status { margin: 0 0 18px; color: #dce6ec; font-size: .95rem; font-weight: 600; line-height: 1.5; }
+        .home-game-promo .home-platform-status { text-shadow: 0 2px 4px #040a12; }
+        .home-halloween-copy .home-platform-status { margin: 14px 0 0; }
 
         .home-store-link {
             display: inline-flex;
@@ -1049,7 +1053,7 @@
           "@type": "VideoGame",
           "@id": "https://points.gs/#lumen-grove",
           "name": "Lumen Grove",
-          "description": "A cozy forest farming and restoration game for Android. Grow plants, help woodland residents, earn Light through everyday acts of kindness, and give it to the Magic Oak to help the forest grow.",
+          "description": "A cozy forest farming and restoration game available on Android, with an iOS version planned. Grow plants, help woodland residents, earn Light through everyday acts of kindness, and give it to the Magic Oak to help the forest grow.",
           "url": "https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest",
           "image": "https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg",
           "genre": ["Simulation", "Farming", "Casual"],
@@ -1068,7 +1072,7 @@
 
 <div id="header-placeholder"></div>
 <script>
-fetch("header.html")
+fetch("header.html?v=a6f540b44594")
 .then(r=>r.text())
 .then(d=>{
     var el=document.getElementById("header-placeholder");
@@ -1101,8 +1105,9 @@ fetch("header.html")
     <div class="home-game-promo" aria-labelledby="home-game-name">
         <img class="home-game-icon" src="images/homePage_images/nur-icon-192.webp" srcset="images/homePage_images/nur-icon-192.webp 192w, images/homePage_images/nur-icon-384.webp 384w" sizes="(max-width: 600px) 112px, 176px" width="1080" height="1080" alt="" decoding="async">
         <div class="home-game-copy">
-            <h2 id="home-game-name" class="home-game-name">Lumen Grove</h2>
+            <h2 id="home-game-name" class="home-game-name">Lumen Grove: Cozy Forest Farm</h2>
             <p class="home-hero-tagline" data-i18n="home_hero_tagline">Grow a magical grove, help its woodland residents, and turn small acts of kindness into Light for the Magic Oak. Make this little forest your own.</p>
+            <p class="home-platform-status" data-i18n="home_platforms">Available on Android · iOS planned</p>
             <div class="home-hero-cta">
                 <a class="home-store-link" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer">
                     <img class="home-store-badge" src="images/google-play-badge.png" width="1321" height="389" alt="" aria-hidden="true" decoding="async">
@@ -1159,6 +1164,7 @@ fetch("header.html")
                 <a class="home-btn-primary" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" data-i18n="home_halloween_play">Play the event on Android</a>
                 <a class="home-teaser-more" href="news_7.html" data-locale-page="news_7.html" data-i18n="home_halloween_more">Explore the Halloween Event →</a>
             </div>
+            <p class="home-platform-status" data-i18n="home_ios_planned">An iOS version of Lumen Grove is planned.</p>
         </div>
         <img src="images/blog/images-halloween-h2-87337033-800.webp" srcset="images/blog/images-halloween-h2-87337033-480.webp 480w, images/blog/images-halloween-h2-87337033-800.webp 800w, images/blog/images-halloween-h2-87337033-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 80px), 480px" width="3120" height="1440" alt="" loading="lazy" decoding="async">
     </section>
@@ -1293,7 +1299,7 @@ fetch("header.html")
         <div class="home-faq" data-aos="fade-up">
             <details>
                 <summary data-i18n="home_faq_q1">What kind of game is Lumen Grove?</summary>
-                <p data-i18n="home_faq_a1">A cozy forest farming and restoration game for Android. Grow plants, decorate your grove, help its residents, and discover the stories of a magical world.</p>
+                <p data-i18n="home_faq_a1">A cozy forest farming and restoration game for Android. Grow plants, decorate your grove, help its residents, and discover the stories of a magical world. An iOS version is planned.</p>
             </details>
             <details>
                 <summary data-i18n="home_faq_q2">How do I help the forest grow?</summary>
@@ -1301,7 +1307,7 @@ fetch("header.html")
             </details>
             <details>
                 <summary data-i18n="home_faq_q3">Where can I play it?</summary>
-                <p data-i18n="home_faq_a3">Lumen Grove is available on Android through Google Play.</p>
+                <p data-i18n="home_faq_a3">Lumen Grove is available on Android through Google Play. An iOS version is planned.</p>
             </details>
         </div>
     </section>
@@ -1552,6 +1558,6 @@ fetch("header.html")
 </script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
-<script src="js/locale.js?v=df8ba98c3603"></script>
+<script src="js/locale.js?v=2fc910818fbe"></script>
 </body>
 </html>

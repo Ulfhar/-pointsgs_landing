@@ -25,8 +25,8 @@
   "modification": "Modification of Terms",
   "severability": "Severability and Waiver",
   "contact": "Contact Information",
-  "home_meta_title": "Lumen Grove — Cozy Forest Farming on Android | Points.GS",
-  "home_meta_description": "Grow a magical forest in Lumen Grove, a cozy Android game by Points Game Studio. Help woodland residents, earn Light for the Magic Oak, and discover seasonal stories.",
+  "home_meta_title": "Lumen Grove: Cozy Forest Farm — Android, iOS Planned | Points.GS",
+  "home_meta_description": "Lumen Grove, a cozy forest farming game by Points Game Studio. Android available now; iOS planned. Grow plants, earn Light, and help the Magic Oak grow.",
   "home_hero_kicker": "Points Game Studio · Built for Wonder",
   "home_hero_title": "Lumen Grove",
   "home_hero_tagline": "Grow a magical grove, help its woodland residents, and turn small acts of kindness into Light for the Magic Oak. Make this little forest your own.",
@@ -55,10 +55,10 @@
   "home_halloween_text": "The grove has changed. Discover a spooky new atmosphere, seasonal decorations, special tasks, seasonal mini-games, and the story of the Raven King.",
   "home_halloween_more": "Explore the Halloween Event →",
   "home_halloween_play": "Play the event on Android",
-  "home_faq_a1": "A cozy forest farming and restoration game for Android. Grow plants, decorate your grove, help its residents, and discover the stories of a magical world.",
+  "home_faq_a1": "A cozy forest farming and restoration game for Android. Grow plants, decorate your grove, help its residents, and discover the stories of a magical world. An iOS version is planned.",
   "home_faq_q2": "How do I help the forest grow?",
   "home_faq_a2": "Plant and harvest, clear new areas, and help the forest residents. These everyday actions earn Light. Give that Light to the Magic Oak to help it grow and level up, while you keep restoring and decorating the grove.",
-  "home_faq_a3": "Lumen Grove is available on Android through Google Play.",
+  "home_faq_a3": "Lumen Grove is available on Android through Google Play. An iOS version is planned.",
   "pillar1_hero_description": "Lumen Grove is a cozy fantasy game about bringing a forgotten forest back to life. Grow plants, help the creatures who live in the grove, and restore the Magic Oak through small acts of kindness.",
   "pillar1_coreFeatures_1": "Cozy farming in a magical forest grove",
   "pillar1_coreFeatures_2": "Everyday care that earns Light and helps the Magic Oak grow",
@@ -87,5 +87,8 @@
   "pillar1_liveOps_5": "Dynamic weather that changes the forest's atmosphere",
   "pillar1_faq_genre_value": "A cozy fantasy game about forest restoration, farming, and helping the grove's residents.",
   "news5_paragraph_1": "Why do games need weather at all? Especially if it does not add anything to the gameplay and does not affect the game rules in any way. At first glance, it seems like exactly the kind of feature that should be cut from the scope first, especially during early development.",
-  "home_devlog6_text": "The first seasonal event is here — mini-games, quests, new decorations, a new lore chapter, and a reworked Magic Oak progression."
+  "home_devlog6_text": "The first seasonal event is here — mini-games, quests, new decorations, a new lore chapter, and a reworked Magic Oak progression.",
+  "home_platforms": "Available on Android · iOS planned",
+  "home_ios_planned": "An iOS version of Lumen Grove is planned.",
+  "news7_platforms": "Lumen Grove is available on Android. An iOS version is planned."
 }

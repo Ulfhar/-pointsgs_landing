@@ -87,11 +87,13 @@ function updateLangSwitcherActive(locale) {
     if (navigation) {
         const blog = navigation.querySelector('a[href*="devlog.html"]');
         const about = navigation.querySelector('a[href$="#about"], a[href$="about.html"]');
+        const press = navigation.querySelector('a[href$="press-kit.html"]');
         if (blog) {
             blog.textContent = activeLocale === 'uk' ? 'Блог' : 'Blog';
             blog.href = (activeLocale === 'uk' ? '/uk/' : '/') + 'devlog.html';
         }
         if (about) about.textContent = activeLocale === 'uk' ? 'Про нас' : 'About Us';
+        if (press) press.textContent = activeLocale === 'uk' ? 'Для преси' : 'Press Kit';
     }
     [['switch-to-en', 'en'], ['switch-to-ua', 'uk']].forEach(([id, language]) => {
         const link = document.getElementById(id);

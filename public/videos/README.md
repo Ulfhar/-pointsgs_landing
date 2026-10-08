@@ -37,3 +37,13 @@ The source is 541,887,902 bytes: approximately 134.35 seconds, 3120 × 1440, H.2
 `hero-source.mp4` is ignored by Git because the large editing source is only needed for local rebuilds. The optimized assets are kept with the site for static hosting and are not ignored. Temporary download tools and diagnostic frames live under the ignored `/.tmp/` directory.
 
 Both final cropped videos were independently probed and fully decoded without errors. Each contains one video stream and no audio, at 1440 × 618, 30 fps, exactly 10.0 seconds, and 300 decoded frames. The MP4 `moov` atom at byte 32 precedes `mdat` at byte 4,243, confirming faststart. The JPEG opens at the expected dimensions. Asset byte counts and SHA-256 prefixes match the final encoding; the original recording's byte count and full SHA-256 remain unchanged.
+
+## Press Kit gameplay download
+
+`press-gameplay.mp4` contains the full recording, including its audio, for press and creator downloads. It is also included in `downloads/Lumen-Grove-Press-Media.zip` alongside the 17 original Press Kit images.
+
+| Asset | Format | Dimensions | Duration / frame rate | Size |
+| --- | --- | --- | --- | --- |
+| `press-gameplay.mp4` | H.264 High, YUV420p, faststart; mono AAC, 44.1 kHz | 1872 × 864 | 134.35 s / 30 fps | 38,837,234 bytes |
+
+This version preserves the recording's full 13:6 frame without cropping. Video uses `libx264` at CRF 23 and audio uses AAC at 128 kbps. The complete video and audio streams were decoded successfully, and the source recording and homepage loops were preserved.

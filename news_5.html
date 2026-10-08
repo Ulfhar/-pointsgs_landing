@@ -22,7 +22,7 @@
     <meta name="twitter:image" content="https://points.gs/images/blog/images-news-images-5-img-1-1602de9f-og.jpg">
     <link rel="icon" type="image/png" href="images/favicon_points.png">
     <link rel="stylesheet" href="css/news.css?v=a5f78a555de5">
-    <link rel="stylesheet" href="css/header.css?v=0a37a04d7ce9">
+    <link rel="stylesheet" href="css/header.css?v=6c4f797fe90d">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;600&display=swap" rel="stylesheet">
@@ -42,6 +42,7 @@
         <nav class="header-nav" aria-label="Main navigation">
             <a href="devlog.html" aria-current="page">Blog</a>
             <a href="index.html#about">About Us</a>
+            <a href="press-kit.html">Press Kit</a>
         </nav>
     </div>
 </header>
@@ -140,7 +141,7 @@
 <footer class="footer">
     <div class="footer-inner">
         <div class="footer-content">
-            <div class="footer-section">
+            <div class="footer-section footer-brand">
                 <h3>Points Game Studio</h3>
                 <p>Creating magical gaming experiences that teleport players to enchanting worlds filled with wonder and adventure.</p>
             </div>
@@ -171,9 +172,11 @@
 
             <div class="footer-section">
                 <h4>Language</h4>
-                <div style="margin-bottom: 6px; color: #cccccc; font-size: 0.95rem;">Show the web site in:</div>
-                <a id="switch-to-en" class="lang-switcher active" href="news_5.html" lang="en" hreflang="en" aria-current="page">English</a>
-                <a id="switch-to-ua" class="lang-switcher" href="uk/news_5.html" lang="uk" hreflang="uk">Українська</a>
+                <p class="footer-language-note">Show the web site in:</p>
+                <div class="footer-language-links">
+                    <a id="switch-to-en" class="lang-switcher active" href="news_5.html" lang="en" hreflang="en" aria-current="page">English</a>
+                    <a id="switch-to-ua" class="lang-switcher" href="uk/news_5.html" lang="uk" hreflang="uk"><span class="language-flag language-flag-uk" aria-hidden="true"></span>Українська</a>
+                </div>
             </div>
         </div>
 
@@ -187,23 +190,26 @@
 .footer {
     background-color: #040a12;
     color: #ffffff;
-    padding: 40px 0 20px;
+    padding: 48px 0 24px;
     margin-top: 60px;
-    border-top: 1px solid #333;
+    border-top: 1px solid #263c50;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-inner {
     box-sizing: border-box;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-    gap: 30px;
-    margin-bottom: 30px;
+    grid-template-columns: minmax(230px, 1.6fr) repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: 32px 24px;
+    margin-bottom: 32px;
 }
 
 .footer-section {
@@ -216,13 +222,19 @@
     font-size: 1.4rem;
     margin-bottom: 15px;
     font-weight: 600;
+    font-family: inherit;
+    line-height: 1.3;
+    margin-top: 0;
 }
 
 .footer-section h4 {
     color: #ffffff;
     font-size: 1.1rem;
     margin-bottom: 12px;
-    font-weight: 500;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1.3;
+    margin-top: 0;
 }
 
 .footer-section p {
@@ -230,6 +242,7 @@
     line-height: 1.6;
     margin-bottom: 8px;
     font-size: 0.95rem;
+    margin-top: 0;
 }
 
 .footer-section a {
@@ -254,25 +267,26 @@
     text-decoration: underline;
 }
 
-.social-links, .legal-links {
+.footer .social-links, .footer .legal-links {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 4px;
 }
 
-.social-links a, .legal-links a {
+.footer .social-links a, .footer .legal-links a {
     color: #cccccc;
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 0.95rem;
 }
 
-.social-links a:hover, .legal-links a:hover {
+.footer .social-links a:hover, .footer .legal-links a:hover {
     color: #ffffff;
 }
 
 .footer-bottom {
-    border-top: 1px solid #333;
+    border-top: 1px solid #263c50;
     padding-top: 20px;
     text-align: center;
 }
@@ -283,32 +297,35 @@
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1099px) {
+    .footer-content { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .footer-brand { grid-column: 1 / -1; max-width: 560px; }
+}
+
+@media (max-width: 767px) {
     .footer {
-        padding: 30px 0 15px;
+        padding: 32px 0 20px;
     }
-
     .footer-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .footer-section {
-        text-align: center;
-    }
-
-    .social-links, .legal-links {
-        align-items: center;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 24px;
     }
 }
 
-@media (min-width: 1024px) {
-    .footer-inner {
-        padding: 0 80px;
-    }
+@media (max-width: 479px) {
+    .footer-inner { padding-inline: 20px; }
+    .footer-content { grid-template-columns: minmax(0, 1fr); }
+    .footer .footer-language-links { flex-direction: row; flex-wrap: wrap; }
 }
 
-.lang-switcher {
+.footer-language-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.footer .lang-switcher {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -318,24 +335,31 @@
     cursor: pointer;
     color: #cccccc;
     font-size: 1rem;
-    margin-right: 1em;
+    gap: 8px;
+    max-width: 100%;
     background: none;
     border: none;
     padding: 8px 10px;
     border-radius: 6px;
     transition: color 0.2s, background-color 0.2s;
 }
-.lang-switcher:last-child {
-    margin-right: 0;
-}
-.lang-switcher.active {
+.footer .lang-switcher.active {
     color: #fff;
     background-color: #253536;
     font-weight: bold;
 }
+
+.language-flag-uk {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 16px;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+}
 </style>
 
-    <script src="js/locale.js?v=df8ba98c3603" defer></script>
+
+    <script src="js/locale.js?v=2fc910818fbe" defer></script>
     <script src="js/news.js?v=a58e53206835" defer></script>
     <script src="js/particles-bg.js?v=a2363a0a4d39" defer></script>
 

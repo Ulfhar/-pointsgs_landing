@@ -97,3 +97,8 @@ strong { color: #eef4f9; }
 @media (max-width: 350px) {
     .about-play { width: 100%; padding-inline: 14px; }
 }
+
+@media (max-width: 480px) {
+    body { padding-top: 114px; }
+    :where(h1, h2, h3, [id]) { scroll-margin-top: 126px; }
+}

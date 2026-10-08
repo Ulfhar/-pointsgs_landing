@@ -134,6 +134,8 @@ def header_footer(language, slug, media, slugs):
             node.attrs["aria-current"] = "page"
         if language == "uk" and node.tag == "a" and node.text().strip() == "About Us":
             set_text(node, "Про нас")
+        if language == "uk" and node.tag == "a" and node.attrs.get("href") == "press-kit.html":
+            set_text(node, "Для преси")
         if node.tag == "img":
             node.attrs["alt"] = ""
     if language == "uk":
