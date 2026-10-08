@@ -31,7 +31,7 @@
     <meta name="twitter:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
 
     <link rel="stylesheet" href="LandingPage.css?v=75f3c233b931" />
-    <link rel="stylesheet" href="css/header.css?v=6c4f797fe90d" />
+    <link rel="stylesheet" href="css/header.css?v=e6c2bd2d4671" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&family=Roboto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <!-- Swiper CSS for the home screenshots slider. -->
@@ -57,7 +57,7 @@
         }
 
         /* ---------- Hero and game download banner ---------- */
-        body { padding-top: var(--home-header-height, 60px); }
+        body { padding-top: var(--home-header-height, 57px); }
 
         .home-hero {
             --home-promo-shift: clamp(56px, 7.8svh, 80px);
@@ -107,12 +107,7 @@
 
         @media (max-width: 767px) {
             body {
-                padding-top: var(--home-header-height, 72px) !important;
-            }
-            .home-hero {
-                --home-promo-shift: calc((100svh - var(--home-header-height, 72px)) / 10);
-                min-height: calc(100svh - var(--home-header-height, 72px));
-                padding: 16px 16px 32px;
+                padding-top: var(--home-header-height, 57px) !important;
             }
             .home-hero-media { background-position: 52% center; }
             .home-hero-video { object-position: 52% center; }
@@ -261,12 +256,31 @@
                 justify-items: center;
                 gap: 20px;
                 padding: 24px 20px;
-                margin-top: calc(28px + var(--home-promo-shift));
                 text-align: center;
             }
             .home-game-icon { width: 112px; }
             .home-store-badge { width: 204px; }
             .home-game-promo .home-hero-cta { justify-content: center; }
+        }
+
+        @media (max-width: 767px) {
+            .home-hero {
+                --home-mobile-media-height: clamp(280px, 48svh, 420px);
+                min-height: 0;
+                padding: 0 16px 32px;
+            }
+            .home-hero-media {
+                bottom: auto;
+                height: var(--home-mobile-media-height);
+            }
+            .home-hero-content {
+                grid-template-rows: var(--home-mobile-media-height) auto;
+            }
+            .home-hero-brand { padding-top: 16px; }
+            .home-game-promo {
+                align-self: start;
+                margin: 24px auto 0;
+            }
         }
 
         .home-hero-cta {
