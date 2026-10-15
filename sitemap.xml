@@ -4,7 +4,7 @@
     <loc>https://points.gs/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://points.gs/about.html</loc>
@@ -36,74 +36,86 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/about.html" />
   </url>
   <url>
+    <loc>https://points.gs/news_8.html</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_8.html" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_8.html" />
+  </url>
+  <url>
     <loc>https://points.gs/news_7.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_7.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_7.html" />
   </url>
   <url>
     <loc>https://points.gs/news_6.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_6.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_6.html" />
   </url>
   <url>
     <loc>https://points.gs/news_5.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_5.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_5.html" />
   </url>
   <url>
     <loc>https://points.gs/pillar_1.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/pillar_1.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/pillar_1.html" />
   </url>
   <url>
     <loc>https://points.gs/lore_1.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/lore_1.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/lore_1.html" />
   </url>
   <url>
     <loc>https://points.gs/devlog.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/devlog.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/devlog.html" />
   </url>
   <url>
+    <loc>https://points.gs/uk/news_8.html</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_8.html" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_8.html" />
+  </url>
+  <url>
     <loc>https://points.gs/uk/news_7.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_7.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_7.html" />
   </url>
   <url>
     <loc>https://points.gs/uk/news_6.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_6.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_6.html" />
   </url>
   <url>
     <loc>https://points.gs/uk/news_5.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/news_5.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/news_5.html" />
   </url>
   <url>
     <loc>https://points.gs/uk/pillar_1.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/pillar_1.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/pillar_1.html" />
   </url>
   <url>
     <loc>https://points.gs/uk/lore_1.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/lore_1.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/lore_1.html" />
   </url>
   <url>
     <loc>https://points.gs/uk/devlog.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/devlog.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/devlog.html" />
   </url>

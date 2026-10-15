@@ -20,6 +20,7 @@ import xml.etree.ElementTree as ET
 
 
 ARTICLE_TYPES = {"Article", "BlogPosting", "NewsArticle"}
+LANGUAGES = ("en", "uk")
 
 
 class Page(HTMLParser):
@@ -166,11 +167,31 @@ def validate(root: Path):
           manifest_path, "post slugs must be safe and must not replace the blog listing")
     check(urlsplit(site_url).scheme == "https" and bool(urlsplit(site_url).netloc),
           manifest_path, "site_url must be an absolute HTTPS origin")
+    languages_by_name = {"devlog.html": LANGUAGES}
+    for post in posts:
+        languages = post.get("languages", list(LANGUAGES))
+        valid_languages = (isinstance(languages, list) and bool(languages) and
+                           all(isinstance(language, str) and language in LANGUAGES for language in languages) and
+                           len(set(languages)) == len(languages))
+        check(valid_languages, manifest_path,
+              f"{post['slug']}: languages must be a nonempty, unique list containing only en/uk")
+        if valid_languages:
+            languages_by_name[post["slug"] + ".html"] = tuple(languages)
+            for field in ("title", "seo_title", "description", "summary", "kind", "cover_alt"):
+                values = post.get(field)
+                check(isinstance(values, dict) and all(isinstance(values.get(language), str) and values[language].strip()
+                                                       for language in languages),
+                      manifest_path, f"{post['slug']}: {field} requires nonempty text for every published language")
     if errors:
         return errors, 0
     posts_by_name = {post["slug"] + ".html": post for post in posts}
     page_names = ["devlog.html", *posts_by_name]
-    expected_paths = [root / prefix / name for prefix in ("", "uk") for name in page_names]
+    expected_paths = [root / ("uk" if language == "uk" else "") / name
+                      for language in LANGUAGES for name in page_names if language in languages_by_name[name]]
+    unpublished_paths = {root / ("uk" if language == "uk" else "") / name
+                         for language in LANGUAGES for name in posts_by_name if language not in languages_by_name[name]}
+    for path in sorted(unpublished_paths):
+        check(not path.exists(), path, "unpublished article translation must not have a generated page")
 
     for path in expected_paths:
         if not path.is_file():
@@ -181,6 +202,7 @@ def validate(root: Path):
         relative = path.relative_to(root).as_posix()
         canonical_url = urljoin(site_url, relative)
         post = posts_by_name.get(path.name)
+        available_languages = languages_by_name[path.name]
         check(len(page.titles) == 1 and bool(page.titles[0]), path, "requires one nonempty title")
         if page.titles:
             title = page.titles[0]
@@ -227,13 +249,20 @@ def validate(root: Path):
         check(not any("noindex" in value.lower() for value in page.meta("robots")),
               path, "active blog page must not be noindex")
 
-        alternates = {item.get("hreflang"): item.get("href") for item in page.links("alternate")}
-        for language in ("en", "uk"):
-            counterpart = urljoin(site_url, ("uk/" if language == "uk" else "") + path.name)
-            check(alternates.get(language) == counterpart, path, f"requires reciprocal {language} alternate: {counterpart}")
+        alternate_links = page.links("alternate")
+        alternates = {item.get("hreflang"): item.get("href") for item in alternate_links}
+        expected_alternates = {language: urljoin(site_url, ("uk/" if language == "uk" else "") + path.name)
+                               for language in available_languages}
+        default_language = "en" if "en" in available_languages else available_languages[0]
+        expected_alternates["x-default"] = expected_alternates[default_language]
+        check(alternates == expected_alternates and len(alternate_links) == len(expected_alternates),
+              path, "hreflang alternates must exactly match published languages plus x-default, without duplicates")
+        for language in LANGUAGES:
+            destination = path.name if language in available_languages else "devlog.html"
+            counterpart = urljoin(site_url, ("uk/" if language == "uk" else "") + destination)
             switches = [attrs for attrs in page.tags("a") if attrs.get("id") == ("switch-to-ua" if language == "uk" else "switch-to-en")]
             check(len(switches) == 1 and urljoin(canonical_url, switches[0].get("href") or "") == counterpart,
-                  path, f"native language link must point to {language} counterpart before JavaScript runs")
+                  path, f"native language link must point to published {language} page or its blog-list fallback: {counterpart}")
 
         nodes = []
         check(bool(page.schemas), path, "requires JSON-LD schema")
@@ -247,6 +276,15 @@ def validate(root: Path):
         if path.name == "devlog.html":
             check(any(types(node) & {"CollectionPage", "Blog", "ItemList"} for node in nodes),
                   path, "blog listing requires a collection/blog/list schema")
+            expected_articles = [urljoin(site_url, ("uk/" if lang == "uk" else "") + post["slug"] + ".html")
+                                 for post in posts if lang in languages_by_name[post["slug"] + ".html"]]
+            cards = [urljoin(canonical_url, link.get("href") or "") for link in page.tags("a")
+                     if "devlog-card" in (link.get("class") or "").split()]
+            check(cards == expected_articles, path, "listing cards must exactly match articles published in this language and manifest order")
+            item_lists = [node for node in nodes if "ItemList" in types(node)]
+            check(len(item_lists) == 1 and
+                  [item.get("url") for item in item_lists[0].get("itemListElement", [])] == expected_articles,
+                  path, "listing ItemList must exactly match articles published in this language and manifest order")
         else:
             check(bool(articles), path, "requires Article or BlogPosting schema")
             for article in articles:
@@ -275,6 +313,12 @@ def validate(root: Path):
                     check("datePublished" not in article, path, "do not invent an exact publication day when only a month is known")
                 if "dateModified" in article:
                     check(iso_date(article["dateModified"]), path, "dateModified must be valid ISO date/month")
+            available_articles = {urljoin(site_url, ("uk/" if lang == "uk" else "") + name)
+                                  for name in posts_by_name if lang in languages_by_name[name] and name != path.name}
+            for link in page.tags("a"):
+                if "related-card" in (link.get("class") or "").split():
+                    check(urljoin(canonical_url, link.get("href") or "") in available_articles,
+                          path, "related article must be published in the current language")
 
         times = page.tags("time")
         check(bool(times) and all(iso_date(item.get("datetime")) for item in times),
@@ -333,6 +377,7 @@ def validate(root: Path):
                 if local is None:
                     continue
                 target, fragment = local
+                check(target not in unpublished_paths, path, f"reference points to an unpublished article translation: {reference}")
                 check(target.is_file(), path, f"missing internal target: {reference}")
                 if fragment and target.is_file() and target.suffix == ".html":
                     check(fragment in read(target).ids, path, f"missing internal fragment: {reference}")
@@ -341,9 +386,28 @@ def validate(root: Path):
     if sitemap_path.is_file():
         try:
             sitemap = ET.parse(sitemap_path)
-            urls = {element.text for element in sitemap.iter() if element.tag.endswith("}loc")}
+            namespaces = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9", "xhtml": "http://www.w3.org/1999/xhtml"}
+            entries = {}
+            for entry in sitemap.findall("sm:url", namespaces):
+                entries.setdefault(entry.findtext("sm:loc", namespaces=namespaces), []).append(entry)
+            urls = set(entries)
             for path in expected_paths:
-                check(urljoin(site_url, path.relative_to(root).as_posix()) in urls, path, "active page is absent from sitemap")
+                url = urljoin(site_url, path.relative_to(root).as_posix())
+                matching_entries = entries.get(url, [])
+                check(len(matching_entries) == 1, path, "active page requires exactly one sitemap entry")
+                expected_alternates = {language: urljoin(site_url, ("uk/" if language == "uk" else "") + path.name)
+                                       for language in languages_by_name[path.name]}
+                for entry in matching_entries:
+                    alternate_links = entry.findall("xhtml:link", namespaces)
+                    alternates = {link.get("hreflang"): link.get("href") for link in alternate_links}
+                    check(alternates == expected_alternates and len(alternate_links) == len(expected_alternates) and
+                          all(link.get("rel") == "alternate" for link in alternate_links),
+                          path, "sitemap alternates must exactly match published languages, without duplicates")
+            unpublished_urls = {urljoin(site_url, path.relative_to(root).as_posix()) for path in unpublished_paths}
+            check(not (urls & unpublished_urls), sitemap_path, "sitemap must not list unpublished article translations")
+            for link in sitemap.findall(".//xhtml:link", namespaces):
+                check(link.get("href") not in unpublished_urls, sitemap_path,
+                      "sitemap must not advertise an unpublished article translation as an alternate")
         except ET.ParseError as error:
             check(False, sitemap_path, f"invalid sitemap XML: {error}")
     else:

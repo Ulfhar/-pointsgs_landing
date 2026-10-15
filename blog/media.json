@@ -853,6 +853,51 @@
       }
     ]
   },
+  "images/news_images/8/jackdaws_post.jpg": {
+    "width": 1794,
+    "height": 1795,
+    "original_bytes": 480506,
+    "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-128.webp",
+    "srcset": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-64.webp 64w, images/blog/images-news-images-8-jackdaws-post-9b2e075b-128.webp 128w, images/blog/images-news-images-8-jackdaws-post-9b2e075b-480.webp 480w, images/blog/images-news-images-8-jackdaws-post-9b2e075b-800.webp 800w, images/blog/images-news-images-8-jackdaws-post-9b2e075b-1200.webp 1200w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-full.webp",
+    "src_bytes": 3098,
+    "full_bytes": 318536,
+    "full_width": 1794,
+    "full_height": 1795,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-64.webp",
+        "width": 64,
+        "height": 64,
+        "bytes": 858
+      },
+      {
+        "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-128.webp",
+        "width": 128,
+        "height": 128,
+        "bytes": 3098
+      },
+      {
+        "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 38524
+      },
+      {
+        "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-800.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 93522
+      },
+      {
+        "src": "images/blog/images-news-images-8-jackdaws-post-9b2e075b-1200.webp",
+        "width": 1200,
+        "height": 1201,
+        "bytes": 181828
+      }
+    ]
+  },
   "images/news_images/lore_1/L_1.png": {
     "width": 3120,
     "height": 1440,
@@ -992,6 +1037,39 @@
         "width": 512,
         "height": 512,
         "bytes": 7502
+      }
+    ]
+  },
+  "images/soc-media-logo/facebook_logo.png": {
+    "width": 274,
+    "height": 271,
+    "original_bytes": 4574,
+    "src": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-128.webp",
+    "srcset": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-64.webp 64w, images/blog/images-soc-media-logo-facebook-logo-dc04d369-128.webp 128w, images/blog/images-soc-media-logo-facebook-logo-dc04d369-274.webp 274w",
+    "sizes": "128px",
+    "fullsrc": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-full.webp",
+    "src_bytes": 384,
+    "full_bytes": 630,
+    "full_width": 274,
+    "full_height": 271,
+    "variants": [
+      {
+        "src": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-64.webp",
+        "width": 64,
+        "height": 63,
+        "bytes": 268
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-128.webp",
+        "width": 128,
+        "height": 127,
+        "bytes": 384
+      },
+      {
+        "src": "images/blog/images-soc-media-logo-facebook-logo-dc04d369-274.webp",
+        "width": 274,
+        "height": 271,
+        "bytes": 630
       }
     ]
   },

@@ -44,6 +44,8 @@ SOCIAL_IMAGES = {
     "images/lumen-grove-mobile-banner.png",
 }
 COMPACT_IMAGES = {
+    "images/soc-media-logo/facebook_logo.png",
+    "images/news_images/8/jackdaws_post.jpg",
     "images/ava.jpg", "images/new_logo_points.png",
     "images/play-store-round-color-icon.png",
     "images/soc-media-logo/x-logo.png", "images/soc-media-logo/tik-tok-logo.png",

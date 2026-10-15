@@ -2,6 +2,19 @@
   "site_url": "https://points.gs",
   "posts": [
     {
+      "slug": "news_8",
+      "date": "2026-10-15",
+      "languages": ["en", "uk"],
+      "author": "bogdan",
+      "cover": "images/cozy-game-article-images/cozy-banner.png",
+      "cover_alt": {"en": "A peaceful moonlit forest in Lumen Grove", "uk": "Спокійний ліс Lumen Grove у місячному світлі"},
+      "title": {"en": "Jackdaw Post: Bringing Forest News to Lumen Grove", "uk": "Галчина Пошта: як оживають новини в Lumen Grove"},
+      "seo_title": {"en": "Jackdaw Post: Forest News in Lumen Grove | DevLog #7", "uk": "Галчина Пошта у Lumen Grove — щоденник розробки #7"},
+      "description": {"en": "Meet Jackdaw Post, Lumen Grove's forest newspaper: news delivered by jackdaws, stories tied to your grove's progress, and a world that reacts to you.", "uk": "Як створюється Галчина Пошта у Lumen Grove: лісова газета, яку розносять галки, новини про прогрес у гаю, історії мешканців і додаткові винагороди."},
+      "summary": {"en": "A forest newspaper delivered by jackdaws — and a way for Lumen Grove to react to players’ progress.", "uk": "Лісова газета, яку розносять галки: історії гаю, відгук на прогрес гравця та новий спосіб оживити світ Lumen Grove."},
+      "kind": {"en": "DevLog #7", "uk": "Щоденник розробки #7"}
+    },
+    {
       "slug": "news_7",
       "date": "2026-09-26",
       "author": "bogdan",

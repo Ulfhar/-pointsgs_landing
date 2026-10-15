@@ -363,5 +363,9 @@
   "home_halloween_play": "Грати в подію на Android",
   "home_platforms": "Доступна на Android · iOS планується",
   "home_ios_planned": "Версія Lumen Grove для iOS планується.",
-  "news7_platforms": "Lumen Grove доступна на Android. Версія для iOS планується."
+  "news7_platforms": "Lumen Grove доступна на Android. Версія для iOS планується.",
+  "home_devlog7_meta": "<span class=\"home-teaser-badge\">Щоденник розробки #7</span> <time datetime=\"2026-10-15\">15 жовт. 2026</time>",
+  "home_devlog7_title": "Галчина Пошта: як оживають новини в Lumen Grove",
+  "home_devlog7_text": "Лісова газета, яку розносять галки: історії гаю, відгук на прогрес гравця та новий спосіб оживити світ Lumen Grove.",
+  "home_devlog7_more": "Читати допис →"
 }
