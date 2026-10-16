@@ -269,7 +269,7 @@ def author_block(post, author, language, media, prefix):
         for node in icon.walk():
             if node.tag == "img":
                 node.attrs.update(loading="eager", sizes="32px")
-        social.append(f'<a class="ui-button ui-button--ghost ui-button--icon news-author-link" href="{e(url)}" target="_blank" rel="noopener noreferrer" '
+        social.append(f'<a class="ui-button ui-button--social ui-button--icon news-author-link" href="{e(url)}" target="_blank" rel="noopener noreferrer" '
                       f'aria-label="{e(text)}" title="{e(text)}">{icon.html()}</a>')
     return f'''<aside class="news-author-section" aria-label="{e(label)}">
                 <a class="news-author-profile" href="{e(author["url"])}" {profile_attrs}>
@@ -306,7 +306,7 @@ def share_block(post, language, site_url, media, prefix):
             if node.tag == "img":
                 node.attrs.update(loading="eager", sizes="28px")
         label = labels["on"] + " " + name
-        links.append(f'<a class="ui-button ui-button--secondary ui-button--icon article-share-control" href="{e(target)}" target="_blank" rel="noopener noreferrer" '
+        links.append(f'<a class="ui-button ui-button--social ui-button--icon article-share-control" href="{e(target)}" target="_blank" rel="noopener noreferrer" '
                      f'aria-label="{e(label)}" title="{e(label)}">{icon.html()}</a>')
     copy_icon = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7 .2l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7-.2l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>'
     native_icon = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16V3m-5 5 5-5 5 5M5 13v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>'

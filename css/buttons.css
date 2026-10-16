@@ -74,6 +74,16 @@
     --button-border-hover: #80d5cf80;
 }
 
+/* Social logo assets have black tiles: keep their button face black in every state. */
+.ui-button--social {
+    --button-bg: #000;
+    --button-bg-hover: #000;
+    --button-border: #3b4b55;
+    --button-border-hover: #6a9c9b;
+    --button-text: var(--button-foreground);
+    --button-text-hover: var(--button-foreground);
+}
+
 .ui-button--ghost {
     --button-bg: transparent;
     --button-border: transparent;

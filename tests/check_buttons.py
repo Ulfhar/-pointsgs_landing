@@ -13,8 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from html_tree import parse
 
-APPEARANCES = {"ui-button--primary", "ui-button--secondary", "ui-button--ghost"}
+APPEARANCES = {"ui-button--primary", "ui-button--secondary", "ui-button--ghost", "ui-button--social"}
 MODIFIERS = APPEARANCES | {"ui-button--icon", "ui-button--compact", "ui-button--media"}
+SOCIAL_HOOK = re.compile(r"(?:^|[-_])social-link$|^(?:news-author-link|article-share-control)$")
+SOCIAL_HOSTS = {"x.com", "twitter.com", "youtube.com", "tiktok.com", "linkedin.com",
+                "facebook.com", "instagram.com", "threads.net", "bsky.app", "t.me"}
 VISUAL_HOOK = re.compile(r"(?:^|[-_])(?:button|btn)(?:$|[-_])|^play-cta$|"
                          r"^(?:article-share-control|home-contact-submit|press-expandable-toggle)$|"
                          r"(?:social-link|asset-download|download-link)$")
@@ -45,6 +48,15 @@ def is_control(node):
         return any(VISUAL_HOOK.search(cls) for cls in classes) or bool(
             INLINE_PAINT.search(node.attrs.get("style", ""))) or "download" in node.attrs
     return any(cls in {"swiper-button-next", "swiper-button-prev"} for cls in classes)
+
+
+def is_social_control(node):
+    # A local Blog link and a video-view action are not social-profile/share
+    # controls, even when displayed beside the social links.
+    host = (urlsplit(node.attrs.get("href", "")).hostname or "").lower()
+    network = any(host == domain or host.endswith("." + domain) for domain in SOCIAL_HOSTS)
+    return node.tag == "a" and network and any(
+        SOCIAL_HOOK.search(cls) for cls in node.attrs.get("class", "").split())
 
 
 pages, controls = 0, 0
@@ -78,6 +90,8 @@ for page in sorted([*ROOT.glob("*.html"), *(ROOT / "uk").glob("*.html")]):
         check(len(classes & APPEARANCES) == 1, f"{where}: choose one shared appearance")
         unknown = {cls for cls in classes if cls.startswith("ui-button--")} - MODIFIERS
         check(not unknown, f"{where}: undocumented button modifier {sorted(unknown)}")
+        check(("ui-button--social" in classes) == is_social_control(action),
+              f"{where}: reserve the black social appearance for external social-profile/share controls")
         check(not INLINE_PAINT.search(action.attrs.get("style", "")),
               f"{where}: inline appearance competes with the shared stylesheet")
         check(action.tag in {"a", "button", "input"},
