@@ -52,8 +52,11 @@ check(next(n for n in main.children if n.tag == "section").attrs.get("id") == "h
 check(not any(n.has_class("home-roadmap") for n in nodes), "developer roadmap must be removed")
 check(sum(n.has_class("home-feature") for n in nodes) == 6, "six player-facing features required")
 hero = home.find("header", "home-hero")
-hero_links = [n for n in hero.walk() if n.tag == "a" and (n.has_class("home-store-link") or n.has_class("home-btn-secondary"))]
+hero_links = [n for n in hero.walk() if n.tag == "a" and n.has_class("ui-button") and
+              (n.has_class("play-cta") or n.attrs.get("href") == "#gameplay")]
 check(len(hero_links) == 2 and "play.google.com/store/apps/details" in hero_links[0].attrs["href"] and hero_links[1].attrs["href"] == "#gameplay", "hero must lead to install and gameplay")
+check(hero_links[0].has_class("ui-button--primary") and hero_links[1].has_class("ui-button--secondary"),
+      "hero actions must use the common primary/secondary button pair")
 faq = next(n for n in nodes if n.attrs.get("data-i18n") == "home_faq_a2").text()
 check("Light" in faq and "Magic Oak" in faq and "fireflies" not in faq.lower(), "current Light-to-Oak loop required")
 strings = json.loads((ROOT / "js/locales/ua.json").read_text(encoding="utf-8"))

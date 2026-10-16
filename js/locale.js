@@ -67,6 +67,10 @@ function localizePage(strings) {
         const value = strings[el.getAttribute('data-i18n-content')];
         if (typeof value === 'string') el.setAttribute('content', value);
     });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        const value = strings[el.getAttribute('data-i18n-aria-label')];
+        if (typeof value === 'string') el.setAttribute('aria-label', value);
+    });
     document.querySelectorAll('a[data-locale-page]').forEach(link => {
         const page = link.getAttribute('data-locale-page');
         link.href = (getUserLocale() === 'ua' ? '/uk/' : '/') + page;

@@ -898,6 +898,227 @@
       }
     ]
   },
+  "images/news_images/9/Admiral_Sea_Battles_cover.png": {
+    "width": 300,
+    "height": 375,
+    "original_bytes": 259042,
+    "src": "images/blog/images-news-images-9-admiral-sea-battles-cover-a907420b-300.webp",
+    "srcset": "images/blog/images-news-images-9-admiral-sea-battles-cover-a907420b-300.webp 300w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-admiral-sea-battles-cover-a907420b-full.webp",
+    "src_bytes": 36854,
+    "full_bytes": 36854,
+    "full_width": 300,
+    "full_height": 375,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-admiral-sea-battles-cover-a907420b-300.webp",
+        "width": 300,
+        "height": 375,
+        "bytes": 36854
+      }
+    ]
+  },
+  "images/news_images/9/gameplay.png": {
+    "width": 1091,
+    "height": 817,
+    "original_bytes": 987277,
+    "src": "images/blog/images-news-images-9-gameplay-5400dff9-800.webp",
+    "srcset": "images/blog/images-news-images-9-gameplay-5400dff9-480.webp 480w, images/blog/images-news-images-9-gameplay-5400dff9-800.webp 800w, images/blog/images-news-images-9-gameplay-5400dff9-1091.webp 1091w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-gameplay-5400dff9-full.webp",
+    "src_bytes": 67402,
+    "full_bytes": 102468,
+    "full_width": 1091,
+    "full_height": 817,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-gameplay-5400dff9-480.webp",
+        "width": 480,
+        "height": 359,
+        "bytes": 31550
+      },
+      {
+        "src": "images/blog/images-news-images-9-gameplay-5400dff9-800.webp",
+        "width": 800,
+        "height": 599,
+        "bytes": 67402
+      },
+      {
+        "src": "images/blog/images-news-images-9-gameplay-5400dff9-1091.webp",
+        "width": 1091,
+        "height": 817,
+        "bytes": 102468
+      }
+    ]
+  },
+  "images/news_images/9/gameplay2.png": {
+    "width": 1034,
+    "height": 741,
+    "original_bytes": 941763,
+    "src": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-800.webp",
+    "srcset": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-480.webp 480w, images/blog/images-news-images-9-gameplay2-7ae4ae3f-800.webp 800w, images/blog/images-news-images-9-gameplay2-7ae4ae3f-1034.webp 1034w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-full.webp",
+    "src_bytes": 69390,
+    "full_bytes": 97142,
+    "full_width": 1034,
+    "full_height": 741,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-480.webp",
+        "width": 480,
+        "height": 344,
+        "bytes": 34420
+      },
+      {
+        "src": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-800.webp",
+        "width": 800,
+        "height": 573,
+        "bytes": 69390
+      },
+      {
+        "src": "images/blog/images-news-images-9-gameplay2-7ae4ae3f-1034.webp",
+        "width": 1034,
+        "height": 741,
+        "bytes": 97142
+      }
+    ]
+  },
+  "images/news_images/9/gameplay3.png": {
+    "width": 787,
+    "height": 348,
+    "original_bytes": 348203,
+    "src": "images/blog/images-news-images-9-gameplay3-4b7c46d1-787.webp",
+    "srcset": "images/blog/images-news-images-9-gameplay3-4b7c46d1-480.webp 480w, images/blog/images-news-images-9-gameplay3-4b7c46d1-787.webp 787w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-gameplay3-4b7c46d1-full.webp",
+    "src_bytes": 35102,
+    "full_bytes": 35102,
+    "full_width": 787,
+    "full_height": 348,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-gameplay3-4b7c46d1-480.webp",
+        "width": 480,
+        "height": 212,
+        "bytes": 19174
+      },
+      {
+        "src": "images/blog/images-news-images-9-gameplay3-4b7c46d1-787.webp",
+        "width": 787,
+        "height": 348,
+        "bytes": 35102
+      }
+    ]
+  },
+  "images/news_images/9/main image.png": {
+    "width": 1672,
+    "height": 941,
+    "original_bytes": 2611874,
+    "src": "images/blog/images-news-images-9-main-image-971f25e2-800.webp",
+    "srcset": "images/blog/images-news-images-9-main-image-971f25e2-480.webp 480w, images/blog/images-news-images-9-main-image-971f25e2-800.webp 800w, images/blog/images-news-images-9-main-image-971f25e2-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-main-image-971f25e2-full.webp",
+    "src_bytes": 108832,
+    "full_bytes": 333866,
+    "full_width": 1672,
+    "full_height": 941,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-main-image-971f25e2-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 46254
+      },
+      {
+        "src": "images/blog/images-news-images-9-main-image-971f25e2-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 108832
+      },
+      {
+        "src": "images/blog/images-news-images-9-main-image-971f25e2-1200.webp",
+        "width": 1200,
+        "height": 675,
+        "bytes": 206120
+      }
+    ],
+    "ogsrc": "images/blog/images-news-images-9-main-image-971f25e2-og.jpg",
+    "og_width": 1200,
+    "og_height": 675,
+    "og_bytes": 263679
+  },
+  "images/news_images/9/menu.png": {
+    "width": 1435,
+    "height": 775,
+    "original_bytes": 877573,
+    "src": "images/blog/images-news-images-9-menu-9264d66a-800.webp",
+    "srcset": "images/blog/images-news-images-9-menu-9264d66a-480.webp 480w, images/blog/images-news-images-9-menu-9264d66a-800.webp 800w, images/blog/images-news-images-9-menu-9264d66a-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-menu-9264d66a-full.webp",
+    "src_bytes": 33538,
+    "full_bytes": 65270,
+    "full_width": 1435,
+    "full_height": 775,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-menu-9264d66a-480.webp",
+        "width": 480,
+        "height": 259,
+        "bytes": 17526
+      },
+      {
+        "src": "images/blog/images-news-images-9-menu-9264d66a-800.webp",
+        "width": 800,
+        "height": 432,
+        "bytes": 33538
+      },
+      {
+        "src": "images/blog/images-news-images-9-menu-9264d66a-1200.webp",
+        "width": 1200,
+        "height": 648,
+        "bytes": 52646
+      }
+    ],
+    "ogsrc": "images/blog/images-news-images-9-menu-9264d66a-og.jpg",
+    "og_width": 1200,
+    "og_height": 648,
+    "og_bytes": 89297
+  },
+  "images/news_images/9/ui.png": {
+    "width": 1423,
+    "height": 857,
+    "original_bytes": 1351595,
+    "src": "images/blog/images-news-images-9-ui-d8cb3715-800.webp",
+    "srcset": "images/blog/images-news-images-9-ui-d8cb3715-480.webp 480w, images/blog/images-news-images-9-ui-d8cb3715-800.webp 800w, images/blog/images-news-images-9-ui-d8cb3715-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-news-images-9-ui-d8cb3715-full.webp",
+    "src_bytes": 62522,
+    "full_bytes": 126028,
+    "full_width": 1423,
+    "full_height": 857,
+    "variants": [
+      {
+        "src": "images/blog/images-news-images-9-ui-d8cb3715-480.webp",
+        "width": 480,
+        "height": 289,
+        "bytes": 29966
+      },
+      {
+        "src": "images/blog/images-news-images-9-ui-d8cb3715-800.webp",
+        "width": 800,
+        "height": 482,
+        "bytes": 62522
+      },
+      {
+        "src": "images/blog/images-news-images-9-ui-d8cb3715-1200.webp",
+        "width": 1200,
+        "height": 723,
+        "bytes": 101104
+      }
+    ]
+  },
   "images/news_images/lore_1/L_1.png": {
     "width": 3120,
     "height": 1440,

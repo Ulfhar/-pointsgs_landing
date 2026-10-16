@@ -56,22 +56,6 @@ strong { color: #eef4f9; }
 .about-game-image img { display: block; width: 100%; height: auto; border: 1px solid var(--about-border); border-radius: 12px; }
 .about-game-image figcaption { margin-top: 10px; color: var(--about-muted); font-size: 14px; line-height: 1.5; }
 .about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 24px; }
-.about-play {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 12px 20px;
-    color: #0b1727;
-    background: var(--about-accent);
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    text-decoration: none;
-    line-height: 1.5;
-}
-.about-play:hover { color: #0b1727; background: #b5f1e7; }
-.about-secondary { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; }
 .about-light { margin-top: 32px; padding: 24px; border: 1px solid var(--about-border); border-radius: 12px; background: var(--about-surface); }
 .about-light h3 { font-size: 1.15rem; }
 .about-light ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 0; padding: 0; list-style: none; counter-reset: care-step; }
@@ -92,10 +76,6 @@ strong { color: #eef4f9; }
     .about-light ol { grid-template-columns: 1fr; gap: 20px; }
     .about-light li { padding-top: 16px; border-top: 1px solid var(--about-border); }
     .about-light li:first-child { padding-top: 0; border-top: 0; }
-}
-
-@media (max-width: 350px) {
-    .about-play { width: 100%; padding-inline: 14px; }
 }
 
 @media (max-width: 480px) {

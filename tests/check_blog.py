@@ -138,6 +138,11 @@ def local_target(root, page_path, href, site_url):
     return target, unquote(url.fragment)
 
 
+def article_route(post, language):
+    slug = post.get("url_slugs", {}).get(language, post["slug"])
+    return ("uk/" if language == "uk" else "") + slug + ".html"
+
+
 def validate(root: Path):
     errors = []
     cache = {}
@@ -167,7 +172,7 @@ def validate(root: Path):
           manifest_path, "post slugs must be safe and must not replace the blog listing")
     check(urlsplit(site_url).scheme == "https" and bool(urlsplit(site_url).netloc),
           manifest_path, "site_url must be an absolute HTTPS origin")
-    languages_by_name = {"devlog.html": LANGUAGES}
+    languages_by_slug = {"devlog": LANGUAGES}
     for post in posts:
         languages = post.get("languages", list(LANGUAGES))
         valid_languages = (isinstance(languages, list) and bool(languages) and
@@ -176,33 +181,88 @@ def validate(root: Path):
         check(valid_languages, manifest_path,
               f"{post['slug']}: languages must be a nonempty, unique list containing only en/uk")
         if valid_languages:
-            languages_by_name[post["slug"] + ".html"] = tuple(languages)
+            languages_by_slug[post["slug"]] = tuple(languages)
             for field in ("title", "seo_title", "description", "summary", "kind", "cover_alt"):
                 values = post.get(field)
                 check(isinstance(values, dict) and all(isinstance(values.get(language), str) and values[language].strip()
                                                        for language in languages),
                       manifest_path, f"{post['slug']}: {field} requires nonempty text for every published language")
+            if "url_slugs" in post:
+                routes = post["url_slugs"]
+                check(isinstance(routes, dict) and set(routes) <= set(languages) and
+                      all(isinstance(value, str) and re.fullmatch(r"[a-z0-9_-]+", value) and value != "devlog"
+                          for value in routes.values()),
+                      manifest_path, f"{post['slug']}: url_slugs may only contain safe route slugs for published languages")
+            if "primary_keyword" in post:
+                keywords = post["primary_keyword"]
+                check(isinstance(keywords, dict) and set(keywords) <= set(languages) and
+                      all(isinstance(value, str) and value.strip() for value in keywords.values()),
+                      manifest_path, f"{post['slug']}: primary_keyword may only contain nonempty text for published languages")
     if errors:
         return errors, 0
-    posts_by_name = {post["slug"] + ".html": post for post in posts}
-    page_names = ["devlog.html", *posts_by_name]
-    expected_paths = [root / ("uk" if language == "uk" else "") / name
-                      for language in LANGUAGES for name in page_names if language in languages_by_name[name]]
-    unpublished_paths = {root / ("uk" if language == "uk" else "") / name
-                         for language in LANGUAGES for name in posts_by_name if language not in languages_by_name[name]}
+
+    def routes_for(post, languages):
+        return {language: urljoin(site_url, article_route(post, language) if post else
+                                 ("uk/" if language == "uk" else "") + "devlog.html")
+                for language in languages}
+
+    pages = {}
+    aliases = {}
+    unpublished_paths = set()
+    for language in LANGUAGES:
+        pages[root / ("uk/" if language == "uk" else "") / "devlog.html"] = (None, language)
+        claims = {}
+        for post in posts:
+            canonical_path = root / article_route(post, language)
+            legacy_path = root / ("uk/" if language == "uk" else "") / (post["slug"] + ".html")
+            if language not in languages_by_slug[post["slug"]]:
+                unpublished_paths.update((canonical_path, legacy_path))
+                continue
+            # A canonical route may not take another article's identity URL,
+            # because that URL must continue to identify its original article.
+            for claimed_path in {canonical_path, legacy_path}:
+                check(claimed_path not in claims, manifest_path,
+                      f"{post['slug']}: {language} route collides with {claims.get(claimed_path)}")
+                claims[claimed_path] = post["slug"]
+            pages[canonical_path] = (post, language)
+            if canonical_path != legacy_path:
+                aliases[legacy_path] = canonical_path
+    if errors:
+        return errors, 0
+    expected_paths = list(pages)
     for path in sorted(unpublished_paths):
         check(not path.exists(), path, "unpublished article translation must not have a generated page")
+
+    for path, destination in aliases.items():
+        if not path.is_file():
+            check(False, path, "legacy article URL requires a redirect alias")
+            continue
+        page = read(path)
+        canonical_url = urljoin(site_url, destination.relative_to(root).as_posix())
+        language = pages[destination][1]
+        check(len(page.tags("html")) == 1 and page.tags("html")[0].get("lang") == language,
+              path, "legacy alias must retain its original language")
+        canonical = page.links("canonical")
+        check(len(canonical) == 1 and canonical[0].get("href") == canonical_url,
+              path, "legacy alias canonical must point to the article's language-specific route")
+        check(any("noindex" in value.lower() for value in page.meta("robots")),
+              path, "legacy alias must be noindex")
+        refreshes = [meta.get("content", "") for meta in page.tags("meta")
+                     if (meta.get("http-equiv") or "").lower() == "refresh"]
+        refresh = re.fullmatch(r"\s*0(?:\.0+)?\s*;\s*url\s*=\s*(.*?)\s*", refreshes[0], re.I) if len(refreshes) == 1 else None
+        check(refresh is not None and
+              urljoin(urljoin(site_url, path.relative_to(root).as_posix()), refresh.group(1).strip("\"'")) == canonical_url,
+              path, "legacy alias requires one immediate refresh to its canonical article")
 
     for path in expected_paths:
         if not path.is_file():
             check(False, path, "expected generated page is missing; run tools/build_blog.py")
             continue
         page = read(path)
-        lang = "uk" if path.parent.name == "uk" else "en"
+        post, lang = pages[path]
         relative = path.relative_to(root).as_posix()
         canonical_url = urljoin(site_url, relative)
-        post = posts_by_name.get(path.name)
-        available_languages = languages_by_name[path.name]
+        available_languages = languages_by_slug[post["slug"] if post else "devlog"]
         check(len(page.titles) == 1 and bool(page.titles[0]), path, "requires one nonempty title")
         if page.titles:
             title = page.titles[0]
@@ -215,6 +275,9 @@ def validate(root: Path):
         if post:
             check(page.headings == [post["title"][lang]], path, "H1 must match the manifest article title")
             check(page.meta("description") == [post["description"][lang]], path, "description must match the manifest language")
+            keyword = post.get("primary_keyword", {}).get(lang)
+            if keyword:
+                check(page.meta("keywords") == [keyword], path, "meta keywords must match the configured language-specific primary keyword")
             cards = [(tag, attrs) for tag, attrs in page.elements
                      if "news-author-section" in (attrs.get("class") or "").split()]
             check(len(cards) == 1 and cards[0][0] in {"aside", "div"}, path, "requires one author card with separate profile and social links")
@@ -251,15 +314,13 @@ def validate(root: Path):
 
         alternate_links = page.links("alternate")
         alternates = {item.get("hreflang"): item.get("href") for item in alternate_links}
-        expected_alternates = {language: urljoin(site_url, ("uk/" if language == "uk" else "") + path.name)
-                               for language in available_languages}
+        expected_alternates = routes_for(post, available_languages)
         default_language = "en" if "en" in available_languages else available_languages[0]
         expected_alternates["x-default"] = expected_alternates[default_language]
         check(alternates == expected_alternates and len(alternate_links) == len(expected_alternates),
               path, "hreflang alternates must exactly match published languages plus x-default, without duplicates")
         for language in LANGUAGES:
-            destination = path.name if language in available_languages else "devlog.html"
-            counterpart = urljoin(site_url, ("uk/" if language == "uk" else "") + destination)
+            counterpart = routes_for(post if language in available_languages else None, [language])[language]
             switches = [attrs for attrs in page.tags("a") if attrs.get("id") == ("switch-to-ua" if language == "uk" else "switch-to-en")]
             check(len(switches) == 1 and urljoin(canonical_url, switches[0].get("href") or "") == counterpart,
                   path, f"native language link must point to published {language} page or its blog-list fallback: {counterpart}")
@@ -273,11 +334,11 @@ def validate(root: Path):
                 check(False, path, f"invalid JSON-LD: {error}")
         articles = [node for node in nodes if types(node) & ARTICLE_TYPES]
         nodes_by_id = {node["@id"]: node for node in nodes if node.get("@id")}
-        if path.name == "devlog.html":
+        if post is None:
             check(any(types(node) & {"CollectionPage", "Blog", "ItemList"} for node in nodes),
                   path, "blog listing requires a collection/blog/list schema")
-            expected_articles = [urljoin(site_url, ("uk/" if lang == "uk" else "") + post["slug"] + ".html")
-                                 for post in posts if lang in languages_by_name[post["slug"] + ".html"]]
+            expected_articles = [urljoin(site_url, article_route(item, lang))
+                                 for item in posts if lang in languages_by_slug[item["slug"]]]
             cards = [urljoin(canonical_url, link.get("href") or "") for link in page.tags("a")
                      if "devlog-card" in (link.get("class") or "").split()]
             check(cards == expected_articles, path, "listing cards must exactly match articles published in this language and manifest order")
@@ -291,6 +352,9 @@ def validate(root: Path):
                 check(bool(article.get("headline")) and bool(article.get("image")), path, "article schema requires headline/image")
                 check(article.get("headline") in page.headings, path, "schema headline must match the visible H1")
                 check(article.get("url") == canonical_url, path, "article schema URL must match canonical")
+                if post.get("primary_keyword", {}).get(lang):
+                    check(article.get("keywords") == post["primary_keyword"][lang], path,
+                          "article schema keywords must match the configured language-specific primary keyword")
                 authors = article.get("author", [])
                 if isinstance(authors, dict):
                     authors = [authors]
@@ -313,8 +377,8 @@ def validate(root: Path):
                     check("datePublished" not in article, path, "do not invent an exact publication day when only a month is known")
                 if "dateModified" in article:
                     check(iso_date(article["dateModified"]), path, "dateModified must be valid ISO date/month")
-            available_articles = {urljoin(site_url, ("uk/" if lang == "uk" else "") + name)
-                                  for name in posts_by_name if lang in languages_by_name[name] and name != path.name}
+            available_articles = {urljoin(site_url, article_route(item, lang))
+                                  for item in posts if lang in languages_by_slug[item["slug"]] and item["slug"] != post["slug"]}
             for link in page.tags("a"):
                 if "related-card" in (link.get("class") or "").split():
                     check(urljoin(canonical_url, link.get("href") or "") in available_articles,
@@ -378,6 +442,7 @@ def validate(root: Path):
                     continue
                 target, fragment = local
                 check(target not in unpublished_paths, path, f"reference points to an unpublished article translation: {reference}")
+                check(target not in aliases, path, f"active page reference must use the article's canonical language route: {reference}")
                 check(target.is_file(), path, f"missing internal target: {reference}")
                 if fragment and target.is_file() and target.suffix == ".html":
                     check(fragment in read(target).ids, path, f"missing internal fragment: {reference}")
@@ -392,22 +457,29 @@ def validate(root: Path):
                 entries.setdefault(entry.findtext("sm:loc", namespaces=namespaces), []).append(entry)
             urls = set(entries)
             for path in expected_paths:
+                post, lang = pages[path]
+                available_languages = languages_by_slug[post["slug"] if post else "devlog"]
                 url = urljoin(site_url, path.relative_to(root).as_posix())
                 matching_entries = entries.get(url, [])
                 check(len(matching_entries) == 1, path, "active page requires exactly one sitemap entry")
-                expected_alternates = {language: urljoin(site_url, ("uk/" if language == "uk" else "") + path.name)
-                                       for language in languages_by_name[path.name]}
+                expected_alternates = routes_for(post, available_languages)
+                default_language = "en" if "en" in available_languages else available_languages[0]
+                expected_alternates["x-default"] = expected_alternates[default_language]
                 for entry in matching_entries:
                     alternate_links = entry.findall("xhtml:link", namespaces)
                     alternates = {link.get("hreflang"): link.get("href") for link in alternate_links}
                     check(alternates == expected_alternates and len(alternate_links) == len(expected_alternates) and
                           all(link.get("rel") == "alternate" for link in alternate_links),
-                          path, "sitemap alternates must exactly match published languages, without duplicates")
+                          path, "sitemap alternates must exactly match published language routes plus x-default, without duplicates")
             unpublished_urls = {urljoin(site_url, path.relative_to(root).as_posix()) for path in unpublished_paths}
+            alias_urls = {urljoin(site_url, path.relative_to(root).as_posix()) for path in aliases}
             check(not (urls & unpublished_urls), sitemap_path, "sitemap must not list unpublished article translations")
+            check(not (urls & alias_urls), sitemap_path, "sitemap must not list legacy article aliases")
             for link in sitemap.findall(".//xhtml:link", namespaces):
                 check(link.get("href") not in unpublished_urls, sitemap_path,
                       "sitemap must not advertise an unpublished article translation as an alternate")
+                check(link.get("href") not in alias_urls, sitemap_path,
+                      "sitemap must not advertise a legacy article alias as an alternate")
         except ET.ParseError as error:
             check(False, sitemap_path, f"invalid sitemap XML: {error}")
     else:

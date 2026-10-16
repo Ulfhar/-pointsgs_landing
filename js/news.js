@@ -27,9 +27,27 @@
             return node;
         }
         function button(className, text, label) {
-            var node = element('button', className, text);
+            // Variants share focus, typography and touch defaults in buttons.css.
+            var node = element('button', 'ui-button ' + className, text);
             node.type = 'button';
             if (label) node.setAttribute('aria-label', label);
+            return node;
+        }
+        function iconButton(className, pathData, label) {
+            var node = button(className, '', label);
+            var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('stroke-width', '1.5');
+            svg.setAttribute('stroke-linecap', 'round');
+            svg.setAttribute('stroke-linejoin', 'round');
+            svg.setAttribute('aria-hidden', 'true');
+            svg.setAttribute('focusable', 'false');
+            var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', pathData);
+            svg.appendChild(path);
+            node.appendChild(svg);
             return node;
         }
         function fullSource(img) { return img.dataset.fullSrc || img.currentSrc || img.src; }
@@ -73,14 +91,14 @@
             dialog.setAttribute('tabindex', '-1');
             var title = element('h2', 'visually-hidden', labels.viewer);
             title.id = 'news-lightbox-title';
-            dialogClose = button('lightbox-close', '×', labels.close);
+            dialogClose = iconButton('ui-button--ghost ui-button--icon lightbox-close', 'M6 6l12 12M6 18 18 6', labels.close);
             dialogClose.title = labels.close;
             var figure = element('figure');
             var stage = element('div', 'lightbox-stage');
             dialogImage = element('img');
             dialogCaption = element('figcaption');
-            dialogPrevious = button('lightbox-zone lightbox-previous', '‹', labels.previous);
-            dialogNext = button('lightbox-zone lightbox-next', '›', labels.next);
+            dialogPrevious = iconButton('ui-button--ghost ui-button--compact lightbox-zone lightbox-previous', 'm15 6-6 6 6 6', labels.previous);
+            dialogNext = iconButton('ui-button--ghost ui-button--compact lightbox-zone lightbox-next', 'm9 6 6 6-6 6', labels.next);
             stage.append(dialogImage, dialogPrevious, dialogNext);
             figure.append(stage, dialogCaption);
             dialogStatus = element('p', 'lightbox-status');
@@ -137,7 +155,7 @@
         }
         function enhanceImage(img, group, gallery) {
             if (img.closest('button, a') || img.dataset.lightboxReady) return;
-            var trigger = button('gallery-image-button', '', labels.open + (img.alt ? ': ' + img.alt : ''));
+            var trigger = button('ui-button--ghost ui-button--media gallery-image-button', '', labels.open + (img.alt ? ': ' + img.alt : ''));
             img.before(trigger);
             trigger.appendChild(img);
             img.dataset.lightboxReady = 'true';
@@ -159,7 +177,7 @@
             pagination.setAttribute('role', 'group');
             pagination.setAttribute('aria-label', labels.gallery);
             var dots = slides.map(function (_, slideIndex) {
-                return button('gallery-dot', '', labels.show + ' ' + labels.counter(slideIndex + 1, slides.length));
+                return button('ui-button--ghost ui-button--icon gallery-dot', '', labels.show + ' ' + labels.counter(slideIndex + 1, slides.length));
             });
             gallery.querySelectorAll('.swiper-button-prev, .swiper-button-next, .swiper-pagination').forEach(function (node) { node.remove(); });
             dots.forEach(function (dot) { pagination.appendChild(dot); });

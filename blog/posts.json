@@ -2,6 +2,22 @@
   "site_url": "https://points.gs",
   "posts": [
     {
+      "slug": "news_9",
+      "url_slugs": {"en": "ukrainian-game-development-meridian93-history", "uk": "istoriia-ukrainskoho-hejmdevu-meridian93"},
+      "date": "2026-10-16",
+      "languages": ["en", "uk"],
+      "author": "bogdan",
+      "long_read": true,
+      "cover": "images/news_images/9/main image.png",
+      "cover_alt": {"en": "Admiral Sea Battles collage with box art, tactical map, main menu and fleet selection", "uk": "Колаж Admiral Sea Battles: обкладинка, тактична карта, головне меню та вибір флоту"},
+      "title": {"en": "Before S.T.A.L.K.E.R.: How Ukrainian Game Developers Reached the Global Market in the 1990s", "uk": "До S.T.A.L.K.E.R.: як українські розробники вийшли на світовий ринок ще в 90-х"},
+      "seo_title": {"en": "Before S.T.A.L.K.E.R.: Ukrainian Game Development in the 1990s", "uk": "До S.T.A.L.K.E.R.: історія українського геймдеву 90-х"},
+      "description": {"en": "Before S.T.A.L.K.E.R. and Metro, Ukrainian studio Meridian'93 created ambitious strategy games and helped pave the way to Medieval II: Total War.", "uk": "Як українська студія Meridian'93 створювала ігри для світового ринку ще у 90-х, а її розробники згодом долучилися до Medieval II: Total War."},
+      "primary_keyword": {"en": "Ukrainian game development history", "uk": "історія українського геймдеву"},
+      "summary": {"en": "From Luhansk to the global market: Meridian'93, Admiral Sea Battles, and the Ukrainian developers who helped shape game history.", "uk": "Від Луганська до світового ринку: Meridian'93, Admiral Sea Battles та українські розробники, які творили історію відеоігор."},
+      "kind": {"en": "Article", "uk": "Стаття"}
+    },
+    {
       "slug": "news_8",
       "date": "2026-10-15",
       "languages": ["en", "uk"],

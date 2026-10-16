@@ -1,0 +1,176 @@
+/*
+ * Shared button system. Usage and examples: docs/buttons.md.
+ * Every button uses .ui-button + a semantic variant. Page CSS owns placement
+ * only; do not override colors, font, borders, shadows or states per page.
+ * Contextual media/viewer geometry uses the documented --button-* variables.
+ */
+:root {
+    --button-font: Arial, Helvetica, sans-serif;
+    --button-font-size: 18px;
+    --button-height: 64px;
+    --button-target-size: 44px;
+    --button-accent: #8bddd4;
+    --button-surface: #102338;
+    --button-foreground: #eff8fb;
+    --button-outline: #89bac24d;
+    --button-focus: #70d8ca;
+    --button-primary-top: #9ce9e0;
+    --button-primary-bottom: #5dbdb8;
+    --button-primary-text: #062a31;
+    --button-secondary-top: #23425d;
+    --button-secondary-bottom: #132c43;
+    --button-rest-shadow: inset 0 1px 0 #ffffff47, inset 0 -1px 0 #0516222e, 0 2px 3px #02081333, 0 8px 18px -8px #0007;
+    --button-hover-shadow: inset 0 1px 0 #ffffff66, inset 0 -1px 0 #05162233, 0 3px 6px #02081340, 0 12px 24px -10px #0009;
+    --button-pressed-shadow: inset 0 2px 3px #06182b38, inset 0 -1px 0 #ffffff22, 0 2px 5px #0004;
+}
+
+:root .ui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 12px;
+    width: var(--button-width, auto);
+    min-width: 0;
+    min-height: var(--button-min-height, var(--button-height));
+    max-width: 100%;
+    padding: var(--button-padding, 8px 22px);
+    border: 1px solid var(--button-border, var(--button-outline));
+    border-radius: var(--button-radius, 14px);
+    background: var(--button-bg, var(--button-surface));
+    color: var(--button-text, var(--button-foreground));
+    font-family: var(--button-font);
+    font-size: var(--button-text-size, var(--button-font-size));
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: var(--button-shadow, var(--button-rest-shadow));
+    vertical-align: middle;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+/* Variants deliberately have low specificity so documented geometry can adapt. */
+.ui-button--primary {
+    --button-bg: linear-gradient(180deg, var(--button-primary-top), var(--button-primary-bottom));
+    --button-border: #75c6c2;
+    --button-text: var(--button-primary-text);
+    --button-bg-hover: linear-gradient(180deg, #a9eee6, #6bcbc4);
+    --button-border-hover: #88d4ce;
+    --button-text-hover: var(--button-primary-text);
+}
+
+.ui-button--secondary {
+    --button-bg: linear-gradient(180deg, var(--button-secondary-top), var(--button-secondary-bottom));
+    --button-border: var(--button-outline);
+    --button-text: var(--button-foreground);
+    --button-bg-hover: linear-gradient(180deg, #2a4c68, #193951);
+    --button-border-hover: #80d5cf80;
+}
+
+.ui-button--ghost {
+    --button-bg: transparent;
+    --button-border: transparent;
+    --button-text: var(--button-accent);
+    --button-border-hover: transparent;
+    --button-shadow: none;
+    --button-shadow-hover: none;
+    --button-shadow-active: none;
+}
+
+.ui-button--compact {
+    --button-min-height: var(--button-target-size);
+    --button-padding: 9px 14px;
+    --button-text-size: 15px;
+}
+
+.ui-button--icon {
+    --button-width: var(--button-target-size);
+    --button-min-height: var(--button-target-size);
+    --button-padding: 9px;
+    flex-shrink: 0;
+}
+
+/* Media is a zoom target, not a text CTA: its image defines its dimensions. */
+.ui-button--media {
+    --button-width: 100%;
+    --button-min-height: 0;
+    --button-padding: 0;
+    --button-border: transparent;
+    --button-bg: transparent;
+    --button-bg-hover: transparent;
+    --button-border-hover: transparent;
+    --button-shadow: none;
+    --button-shadow-hover: none;
+    --button-shadow-active: none;
+}
+
+:root .ui-button[hidden] { display: none; }
+:root .ui-button:disabled,
+:root .ui-button[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+@media (hover: hover) {
+    :root .ui-button:where(:not(:disabled):not([aria-disabled="true"])):hover {
+        background: var(--button-bg-hover, #183449);
+        border-color: var(--button-border-hover, #70d8ca);
+        color: var(--button-text-hover, var(--button-text, var(--button-foreground)));
+        box-shadow: var(--button-shadow-hover, var(--button-hover-shadow));
+        transform: translateY(-1px);
+    }
+}
+
+:root .ui-button:focus-visible {
+    outline: 3px solid var(--button-focus);
+    outline-offset: 3px;
+}
+
+:root .ui-button:where(:not(:disabled):not([aria-disabled="true"])):active { transform: translateY(1px); box-shadow: var(--button-shadow-active, var(--button-pressed-shadow)); }
+:root .ui-button--media:active { transform: none; }
+:root .ui-button--media:hover,
+:root .ui-button--ghost:hover { transform: none; }
+
+:root .ui-button > svg,
+:root .ui-button__icon { flex-shrink: 0; width: 20px; height: 20px; }
+:root .ui-button--icon > :is(img, svg) { width: 24px; height: 24px; max-width: 100%; object-fit: contain; }
+
+/* Play changes content only; it uses exactly the same primary button geometry. */
+:root .play-cta .play-cta__icon {
+    display: block;
+    box-sizing: border-box;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    max-width: none;
+    margin: 0;
+    padding: 10px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    object-fit: contain;
+    box-shadow: none;
+    filter: none;
+}
+:root .play-cta__copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; min-width: 0; text-align: left; }
+:root .play-cta .play-cta__label { color: var(--button-primary-text); font-family: var(--button-font); font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: normal; opacity: 1; text-shadow: none; filter: none; }
+:root .play-cta .play-cta__store { color: var(--button-primary-text); font-family: var(--button-font); font-size: 16px; font-weight: 600; line-height: 1.2; letter-spacing: normal; opacity: 1; text-shadow: none; filter: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    :root .ui-button { transition: none; }
+    :root .ui-button:hover,
+    :root .ui-button:active { transform: none; }
+}
+
+@media (forced-colors: active) {
+    :root .ui-button,
+    :root .ui-button:hover,
+    :root .ui-button:active { border-color: ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; }
+    :root .play-cta .play-cta__label,
+    :root .play-cta .play-cta__store { color: ButtonText; }
+    :root .ui-button:focus-visible { outline-color: Highlight; }
+}

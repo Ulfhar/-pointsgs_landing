@@ -44,8 +44,21 @@ def e(text):
     return escape(str(text), quote=True)
 
 
-def page_url(slug, language):
+def url_slug(post, language):
+    """Keep the content identity stable while allowing translated public URLs."""
+    return post.get("url_slugs", {}).get(language, post["slug"])
+
+
+def page_url(page, language):
+    slug = url_slug(page, language) if isinstance(page, dict) else page
     return ("uk/" if language == "uk" else "") + slug + ".html"
+
+
+def page_href(page, target_language, current_language):
+    path = page_url(page, target_language)
+    if current_language == "uk":
+        return path.removeprefix("uk/") if target_language == "uk" else "../" + path
+    return path
 
 
 def post_languages(post):
@@ -79,6 +92,39 @@ def localize(tree, language, strings):
     visit(tree)
 
 
+def render_play_cta(anchor, language):
+    """Use the shared button system; play-cta only arranges its icon and label."""
+    classes = [value for value in anchor.attrs.get("class", "").split()
+               if value not in ("play-cta", "lore-cta-play-link", "ui-button")
+               and not value.startswith("ui-button--")]
+    anchor.attrs["class"] = " ".join(classes + ["ui-button", "ui-button--primary", "play-cta"])
+    anchor.attrs["aria-label"] = ("Грати в Lumen Grove у Google Play" if language == "uk"
+                                  else "Play Lumen Grove on Google Play")
+    anchor.attrs.pop("style", None)
+    anchor.attrs.pop("data-i18n", None)
+    if anchor.attrs.get("target") == "_blank":
+        anchor.attrs["rel"] = "noopener noreferrer"
+    label = "Грати" if language == "uk" else "Play"
+    anchor.children = parse(
+        '<img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true">'
+        '<span class="play-cta__copy"><span class="play-cta__label">' + label + '</span>'
+        '<span class="play-cta__store">Google Play</span></span>').children
+
+
+def normalize_play_ctas(tree, language):
+    wrappers = {"news5-cta", "news-cta", "lg-cta", "pillar-cta", "lore-cta-play"}
+
+    def visit(node, inside_cta=False):
+        inside_cta = inside_cta or bool(wrappers.intersection(node.attrs.get("class", "").split()))
+        if (node.tag == "a" and "play.google.com/" in node.attrs.get("href", "") and
+                (inside_cta or node.has_class("lore-cta-play-link") or node.has_class("play-cta"))):
+            render_play_cta(node, language)
+        for child in node.children:
+            visit(child, inside_cta)
+
+    visit(tree)
+
+
 def image_dimensions(path):
     # Small assets absent from the optimization manifest can still reserve space.
     data = path.read_bytes()
@@ -99,34 +145,54 @@ def process_images(tree, media, prefix, eager=False):
                 img.attrs["srcset"] = ", ".join(prefix + entry.strip() for entry in info["srcset"].split(","))
                 img.attrs["sizes"] = info.get("sizes", "(max-width: 840px) calc(100vw - 32px), 800px")
             img.attrs["data-full-src"] = prefix + info.get("fullsrc", info["src"])
+        elif original.endswith(".svg") and img.attrs.get("width") and img.attrs.get("height"):
+            # Fixed-size decorative vectors already declare their display ratio.
+            img.attrs["src"] = prefix + original
         else:
             width, height = image_dimensions(ROOT / original)
             img.attrs.update(src=prefix + original, width=str(width), height=str(height))
         img.attrs["loading"] = "eager" if eager else "lazy"
         img.attrs["decoding"] = "async"
+        if img.has_class("play-cta__icon"):
+            img.attrs["sizes"] = "24px"
         if eager:
             img.attrs["fetchpriority"] = "high"
         img.attrs.pop("onerror", None)
 
 
-def rewrite_links(tree, prefix, slugs):
+def rewrite_links(tree, prefix, posts, language):
     for node in tree.walk():
         if node.attrs.get("target") == "_blank":
             node.attrs["rel"] = "noopener noreferrer"
         for attribute in ("href", "src"):
             value = node.attrs.get(attribute, "")
+            parts = urlsplit(value)
+            if attribute == "href" and not parts.scheme and not parts.netloc:
+                directory, _, filename = parts.path.rpartition("/")
+                if filename.endswith(".html") and directory in ("", "uk", "..", "../uk", "/uk"):
+                    source_language = ("uk" if directory.endswith("uk") else
+                                       "en" if directory == ".." and language == "uk" else language)
+                    source_slug = filename.removesuffix(".html")
+                    linked_post = next((post for post in posts if source_slug in
+                                        (post["slug"], url_slug(post, source_language))), None)
+                    if linked_post:
+                        languages = post_languages(linked_post)
+                        target = language if language in languages else ("en" if "en" in languages else languages[0])
+                        suffix = ("?" + parts.query if parts.query else "") + ("#" + parts.fragment if parts.fragment else "")
+                        node.attrs[attribute] = page_href(linked_post, target, language) + suffix
+                        continue
             if not value or value.startswith(("#", "/", "../", "http:", "https:", "mailto:", "data:")):
                 continue
             if attribute == "src" and node.tag == "img":
                 continue  # handled with dimensions and responsive variants
             path = value.split("#")[0]
             # Managed article links stay in the current language directory.
-            if path.removesuffix(".html") in slugs or path == "devlog.html":
+            if path == "devlog.html":
                 continue
             node.attrs[attribute] = prefix + value
 
 
-def header_footer(language, slug, media, slugs, languages=None):
+def header_footer(language, page, media, posts, languages=None):
     languages = list(COPY) if languages is None else languages
     prefix = "../" if language == "uk" else ""
     header = parse((ROOT / "header.html").read_text(encoding="utf-8"))
@@ -154,17 +220,17 @@ def header_footer(language, slug, media, slugs, languages=None):
                 value = node.text().strip()
                 if value in FOOTER_UK:
                     node.data = escape(FOOTER_UK[value])
-    for control in footer.walk():
-        if control.attrs.get("id") in ("switch-to-en", "switch-to-ua"):
-            target = "en" if control.attrs["id"] == "switch-to-en" else "uk"
-            target_slug = slug if target in languages else "devlog"
-            control.attrs["href"] = ("../" + target_slug + ".html" if language == "uk" and target == "en" else
-                                       "uk/" + target_slug + ".html" if language == "en" and target == "uk" else target_slug + ".html")
-            if target == language:
-                control.attrs["aria-current"] = "page"
-                control.attrs["class"] = "lang-switcher active"
-    rewrite_links(header, prefix, slugs)
-    rewrite_links(footer, prefix, slugs)
+    rewrite_links(header, prefix, posts, language)
+    rewrite_links(footer, prefix, posts, language)
+    for section in (header, footer):
+        for control in section.walk():
+            if control.attrs.get("id") in ("switch-to-en", "switch-to-ua"):
+                target = "en" if control.attrs["id"] == "switch-to-en" else "uk"
+                target_page = page if target in languages else "devlog"
+                control.attrs["href"] = page_href(target_page, target, language)
+                if target == language:
+                    control.attrs["aria-current"] = "page"
+                    control.attrs["class"] = "lang-switcher active"
     process_images(header, media, prefix)
     for image in (n for n in header.walk() if n.tag == "img"):
         image.attrs["loading"] = "eager"
@@ -203,7 +269,7 @@ def author_block(post, author, language, media, prefix):
         for node in icon.walk():
             if node.tag == "img":
                 node.attrs.update(loading="eager", sizes="32px")
-        social.append(f'<a class="news-author-link" href="{e(url)}" target="_blank" rel="noopener noreferrer" '
+        social.append(f'<a class="ui-button ui-button--ghost ui-button--icon news-author-link" href="{e(url)}" target="_blank" rel="noopener noreferrer" '
                       f'aria-label="{e(text)}" title="{e(text)}">{icon.html()}</a>')
     return f'''<aside class="news-author-section" aria-label="{e(label)}">
                 <a class="news-author-profile" href="{e(author["url"])}" {profile_attrs}>
@@ -217,7 +283,7 @@ def author_block(post, author, language, media, prefix):
 
 
 def share_block(post, language, site_url, media, prefix):
-    url = site_url + "/" + page_url(post["slug"], language)
+    url = site_url + "/" + page_url(post, language)
     title = post["title"].get("en", post["title"][language])
     share_text = f'Learn more about Lumen Grove in “{title}”.'
     labels = ({"group": "Поширити статтю", "on": "Поширити у", "copy": "Скопіювати посилання",
@@ -240,7 +306,7 @@ def share_block(post, language, site_url, media, prefix):
             if node.tag == "img":
                 node.attrs.update(loading="eager", sizes="28px")
         label = labels["on"] + " " + name
-        links.append(f'<a class="article-share-control" href="{e(target)}" target="_blank" rel="noopener noreferrer" '
+        links.append(f'<a class="ui-button ui-button--secondary ui-button--icon article-share-control" href="{e(target)}" target="_blank" rel="noopener noreferrer" '
                      f'aria-label="{e(label)}" title="{e(label)}">{icon.html()}</a>')
     copy_icon = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7 .2l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7-.2l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>'
     native_icon = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16V3m-5 5 5-5 5 5M5 13v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>'
@@ -248,8 +314,8 @@ def share_block(post, language, site_url, media, prefix):
                 data-share-url="{e(url)}" data-share-title="{e(title)}" data-share-text="{e(share_text)}" data-copy-success="{e(labels['copied'])}"
                 data-copy-fallback="{e(labels['fallback'])}" data-share-fallback="{e(labels['fallback'])}">
                 {''.join(links)}
-                <button class="article-share-control" type="button" data-share-copy hidden aria-label="{e(labels['copy'])}" title="{e(labels['copy'])}">{copy_icon}</button>
-                <button class="article-share-control" type="button" data-share-native hidden aria-label="{e(labels['native'])}" title="{e(labels['native'])}">{native_icon}</button>
+                <button class="ui-button ui-button--secondary ui-button--icon article-share-control" type="button" data-share-copy hidden aria-label="{e(labels['copy'])}" title="{e(labels['copy'])}">{copy_icon}</button>
+                <button class="ui-button ui-button--secondary ui-button--icon article-share-control" type="button" data-share-native hidden aria-label="{e(labels['native'])}" title="{e(labels['native'])}">{native_icon}</button>
                 <input class="article-share-url" data-share-url-field type="url" readonly hidden value="{e(url)}" aria-label="{e(labels['url'])}">
                 <p class="article-share-status" data-share-status role="status" aria-live="polite" hidden></p>
             </div>'''
@@ -263,11 +329,39 @@ def share_section(post, language, site_url, media, prefix):
 
 
 def legacy_share_outputs(site_url, media):
-    """Keep the archived articles' share component current without republishing them."""
+    """Keep archived share and Play components current without republishing them."""
     outputs = {}
     for slug in ("news_2", "news_3", "news_4"):
         path = ROOT / (slug + ".html")
         source = path.read_text(encoding="utf-8")
+        # Archived Swiper/modal scripts still use these hooks. Preserve their
+        # events while replacing clickable div/span elements with native controls.
+        for hook, label in (("swiper-button-next", "Next image"),
+                            ("swiper-button-prev", "Previous image"),
+                            ("image-modal-close", "Close image viewer"),
+                            ("modal-nav-prev", "Previous image"),
+                            ("modal-nav-next", "Next image")):
+            def native_control(match):
+                tree = parse(match.group())
+                control = next(node for node in tree.walk() if node.tag in ("div", "span", "button"))
+                classes = [value for value in control.attrs.get("class", "").split()
+                           if value != "ui-button" and not value.startswith("ui-button--")]
+                control.tag = "button"
+                control.attrs.update({"class": " ".join(["ui-button", "ui-button--secondary", "ui-button--icon"] + classes),
+                                      "type": "button", "aria-label": label})
+                return tree.html()
+            source = re.sub(r'<(div|span|button)\b[^>]*class="[^\"]*\b' + re.escape(hook) +
+                            r'\b[^\"]*"[^>]*>[\s\S]*?</\1>', native_control, source)
+        def replace_play_cta(match):
+            tree = parse(match.group())
+            anchor = tree.find("a")
+            if not (anchor.has_class("play-cta") or "inline-flex" in anchor.attrs.get("style", "")):
+                return match.group()
+            render_play_cta(anchor, "en")
+            process_images(tree, media, "")
+            return tree.html()
+        source = re.sub(r'<a\b[^>]*href="https://play\.google\.com/[^>]*>[\s\S]*?</a>',
+                        replace_play_cta, source, flags=re.I)
         heading = re.search(r'<h1\b[^>]*>([\s\S]*?)</h1>', source, re.I)
         if not heading or source.count('</article>') != 1:
             raise ValueError(f"Cannot locate archived article content: {slug}")
@@ -280,7 +374,11 @@ def legacy_share_outputs(site_url, media):
                         match[1] + '<!-- ARTICLE_SHARE_END -->\n' + match[1] + '</article>', source, count=1)
         if not re.search(r'src="js/article-share\.js', source):
             source = source.replace('</body>', '    <script src="js/article-share.js" defer></script>\n</body>')
-        for asset in ("css/news.css", "js/article-share.js"):
+        source = re.sub(r'(?m)^[ \t]*<link\b[^>]*href="css/play-cta\.css(?:\?v=[a-f0-9]+)?"[^>]*>\n?', '', source)
+        source = re.sub(r'(?m)^[ \t]*<script\b[^>]*src="js/play-cta\.js(?:\?v=[a-f0-9]+)?"[^>]*></script>\n?', '', source)
+        if not re.search(r'href="css/buttons\.css', source):
+            source = source.replace('</head>', '    <link rel="stylesheet" href="css/buttons.css">\n</head>')
+        for asset in ("css/news.css", "js/article-share.js", "css/buttons.css"):
             version = hashlib.sha256((ROOT / asset).read_bytes()).hexdigest()[:12]
             source = re.sub(r'(["\'])' + re.escape(asset) + r'(?:\?v=[a-f0-9]+)?\1',
                             lambda match: match[1] + asset + '?v=' + version + match[1], source)
@@ -288,25 +386,27 @@ def legacy_share_outputs(site_url, media):
     return outputs
 
 
-def head(title, description, slug, language, image, schema, site_url, languages=None):
+def head(title, description, page, language, image, schema, site_url, languages=None):
     languages = list(COPY) if languages is None else languages
     prefix = "../" if language == "uk" else ""
-    url = site_url + "/" + page_url(slug, language)
+    url = site_url + "/" + page_url(page, language)
+    keyword = page.get("primary_keyword", {}).get(language) if isinstance(page, dict) else None
+    keyword_meta = f'\n    <meta name="keywords" content="{e(keyword)}">' if keyword else ""
     og_locale = "uk_UA" if language == "uk" else "en_US"
     default_language = "en" if "en" in languages else languages[0]
     alternates = "\n".join(
-        f'    <link rel="alternate" hreflang="{target}" href="{site_url}/{page_url(slug, target)}">'
+        f'    <link rel="alternate" hreflang="{target}" href="{site_url}/{page_url(page, target)}">'
         for target in languages)
     return f'''    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{e(title)}</title>
-    <meta name="description" content="{e(description)}">
+    <meta name="description" content="{e(description)}">{keyword_meta}
     <link rel="canonical" href="{url}">
 {alternates}
-    <link rel="alternate" hreflang="x-default" href="{site_url}/{page_url(slug, default_language)}">
+    <link rel="alternate" hreflang="x-default" href="{site_url}/{page_url(page, default_language)}">
     <meta property="og:title" content="{e(title)}">
     <meta property="og:description" content="{e(description)}">
-    <meta property="og:type" content="{'website' if slug == 'devlog' else 'article'}">
+    <meta property="og:type" content="{'website' if page == 'devlog' else 'article'}">
     <meta property="og:url" content="{url}">
     <meta property="og:image" content="{site_url}/{image}">
     <meta property="og:locale" content="{og_locale}">
@@ -318,6 +418,7 @@ def head(title, description, slug, language, image, schema, site_url, languages=
     <link rel="icon" type="image/png" href="{prefix}images/favicon_points.png">
     <link rel="stylesheet" href="{prefix}css/news.css">
     <link rel="stylesheet" href="{prefix}css/header.css">
+    <link rel="stylesheet" href="{prefix}css/buttons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;600&display=swap" rel="stylesheet">
@@ -336,7 +437,8 @@ def fill_template(path, values):
     # Asset versions follow file contents, so publishing new CSS/JS refreshes
     # browser caches without changing URLs or metadata for the articles.
     for asset in ("css/news.css", "css/header.css", "js/locale.js", "js/news.js",
-                  "js/particles-bg.js", "js/reading-progress.js", "js/article-share.js"):
+                  "js/particles-bg.js", "js/reading-progress.js", "js/article-share.js",
+                  "css/buttons.css"):
         url = values["prefix"] + asset
         version = hashlib.sha256((ROOT / asset).read_bytes()).hexdigest()[:12]
         result = result.replace('="' + url + '"', '="' + url + '?v=' + version + '"')
@@ -351,15 +453,17 @@ def write_generated(path, text):
     return changed
 
 
-def content_for(post, language, strings, media, slugs, image_labels):
+def content_for(post, language, strings, media, posts, image_labels):
     content_path = ROOT / "blog/content" / (post["slug"] + ".html")
     translated_path = ROOT / "blog/content" / language / (post["slug"] + ".html")
     if translated_path.is_file():
         content_path = translated_path
     tree = parse(content_path.read_text(encoding="utf-8"))
     remove_where(tree, lambda n: n.has_class("article-footer-meta") or n.has_class("news-article-heading") or
+                 any(n.has_class(name) for name in ("swiper-button-next", "swiper-button-prev", "swiper-pagination")) or
                  (post["slug"] == "pillar_1" and n.tag == "img" and n.attrs.get("src") == post["cover"]))
     localize(tree, language, strings)
+    normalize_play_ctas(tree, language)
     headings = []
     used_ids = {n.attrs["id"] for n in tree.walk() if n.attrs.get("id")}
     for node in tree.walk():
@@ -390,18 +494,40 @@ def content_for(post, language, strings, media, slugs, image_labels):
         if node.has_class("reveal"):
             node.attrs["class"] = " ".join(c for c in node.attrs["class"].split() if c != "reveal")
     process_images(tree, media, "../" if language == "uk" else "")
-    rewrite_links(tree, "../" if language == "uk" else "", slugs)
+    rewrite_links(tree, "../" if language == "uk" else "", posts, language)
     words = len(re.findall(r"\b[\w’'-]+\b", tree.text(), re.UNICODE))
     return tree.html(), headings, max(1, math.ceil(words / 200))
 
 
 def card(post, language, minutes, related=False):
     label = COPY[language]
-    return f'''<a class="{'related-card' if related else 'devlog-card'}" href="{post['slug']}.html">
+    return f'''<a class="{'related-card' if related else 'devlog-card'}" href="{url_slug(post, language)}.html">
         <div class="devlog-card-meta"><span class="devlog-card-badge">{e(post['kind'][language])}</span>
         <time datetime="{post['date']}">{e(date_label(post['date'], language))}</time><span>{e(label['minutes'].format(n=minutes))}</span></div>
         <{'h3' if related else 'h2'} class="devlog-card-title">{e(post['title'][language])}</{'h3' if related else 'h2'}>
         <p class="devlog-card-excerpt">{e(post['summary'][language])}</p></a>'''
+
+
+def redirect_alias(post, language, site_url):
+    target = site_url + "/" + page_url(post, language)
+    target_href = page_href(post, language, language)
+    title = "Статтю перенесено" if language == "uk" else "Article moved"
+    label = "Перейти до статті" if language == "uk" else "Continue to the article"
+    return f'''<!DOCTYPE html>
+<html lang="{language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{e(title)}</title>
+    <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="{e(target)}">
+    <meta http-equiv="refresh" content="0; url={e(target_href)}">
+</head>
+<body>
+    <p><a href="{e(target_href)}">{e(label)}: {e(post['title'][language])}</a></p>
+</body>
+</html>
+'''
 
 
 def build(modified_date):
@@ -423,17 +549,37 @@ def build(modified_date):
         for field in ("title", "seo_title", "description", "summary", "kind", "cover_alt"):
             if any(not post.get(field, {}).get(language) for language in languages):
                 raise ValueError(f"Missing translated {field}: {post['slug']}")
+        for field in ("url_slugs", "primary_keyword"):
+            values = post.get(field, {})
+            if not isinstance(values, dict) or any(language not in languages for language in values):
+                raise ValueError(f"Invalid translated {field}: {post['slug']}")
+            for value in values.values():
+                if not isinstance(value, str) or not value.strip():
+                    raise ValueError(f"Invalid translated {field}: {post['slug']}")
+                if field == "url_slugs" and not re.fullmatch(r"[a-z0-9_-]+", value):
+                    raise ValueError(f"Unsafe URL slug: {post['slug']}")
+    # Reserve both public routes and identity aliases before producing any HTML.
+    # Otherwise a translated route could replace another post's old URL.
+    route_owners = {language: {"devlog": "blog listing"} for language in COPY}
+    for post in posts:
+        for language in post_languages(post):
+            for route in {post["slug"], url_slug(post, language)}:
+                owner = route_owners[language].setdefault(route, post["slug"])
+                if owner != post["slug"]:
+                    raise ValueError(f"Duplicate {language} URL slug {route}: {owner} and {post['slug']}")
     generated = []
     pending_outputs = {}
     changed_pages = set()
+    alternates_by_path = {}
+    aliases = set()
     for language, label in COPY.items():
         prefix = "../" if language == "uk" else ""
         published = [post for post in posts if language in post_languages(post)]
-        prepared = {post["slug"]: content_for(post, language, strings, media, slugs, image_labels) for post in published}
+        prepared = {post["slug"]: content_for(post, language, strings, media, posts, image_labels) for post in published}
         for post in published:
             slug = post["slug"]
             content, headings, minutes = prepared[slug]
-            header, footer = header_footer(language, slug, media, slugs, post_languages(post))
+            header, footer = header_footer(language, post, media, posts, post_languages(post))
             cover_tree = parse(f'<figure class="article-cover"><img src="{e(post["cover"])}" alt="{e(post["cover_alt"][language])}"></figure>')
             process_images(cover_tree, media, prefix, eager=True)
             cover_info = media[post["cover"]]
@@ -442,7 +588,7 @@ def build(modified_date):
             person = {"@type": "Person", "@id": site_url + "/#bogdan", "name": "Bogdan",
                       "url": BOGDAN_PROFILE_URL, "jobTitle": "Game Developer"}
             author = org if post["author"] == "studio" else person
-            url = site_url + "/" + page_url(slug, language)
+            url = site_url + "/" + page_url(post, language)
             article = {"@type": "Article", "@id": url + "#article", "url": url,
                        "mainEntityOfPage": url, "headline": post["title"][language],
                        "description": post["description"][language], "image": site_url + "/" + image,
@@ -450,6 +596,8 @@ def build(modified_date):
                        "publisher": {"@id": org["@id"]}, "isPartOf": {"@type": "Blog", "name": label["blog"], "url": site_url + "/" + page_url("devlog", language)}}
             if len(post["date"]) == 10:
                 article["datePublished"] = post["date"]
+            if post.get("primary_keyword", {}).get(language):
+                article["keywords"] = post["primary_keyword"][language]
             breadcrumbs = {"@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": label["blog"], "item": site_url + "/" + page_url("devlog", language)},
                 {"@type": "ListItem", "position": 2, "name": post["title"][language], "item": url}]}
@@ -461,7 +609,7 @@ def build(modified_date):
             others = [p for p in published if p["slug"] != slug][:2]
             related = f'<nav class="related-articles" aria-label="{e(label["related"])}"><h2>{e(label["related"])}</h2><div class="related-grid">' + "".join(
                 card(p, language, prepared[p["slug"]][2], True) for p in others) + f'</div><a class="back-to-blog" href="devlog.html">← {e(label["back"])}</a></nav>'
-            values = {"language": language, "head": head(post["seo_title"][language], post["description"][language], slug, language, image, schema, site_url, post_languages(post)),
+            values = {"language": language, "head": head(post["seo_title"][language], post["description"][language], post, language, image, schema, site_url, post_languages(post)),
                       "skip_label": e(label["skip"]), "header": header, "footer": footer, "blog_url": "devlog.html", "blog_label": e(label["blog"]),
                       "breadcrumb_label": e(label["breadcrumb"]), "kind": e(post["kind"][language]), "title": e(post["title"][language]),
                       "summary": e(post["summary"][language]), "author_block": author_block(post, author, language, media, prefix),
@@ -470,15 +618,20 @@ def build(modified_date):
                       "cover": cover_tree.html(), "toc": toc, "content": content, "content_label": e(label["content"]), "related": related, "prefix": prefix,
                       "progress": ' data-reading-progress' if post.get("long_read") else "",
                       "progress_script": f'<script src="{prefix}js/reading-progress.js" defer></script>' if post.get("long_read") else ""}
-            output = ROOT / page_url(slug, language)
+            output = ROOT / page_url(post, language)
             relative = output.relative_to(ROOT).as_posix()
             pending_outputs[relative] = fill_template(ROOT / "blog/article-template.html", values)
             generated.append(relative)
-        header, footer = header_footer(language, "devlog", media, slugs)
+            alternates_by_path[relative] = {target: page_url(post, target) for target in post_languages(post)}
+            alias = page_url(slug, language)
+            if alias != relative:
+                pending_outputs[alias] = redirect_alias(post, language, site_url)
+                aliases.add(alias)
+        header, footer = header_footer(language, "devlog", media, posts)
         list_title = "Lumen Grove Blog | Points Game Studio" if language == "en" else "Блог Lumen Grove — Points Game Studio"
         list_schema = {"@context": "https://schema.org", "@graph": [organization(site_url),
             {"@type": "CollectionPage", "url": site_url + "/" + page_url("devlog", language), "name": list_title, "inLanguage": language},
-            {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i+1, "url": site_url + "/" + page_url(p["slug"], language), "name": p["title"][language]} for i, p in enumerate(published)]}]}
+            {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i+1, "url": site_url + "/" + page_url(p, language), "name": p["title"][language]} for i, p in enumerate(published)]}]}
         list_image = media[published[0]["cover"]].get("ogsrc", media[published[0]["cover"]]["src"])
         values = {"language": language, "head": head(list_title, label["intro"], "devlog", language, list_image, list_schema, site_url), "prefix": prefix,
                   "header": header, "footer": footer, "skip_label": e(label["skip"]), "blog_label": e(label["blog"]), "intro": e(label["intro"]),
@@ -487,6 +640,7 @@ def build(modified_date):
         relative = output.relative_to(ROOT).as_posix()
         pending_outputs[relative] = fill_template(ROOT / "blog/list-template.html", values)
         generated.append(relative)
+        alternates_by_path[relative] = {target: page_url("devlog", target) for target in COPY}
     # Finish both languages before touching any generated page. Missing translations
     # or assets must not leave English/Ukrainian outputs on different revisions.
     pending_outputs.update(legacy_share_outputs(site_url, media))
@@ -494,13 +648,11 @@ def build(modified_date):
     for relative, html in pending_outputs.items():
         if write_generated(ROOT / relative, html):
             changed_pages.add(relative)
-    languages_by_slug = {post["slug"]: post_languages(post) for post in posts}
-    languages_by_slug["devlog"] = list(COPY)
-    build_sitemap(generated, changed_pages, site_url, modified_date, languages_by_slug)
+    build_sitemap(generated, changed_pages, site_url, modified_date, alternates_by_path, aliases)
     print(f"Built {len(generated)} static English/Ukrainian pages and sitemap.xml")
 
 
-def build_sitemap(generated, changed_pages, site_url, modified_date, languages_by_slug):
+def build_sitemap(generated, changed_pages, site_url, modified_date, alternates_by_path, aliases):
     namespace = "http://www.sitemaps.org/schemas/sitemap/0.9"
     xhtml = "http://www.w3.org/1999/xhtml"
     ET.register_namespace("", namespace)
@@ -508,7 +660,7 @@ def build_sitemap(generated, changed_pages, site_url, modified_date, languages_b
     path = ROOT / "sitemap.xml"
     tree = ET.parse(path)
     root = tree.getroot()
-    managed = set(generated)
+    managed = set(generated) | aliases
     previous_dates = {}
     for entry in list(root):
         location = entry.find("{" + namespace + "}loc")
@@ -523,9 +675,11 @@ def build_sitemap(generated, changed_pages, site_url, modified_date, languages_b
         ET.SubElement(url, "{" + namespace + "}loc").text = site_url + "/" + relative
         ET.SubElement(url, "{" + namespace + "}lastmod").text = (
             modified_date if relative in changed_pages else previous_dates.get(relative, modified_date))
-        slug = Path(relative).stem
-        for language in languages_by_slug[slug]:
-            ET.SubElement(url, "{" + xhtml + "}link", {"rel": "alternate", "hreflang": language, "href": site_url + "/" + page_url(slug, language)})
+        alternates = alternates_by_path[relative]
+        for language, target in alternates.items():
+            ET.SubElement(url, "{" + xhtml + "}link", {"rel": "alternate", "hreflang": language, "href": site_url + "/" + target})
+        default_language = "en" if "en" in alternates else next(iter(alternates))
+        ET.SubElement(url, "{" + xhtml + "}link", {"rel": "alternate", "hreflang": "x-default", "href": site_url + "/" + alternates[default_language]})
     ET.indent(tree, space="  ")
     tree.write(path, encoding="utf-8", xml_declaration=True)
 

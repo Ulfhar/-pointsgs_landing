@@ -30,7 +30,7 @@
     <meta name="twitter:description" data-i18n-content="home_meta_description" content="Lumen Grove, a cozy forest farming game by Points Game Studio. Android available now; iOS planned. Grow plants, earn Light, and help the Magic Oak grow.">
     <meta name="twitter:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
 
-    <link rel="stylesheet" href="LandingPage.css?v=75f3c233b931" />
+    <link rel="stylesheet" href="LandingPage.css?v=bc9fcdfb6f84" />
     <link rel="stylesheet" href="css/header.css?v=e6c2bd2d4671" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&family=Roboto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
@@ -189,41 +189,10 @@
         .home-game-promo .home-platform-status { text-shadow: 0 2px 4px #040a12; }
         .home-halloween-copy .home-platform-status { margin: 14px 0 0; }
 
-        .home-store-link {
-            display: inline-flex;
-            align-items: center;
-            max-width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .home-store-badge {
-            display: block;
-            width: 214px;
-            max-width: 100%;
-            height: auto;
-            border-radius: inherit;
-        }
-
-        .home-store-link:hover {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 12px rgba(64, 224, 208, 0.4));
-        }
-
         .home-promo-socials {
             display: inline-flex;
             flex: 0 0 auto;
             gap: 8px;
-        }
-
-        .home-promo-social-link {
-            display: grid;
-            place-items: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            transition: transform 0.2s ease, filter 0.2s ease;
         }
 
         .home-promo-social-link img {
@@ -231,23 +200,6 @@
             width: 32px;
             height: 32px;
             border-radius: 6px;
-        }
-
-        .home-promo-social-link:hover {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.65));
-        }
-
-        .home-store-label {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip-path: inset(50%);
-            white-space: nowrap;
-            border: 0;
         }
 
         @media (max-width: 600px) {
@@ -259,7 +211,6 @@
                 text-align: center;
             }
             .home-game-icon { width: 112px; }
-            .home-store-badge { width: 204px; }
             .home-game-promo .home-hero-cta { justify-content: center; }
         }
 
@@ -291,57 +242,6 @@
             flex-wrap: wrap;
         }
 
-        .home-hero-cta .home-btn-secondary {
-            font-size: 0.95rem;
-            padding: 0.85em 1em;
-            color: #ffffff;
-            background: rgba(4, 10, 18, 0.8);
-        }
-
-        .home-btn-primary,
-        .home-btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6em;
-            padding: 0.85em 1.6em;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            text-decoration: none;
-            max-width: 100%;
-            min-height: 44px;
-            justify-content: center;
-            text-align: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            font-family: 'Roboto Serif', serif;
-        }
-
-        .home-btn-primary {
-            background: linear-gradient(135deg, #70d8ca 0%, #55c3b6 100%);
-            color: #071826;
-            box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
-        }
-
-        .home-btn-primary:hover {
-            color: #071826;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
-        }
-
-        .home-btn-secondary {
-            background: transparent;
-            color: #e8f4f8;
-            border: 1px solid rgba(32, 178, 170, 0.6);
-        }
-
-        .home-btn-secondary:hover {
-            border-color: #40e0d0;
-            color: #40e0d0;
-        }
-
-        .home-btn-primary:focus-visible,
-        .home-btn-secondary:focus-visible,
-        .home-store-link:focus-visible,
         .home-promo-social-link:focus-visible,
         .home-main a:focus-visible,
         .home-faq summary:focus-visible {
@@ -367,20 +267,19 @@
         .home-halloween .home-section-kicker { color: #ffe0a0; }
         .home-halloween .home-section-title { font-size: 1.55rem; line-height: 1.35; }
         .home-halloween p { margin: 16px 0 20px; color: #c5d3e3; line-height: 1.65; }
-        .home-halloween img { display: block; width: 100%; height: auto; border-radius: 12px; }
+        .home-halloween > img { display: block; width: 100%; height: auto; border-radius: 12px; }
         .home-halloween-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-        .home-halloween-cta .home-btn-primary { font-size: 0.95rem; }
         .home-halloween-cta .home-teaser-more { display: inline-flex; align-items: center; min-height: 44px; }
         @media (max-width: 767px) {
             .home-halloween { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 22px; }
-            .home-hero-cta .home-btn-primary, .home-hero-cta .home-btn-secondary { width: 100%; }
+            .home-hero-cta > .ui-button { --button-width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto !important; }
             .home-hero-video { display: none; transition: none; }
             [data-aos] { opacity: 1 !important; transform: none !important; }
-            .home-btn-primary, .home-btn-secondary, .home-store-link, .home-promo-social-link, .home-teaser { transition: none; }
-            .home-btn-primary:hover, .home-store-link:hover, .home-promo-social-link:hover, .home-teaser:hover { transform: none; }
+            .home-teaser { transition: none; }
+            .home-teaser:hover { transform: none; }
         }
 
         /* ---------- Showcase: big, breathing screenshots block ---------- */
@@ -436,11 +335,11 @@
             display: block;
         }
 
+        /* Swiper controls reuse shared buttons; only arrow geometry is contextual. */
         .home-screenshots-slider .swiper-button-next,
         .home-screenshots-slider .swiper-button-prev {
-            color: #40e0d0;
-            --swiper-navigation-size: 36px;
-            text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+            --swiper-navigation-size: 20px;
+            margin-top: -22px;
         }
 
         .home-screenshots-slider .swiper-pagination {
@@ -469,12 +368,6 @@
             font-size: 0.9rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-        }
-
-        .home-screenshots-slider .swiper-button-next,
-        .home-screenshots-slider .swiper-button-prev {
-            color: #20b2aa;
-            --swiper-navigation-size: 32px;
         }
 
         .home-screenshots-slider .swiper-pagination-bullet {
@@ -809,27 +702,6 @@
             }
         }
 
-        .home-social-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: #162844;
-            border: 1px solid rgba(32, 178, 170, 0.18);
-            border-radius: 10px;
-            color: #e8f4f8;
-            text-decoration: none;
-            font-family: 'Roboto Serif', serif;
-            font-weight: 600;
-            transition: border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
-        }
-
-        .home-social-link:hover {
-            border-color: #40e0d0;
-            color: #40e0d0;
-            transform: translateX(4px);
-        }
-
         .home-social-icon {
             font-size: 1.3rem;
             line-height: 1;
@@ -989,31 +861,8 @@
 
         .fc-field-error.visible { display: block; }
 
-        .home-contact-submit {
-            align-self: flex-start;
-            margin-top: 10px;
-            padding: 13px 44px;
-            background: linear-gradient(135deg, #20b2aa 0%, #178a83 100%);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Roboto Serif', serif;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-            box-shadow: 0 4px 20px rgba(32, 178, 170, 0.35);
-        }
-
-        .home-contact-submit:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(32, 178, 170, 0.5);
-        }
-
-        .home-contact-submit:disabled {
-            opacity: 0.6;
-            cursor: default;
-        }
+        /* Submission state and appearance belong to css/buttons.css?v=1390485723b2. */
+        .home-contact-submit { align-self: flex-start; margin-top: 10px; }
 
         .home-contact-success {
             display: none;
@@ -1032,6 +881,7 @@
             display: none;
         }
     </style>
+    <link rel="stylesheet" href="css/buttons.css?v=1390485723b2">
 
     <script type="application/ld+json">
     {
@@ -1123,19 +973,19 @@ fetch("header.html?v=a6f540b44594")
             <p class="home-hero-tagline" data-i18n="home_hero_tagline">Grow a magical grove, help its woodland residents, and turn small acts of kindness into Light for the Magic Oak. Make this little forest your own.</p>
             <p class="home-platform-status" data-i18n="home_platforms">Available on Android · iOS planned</p>
             <div class="home-hero-cta">
-                <a class="home-store-link" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer">
-                    <img class="home-store-badge" src="images/google-play-badge.png" width="1321" height="389" alt="" aria-hidden="true" decoding="async">
-                    <span class="home-store-label" data-i18n="home_play_btn">Get Lumen Grove on Google Play</span>
+                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label">
+                    <img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true" decoding="async">
+                    <span class="play-cta__copy"><span class="play-cta__label" data-i18n="play_cta_label">Play</span><span class="play-cta__store" data-i18n="play_cta_store">Google Play</span></span>
                 </a>
-                <a class="home-btn-secondary" href="#gameplay" data-i18n="home_watch_btn">▶ Watch gameplay</a>
+                <a class="ui-button ui-button--secondary" href="#gameplay" data-i18n="home_watch_btn">▶ Watch gameplay</a>
                 <nav class="home-promo-socials" aria-label="Lumen Grove social profiles">
-                    <a class="home-promo-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="X — @Lumen_Grove" title="X — @Lumen_Grove">
+                    <a class="ui-button ui-button--secondary ui-button--icon home-promo-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="X — @Lumen_Grove" title="X — @Lumen_Grove">
                         <img src="images/blog/images-soc-media-logo-x-logo-e8f7fad2-64.webp" width="32" height="32" alt="" aria-hidden="true" decoding="async">
                     </a>
-                    <a class="home-promo-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="YouTube — @Lumen_Grove" title="YouTube — @Lumen_Grove">
+                    <a class="ui-button ui-button--secondary ui-button--icon home-promo-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" aria-label="YouTube — @Lumen_Grove" title="YouTube — @Lumen_Grove">
                         <img src="images/soc-media-logo/youtube-logo.svg" width="32" height="32" alt="" aria-hidden="true" decoding="async">
                     </a>
-                    <a class="home-promo-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" aria-label="TikTok — @lumen_grove" title="TikTok — @lumen_grove">
+                    <a class="ui-button ui-button--secondary ui-button--icon home-promo-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" aria-label="TikTok — @lumen_grove" title="TikTok — @lumen_grove">
                         <img src="images/blog/images-soc-media-logo-tik-tok-logo-46a24da5-64.webp" width="32" height="32" alt="" aria-hidden="true" decoding="async">
                     </a>
                 </nav>
@@ -1158,8 +1008,8 @@ fetch("header.html?v=a6f540b44594")
                 <div class="swiper-slide"><img src="images/homePage_images/4aa.png" alt="Lumen Grove screenshot 5" loading="lazy" /></div>
                 <div class="swiper-slide"><img src="images/homePage_images/5aa.png" alt="Lumen Grove screenshot 6" loading="lazy" /></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <button class="ui-button ui-button--secondary ui-button--icon swiper-button-next" type="button" aria-label="Next screenshot"></button>
+            <button class="ui-button ui-button--secondary ui-button--icon swiper-button-prev" type="button" aria-label="Previous screenshot"></button>
             <div class="swiper-pagination"></div>
         </div>
     </div>
@@ -1175,7 +1025,10 @@ fetch("header.html?v=a6f540b44594")
             <h2 id="halloween-title" class="home-section-title" data-i18n="home_halloween_title">🎃 Halloween Has Arrived in Lumen Grove</h2>
             <p data-i18n="home_halloween_text">The grove has changed. Discover a spooky new atmosphere, seasonal decorations, special tasks, seasonal mini-games, and the story of the Raven King.</p>
             <div class="home-halloween-cta">
-                <a class="home-btn-primary" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" data-i18n="home_halloween_play">Play the event on Android</a>
+                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label">
+                    <img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true" decoding="async">
+                    <span class="play-cta__copy"><span class="play-cta__label" data-i18n="play_cta_label">Play</span><span class="play-cta__store" data-i18n="play_cta_store">Google Play</span></span>
+                </a>
                 <a class="home-teaser-more" href="news_7.html" data-locale-page="news_7.html" data-i18n="home_halloween_more">Explore the Halloween Event →</a>
             </div>
             <p class="home-platform-status" data-i18n="home_ios_planned">An iOS version of Lumen Grove is planned.</p>
@@ -1367,7 +1220,7 @@ fetch("header.html?v=a6f540b44594")
                         <label data-i18n="home_contact_msg">Write a message <span>*</span></label>
                         <textarea name="message" required></textarea>
                     </div>
-                    <button type="submit" class="home-contact-submit" data-i18n="home_contact_btn">Submit</button>
+                    <button type="submit" class="ui-button ui-button--primary home-contact-submit" data-i18n="home_contact_btn">Submit</button>
                 </form>
                 <div class="home-contact-success" id="contactSuccess">
                     <p data-i18n="home_contact_success">Thanks for reaching out! We'll get back to you soon.</p>
@@ -1384,11 +1237,11 @@ fetch("header.html?v=a6f540b44594")
         </div>
 
         <div class="home-socials" data-aos="fade-up">
-            <a class="home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
-            <a class="home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
-            <a class="home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
-            <a class="home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener noreferrer" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
-            <a class="home-social-link" href="devlog.html" data-locale-page="devlog.html" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
+            <a class="ui-button ui-button--secondary home-social-link" href="https://x.com/Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_x"><span class="home-social-icon">𝕏</span> Twitter / X — @Lumen_Grove</a>
+            <a class="ui-button ui-button--secondary home-social-link" href="https://www.youtube.com/@Lumen_Grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_yt"><span class="home-social-icon">▶</span> YouTube — @Lumen_Grove</a>
+            <a class="ui-button ui-button--secondary home-social-link" href="https://www.tiktok.com/@lumen_grove" target="_blank" rel="noopener noreferrer" data-i18n="home_social_tt"><span class="home-social-icon">♪</span> TikTok — @lumen_grove</a>
+            <a class="ui-button ui-button--secondary home-social-link" href="https://www.linkedin.com/company/points-gs/" target="_blank" rel="noopener noreferrer" data-i18n="home_social_li"><span class="home-social-icon">in</span> LinkedIn — Points Game Studio</a>
+            <a class="ui-button ui-button--secondary home-social-link" href="devlog.html" data-locale-page="devlog.html" data-i18n="home_social_blog"><span class="home-social-icon">✎</span> Blog — DevLogs &amp; updates</a>
         </div>
     </section>
 
@@ -1572,6 +1425,6 @@ fetch("header.html?v=a6f540b44594")
 </script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
-<script src="js/locale.js?v=2fc910818fbe"></script>
+<script src="js/locale.js?v=7d2bab33507d"></script>
 </body>
 </html>

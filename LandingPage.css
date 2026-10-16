@@ -316,26 +316,6 @@
     margin-bottom: 20px;
   }
   
-  .play-button {
-    display: inline-block;
-    background-color: #005edb;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 33px;
-    padding: 15px 40px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: auto;
-    max-width: 250px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  .play-button:hover { background-color: #0044aa; }
-  
   .footer {
     background-color: #000;
     color: #fff;
