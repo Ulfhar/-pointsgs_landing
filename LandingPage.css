@@ -29,11 +29,6 @@
     display: block;
   }
   
-  body > :not(.body-particles-layer):not(#header-placeholder) {
-    position: relative;
-    z-index: 1;
-  }
-  
   .promo-0 {
     display: none;
     width: 100%;
