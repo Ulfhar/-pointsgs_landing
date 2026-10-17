@@ -12,6 +12,18 @@
             var title = group.dataset.shareTitle;
             var text = group.dataset.shareText;
 
+            function trackShare(method) {
+                try {
+                    if (window.PointsAnalytics && typeof window.PointsAnalytics.track === 'function') {
+                        window.PointsAnalytics.track('share', {
+                            method: method,
+                            content_id: new URL(url, window.location.href).pathname,
+                            content_type: 'article'
+                        });
+                    }
+                } catch (_) { /* Sharing remains available without analytics. */ }
+            }
+
             function announce(message) {
                 status.textContent = message;
                 status.hidden = false;
@@ -31,6 +43,7 @@
                     await navigator.clipboard.writeText(url);
                     field.hidden = true;
                     announce(group.dataset.copySuccess);
+                    trackShare('copy_link');
                 } catch (_) {
                     manualCopy(group.dataset.copyFallback);
                 } finally {
@@ -43,6 +56,7 @@
                 nativeShare.addEventListener('click', async function () {
                     try {
                         await navigator.share({ title: title, text: text, url: url });
+                        trackShare('native');
                     } catch (error) {
                         if (!error || error.name !== 'AbortError') manualCopy(group.dataset.shareFallback);
                     }

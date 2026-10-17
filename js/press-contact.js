@@ -19,6 +19,14 @@
         const contactEmail = form.dataset.contactEmail || 'bogdan@points.gs';
         let sending = false;
 
+        function trackContact(name) {
+            try {
+                if (window.PointsAnalytics && typeof window.PointsAnalytics.track === 'function') {
+                    window.PointsAnalytics.track(name, { form_id: 'pressContactForm' });
+                }
+            } catch (error) { /* Contact remains available without analytics. */ }
+        }
+
         status.setAttribute('tabindex', '-1');
         if (!status.hasAttribute('role')) status.setAttribute('role', 'alert');
         success.setAttribute('tabindex', '-1');
@@ -124,12 +132,14 @@
                 const result = await response.json();
                 if (!response.ok || result.ok !== true) throw new Error('Message was not accepted');
 
+                trackContact('generate_lead');
                 try { localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString()); } catch (error) { /* Keep successful feedback when storage is blocked. */ }
                 clearStatus();
                 form.hidden = true;
                 success.hidden = false;
                 success.focus();
             } catch (error) {
+                trackContact('contact_error');
                 submit.disabled = false;
                 submit.textContent = submitLabel;
                 showStatus(`Something went wrong. Please try again or email ${contactEmail} directly.`);

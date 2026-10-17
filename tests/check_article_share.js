@@ -7,7 +7,7 @@ const vm = require('node:vm');
 const controller = fs.readFileSync(path.join(__dirname, '../js/article-share.js'), 'utf8');
 const tests = [];
 
-function setup({ clipboard, share, groups = [{}], readyState = 'complete' } = {}) {
+function setup({ clipboard, share, groups = [{}], readyState = 'complete', analytics = true } = {}) {
     const document = { activeElement: null, readyState };
     let onReady;
     document.addEventListener = (name, listener) => {
@@ -70,8 +70,12 @@ function setup({ clipboard, share, groups = [{}], readyState = 'complete' } = {}
     if (clipboard !== undefined) navigator.clipboard = clipboard;
     if (share !== undefined) navigator.share = share;
     const location = { href: 'https://points.gs/uk/devlog.html?tracking=example#unrelated-fragment' };
-    vm.runInNewContext(controller, { document, navigator, window: { navigator, location }, location }, { filename: 'js/article-share.js' });
-    return { document, groups: elements, ready() { document.readyState = 'complete'; if (onReady) onReady(); } };
+    const events = [];
+    const window = { navigator, location };
+    if (analytics === true) window.PointsAnalytics = { track: (name, params) => events.push({ name, params: JSON.parse(JSON.stringify(params)) }) };
+    else if (analytics) window.PointsAnalytics = analytics;
+    vm.runInNewContext(controller, { document, navigator, window, location, URL }, { filename: 'js/article-share.js' });
+    return { document, events, groups: elements, ready() { document.readyState = 'complete'; if (onReady) onReady(); } };
 }
 
 function assertFallback(group, document, message) {
@@ -109,13 +113,14 @@ test('Copy is enhanced without clipboard support; native sharing is exposed only
 
 test('Copy writes the canonical dataset URL and announces success', async () => {
     const writes = [];
-    const { groups: [group] } = setup({ clipboard: { writeText: async value => writes.push(value) } });
+    const { groups: [group], events } = setup({ clipboard: { writeText: async value => writes.push(value) } });
     await group.copy.click();
     assert.deepEqual(writes, [group.dataset.shareUrl]);
     assert.equal(group.status.textContent, group.dataset.copySuccess);
     assert.equal(group.status.hidden, false);
     assert.equal(group.field.hidden, true);
     assert.equal(group.field.focusCalls, 0);
+    assert.deepEqual(events, [{ name: 'share', params: { method: 'copy_link', content_id: '/news_8.html', content_type: 'article' } }]);
 });
 
 test('Missing clipboard API reveals a focused, selected canonical URL', async () => {
@@ -124,6 +129,7 @@ test('Missing clipboard API reveals a focused, selected canonical URL', async ()
         await page.groups[0].copy.click();
         assertFallback(page.groups[0], page.document, page.groups[0].dataset.copyFallback);
         assert.equal(page.groups[0].copy.disabled, false);
+        assert.deepEqual(page.events, []);
     }
 });
 
@@ -131,6 +137,7 @@ test('Clipboard rejection falls back to manual copy without exposing the excepti
     const page = setup({ clipboard: { writeText: async () => { throw new Error('Permission denied details'); } } });
     await page.groups[0].copy.click();
     assertFallback(page.groups[0], page.document, page.groups[0].dataset.copyFallback);
+    assert.deepEqual(page.events, []);
 });
 
 test('Native sharing sends the canonical URL, English title and caption', async () => {
@@ -142,6 +149,7 @@ test('Native sharing sends the canonical URL, English title and caption', async 
     assert.equal(group.field.hidden, true);
     assert.equal(group.field.focusCalls, 0);
     assert.equal(group.status.textContent, '');
+    assert.deepEqual(page.events, [{ name: 'share', params: { method: 'native', content_id: '/news_8.html', content_type: 'article' } }]);
 });
 
 test('Cancelling the native share sheet stays quiet and does not reveal a fallback', async () => {
@@ -151,12 +159,33 @@ test('Cancelling the native share sheet stays quiet and does not reveal a fallba
     assert.equal(group.status.textContent, '');
     assert.equal(group.field.hidden, true);
     assert.equal(group.field.focusCalls, 0);
+    assert.deepEqual(page.events, []);
 });
 
 test('Native share failure reveals the share fallback URL with focus and selection', async () => {
     const page = setup({ share: async () => { throw new Error('Share unavailable'); } });
     await page.groups[0].native.click();
     assertFallback(page.groups[0], page.document, page.groups[0].dataset.shareFallback);
+    assert.deepEqual(page.events, []);
+});
+
+test('Analytics records only the canonical article path, without URL queries or fragments', async () => {
+    const page = setup({
+        clipboard: { writeText: async () => {} },
+        groups: [{ shareUrl: 'https://points.gs/uk/news_8.html?source=example#section' }]
+    });
+    await page.groups[0].copy.click();
+    assert.deepEqual(page.events, [{ name: 'share', params: { method: 'copy_link', content_id: '/uk/news_8.html', content_type: 'article' } }]);
+});
+
+test('Missing or failing analytics does not interfere with successful sharing', async () => {
+    for (const analytics of [false, {}, { track() { throw new Error('Analytics unavailable'); } }]) {
+        const page = setup({ clipboard: { writeText: async () => {} }, share: async () => {}, analytics });
+        await page.groups[0].copy.click();
+        assert.equal(page.groups[0].status.textContent, page.groups[0].dataset.copySuccess);
+        await page.groups[0].native.click();
+        assert.equal(page.groups[0].field.hidden, true);
+    }
 });
 
 test('Each share group preserves its own URL, title, caption, status and fallback field', async () => {
@@ -207,12 +236,14 @@ test('Copy awaits a pending clipboard write before announcing success', async ()
     assert.equal(group.status.textContent, '');
     assert.equal(group.field.hidden, true);
     assert.equal(group.copy.disabled, true);
+    assert.deepEqual(page.events, []);
     await group.copy.click();
     assert.equal(requests, 1);
     complete();
     await click;
     assert.equal(group.status.textContent, group.dataset.copySuccess);
     assert.equal(group.copy.disabled, false);
+    assert.deepEqual(page.events, [{ name: 'share', params: { method: 'copy_link', content_id: '/news_8.html', content_type: 'article' } }]);
 });
 
 test('A successful retry hides the manual fallback and restores the copy button', async () => {

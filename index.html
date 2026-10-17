@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-RSXV2Q3WG2');
-    </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -930,6 +922,8 @@
       ]
     }
     </script>
+    <script src="js/analytics.js?v=ed0684527cae"></script>
+    <script id="cookieyes" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js" async></script>
 </head>
 
 <body>
@@ -973,7 +967,7 @@ fetch("header.html?v=a6f540b44594")
             <p class="home-hero-tagline" data-i18n="home_hero_tagline">Grow a magical grove, help its woodland residents, and turn small acts of kindness into Light for the Magic Oak. Make this little forest your own.</p>
             <p class="home-platform-status" data-i18n="home_platforms">Available on Android · iOS planned</p>
             <div class="home-hero-cta">
-                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label">
+                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label" data-analytics-location="hero">
                     <img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true" decoding="async">
                     <span class="play-cta__copy"><span class="play-cta__label" data-i18n="play_cta_label">Play</span><span class="play-cta__store" data-i18n="play_cta_store">Google Play</span></span>
                 </a>
@@ -1025,7 +1019,7 @@ fetch("header.html?v=a6f540b44594")
             <h2 id="halloween-title" class="home-section-title" data-i18n="home_halloween_title">🎃 Halloween Has Arrived in Lumen Grove</h2>
             <p data-i18n="home_halloween_text">The grove has changed. Discover a spooky new atmosphere, seasonal decorations, special tasks, seasonal mini-games, and the story of the Raven King.</p>
             <div class="home-halloween-cta">
-                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label">
+                <a class="ui-button ui-button--primary play-cta" href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" aria-label="Play Lumen Grove on Google Play" data-i18n-aria-label="play_cta_aria_label" data-analytics-location="seasonal">
                     <img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true" decoding="async">
                     <span class="play-cta__copy"><span class="play-cta__label" data-i18n="play_cta_label">Play</span><span class="play-cta__store" data-i18n="play_cta_store">Google Play</span></span>
                 </a>
@@ -1314,6 +1308,14 @@ fetch("header.html?v=a6f540b44594")
     var successEl = document.getElementById('contactSuccess');
     var submitBtn = form.querySelector('.home-contact-submit');
 
+    function trackContact(name) {
+        try {
+            if (window.PointsAnalytics && typeof window.PointsAnalytics.track === 'function') {
+                window.PointsAnalytics.track(name, { form_id: 'contactForm' });
+            }
+        } catch (_) { /* Contact remains available without analytics. */ }
+    }
+
     function fieldError(input, msg) {
         input.classList.add('fc-error');
         var err = input.parentNode.querySelector('.fc-field-error');
@@ -1395,12 +1397,18 @@ fetch("header.html?v=a6f540b44594")
                 message:   mg.value.trim()
             })
         })
-        .then(function(res) { return res.json(); })
+        .then(function(res) {
+            return res.json().then(function(data) {
+                return { ok: res.ok && data.ok === true };
+            });
+        })
         .then(function(data) {
             if (data.ok) {
+                trackContact('generate_lead');
                 form.style.display = 'none';
                 successEl.style.display = 'block';
             } else {
+                trackContact('contact_error');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit';
                 try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
@@ -1416,6 +1424,7 @@ fetch("header.html?v=a6f540b44594")
             }
         })
         .catch(function() {
+            trackContact('contact_error');
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit';
             try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
@@ -1425,6 +1434,6 @@ fetch("header.html?v=a6f540b44594")
 </script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
-<script src="js/locale.js?v=7d2bab33507d"></script>
+<script src="js/locale.js?v=f97a4cefb718"></script>
 </body>
 </html>

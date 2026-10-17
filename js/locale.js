@@ -139,7 +139,15 @@ function initializeLocale() {
     attachLangSwitcherListeners();
     updateLangSwitcherActive(locale);
 
-    if (staticLocale) return;
+    function localeReady() {
+        document.documentElement.setAttribute('data-locale-ready', 'true');
+        document.dispatchEvent(new CustomEvent('points:locale-ready'));
+    }
+
+    if (staticLocale) {
+        localeReady();
+        return;
+    }
 
     document.querySelectorAll('.hide-for-en').forEach(el => {
         el.style.display = locale === 'en' ? 'none' : '';
@@ -156,8 +164,9 @@ function initializeLocale() {
                 // Preserve the readable source language if translations fail.
                 document.documentElement.lang = 'en';
                 updateLangSwitcherActive('en');
-            });
-    }
+            })
+            .finally(localeReady);
+    } else localeReady();
 
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {

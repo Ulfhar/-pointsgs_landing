@@ -16,6 +16,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlencode, urlsplit
 
 from html_tree import Node, parse, remove_where, set_text
+from analytics_snippet import analytics_head
 
 ROOT = Path(__file__).resolve().parents[1]
 BOGDAN_PROFILE_URL = "https://www.linkedin.com/in/bogdan-kagitin-84bb06127/"
@@ -423,9 +424,7 @@ def head(title, description, page, language, image, schema, site_url, languages=
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;600&display=swap" rel="stylesheet">
     <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False).replace('</', '<\\/')}</script>
-    <script id="cookieyes" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSXV2Q3WG2"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-RSXV2Q3WG2');</script>'''
+{analytics_head(prefix)}'''
 
 
 def fill_template(path, values):
@@ -616,6 +615,7 @@ def build(modified_date):
                       "share": share_section(post, language, site_url, media, prefix),
                       "date": post["date"], "date_label": e(date_label(post["date"], language)), "reading_time": e(label["minutes"].format(n=minutes)),
                       "cover": cover_tree.html(), "toc": toc, "content": content, "content_label": e(label["content"]), "related": related, "prefix": prefix,
+                      "article_id": e(slug),
                       "progress": ' data-reading-progress' if post.get("long_read") else "",
                       "progress_script": f'<script src="{prefix}js/reading-progress.js" defer></script>' if post.get("long_read") else ""}
             output = ROOT / page_url(post, language)
