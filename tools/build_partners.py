@@ -47,6 +47,7 @@ def build():
         'HEADER_VERSION': asset_version('css/header.css'),
         'BUTTONS_VERSION': asset_version('css/buttons.css'),
         'PARTNERS_VERSION': asset_version('css/partners.css'),
+        'HOME_CONTACT_VERSION': asset_version('js/home-contact.js'),
         'PDF_VERSION': asset_version('public/downloads/lumen-grove-project-overview.pdf'),
         'ANALYTICS_HEAD': analytics_head('/'),
         'STRUCTURED_DATA': json.dumps(structured, ensure_ascii=False).replace('</', '<\\/'),

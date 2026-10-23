@@ -9,6 +9,7 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.match(html, /<script src="js\/home-contact\.js(?:\?[^"\s]+)?"><\/script>/, 'Home must load its actual contact controller');
 const controllers = {
     home: fs.readFileSync(path.join(root, 'js/home-contact.js'), 'utf8'),
+    partners: fs.readFileSync(path.join(root, 'js/home-contact.js'), 'utf8'),
     press: fs.readFileSync(path.join(root, 'js/press-contact.js'), 'utf8')
 };
 const tests = [];
@@ -40,17 +41,25 @@ function element(value = '') {
     };
 }
 
-function setup(mode, { httpOk = true, result = { ok: true }, networkError = false, jsonError = false, analytics = 'record', values = {}, href = 'https://points.gs/', loaded = true, localeReady = true } = {}) {
+function setup(mode, { httpOk = true, result = { ok: true }, networkError = false, jsonError = false, analytics = 'record', values = {}, href = 'https://points.gs/', loaded = true, localeReady = true, customSuccessId } = {}) {
     const fields = {
         firstName: element('Alice'), lastName: element('PrivateSurname'),
         email: element('alice.private@example.test'),
         message: element('A private message that must never be sent to analytics.'),
-        website: element(''), topic: element('general')
+        website: element(''), topic: element(mode === 'partners' ? 'partnership' : 'general')
     };
     Object.entries(values).forEach(([name, value]) => { fields[name].value = value; });
     Object.values(fields).forEach(field => { field.parentNode = element(); field.parentElement = field.parentNode; });
     const submit = element();
+    const feedback = [];
+    submit.after = node => feedback.push(node);
     const form = element();
+    const formId = mode === 'home' ? 'contactForm' : mode === 'partners' ? 'partnersContactForm' : 'pressContactForm';
+    form.id = formId;
+    if (mode === 'partners') {
+        form.dataset.successId = customSuccessId || 'partnersContactSuccess';
+        form.dataset.analyticsLocation = 'partners_contact';
+    }
     const scrolls = [];
     const revealClasses = new Set();
     const reveal = { classList: { add: value => revealClasses.add(value), contains: value => revealClasses.has(value) } };
@@ -67,11 +76,12 @@ function setup(mode, { httpOk = true, result = { ok: true }, networkError = fals
     const status = element();
     form.dataset.contactEmail = 'bogdan@points.gs';
     form.querySelector = selector => selector === '.home-contact-submit' ? submit :
-        (fields[(selector.match(/name="([^"]+)"/) || [])[1]] || null);
+        selector.startsWith('.') ? feedback.find(node => (node.className || '').split(/\s+/).includes(selector.slice(1))) || null :
+            (fields[(selector.match(/name="([^"]+)"/) || [])[1]] || null);
     form.querySelectorAll = () => Object.values(fields);
-    const formId = mode === 'home' ? 'contactForm' : 'pressContactForm';
     const elements = mode === 'home' ? { contactForm: form, contactSuccess: success } :
-        { pressContactForm: form, pressContactSuccess: success, pressContactStatus: status };
+        mode === 'partners' ? { partnersContactForm: form, [form.dataset.successId]: success } :
+            { pressContactForm: form, pressContactSuccess: success, pressContactStatus: status };
     const documentElement = element();
     if (localeReady) documentElement.setAttribute('data-locale-ready', 'true');
     const document = eventTarget({
@@ -105,10 +115,10 @@ function setup(mode, { httpOk = true, result = { ok: true }, networkError = fals
         } };
     };
     vm.runInNewContext(controllers[mode], { document, localStorage, window, fetch, Date, Number, Set, URL }, {
-        filename: mode === 'home' ? 'js/home-contact.js' : 'js/press-contact.js'
+        filename: mode === 'press' ? 'js/press-contact.js' : 'js/home-contact.js'
     });
     return {
-        form, formId, success, status, submit, fields, requests, events, localStorage,
+        form, formId, success, status, submit, fields, requests, events, localStorage, feedback,
         document, window, scrolls, reveal, stableDuringScroll, formFocuses: () => formFocuses,
         flushFrames() { frames.splice(0).forEach(callback => callback()); },
         loaded() { document.readyState = 'complete'; window.dispatch('load'); },
@@ -119,19 +129,27 @@ function setup(mode, { httpOk = true, result = { ok: true }, networkError = fals
             await new Promise(resolve => setImmediate(resolve));
         },
         assertSuccess() {
-            assert.equal(mode === 'home' ? form.style.display === 'none' : form.hidden, true);
-            assert.equal(mode === 'home' ? success.style.display === 'block' : !success.hidden, true);
+            assert.equal(mode === 'press' ? form.hidden : form.style.display === 'none', true);
+            assert.equal(mode === 'press' ? !success.hidden : success.style.display === 'block', true);
         },
         assertRetryAvailable() {
             assert.equal(submit.disabled, false);
-            assert.equal(mode === 'home' ? form.style.display === 'none' : form.hidden, false);
-            assert.equal(mode === 'home' ? success.style.display === 'block' : !success.hidden, false);
+            assert.equal(mode === 'press' ? form.hidden : form.style.display === 'none', false);
+            assert.equal(mode === 'press' ? !success.hidden : success.style.display === 'block', false);
             assert.equal(localStorage.getItem('pts_contact_ts'), null);
         },
         assertOnlyEvent(name) {
-            assert.deepEqual(events, [{ name, params: { form_id: formId } }]);
+            const expected = [{ name, params: { form_id: formId } }];
+            if (mode === 'partners' && name === 'generate_lead') expected.push({
+                name: 'partnership_inquiry_submit', params: {
+                    form_id: 'partnersContactForm', contact_type: 'form', link_location: 'partners_contact'
+                }
+            });
+            assert.deepEqual(events, expected);
             const serialized = JSON.stringify(events);
-            for (const field of Object.values(fields).filter(field => field.value)) {
+            for (const name of ['firstName', 'lastName', 'email', 'message', 'website']) {
+                const field = fields[name];
+                if (!field.value) continue;
                 assert.equal(serialized.includes(field.value), false, 'Raw form values must not enter analytics');
             }
         }
@@ -261,11 +279,45 @@ test('Changing the preselected topic to general does not submit or track a partn
     page.assertOnlyEvent('generate_lead');
 });
 
-test('Repeated dispatch while the partnership transport is pending submits only once', async () => {
-    const page = setup('home', { values: { topic: 'partnership' } });
-    await Promise.all([page.send(), page.send()]);
-    assert.equal(page.requests.length, 1);
-    assert.equal(page.events.filter(event => event.name === 'partnership_inquiry_submit').length, 1);
+test('Repeated dispatch while the partnership transport is pending submits only once on either page', async () => {
+    for (const mode of ['home', 'partners']) {
+        const page = setup(mode, { values: { topic: 'partnership' } });
+        await Promise.all([page.send(), page.send()]);
+        await page.send();
+        assert.equal(page.requests.length, 1);
+        assert.equal(page.events.filter(event => event.name === 'partnership_inquiry_submit').length, 1);
+    }
+});
+
+test('The inline Partnerships form succeeds without homepage positioning or query prefill', async () => {
+    const page = setup('partners', {
+        href: 'https://points.gs/partners/?contact_topic=general#contactForm', loaded: false, localeReady: false,
+        customSuccessId: 'configuredPartnershipSuccess'
+    });
+    assert.equal(page.form.noValidate, true, 'Enhanced validation starts only after the controller initializes');
+    assert.equal(page.fields.topic.value, 'partnership');
+    page.loaded(); page.localized(); page.flushFrames();
+    assert.deepEqual(page.scrolls, [], 'A legacy homepage fragment cannot invoke homepage alignment on Partnerships');
+    assert.equal(page.reveal.classList.contains('partnership-contact-target'), false);
+    await page.send();
+    page.assertSuccess();
+    page.assertOnlyEvent('generate_lead');
+    assert.equal(page.requests[0].url, 'https://formspree.io/f/xkjggyon');
+});
+
+test('An inline Partnerships transport error keeps input and visible retry feedback without a success event', async () => {
+    const page = setup('partners', { networkError: true });
+    const original = Object.fromEntries(Object.entries(page.fields).map(([name, field]) => [name, field.value]));
+    await page.send();
+    page.assertRetryAvailable();
+    assert.deepEqual(Object.fromEntries(Object.entries(page.fields).map(([name, field]) => [name, field.value])), original);
+    assert.equal(page.feedback.length, 1);
+    assert.equal(page.feedback[0].style.display, 'block');
+    assert.match(page.feedback[0].textContent, /Something went wrong/);
+    await page.send();
+    assert.equal(page.requests.length, 2, 'Retry is possible after a rejected transport');
+    assert.equal(page.feedback.length, 1, 'Retry updates one error message rather than adding duplicates');
+    assert.equal(page.events.some(event => event.name === 'partnership_inquiry_submit'), false);
 });
 
 function test(name, run) { tests.push({ name, run }); }
@@ -277,10 +329,15 @@ for (const mode of Object.keys(controllers)) {
         assert.equal(page.requests.length, 1);
         assert.equal(page.requests[0].url, 'https://formspree.io/f/xkjggyon');
         assert.equal(page.requests[0].method, 'POST');
-        assert.deepEqual(JSON.parse(page.requests[0].body), {
+        const expectedPayload = {
             firstName: page.fields.firstName.value, lastName: page.fields.lastName.value,
             email: page.fields.email.value, message: page.fields.message.value
-        });
+        };
+        if (mode === 'partners') {
+            expectedPayload.topic = 'partnership';
+            expectedPayload.subject = 'Lumen Grove partnership / pitch deck request';
+        }
+        assert.deepEqual(JSON.parse(page.requests[0].body), expectedPayload);
         page.assertOnlyEvent('generate_lead');
         page.assertSuccess();
     });

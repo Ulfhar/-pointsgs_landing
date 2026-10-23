@@ -41,7 +41,7 @@
                 <p class="partners-intro">A cozy forest farming game about restoring a magical grove. Plant, harvest, decorate, and help its woodland residents bring Light back to the Magic Oak.</p>
                 <p class="partners-status"><span aria-hidden="true"></span>Released on Android <span class="partners-status-divider" aria-hidden="true">/</span> iOS planned</p>
                 <div class="partners-actions">
-                    <a class="ui-button ui-button--primary" href="/?contact_topic=partnership#contactForm" data-partnership-contact="form" data-analytics-location="partners_hero">Request pitch deck <span aria-hidden="true">↗</span></a>
+                    <a class="ui-button ui-button--primary" href="#contact" data-partnership-contact="form" data-analytics-location="partners_hero">Request pitch deck <span aria-hidden="true">↓</span></a>
                     <a class="ui-button ui-button--secondary" href="/public/downloads/lumen-grove-project-overview.pdf?v={{PDF_VERSION}}" download="Lumen-Grove-Project-Overview.pdf" data-project-overview data-analytics-location="partners_hero">Project overview <span aria-hidden="true">↓</span></a>
                 </div>
                 <p class="partners-caption">One-page PDF · 700 KB <span aria-hidden="true">/</span> Detailed metrics and commercial materials on request.</p>
@@ -102,10 +102,50 @@
         </section>
 
         <section id="contact" class="partners-contact" aria-labelledby="contact-title">
-            <div><p class="partners-eyebrow">Let’s talk</p><h2 id="contact-title">Start with a conversation.</h2><p>Tell us about your publishing, growth, or product expertise and the collaboration you have in mind.</p><div class="partners-actions"><a class="ui-button ui-button--primary" href="/?contact_topic=partnership#contactForm" data-partnership-contact="form" data-analytics-location="partners_contact">Request pitch deck <span aria-hidden="true">↗</span></a></div><p class="partners-email-label">Or contact the studio directly</p><a class="partners-email" href="mailto:info@points.gs?subject=Lumen%20Grove%20partnership%20inquiry" data-partnership-contact="email" data-analytics-location="partners_contact">info@points.gs <span aria-hidden="true">↗</span></a><p class="partners-caption">Detailed product metrics and commercial materials are shared on request.</p></div>
-            <aside class="partners-overview" aria-labelledby="overview-title"><p class="partners-small-label">Take a closer look</p><h3 id="overview-title">Project overview</h3><p>A one-page introduction to the game, its current status, and the partnership focus.</p><a class="ui-button ui-button--secondary" href="/public/downloads/lumen-grove-project-overview.pdf?v={{PDF_VERSION}}" download="Lumen-Grove-Project-Overview.pdf" data-project-overview data-analytics-location="partners_overview">Download PDF <span aria-hidden="true">↓</span></a><p class="partners-caption">1 page · 700 KB · English</p><a class="partners-text-link" href="/press-kit.html">Browse the press kit <span aria-hidden="true">↗</span></a></aside>
+            <div class="partners-contact-main">
+                <p class="partners-eyebrow">Let’s talk</p>
+                <h2 id="contact-title">Start with a conversation.</h2>
+                <p>Request the pitch deck or tell us about the collaboration you have in mind.</p>
+                <form id="partnersContactForm" class="home-contact-form partners-inquiry-form" action="https://formspree.io/f/xkjggyon" method="post" data-success-id="partnersContactSuccess" data-analytics-location="partners_contact">
+                    <input type="hidden" name="topic" value="partnership">
+                    <input type="hidden" name="subject" value="Lumen Grove partnership / pitch deck request">
+                    <div class="partners-honeypot" aria-hidden="true"><label for="partnersWebsite">Website</label><input type="text" id="partnersWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+                    <div class="partners-inquiry-row">
+                        <div class="partners-inquiry-field">
+                            <label for="partnersFirstName">First name <span aria-hidden="true">*</span></label>
+                            <input type="text" id="partnersFirstName" name="firstName" autocomplete="given-name" required>
+                        </div>
+                        <div class="partners-inquiry-field">
+                            <label for="partnersLastName">Last name <span aria-hidden="true">*</span></label>
+                            <input type="text" id="partnersLastName" name="lastName" autocomplete="family-name" required>
+                        </div>
+                    </div>
+                    <div class="partners-inquiry-field">
+                        <label for="partnersEmail">Email <span aria-hidden="true">*</span></label>
+                        <input type="email" id="partnersEmail" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="partners-inquiry-field">
+                        <label for="partnersMessage">Message <span aria-hidden="true">*</span></label>
+                        <textarea id="partnersMessage" name="message" rows="5" minlength="10" maxlength="2000" placeholder="Tell us about your company, partnership interest, or the materials you’d like to see." required></textarea>
+                    </div>
+                    <button type="submit" class="ui-button ui-button--primary home-contact-submit">Send inquiry</button>
+                </form>
+                <div id="partnersContactSuccess" class="partners-inquiry-success" role="status" aria-live="polite" tabindex="-1">
+                    <h3>Thanks for reaching out.</h3>
+                    <p>Your partnership inquiry has been sent. We’ll reply by email.</p>
+                </div>
+            </div>
+            <div class="partners-contact-resources">
+                <div class="partners-direct-contact">
+                    <p class="partners-small-label">Or contact the studio directly</p>
+                    <a class="partners-email" href="mailto:info@points.gs?subject=Lumen%20Grove%20partnership%20inquiry" data-partnership-contact="email" data-analytics-location="partners_contact">info@points.gs <span aria-hidden="true">↗</span></a>
+                    <p class="partners-caption">Detailed product metrics and commercial materials are shared on request.</p>
+                </div>
+                <aside class="partners-overview" aria-labelledby="overview-title"><p class="partners-small-label">Take a closer look</p><h3 id="overview-title">Project overview</h3><p>A one-page introduction to the game, its current status, and the partnership focus.</p><a class="ui-button ui-button--secondary" href="/public/downloads/lumen-grove-project-overview.pdf?v={{PDF_VERSION}}" download="Lumen-Grove-Project-Overview.pdf" data-project-overview data-analytics-location="partners_overview">Download PDF <span aria-hidden="true">↓</span></a><p class="partners-caption">1 page · 700 KB · English</p><a class="partners-text-link" href="/press-kit.html">Browse the press kit <span aria-hidden="true">↗</span></a></aside>
+            </div>
         </section>
     </main>
 {{FOOTER}}
+    <script src="/js/home-contact.js?v={{HOME_CONTACT_VERSION}}"></script>
 </body>
 </html>

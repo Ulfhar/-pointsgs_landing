@@ -8,7 +8,7 @@ Prepared and checked locally on **23 October 2026**. No commit, push, or deploym
 - Generated page: `partners/index.html`. Edit `templates/partners.html`, rather than the generated page.
 - Styles: `css/partners.css`; navigation uses the existing shared header and footer.
 - PDF source: `tools/build_project_overview.py`; public download: `public/downloads/lumen-grove-project-overview.pdf` (one A4 page, approximately 700 KB).
-- The page contains the full project facts, partnership focus, current media, Google Play link, direct business email, and a link to the existing contact form with `contact_topic=partnership` preselected.
+- The page contains the full project facts, partnership focus, current media, Google Play link, direct business email, and an embedded partnership form in the “Start with a conversation” section. The hero's Request pitch deck CTA links directly to that section without opening another page.
 - Unique title, H1, description, canonical, Open Graph/Twitter metadata, structured data, and sitemap entry are included. The page is English only.
 
 Regenerate in this order from the repository root; Python needs ReportLab and Pillow for the first command:
@@ -28,7 +28,9 @@ The owner approved reuse of existing gameplay, screenshots and `info@points.gs`,
 
 ## Contact and consent
 
-The pitch-deck buttons open the existing home contact form with the partnership topic selected. The visible business email is `info@points.gs`. Submission still uses the existing Formspree endpoint `https://formspree.io/f/xkjggyon`.
+The hero's Request pitch deck button scrolls to `#contact`, where the embedded `partnersContactForm` is ready to submit a partnership inquiry. Visitors enter their name, email and message, then select **Send inquiry**. The topic is fixed to `partnership`; there is no redundant topic selector on this dedicated page. The visible business email is `info@points.gs`.
+
+Submission uses the existing shared `js/home-contact.js` controller and Formspree endpoint `https://formspree.io/f/xkjggyon`. Normal submission stays on the Partnerships page for validation, errors and confirmation. A native `POST` action and hidden subject preserve a delivery fallback when JavaScript is unavailable. The homepage keeps its existing form and topic selector.
 
 **The endpoint's actual recipient has not been verified in the Formspree account, and no real email was sent during QA.** The owner chose to verify the recipient later. Confirm the agreed recipient and delivery after deployment. UI success and the successful-submission analytics event occur only after a successful server response. Failed validation, network errors and unsuccessful responses do not emit `partnership_inquiry_submit`. Duplicate submissions are guarded. Form contents and email addresses are not sent as analytics parameters.
 
@@ -36,9 +38,11 @@ The existing analytics consent and internal-traffic rules apply. Standard `page_
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
-| `partnership_contact_click` | A tagged pitch-deck/form button or business-email link is clicked | `contact_type` = `form` or `email`; `link_location` = the tagged button placement |
+| `partnership_contact_click` | The hero's Request pitch deck CTA or a business-email link is clicked | `contact_type` = `form` or `email`; `link_location` = the tagged button placement |
 | `project_overview_download` | A project-overview download link is clicked | `contact_type` = `pdf`; `link_location` = the tagged placement |
-| `partnership_inquiry_submit` | The partnership form receives a successful server response | `contact_type` = `form`; `link_location` = `home_contact`; `form_id` |
+| `partnership_inquiry_submit` | A partnership form receives a successful server response | `contact_type` = `form`; embedded form: `link_location` = `partners_contact`, `form_id` = `partnersContactForm`; homepage: `link_location` = `home_contact`, `form_id` = `contactForm` |
+
+The embedded submit button does not fire a form-opening click event. A successful inquiry emits the existing `generate_lead` event and one `partnership_inquiry_submit`; validation errors, a failed server response and repeat dispatch do not report success.
 
 The download event measures a click, not proof that a file was saved or read. The existing `play_store_click` continues to measure Google Play clicks separately.
 
@@ -62,10 +66,11 @@ Because the report filters to these actions, its Sessions metric describes sessi
 Completed locally:
 
 - Desktop **1440 px** and mobile **390 px / 320 px**: no horizontal overflow; navigation and contact actions work.
-- The partnership form opens with its first fields approximately **80 px** below the top edge (verified in Ukrainian at 320 px and English at 1440 px). The one-time correction waits for page and locale readiness, suppresses the target block's AOS movement, preserves focus, and cancels if the user interacts while waiting.
+- The Partnerships form is embedded in its contact section; the hero targets `#contact` on the same page. The existing homepage's legacy `contact_topic=partnership#contactForm` links retain their alignment behavior and topic selection for other entry points.
+- The new hero-to-form journey was checked at 1440, 390 and 320 px. The mobile section lands approximately 84 px below the top edge, with full-width fields and submit button. Submitting empty fields shows four inline validation errors, keeps the same URL, leaves the success message hidden and permits correction; no real inquiry was sent.
 - The actual gameplay file plays on desktop and mobile. Its intrinsic dimensions are **1560×720** and duration is **134.367 seconds**; the display uses the matching aspect ratio.
 - The PDF download is byte-identical to the generated artifact. The one-page PDF was rendered and inspected for clipping or overlap; its four URL annotations and text bounds were checked.
-- Five Python suites and five JavaScript suites passed; the JavaScript suites cover **119 scenarios**. These include consent, single click events, successful versus failed form submission, page/navigation checks, and existing site behavior.
+- Five Python suites and five JavaScript suites passed; the JavaScript suites cover **136 scenarios**. These include the embedded form's success, validation, server/network failure, retry, rate limiting and duplicate suppression, as well as consent, single click events, page/navigation checks and existing site behavior.
 - Indexability declarations, sitemap inclusion and social-preview assets were checked locally. These checks do not establish Google indexing or a successful live URL inspection.
 
 After the owner pushes and the deployment is live:

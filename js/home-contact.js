@@ -1,10 +1,13 @@
 (function() {
     var RATE_LIMIT_MS = 10 * 60 * 1000;
-    var form = document.getElementById('contactForm');
-    var successEl = document.getElementById('contactSuccess');
-    if (!form || !successEl || form.dataset.contactReady) return;
+    var form = document.getElementById('contactForm') || document.getElementById('partnersContactForm');
+    if (!form || form.dataset.contactReady) return;
+    var successEl = document.getElementById(form.dataset.successId ||
+        (form.id === 'partnersContactForm' ? 'partnersContactSuccess' : 'contactSuccess'));
+    if (!successEl) return;
     var submitBtn = form.querySelector('.home-contact-submit');
     if (!submitBtn) return;
+    form.noValidate = true;
     form.dataset.contactReady = 'true';
     var topicField = form.querySelector('[name="topic"]');
     var sending = false;
@@ -12,7 +15,7 @@
     var submitLabel = submitBtn.textContent;
     // Only a known topic can be populated; no message, email or other query values are copied.
     try {
-        if (topicField && new URL(window.location.href).searchParams.get('contact_topic') === 'partnership') {
+        if (form.id === 'contactForm' && topicField && new URL(window.location.href).searchParams.get('contact_topic') === 'partnership') {
             topicField.value = 'partnership';
         }
     } catch (_) { /* The unprefilled form remains available. */ }
@@ -61,12 +64,12 @@
         document.addEventListener('points:locale-ready', onLocale);
         alignWhenReady();
     }
-    alignPartnershipTarget();
+    if (form.id === 'contactForm') alignPartnershipTarget();
 
     function trackContact(name, params) {
         try {
             if (window.PointsAnalytics && typeof window.PointsAnalytics.track === 'function') {
-                window.PointsAnalytics.track(name, Object.assign({ form_id: 'contactForm' }, params));
+                window.PointsAnalytics.track(name, Object.assign({ form_id: form.id }, params));
             }
         } catch (_) { /* Contact remains available without analytics. */ }
     }
@@ -170,7 +173,7 @@
                 submitted = true;
                 trackContact('generate_lead');
                 if (partnership) trackContact('partnership_inquiry_submit', {
-                    contact_type: 'form', link_location: 'home_contact'
+                    contact_type: 'form', link_location: form.dataset.analyticsLocation || 'home_contact'
                 });
                 form.style.display = 'none';
                 successEl.style.display = 'block';

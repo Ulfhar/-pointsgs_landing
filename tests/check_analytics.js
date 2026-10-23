@@ -510,7 +510,7 @@ test('Mail links have a separate contact event without exposing the recipient', 
 test('Partnership form and email links each emit one specific click without duplicate general contact events', () => {
     const page = setup({ href: 'https://points.gs/partners?utm_source=linkedin&email=private#contact' });
     page.consent();
-    const form = page.link('/?contact_topic=partnership#contactForm', {
+    const form = page.link('#contact', {
         'data-partnership-contact': 'form', 'data-analytics-location': 'partners_hero'
     });
     page.click(new Element('span', {}, form));
@@ -736,17 +736,17 @@ test('Delivered Partnerships actions use the real PDF and contact targets and ea
         return attrs;
     });
     const actions = anchors.filter(attrs => Object.hasOwn(attrs, 'data-partnership-contact') || Object.hasOwn(attrs, 'data-project-overview'));
-    assert.equal(actions.filter(attrs => attrs['data-partnership-contact'] === 'form').length, 2);
+    assert.equal(actions.filter(attrs => attrs['data-partnership-contact'] === 'form').length, 1);
     assert.equal(actions.filter(attrs => attrs['data-partnership-contact'] === 'email').length, 2);
     assert.equal(actions.filter(attrs => Object.hasOwn(attrs, 'data-project-overview')).length, 2);
     for (const attrs of actions) {
         assert.ok(attrs['data-analytics-location'], 'Every business action identifies its button placement');
         const url = new URL(attrs.href.replaceAll('&amp;', '&'), page.window.location.href);
         if (attrs['data-partnership-contact'] === 'form') {
-            assert.equal(url.pathname, '/');
-            assert.equal(url.searchParams.get('contact_topic'), 'partnership');
-            assert.equal(url.hash, '#contactForm');
-            assert.equal([...url.searchParams.keys()].some(key => key.startsWith('utm_')), false, 'Internal form link cannot restart campaign attribution');
+            assert.equal(attrs.href, '#contact', 'Pitch CTA stays on the Partnerships page');
+            assert.equal(url.pathname, '/partners/');
+            assert.equal(url.hash, '#contact');
+            assert.equal(url.search, page.window.location.search, 'The same-page CTA preserves campaign attribution');
         } else if (attrs['data-partnership-contact'] === 'email') {
             assert.equal(url.protocol, 'mailto:');
             assert.equal(url.pathname, 'info@points.gs');
@@ -759,10 +759,15 @@ test('Delivered Partnerships actions use the real PDF and contact targets and ea
         page.click(new Element('span', {}, page.link(url.href, attrs)));
         assert.equal(page.events().length, prior + 1, 'One physical action produces one event');
     }
-    assert.equal(page.events('partnership_contact_click').length, 4);
+    assert.equal(page.events('partnership_contact_click').length, 3);
     assert.equal(page.events('project_overview_download').length, 2);
     assert.equal(page.events('contact_click').length, 0);
     assert.equal(page.events('press_asset_download').length, 0);
+    const formMarkup = html.match(/<form\b([^>]*)>[\s\S]*?<\/form>/gi) || [];
+    assert.equal(formMarkup.length, 1, 'The pitch request is submitted on this page');
+    assert.ok(/\bid="partnersContactForm"/.test(formMarkup[0]));
+    assert.ok(/\bdata-analytics-location="partners_contact"/.test(formMarkup[0]));
+    assert.ok(!/\bdata-partnership-contact=/.test(formMarkup[0]), 'Form submission does not double as a contact-opening click');
     assert.ok(anchors.filter(attrs => attrs.href?.startsWith('mailto:')).every(attrs => attrs['data-partnership-contact'] === 'email'), 'Footer and direct email links both report partnership contact');
 });
 

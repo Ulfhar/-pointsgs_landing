@@ -838,6 +838,100 @@
 
         .home-contact-field select option { background: #0d2130; color: #e8f4f8; }
 
+        .contact-topic-picker { position: relative; min-width: 0; }
+        .contact-topic-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            min-height: 48px;
+            padding: 11px 14px;
+            border: 1px solid rgba(183, 224, 234, 0.46);
+            border-radius: 12px;
+            background: rgba(27, 48, 68, 0.88);
+            color: #e8f4f8;
+            font: 600 0.95rem/1.5 'Roboto Serif', serif;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .contact-topic-value { min-width: 0; overflow-wrap: anywhere; }
+        .contact-topic-trigger > svg {
+            flex: 0 0 18px;
+            width: 18px;
+            height: 18px;
+            color: #9cddd8;
+            transition: transform 0.2s;
+        }
+        .contact-topic-trigger:hover { border-color: #a1d8dd; background: rgba(35, 62, 81, 0.92); }
+        .contact-topic-trigger:focus-visible,
+        .contact-topic-trigger[aria-expanded="true"] {
+            outline: none;
+            border-color: #79dfd4;
+            box-shadow: 0 0 0 3px rgba(85, 219, 202, 0.16);
+        }
+        .contact-topic-trigger[aria-expanded="true"] > svg { transform: rotate(180deg); }
+        .contact-topic-menu {
+            position: absolute;
+            z-index: 30;
+            inset: calc(100% + 8px) 0 auto;
+            display: grid;
+            gap: 5px;
+            margin: 0;
+            padding: 7px;
+            list-style: none;
+            border: 1px solid rgba(193, 232, 240, 0.58);
+            border-radius: 15px;
+            background: rgba(13, 32, 48, 0.93);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 16px 36px rgba(0, 8, 18, 0.42), inset 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .contact-topic-menu[hidden] { display: none; }
+        .contact-topic-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-width: 0;
+            min-height: 48px;
+            padding: 11px 12px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            color: #d1dfe9;
+            font: 0.93rem/1.5 'Roboto Serif', serif;
+            overflow-wrap: anywhere;
+            cursor: pointer;
+        }
+        .contact-topic-option:hover { background: rgba(208, 239, 246, 0.08); }
+        .contact-topic-option[aria-selected="true"] {
+            border-color: rgba(124, 238, 217, 0.72);
+            background: linear-gradient(120deg, rgba(54, 210, 189, 0.3), rgba(40, 139, 159, 0.22));
+            color: #e7fff8;
+            font-weight: 700;
+        }
+        .contact-topic-option:focus-visible,
+        .contact-topic-option.is-active {
+            outline: 2px solid #b0eee5;
+            outline-offset: -3px;
+        }
+        .contact-topic-check {
+            flex: 0 0 21px;
+            width: 21px;
+            height: 21px;
+            padding: 3px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            background: #83e4d0;
+            color: #092d32;
+            visibility: hidden;
+        }
+        .contact-topic-option[aria-selected="true"] .contact-topic-check { visibility: visible; }
+        @media (max-width: 360px) {
+            .contact-topic-option { gap: 8px; padding-inline: 9px; font-size: 0.9rem; }
+        }
+
         .home-contact-field input:focus,
         .home-contact-field select:focus,
         .home-contact-field textarea:focus {
@@ -1222,11 +1316,13 @@ fetch("header.html?v=91821a0def62")
                         <input type="email" name="email" required />
                     </div>
                     <div class="home-contact-field">
-                        <label for="contactTopic" data-i18n="home_contact_topic">Topic</label>
-                        <select name="topic" id="contactTopic">
-                            <option value="general" data-i18n="home_contact_topic_general">General inquiry</option>
-                            <option value="partnership" data-i18n="home_contact_topic_partnership">Partnership / request pitch deck</option>
-                        </select>
+                        <label for="contactTopic" id="contactTopicLabel" data-i18n="home_contact_topic">Topic</label>
+                        <div class="contact-topic-picker">
+                            <select name="topic" id="contactTopic">
+                                <option value="general" data-i18n="home_contact_topic_general">General inquiry</option>
+                                <option value="partnership" data-i18n="home_contact_topic_partnership">Partnership / request pitch deck</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="home-contact-field">
                         <label data-i18n="home_contact_msg">Write a message <span>*</span></label>
@@ -1319,7 +1415,8 @@ fetch("header.html?v=91821a0def62")
 </script>
 
 <!-- Contact form: validation + honeypot + rate limit -->
-<script src="js/home-contact.js?v=116be6e939d2"></script>
+<script src="js/home-contact.js?v=b06d3fe605fd"></script>
+<script src="js/contact-topic.js?v=7648473b418a"></script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
 <script src="js/locale.js?v=949e401ce8ae"></script>

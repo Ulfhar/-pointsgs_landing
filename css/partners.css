@@ -63,7 +63,26 @@
 .partners-contact { display: grid; grid-template-columns: 1.3fr 1fr; align-items: start; gap: 64px; margin-block: 64px 12px; padding: 42px; background: #112434; border: 1px solid #304c60; border-radius: 20px; }
 .partners-contact h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
 .partners-contact > div > p { max-width: 50ch; }
-.partners-contact .partners-email-label { margin: 24px 0 4px; color: #afc2cf; font-size: 13px; }
+.partners-contact-main, .partners-contact-resources { min-width: 0; }
+.partners-contact-resources { display: grid; gap: 30px; }
+.partners-inquiry-form { display: grid; gap: 18px; margin-top: 28px; }
+.partners-inquiry-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.partners-inquiry-field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.partners-inquiry-field label { color: #cedfe8; font-size: 14px; font-weight: 600; }
+.partners-inquiry-field label span { color: #94ded2; }
+.partners-inquiry-field :where(input, textarea) { width: 100%; min-width: 0; min-height: 48px; padding: 12px 14px; border: 1px solid #456378; border-radius: 10px; background: #ffffff09; color: #edf6f8; font: inherit; font-size: 16px; line-height: 1.5; transition: border-color .2s, box-shadow .2s; }
+.partners-inquiry-field textarea { min-height: 144px; resize: vertical; }
+.partners-inquiry-field textarea::placeholder { color: #9db0bf; font-size: 14px; }
+.partners-inquiry-field :where(input, textarea):focus { outline: none; border-color: #94ded2; box-shadow: 0 0 0 3px #94ded21f; }
+.partners-inquiry-field :where(input, textarea).fc-error { border-color: #ef9292; box-shadow: 0 0 0 3px #ef92921a; }
+.partners-inquiry-field .fc-field-error { display: none; color: #f3abab; font-size: 13px; line-height: 1.5; }
+.partners-inquiry-field .fc-field-error.visible { display: block; }
+.partners-inquiry-form .fc-rate-msg { margin: 0; color: #f3abab; font-size: 13px; line-height: 1.6; }
+.partners-inquiry-form .home-contact-submit { justify-self: start; --button-min-height: 50px; --button-padding: 11px 22px; --button-text-size: 16px; }
+.partners-honeypot { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.partners-inquiry-success { display: none; margin-top: 28px; padding: 24px; border: 1px solid #78bdaf; border-radius: 14px; background: #94ded20d; }
+.partners-inquiry-success h3 { color: #b9eee2; }
+.partners-inquiry-success p { margin-bottom: 0; }
 .partners-email { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; min-height: 44px; font-size: 1.2rem; text-decoration: none; overflow-wrap: anywhere; }
 .partners-email + .partners-caption { margin-top: 12px; }
 .partners-overview { padding: 24px; background: #091723; border: 1px solid #304c60; border-radius: 14px; }
@@ -76,3 +95,4 @@
 @media (max-width: 900px) { .partners-main { padding-top: 34px; } .partners-hero { grid-template-columns: 1fr; gap: 28px; } .partners-hero-copy { max-width: 65ch; } .partners-game-card { max-width: 680px; } .partners-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } .partners-studio { grid-template-columns: 1fr 190px; gap: 30px; } .partners-contact { grid-template-columns: 1fr 1fr; gap: 28px; } }
 @media (max-width: 700px) { .partners-page { font-size: 16px; } .partners-main { width: calc(100% - 40px); padding-top: 28px; } .partners-main h1 { font-size: 3.1rem; } .partners-section { padding-block: 42px; } .partners-section-nav { gap: 0 20px; margin-top: 24px; padding-block: 14px; } .partners-gallery { grid-template-columns: 1fr; gap: 24px; } .partners-studio { grid-template-columns: 1fr; gap: 28px; } .partners-creator { display: flex; align-items: center; gap: 20px; text-align: left; } .partners-creator img { width: 90px; height: 90px; margin: 0; } .partners-contact { grid-template-columns: 1fr; margin-top: 42px; padding: 26px; gap: 24px; } }
 @media (max-width: 480px) { .partners-page { padding-top: 57px; } .partners-main { width: calc(100% - 32px); } .partners-main h1 { font-size: 2.8rem; } .partners-main h2 { font-size: 1.8rem; } .partners-actions { align-items: stretch; } .partners-actions .ui-button { flex: 1 1 auto; } .partners-game-card-body { padding: 20px; } .partners-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } .partners-focus-grid { grid-template-columns: 1fr; gap: 12px; } .partners-focus-grid article { padding: 20px; } .partners-focus-grid h3 { margin-top: 8px; } .partners-contact { padding: 22px 20px; } .partners-overview { padding: 20px; } }
+@media (max-width: 480px) { .partners-inquiry-row { grid-template-columns: minmax(0, 1fr); gap: 18px; } .partners-inquiry-form .home-contact-submit { justify-self: stretch; width: 100%; } }

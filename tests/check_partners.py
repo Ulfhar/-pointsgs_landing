@@ -5,6 +5,7 @@ This checks crawlable HTML and native destinations; live delivery, layout, GA4
 receipt and Search Console indexing still require browser/account verification.
 """
 from datetime import date
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -145,10 +146,48 @@ downloads = [n for n in links if "data-project-overview" in n.attrs]
 check(bool(form_links) and bool(email_links) and bool(downloads), "Form, email and overview must all be available")
 for link in form_links:
     url = urlsplit(link.attrs.get("href", ""))
-    check(parse_qs(url.query).get("contact_topic") == ["partnership"] and url.fragment == "contactForm" and
-          local_path(PAGE, link.attrs["href"]) == (ROOT / "index.html").resolve(),
-          "Pitch request must open the existing form with the partnership topic")
+    check(not url.path and not url.query and url.fragment == "contact" and
+          local_path(PAGE, link.attrs["href"]) == PAGE.resolve(),
+          "Pitch request must reach the form on this page without a redirect")
     check("Request pitch deck" in link.text(), "Pitch CTA must clearly describe the requested material")
+check(len(form_links) == 1, "The hero needs one direct pitch CTA; the contact section contains the form itself")
+forms = [n for n in main.walk() if n.tag == "form"]
+check(len(forms) == 1 and forms[0].attrs.get("id") == "partnersContactForm",
+      "Partnerships needs one embedded contact form")
+form = forms[0]
+check(form.attrs.get("action") == "https://formspree.io/f/xkjggyon" and form.attrs.get("method", "").lower() == "post",
+      "Use the existing delivery endpoint for a native fallback")
+check(form.attrs.get("data-success-id") == "partnersContactSuccess" and
+      form.attrs.get("data-analytics-location") == "partners_contact",
+      "The shared controller must use this form's success state and event placement")
+contact = next((n for n in main.walk() if n.attrs.get("id") == "contact"), None)
+check(contact is not None and form in list(contact.walk()), "The CTA target must contain the embedded form")
+fields = {n.attrs.get("name"): n for n in form.walk() if n.tag in {"input", "textarea", "select"}}
+for name in ("firstName", "lastName", "email", "message"):
+    check(name in fields and "required" in fields[name].attrs, f"Required contact field missing: {name}")
+    field_id = fields[name].attrs.get("id")
+    check(bool(field_id) and any(n.tag == "label" and n.attrs.get("for") == field_id and n.text().strip()
+                                for n in form.walk()), f"Contact field needs a visible associated label: {name}")
+check(fields["email"].attrs.get("type") == "email", "Use native email input semantics")
+check(fields.get("topic") is not None and fields["topic"].attrs.get("type") == "hidden" and
+      fields["topic"].attrs.get("value") == "partnership", "Embedded form must always submit the partnership topic")
+check(fields.get("subject") is not None and fields["subject"].attrs.get("type") == "hidden" and
+      fields["subject"].attrs.get("value") == "Lumen Grove partnership / pitch deck request",
+      "The native fallback must retain the partnership subject")
+check(fields.get("website") is not None and fields["website"].attrs.get("tabindex") == "-1",
+      "Keep the existing honeypot out of keyboard navigation")
+submit_buttons = [n for n in form.walk() if n.tag == "button" and n.attrs.get("type") == "submit"]
+check(len(submit_buttons) == 1 and submit_buttons[0].has_class("home-contact-submit"),
+      "Use one submit action supported by the shared contact controller")
+check(not any(n.attrs.get("data-partnership-contact") for n in submit_buttons),
+      "Submitting the form must not also report a form-opening contact click")
+success = next((n for n in main.walk() if n.attrs.get("id") == "partnersContactSuccess"), None)
+check(success is not None and (success.attrs.get("role") == "status" or success.attrs.get("aria-live") == "polite"),
+      "Successful submission needs an accessible confirmation on this page")
+contact_version = hashlib.sha256((ROOT / "js/home-contact.js").read_bytes()).hexdigest()[:12]
+contact_scripts = [n for n in nodes if n.tag == "script" and "/js/home-contact.js" in n.attrs.get("src", "")]
+check(len(contact_scripts) == 1 and contact_scripts[0].attrs.get("src") == f"/js/home-contact.js?v={contact_version}",
+      "Load the shared contact controller once with its current cache version")
 for link in email_links:
     check(urlsplit(link.attrs["href"]).path == "info@points.gs" and link.attrs.get("data-partnership-contact") == "email",
           "Business email must be correct and tagged as partnership contact")

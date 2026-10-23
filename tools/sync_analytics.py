@@ -28,7 +28,7 @@ def sync_page(path):
     source = source.replace('</head>', analytics_head(prefix) + '\n</head>', 1)
     # Standalone pages also need new URLs for changed interaction controllers.
     for asset in ('js/locale.js', 'js/article-share.js', 'js/press-contact.js',
-                  'js/home-contact.js', 'css/header.css', 'header.html', 'footer.html'):
+                  'js/home-contact.js', 'js/contact-topic.js', 'css/header.css', 'header.html', 'footer.html'):
         version = hashlib.sha256((ROOT / asset).read_bytes()).hexdigest()[:12]
         source = re.sub(r'([\'\"])' + re.escape(prefix + asset) + r'(?:\?v=[a-f0-9]+)?([\'\"])',
                         lambda match: match[1] + prefix + asset + '?v=' + version + match[2], source)
