@@ -4,11 +4,24 @@
     if (window.PointsAnalytics) return;
 
     var ID = 'G-RSXV2Q3WG2';
+    // Copies on localhost, preview hosts or staging must never send to the live property.
+    var production = window.location.protocol === 'https:' &&
+        /^(points\.gs|www\.points\.gs)$/.test(window.location.hostname);
+    var internalStorageKey = 'points.analytics.internal';
+    var query = new URL(window.location.href).searchParams;
+    var internalChoice = query.get('analytics_internal');
+    var internalBrowser = internalChoice === '1';
+    try {
+        if (internalChoice === '1') window.localStorage.setItem(internalStorageKey, '1');
+        else if (internalChoice === '0') window.localStorage.removeItem(internalStorageKey);
+        if (internalChoice !== '0') internalBrowser = internalBrowser || window.localStorage.getItem(internalStorageKey) === '1';
+    } catch (_) { /* Explicit on/off still applies to this opening when storage is unavailable. */ }
+    var internal = internalBrowser || query.get('analytics_debug') === '1';
     var allowed = false, started = false, googleReady = false, configured = false;
     var ready = false, localeReady = false, pageViewSent = false, pending = [];
     var article, activeMs = 0, reached = 0, readSent = false, lastTick = Date.now();
     var schemas = {
-        play_store_click: ['link_location'],
+        play_store_click: ['link_location', 'link_url'],
         press_asset_download: ['asset_type', 'file_name', 'link_location'],
         contact_click: ['link_location'],
         generate_lead: ['form_id'],
@@ -16,7 +29,7 @@
         share: ['method', 'content_id', 'content_type'],
         share_click: ['method', 'content_id', 'content_type'],
         social_click: ['network'],
-        article_read: ['active_seconds', 'percent_scrolled']
+        article_engaged: ['active_seconds', 'percent_scrolled']
     };
     var campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_content', 'utm_term'];
     window.dataLayer = window.dataLayer || [];
@@ -60,8 +73,7 @@
     }
 
     function debug() {
-        return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) ||
-            new URL(window.location.href).searchParams.get('analytics_debug') === '1';
+        return query.get('analytics_debug') === '1';
     }
 
     function send(name, params) {
@@ -70,6 +82,7 @@
         // Do not send form values, mailto addresses, URL fragments or unrelated query parameters.
         params.page_location = safeURL(window.location.href, true);
         params.page_referrer = document.referrer ? safeURL(document.referrer, false) : '';
+        if (internal) params.traffic_type = 'internal';
         if (debug()) params.debug_mode = true;
         if (googleReady && configured && ready && localeReady) window.gtag('event', name, params);
         else if (pending.length < 50) pending.push({ name: name, params: params });
@@ -83,30 +96,37 @@
             var params = {};
             schemas[name].forEach(function (key) {
                 var value = values && values[key];
-                if (typeof value === 'string') params[key] = value.slice(0, 100);
+                if (typeof value === 'string') params[key] = key === 'link_url' ? value : value.slice(0, 100);
                 else if (typeof value === 'number' && isFinite(value)) params[key] = value;
             });
             return send(name, params);
         } catch (_) { return false; }
     }
-    window.PointsAnalytics = { track: track };
+    window.PointsAnalytics = { track: track, hasPageView: function () { return pageViewSent; } };
 
     function pageView() {
-        if (ready && localeReady && allowed && googleReady && configured && !pageViewSent) pageViewSent = send('page_view', {});
+        if (ready && localeReady && allowed && googleReady && configured && !pageViewSent) {
+            pageViewSent = send('page_view', {});
+            if (pageViewSent) document.dispatchEvent(new CustomEvent('points:analytics-page-view'));
+        }
     }
 
     function activateGoogle() {
         if (!allowed || !googleReady) return;
         if (!configured) {
             configured = true;
+            // Global settings also label GA's automatic session/engagement events.
+            if (internal) window.gtag('set', { traffic_type: 'internal' });
             window.gtag('js', new Date());
-            window.gtag('config', ID, {
+            var config = {
                 send_page_view: false,
                 allow_google_signals: false,
                 allow_ad_personalization_signals: false,
                 page_location: safeURL(window.location.href, true),
                 page_referrer: document.referrer ? safeURL(document.referrer, false) : ''
-            });
+            };
+            if (internal) config.traffic_type = 'internal';
+            window.gtag('config', ID, config);
         }
         pageView();
         if (!ready || !localeReady) return;
@@ -116,6 +136,7 @@
     }
 
     function consent(granted) {
+        granted = granted && production;
         if (granted === allowed) return;
         allowed = granted;
         window['ga-disable-' + ID] = !allowed;
@@ -126,7 +147,7 @@
             ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
         if (!allowed) {
             // Actions from a withdrawn grant must not replay if the remote script is slow.
-            if (pending.some(function (event) { return event.name === 'article_read'; })) readSent = false;
+            if (pending.some(function (event) { return event.name === 'article_engaged'; })) readSent = false;
             pending = [];
             return;
         }
@@ -173,14 +194,17 @@
     }
 
     function click(event) {
-        if (!allowed || event.defaultPrevented || (event.type === 'auxclick' && event.button !== 1)) return;
+        if (!allowed || event.defaultPrevented ||
+                (event.type === 'auxclick' && event.button !== 1) ||
+                (event.type === 'click' && event.button != null && event.button !== 0)) return;
         var link = event.target && event.target.closest && event.target.closest('a[href]');
         if (!link) return;
         try {
             var url = new URL(link.href, window.location.href);
             var placement = linkLocation(link);
-            if (url.hostname === 'play.google.com' && url.searchParams.get('id') === 'comPointsGameForge.FarFarForest') {
-                track('play_store_click', { link_location: placement });
+            if (url.protocol === 'https:' && url.hostname === 'play.google.com' &&
+                    url.pathname === '/store/apps/details' && url.searchParams.get('id') === 'comPointsGameForge.FarFarForest') {
+                track('play_store_click', { link_location: placement, link_url: url.href });
             } else if (url.protocol === 'mailto:') {
                 track('contact_click', { link_location: placement });
             } else if (link.matches('.press-bundle-link, .press-asset-download')) {
@@ -205,8 +229,8 @@
         if (rect.top >= window.innerHeight || rect.top + rect.height <= 0) return;
         activeMs += elapsed;
         if (rect.height > 0) reached = Math.max(reached, Math.min(1, (window.innerHeight - rect.top) / rect.height));
-        if (reached >= 0.9 && activeMs >= 30000) {
-            readSent = track('article_read', { active_seconds: Math.floor(activeMs / 1000), percent_scrolled: 90 });
+        if (reached >= 0.5 && activeMs >= 30000) {
+            readSent = track('article_engaged', { active_seconds: Math.floor(activeMs / 1000), percent_scrolled: 50 });
         }
     }
 

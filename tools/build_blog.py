@@ -512,6 +512,8 @@ def redirect_alias(post, language, site_url):
     target_href = page_href(post, language, language)
     title = "Статтю перенесено" if language == "uk" else "Article moved"
     label = "Перейти до статті" if language == "uk" else "Continue to the article"
+    # A fixed destination prevents an incoming query from becoming an open redirect.
+    redirect_target = json.dumps(target_href, ensure_ascii=False).replace('</', '<\\/')
     return f'''<!DOCTYPE html>
 <html lang="{language}">
 <head>
@@ -520,7 +522,22 @@ def redirect_alias(post, language, site_url):
     <title>{e(title)}</title>
     <meta name="robots" content="noindex,follow">
     <link rel="canonical" href="{e(target)}">
-    <meta http-equiv="refresh" content="0; url={e(target_href)}">
+    <script>
+    (function () {{
+        var target = new URL({redirect_target}, window.location.href);
+        var current = new URL(window.location.href);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_id', 'utm_term'].forEach(function (key) {{
+            if (current.searchParams.has(key)) target.searchParams.set(key, current.searchParams.get(key));
+        }});
+        ['analytics_internal', 'analytics_debug'].forEach(function (key) {{
+            var flag = current.searchParams.get(key);
+            if (flag === '1' || (key === 'analytics_internal' && flag === '0')) target.searchParams.set(key, flag);
+        }});
+        target.hash = current.hash;
+        window.location.replace(target.href);
+    }})();
+    </script>
+    <meta http-equiv="refresh" content="1; url={e(target_href)}">
 </head>
 <body>
     <p><a href="{e(target_href)}">{e(label)}: {e(post['title'][language])}</a></p>

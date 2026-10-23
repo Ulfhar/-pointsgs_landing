@@ -10,6 +10,7 @@ const source = fs.readFileSync(path.join(root, 'js/analytics.js'), 'utf8');
 const tests = [];
 const measurementID = 'G-RSXV2Q3WG2';
 const game = 'https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest';
+const internalKey = 'points.analytics.internal';
 
 class Events {
     constructor() { this.listeners = new Map(); }
@@ -23,6 +24,7 @@ class Events {
             if (entry.once) this.listeners.set(name, this.listeners.get(name).filter(value => value !== entry));
         }
     }
+    dispatchEvent(event) { this.dispatch(event.type, event); return true; }
 }
 
 class Element extends Events {
@@ -54,7 +56,8 @@ class Element extends Events {
 }
 
 function setup({ href = 'https://points.gs/index.html', lang = 'en', staticLocale, article = false, articleID,
-    readyState = 'complete', referrer = '', autoGoogle = true, localeScript = false, localeReady = false } = {}) {
+    readyState = 'complete', referrer = '', autoGoogle = true, localeScript = false, localeReady = false,
+    storage = new Map(), storageBlocked = false } = {}) {
     let now = 0, focused = true;
     const intervals = [];
     const scripts = [];
@@ -78,12 +81,21 @@ function setup({ href = 'https://points.gs/index.html', lang = 'en', staticLocal
         }
     });
     const window = new Events();
+    const localStorage = {
+        getItem(key) { if (storageBlocked) throw new Error('Storage blocked'); return storage.has(key) ? storage.get(key) : null; },
+        setItem(key, value) { if (storageBlocked) throw new Error('Storage blocked'); storage.set(key, String(value)); },
+        removeItem(key) { if (storageBlocked) throw new Error('Storage blocked'); storage.delete(key); }
+    };
     Object.assign(window, {
-        location: new URL(href), innerHeight: 800,
+        location: new URL(href), innerHeight: 800, localStorage,
         setInterval(callback, delay) { intervals.push({ callback, delay }); return intervals.length; }
     });
+    if (storageBlocked === 'access') Object.defineProperty(window, 'localStorage', {
+        get() { throw new Error('Storage access blocked'); }
+    });
     class ClockDate extends Date { static now() { return now; } }
-    const context = vm.createContext({ window, document, URL, Date: ClockDate });
+    class CustomEventMock { constructor(type, properties = {}) { this.type = type; Object.assign(this, properties); } }
+    const context = vm.createContext({ window, document, URL, Date: ClockDate, localStorage, CustomEvent: CustomEventMock });
     function load() { vm.runInContext(source, context, { filename: 'js/analytics.js' }); }
     load();
     const commands = () => Array.from(window.dataLayer, args => Array.from(args));
@@ -91,7 +103,7 @@ function setup({ href = 'https://points.gs/index.html', lang = 'en', staticLocal
         .map(args => ({ name: args[1], params: JSON.parse(JSON.stringify(args[2])) }));
     const consent = (accepted = ['analytics']) => document.dispatch('cookieyes_consent_update', { detail: { accepted } });
     return {
-        window, document, articleRoot, content, scripts, intervals, commands, events, consent, load,
+        window, document, articleRoot, content, scripts, intervals, commands, events, consent, load, storage,
         track: (name, params) => window.PointsAnalytics.track(name, params),
         banner: analytics => document.dispatch('cookieyes_banner_load', { detail: { categories: { analytics } } }),
         googleLoaded() { assert.equal(scripts.length, 1); scripts[0].onload(); },
@@ -158,6 +170,126 @@ test('Accepting Analytics loads Google once and sends one explicit sanitized pag
     for (let i = 0; i < 3; i += 1) { page.consent(); page.banner(true); }
     assert.equal(page.scripts.length, 1);
     assert.equal(countCommands(page, 'config'), 1);
+    assert.equal(page.events('page_view').length, 1);
+});
+
+function assertInternal(page) {
+    const commands = page.commands();
+    const globalIndex = commands.findIndex(args => args[0] === 'set' && args[1] && args[1].traffic_type === 'internal');
+    assert.ok(globalIndex >= 0, 'Global traffic_type protects automatic GA events too');
+    assert.ok(globalIndex < commands.findIndex(args => args[0] === 'js'), 'Global marker precedes Google initialization');
+    assert.ok(globalIndex < commands.findIndex(args => args[0] === 'config'), 'Global marker precedes Google configuration');
+    assert.equal(commands.find(args => args[0] === 'config')[2].traffic_type, 'internal');
+    for (const event of page.events()) assert.equal(event.params.traffic_type, 'internal', `${event.name}: internal traffic marker`);
+}
+
+function assertExternal(page) {
+    assert.equal(page.commands().some(args => args[0] === 'set' && args[1] && 'traffic_type' in args[1]), false);
+    assert.equal('traffic_type' in page.commands().find(args => args[0] === 'config')[2], false);
+    for (const event of page.events()) assert.equal('traffic_type' in event.params, false, `${event.name}: no internal marker for real visitors`);
+}
+
+test('Internal opt-in persists for the browser and marks manual and automatic traffic', () => {
+    const storage = new Map();
+    const optIn = setup({ href: 'https://points.gs/?analytics_internal=1', storage });
+    assert.equal(storage.get(internalKey), '1');
+    assert.equal(optIn.scripts.length, 0, 'Internal marking does not grant analytics consent');
+    optIn.consent();
+    optIn.click(optIn.link(game));
+    optIn.track('generate_lead', { form_id: 'contactForm', traffic_type: 'external' });
+    assertInternal(optIn);
+    assert.equal(optIn.events('page_view')[0].params.page_location, 'https://points.gs/');
+    const nextPage = setup({ href: 'https://points.gs/about.html', storage });
+    nextPage.consent();
+    nextPage.click(nextPage.link(game));
+    assertInternal(nextPage);
+    assert.equal('debug_mode' in nextPage.events('page_view')[0].params, false);
+});
+
+test('Explicit internal opt-out clears persistence and restores unmarked visitor events', () => {
+    const storage = new Map([[internalKey, '1']]);
+    const optOut = setup({ href: 'https://points.gs/?analytics_internal=0', storage });
+    assert.equal(storage.has(internalKey), false);
+    optOut.consent();
+    optOut.track('generate_lead', { form_id: 'contactForm', traffic_type: 'internal' });
+    assertExternal(optOut);
+    const nextPage = setup({ storage });
+    nextPage.consent();
+    assertExternal(nextPage);
+    const ordinary = setup();
+    ordinary.consent();
+    assertExternal(ordinary);
+});
+
+test('Debug sessions are transient internal traffic and do not persist a browser opt-in', () => {
+    const storage = new Map();
+    const debug = setup({ href: 'https://points.gs/?analytics_debug=1', storage });
+    debug.consent();
+    debug.click(debug.link(game));
+    assertInternal(debug);
+    for (const event of debug.events()) assert.equal(event.params.debug_mode, true);
+    assert.equal(storage.has(internalKey), false);
+    const nextPage = setup({ storage });
+    nextPage.consent();
+    assertExternal(nextPage);
+    assert.equal('debug_mode' in nextPage.events('page_view')[0].params, false);
+});
+
+test('Blocked browser storage never breaks the site or loses an explicit page-level internal selection', () => {
+    for (const storageBlocked of [true, 'access']) {
+        const opted = setup({ href: 'https://points.gs/?analytics_internal=1', storageBlocked });
+        opted.consent();
+        opted.click(opted.link(game));
+        assertInternal(opted);
+        const normal = setup({ storageBlocked });
+        normal.consent();
+        assertExternal(normal);
+        const debug = setup({ href: 'https://points.gs/?analytics_debug=1', storageBlocked });
+        debug.consent();
+        assertInternal(debug);
+        const optedOut = setup({ href: 'https://points.gs/?analytics_internal=0', storage: new Map([[internalKey, '1']]), storageBlocked });
+        optedOut.consent();
+        assertExternal(optedOut);
+    }
+});
+
+test('Only HTTPS production hostnames can load the production Google property after consent', () => {
+    for (const href of ['https://points.gs/', 'https://www.points.gs/']) {
+        const page = setup({ href });
+        page.consent();
+        assert.equal(page.scripts.length, 1, href);
+        assert.equal(page.events('page_view').length, 1, href);
+    }
+    for (const href of [
+        'http://points.gs/', 'http://www.points.gs/', 'http://localhost:8080/?analytics_debug=1',
+        'http://127.0.0.1:8080/', 'http://[::1]:8080/', 'https://staging.points.gs/',
+        'https://preview.example.com/', 'https://points.gs.example.com/', 'file:///C:/site/index.html'
+    ]) {
+        const page = setup({ href });
+        page.consent();
+        page.click(page.link(game));
+        page.track('generate_lead', { form_id: 'contactForm' });
+        assert.equal(page.scripts.length, 0, `${href}: no production Google request`);
+        assert.equal(countCommands(page, 'config'), 0, `${href}: no production property configuration`);
+        assert.deepEqual(page.events(), [], `${href}: no production events`);
+        assert.equal(page.window[`ga-disable-${measurementID}`], true, href);
+    }
+});
+
+test('The page-view handoff notifies listeners once and reflects the sent state', () => {
+    const page = setup({ autoGoogle: false });
+    const notifications = [];
+    page.document.addEventListener('points:analytics-page-view', event => notifications.push(event));
+    assert.equal(page.window.PointsAnalytics.hasPageView(), false);
+    page.consent();
+    assert.equal(page.window.PointsAnalytics.hasPageView(), false);
+    page.googleLoaded();
+    assert.equal(page.window.PointsAnalytics.hasPageView(), true);
+    assert.equal(notifications.length, 1);
+    page.consent([]);
+    page.consent();
+    page.googleLoaded();
+    assert.equal(notifications.length, 1);
     assert.equal(page.events('page_view').length, 1);
 });
 
@@ -269,6 +401,8 @@ test('Only declared event names and parameters pass; raw contact fields are disc
     const page = setup();
     page.consent();
     assert.equal(page.track('unknown_event', { email: 'person@example.com' }), false);
+    assert.equal(page.track('google_play_click', { link_location: 'hero' }), false, 'The reserved-prefix Play event must not be sent');
+    assert.equal(page.track('article_read', { active_seconds: 30, percent_scrolled: 90 }), false, 'The old reading event is retired');
     assert.equal(page.track('generate_lead', {
         form_id: 'contactForm', email: 'person@example.com', name: 'Visitor', message: 'A private message',
         page_location: 'https://evil.invalid/?email=person@example.com', debug_mode: true, event_callback() {}
@@ -278,9 +412,9 @@ test('Only declared event names and parameters pass; raw contact fields are disc
         page_language: 'en', page_type: 'home', form_id: 'contactForm',
         page_location: 'https://points.gs/index.html', page_referrer: ''
     });
-    page.track('article_read', { active_seconds: Infinity, percent_scrolled: NaN, email: 'private' });
-    assert.equal('active_seconds' in page.events('article_read')[0].params, false);
-    assert.equal('percent_scrolled' in page.events('article_read')[0].params, false);
+    page.track('article_engaged', { active_seconds: Infinity, percent_scrolled: NaN, email: 'private' });
+    assert.equal('active_seconds' in page.events('article_engaged')[0].params, false);
+    assert.equal('percent_scrolled' in page.events('article_engaged')[0].params, false);
     page.track('contact_error', { form_id: 'a'.repeat(150) });
     assert.equal(page.events('contact_error')[0].params.form_id.length, 100);
 });
@@ -331,9 +465,36 @@ test('Nested Play CTA clicks report their explicit or section placement without 
     page.click(page.link(game, {}, footer), { type: 'auxclick', button: 1 });
     assert.deepEqual(page.events('play_store_click').map(event => event.params.link_location), ['halloween', 'hero', 'footer']);
     page.click(link, { defaultPrevented: true });
+    page.click(link, { button: 1 });
+    page.click(link, { button: 2 });
     page.click(link, { type: 'auxclick', button: 2 });
     page.click(page.link('https://play.google.com/store/apps/details?id=another.app'));
     assert.equal(page.events('play_store_click').length, 3);
+    assert.equal(page.events('google_play_click').length, 0);
+    assert.equal(page.events().filter(event => event.name !== 'page_view').length, 3);
+    for (const event of page.events('play_store_click')) assert.equal(event.params.link_url, game);
+});
+
+test('Google Play clicks preserve the actual approved destination in full, with sanitized page context', () => {
+    const page = setup({ href: 'https://points.gs/uk/devlog.html?utm_source=x&analytics_internal=0&email=private#message', lang: 'uk' });
+    page.consent();
+    const destination = `${game}&hl=uk&pcampaignid=${'campaign_'.repeat(30)}`;
+    assert.ok(destination.length > 100);
+    page.click(new Element('span', {}, page.link(destination, { 'data-analytics-location': 'blog_cta' })));
+    assert.equal(page.events('play_store_click').length, 1);
+    const { params } = page.events('play_store_click')[0];
+    assert.equal(params.link_url, destination);
+    assert.equal(params.link_location, 'blog_cta');
+    assert.equal(params.page_language, 'uk');
+    assert.equal(params.page_location, 'https://points.gs/uk/devlog.html?utm_source=x');
+    for (const invalid of [
+        'https://play.google.com/store/apps/details?id=another.app',
+        'http://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest',
+        'https://play.google.com/another/path?id=comPointsGameForge.FarFarForest',
+        'https://play.google.com.example.com/store/apps/details?id=comPointsGameForge.FarFarForest',
+        'https://example.com/?id=comPointsGameForge.FarFarForest'
+    ]) page.click(page.link(invalid));
+    assert.equal(page.events('play_store_click').length, 1);
 });
 
 test('Mail links have a separate contact event without exposing the recipient', () => {
@@ -376,29 +537,29 @@ test('A social sharing link records intent only; a confirmed share uses the sepa
     assert.equal(page.events('social_click')[0].params.network, 'youtube');
 });
 
-test('An article read requires both 90 percent depth and 30 active seconds, once per opening', () => {
+test('Article engagement requires both 50 percent text depth and 30 active seconds, once per opening', () => {
     const page = setup({ article: true });
     page.consent();
-    page.content.rect.top = -99; // 89.9% through content.
+    page.content.rect.top = 301; // 49.9% through content.
     page.advance(31);
-    assert.equal(page.events('article_read').length, 0);
-    page.content.rect.top = -100; // Exactly 90% through content.
+    assert.equal(page.events('article_engaged').length, 0);
+    page.content.rect.top = 300; // Exactly 50% through content.
     page.advance(1);
-    assert.equal(page.events('article_read').length, 1);
-    assert.equal(page.events('article_read')[0].params.percent_scrolled, 90);
-    assert.ok(page.events('article_read')[0].params.active_seconds >= 30);
+    assert.equal(page.events('article_engaged').length, 1);
+    assert.equal(page.events('article_engaged')[0].params.percent_scrolled, 50);
+    assert.ok(page.events('article_engaged')[0].params.active_seconds >= 30);
     page.advance(100);
     page.consent([]);
     page.consent();
     page.advance(40);
-    assert.equal(page.events('article_read').length, 1);
+    assert.equal(page.events('article_engaged').length, 1);
     const quick = setup({ article: true });
     quick.consent();
     quick.content.rect.top = -200;
     quick.advance(29);
-    assert.equal(quick.events('article_read').length, 0);
+    assert.equal(quick.events('article_engaged').length, 0);
     quick.advance(1);
-    assert.equal(quick.events('article_read').length, 1);
+    assert.equal(quick.events('article_engaged').length, 1);
 });
 
 test('Hidden and unfocused time never accrues toward an article read', () => {
@@ -413,9 +574,9 @@ test('Hidden and unfocused time never accrues toward an article read', () => {
     page.advance(60);
     page.focus(true);
     page.advance(19);
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.advance(1);
-    assert.equal(page.events('article_read')[0].params.active_seconds, 30);
+    assert.equal(page.events('article_engaged')[0].params.active_seconds, 30);
 });
 
 test('Header and footer dwell outside the article never accrues reading time', () => {
@@ -427,9 +588,9 @@ test('Header and footer dwell outside the article never accrues reading time', (
     page.advance(60);
     page.content.rect.top = -100;
     page.advance(29);
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.advance(1);
-    assert.equal(page.events('article_read')[0].params.active_seconds, 30);
+    assert.equal(page.events('article_engaged')[0].params.active_seconds, 30);
 });
 
 test('Revoking consent clears prior reading time and depth, with no replay on regrant', () => {
@@ -439,14 +600,14 @@ test('Revoking consent clears prior reading time and depth, with no replay on re
     page.advance(29);
     page.consent([]);
     page.advance(60);
-    page.content.rect.top = 0;
+    page.content.rect.top = 600; // 20% through content, still visibly in viewport.
     page.consent();
     page.advance(30);
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.content.rect.top = -200;
     page.advance(1);
-    assert.equal(page.events('article_read').length, 1);
-    assert.equal(page.events('article_read')[0].params.active_seconds, 31);
+    assert.equal(page.events('article_engaged').length, 1);
+    assert.equal(page.events('article_engaged')[0].params.active_seconds, 31);
 });
 
 test('A completed read awaiting Google is discarded on revocation and can qualify again after regrant', () => {
@@ -454,15 +615,15 @@ test('A completed read awaiting Google is discarded on revocation and can qualif
     page.consent();
     page.content.rect.top = -200;
     page.advance(30);
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.consent([]);
     page.googleLoaded();
     page.consent();
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.advance(29);
-    assert.equal(page.events('article_read').length, 0);
+    assert.equal(page.events('article_engaged').length, 0);
     page.advance(1);
-    assert.equal(page.events('article_read').length, 1);
+    assert.equal(page.events('article_engaged').length, 1);
 });
 
 test('Every real root and Ukrainian HTML page has exactly one current shared tag before one CMP', () => {

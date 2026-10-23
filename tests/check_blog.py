@@ -249,10 +249,10 @@ def validate(root: Path):
               path, "legacy alias must be noindex")
         refreshes = [meta.get("content", "") for meta in page.tags("meta")
                      if (meta.get("http-equiv") or "").lower() == "refresh"]
-        refresh = re.fullmatch(r"\s*0(?:\.0+)?\s*;\s*url\s*=\s*(.*?)\s*", refreshes[0], re.I) if len(refreshes) == 1 else None
+        refresh = re.fullmatch(r"\s*1(?:\.0+)?\s*;\s*url\s*=\s*(.*?)\s*", refreshes[0], re.I) if len(refreshes) == 1 else None
         check(refresh is not None and
               urljoin(urljoin(site_url, path.relative_to(root).as_posix()), refresh.group(1).strip("\"'")) == canonical_url,
-              path, "legacy alias requires one immediate refresh to its canonical article")
+              path, "legacy alias requires one delayed no-JavaScript refresh to its canonical article")
 
     for path in expected_paths:
         if not path.is_file():

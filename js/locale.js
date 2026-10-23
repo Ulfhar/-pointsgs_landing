@@ -30,6 +30,27 @@ function setUserLocale(locale) {
     location.reload();
 }
 
+function languageTargetWithCampaign(value) {
+    const target = new URL(value, location.href);
+    const current = new URL(location.href);
+    let pageViewSent = false;
+    try {
+        pageViewSent = !!(window.PointsAnalytics && typeof window.PointsAnalytics.hasPageView === 'function' &&
+            window.PointsAnalytics.hasPageView());
+    } catch (error) { /* Preserve attribution if analytics is unavailable. */ }
+    // Preserve campaign attribution when choosing a language before analytics starts.
+    // Other internal navigation remains free of campaign parameters.
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_id', 'utm_term'].forEach(key => {
+        target.searchParams.delete(key);
+        if (!pageViewSent && current.searchParams.has(key)) target.searchParams.set(key, current.searchParams.get(key));
+    });
+    ['analytics_internal', 'analytics_debug'].forEach(key => {
+        const flag = current.searchParams.get(key);
+        if (flag === '1' || (key === 'analytics_internal' && flag === '0')) target.searchParams.set(key, flag);
+    });
+    return target.pathname + target.search + target.hash;
+}
+
 function localizedPageTitle(strings) {
     // A translation file's generic "title" belongs to its original Terms page.
     // Explicit title keys or a translated main heading are safe on other pages.
@@ -117,8 +138,7 @@ function attachLangSwitcherListeners() {
         if (staticLocale) {
             const alternate = document.querySelector(`link[rel="alternate"][hreflang="${language}"]`);
             if (alternate) {
-                const target = new URL(alternate.href, location.href);
-                link.href = target.pathname + target.search + target.hash;
+                link.href = languageTargetWithCampaign(alternate.href);
             }
             // Keep the native link action (including keyboard and new-tab use).
             link.onclick = () => saveUserLocale(language);
@@ -184,6 +204,9 @@ function initializeLocale() {
         observer.observe(headerPlaceholder, { childList: true });
     }
 }
+
+// Once attribution has been recorded, language links should no longer carry campaigns.
+document.addEventListener('points:analytics-page-view', attachLangSwitcherListeners);
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeLocale);

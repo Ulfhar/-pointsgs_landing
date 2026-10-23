@@ -1,0 +1,316 @@
+{
+  "title": "Ефективність сайту",
+  "prepared_on": "2026-10-23",
+  "status": "detail_report_published_exact_view_saved_production_numerator_validation_pending",
+  "saved_detail_report": {
+    "name": "Points — ефективність сайту",
+    "report_id": "16187758615",
+    "saved_on": "2026-10-23",
+    "native_dimension_ids": [
+      "sessionSourceMedium",
+      "landingPageMinusQueryString"
+    ],
+    "native_metric_ids": [
+      "sessions",
+      "totalUsers",
+      "sessionConversionRate"
+    ],
+    "collection_published": true,
+    "play_store_click_dropdown_persists_after_reopen": false,
+    "dropdown_after_reopen": "All events",
+    "permalink_with_verified_play_selection": "https://analytics.google.com/analytics/web/?pli=1#/a175935550p492459259/reports/explorer?params=_u..nav%3Dmaui%26_u.dateOption%3Dlast28Days%26_u.comparisonOption%3DlastPeriod%26_r.explorerCard..seldim%3D%5B%22sessionSourceMedium%22,%22landingPage%22%5D%26_u..built_comparisons_enabled%3Dtrue%26_u..comparisons%3D%5B%7B%22savedComparisonId%22:%2211326407057%22,%22name%22:%22%D0%A3%D1%81%D1%96%20%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D1%83%D0%B2%D0%B0%D1%87%D1%96%22,%22isEnabled%22:true,%22filters%22:%5B%5D,%22systemDefinedSavedComparisonType%22:8,%22isSystemDefined%22:true%7D,%7B%22savedComparisonId%22:%2216187805052%22,%22hasCustomName%22:true,%22name%22:%22Points%20%E2%80%94%20%D0%BD%D0%B0%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%BD%D0%BD%D1%8F%20Play%20Store%22,%22isEnabled%22:true,%22filters%22:%5B%7B%22fieldName%22:%22eventName%22,%22evaluationType%22:3,%22expressionList%22:%5B%22play_store_click%22%5D,%22isCaseSensitive%22:true%7D%5D,%22systemDefinedSavedComparisonType%22:0,%22isSystemDefined%22:false%7D%5D%26_r.explorerCard..columnFilters%3D%7B%22sessionConversionRate%22:%22play_store_click%22%7D&collectionId=16187742679&discardConfirmed=true&ruid=a162be53-70f8-481d-8396-d9d8ca40a28b&r=16187758615",
+    "note": "Base report reopen resets event dropdown to All events. Captured exact-view URL selects play_store_click, includes all-session baseline and saved event-name comparison. Native event comparison's Sessions interpretation must be reconciled with session-scoped Explore after production data.",
+    "collection_name": "Points — сайт",
+    "collection_id": "16187742679",
+    "topic": "Ефективність",
+    "permalink_dimension_ids": [
+      "sessionSourceMedium",
+      "landingPage"
+    ],
+    "permalink_landing_page_includes_query": true,
+    "comparison": {
+      "id": "16187805052",
+      "name": "Points — натискання Play Store",
+      "field": "eventName",
+      "operator": "CONTAINS",
+      "value": "play_store_click",
+      "case_sensitive": true,
+      "exact_match_status": "Exact-value picker returned no records; replace CONTAINS with EXACT after production event is available",
+      "scope": "native detail-report comparison, not asserted as a session-scoped exploration segment",
+      "observed_sessions": {
+        "all": 159,
+        "comparison": 0
+      },
+      "production_semantic_validation": "pending",
+      "sessions_interpretation": {
+        "status": "supported_inference_for_sessions_only_live_validation_pending",
+        "basis": "Official eventName dimension-filter + Sessions example; sessions estimated by unique session IDs.",
+        "not_equivalent_for": [
+          "engagement time",
+          "other whole-session metrics"
+        ],
+        "sources": [
+          "https://developers.google.com/analytics/devguides/reporting/data/v1/basics",
+          "https://support.google.com/analytics/answer/9191807?hl=en",
+          "https://support.google.com/analytics/answer/9304353?hl=en"
+        ]
+      }
+    },
+    "date_selection": {
+      "date_option": "last28Days",
+      "comparison_option": "lastPeriod",
+      "visible_ranges_verified_on": "2026-10-23",
+      "current_start": "2026-09-25",
+      "current_end": "2026-10-22",
+      "previous_start": "2026-08-28",
+      "previous_end": "2026-09-24",
+      "includes_today": false,
+      "property_timezone": "(GMT+03:00) час: Україна"
+    }
+  },
+  "requested_event_name": "google_play_click",
+  "selected_event_name": "play_store_click",
+  "event_name_validation": {
+    "verified_on": "2026-10-23",
+    "result": "GA4 Create with code rejected requested name for reserved prefix",
+    "selected_replacement": "play_store_click",
+    "user_approved_on": "2026-10-23",
+    "note": "User approved retaining play_store_click to preserve the existing name/history. Key event created with code and verified 2026-10-23. Templates use only the approved name."
+  },
+  "measurement_id": "G-RSXV2Q3WG2",
+  "account_id": "175935550",
+  "property_name": "https://points.gs",
+  "property_id": "492459259",
+  "stream_name": "Points GS",
+  "stream_id": "11326397500",
+  "account_ui_verified_on": "2026-10-23",
+  "property_timezone": "(GMT+03:00) час: Україна",
+  "key_event": {
+    "name": "play_store_click",
+    "registered": true,
+    "verified_on": "2026-10-23",
+    "creation_method": "with_code",
+    "no_code_rule_created": false,
+    "counting_method": "ONCE_PER_EVENT",
+    "default_monetary_value": null,
+    "production_data_verified": false
+  },
+  "custom_dimensions": {
+    "scope": "EVENT",
+    "created_and_verified_on": "2026-10-23",
+    "parameters": [
+      "page_language",
+      "page_type",
+      "article_id",
+      "link_location",
+      "asset_type",
+      "form_id",
+      "network"
+    ]
+  },
+  "search_console_link": {
+    "property_name": "points.gs",
+    "property_type": "DOMAIN",
+    "stream_name": "Points GS",
+    "stream_id": "11326397500",
+    "created_and_verified_on": "2026-10-23",
+    "collection_published": true,
+    "publication_action": "already_visible_after_linking_no_additional_publish_needed",
+    "reports_verified_on": "2026-10-23",
+    "verified_reports": [
+      "Google Organic Search Queries",
+      "Google Organic Search Traffic"
+    ],
+    "historical_search_metrics_populated": true,
+    "proof": [
+      ".tmp/analytics-proof/search-console-link.jpg",
+      ".tmp/analytics-proof/search-queries.jpg"
+    ]
+  },
+  "internal_filter": {
+    "name": "Internal Traffic",
+    "operation": "EXCLUDE",
+    "parameter": "traffic_type",
+    "match": "EXACT",
+    "value": "internal",
+    "state": "TESTING",
+    "verified_on": "2026-10-23",
+    "activation": "pending production release and validated marked/unmarked browser tests"
+  },
+  "prerequisites": [
+    "Production release completed by user",
+    "Key event play_store_click registered; verify incoming data after production release",
+    "Verified internal exclusion active; if still Testing, apply identical validated report-level exclusion",
+    "Authorized Data API read access supplied; numeric property ID already verified in GA4 UI",
+    "Requested fields checked with properties.checkCompatibility"
+  ],
+  "main_table": {
+    "columns": [
+      {
+        "label": "Джерело / канал",
+        "api_dimension": "sessionSourceMedium"
+      },
+      {
+        "label": "Вхідна сторінка",
+        "api_dimension": "landingPage"
+      },
+      {
+        "label": "Сеанси",
+        "api_metric": "sessions"
+      },
+      {
+        "label": "Користувачі",
+        "api_metric": "totalUsers"
+      },
+      {
+        "label": "Сеанси з Play",
+        "derived_after_response": "round(sessions * sessionKeyEventRate:play_store_click)",
+        "note": "Validate against Sessions in a session-scoped segment containing play_store_click; click Event count is not session count."
+      },
+      {
+        "label": "Частка з Play",
+        "api_metric": "sessionKeyEventRate:play_store_click",
+        "display": "percent",
+        "note": "API fraction; generic sessionKeyEventRate includes all key events."
+      }
+    ],
+    "run_report_request": {
+      "dateRanges": [
+        {
+          "startDate": "28daysAgo",
+          "endDate": "yesterday",
+          "name": "current_28"
+        },
+        {
+          "startDate": "56daysAgo",
+          "endDate": "29daysAgo",
+          "name": "previous_28"
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "sessionSourceMedium"
+        },
+        {
+          "name": "landingPage"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "sessions"
+        },
+        {
+          "name": "totalUsers"
+        },
+        {
+          "name": "sessionKeyEventRate:play_store_click"
+        }
+      ],
+      "orderBys": [
+        {
+          "metric": {
+            "metricName": "sessions"
+          },
+          "desc": true
+        }
+      ],
+      "limit": "10000",
+      "returnPropertyQuota": true
+    },
+    "event_name_filter": null,
+    "explanation": "No whole-table click event filter: the all-session denominator must stay intact. Request assumes verified Active internal exclusion; add and validate a consistent Testing exclusion before interpreting production totals."
+  },
+  "article_readers_tab": {
+    "title": "Читачі статей",
+    "dimension": "article_id if registered, otherwise Page path",
+    "metrics": [
+      "Total users",
+      "Event count"
+    ],
+    "event_name_filter": "article_engaged",
+    "note": "Distinct users per article are the reader metric; do not sum users across articles to get overall unique users."
+  },
+  "native_exploration": {
+    "title": "Ефективність сайту",
+    "technique": "Free form",
+    "rows": [
+      "Session source / medium",
+      "Landing page"
+    ],
+    "values": [
+      "Sessions",
+      "Total users"
+    ],
+    "segments": [
+      {
+        "name": "All sessions",
+        "scope": "session",
+        "condition": "all eligible external sessions"
+      },
+      {
+        "name": "Сеанси з Google Play",
+        "scope": "session",
+        "condition": "include sessions where Event name exactly matches play_store_click"
+      }
+    ],
+    "rate": "Sessions in Google Play segment / Sessions in All sessions segment for the same row and period",
+    "event_specific_rate_if_available": "Session key event rate (play_store_click)",
+    "fallback": "If the picker cannot expose event-specific rate, retain both session counts and calculate after export. No saved cross-segment calculated field is claimed."
+  },
+  "sources": [
+    "https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema",
+    "https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport",
+    "https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/checkCompatibility",
+    "https://support.google.com/analytics/answer/9304353?hl=en",
+    "https://developers.google.com/analytics/devguides/reporting/data/v1/basics",
+    "https://support.google.com/analytics/answer/9191807?hl=en"
+  ],
+  "article_detail_report": {
+    "name": "Points — залучення статей",
+    "report_id": "16187635868",
+    "saved_on": "2026-10-23",
+    "native_primary_dimension": {
+      "label": "Article ID",
+      "slot": "slot03",
+      "parameter": "article_id"
+    },
+    "native_alternate_dimension": {
+      "label": "Page language",
+      "slot": "slot01",
+      "parameter": "page_language"
+    },
+    "metrics": [
+      "totalUsers",
+      "eventCount"
+    ],
+    "persistent_filter": {
+      "field": "eventName",
+      "operator": "MATCHES_REGEX",
+      "expression": "^article_engaged$"
+    },
+    "filter_verified_after_reopen": true,
+    "collection_published": true,
+    "production_data_verified": false,
+    "collection_id": "16187742679",
+    "collection_name": "Points — сайт",
+    "topic": "Ефективність",
+    "navigation_verified": true,
+    "permalink": "https://analytics.google.com/analytics/web/?pli=1#/a175935550p492459259/reports/explorer?params=_u..nav%3Dmaui%26_u.dateOption%3Dlast28Days%26_u.comparisonOption%3DlastPeriod%26_u..comparisons%3D%5B%7B%22savedComparisonId%22:%2211326407057%22,%22name%22:%22%D0%A3%D1%81%D1%96%20%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D1%83%D0%B2%D0%B0%D1%87%D1%96%22,%22isEnabled%22:true,%22filters%22:%5B%5D,%22systemDefinedSavedComparisonType%22:8,%22isSystemDefined%22:true%7D%5D%26_r.explorerCard..seldim%3D%5B%22customDimensionsGroup2Slot03%22,%22customDimensionsGroup2Slot01%22%5D%26_u..built_comparisons_enabled%3Dtrue&collectionId=16187742679&discardConfirmed=true&ruid=9220AE3E-01BC-43D1-8C8B-9E15CCD47769&r=16187635868",
+    "selected_rows": [
+      "customDimensionsGroup2Slot03",
+      "customDimensionsGroup2Slot01"
+    ],
+    "comparisons": [
+      "All users"
+    ],
+    "play_comparison_applied": false,
+    "date_option": "last28Days",
+    "comparison_option": "lastPeriod",
+    "observed_event_count": 0,
+    "observed_total_users": 0,
+    "zero_note": "Expected before production release; not evidence of no article readership"
+  },
+  "property_country": "Україна",
+  "property_timezone_verified_on": "2026-10-23",
+  "property_timezone_note": "Literal reporting-timezone label observed read-only in GA4 UI; no IANA identifier inferred and no setting changed."
+}
