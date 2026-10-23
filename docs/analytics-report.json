@@ -35,7 +35,7 @@
       "operator": "CONTAINS",
       "value": "play_store_click",
       "case_sensitive": true,
-      "exact_match_status": "Exact-value picker returned no records; replace CONTAINS with EXACT after production event is available",
+      "exact_match_status": "Rechecked after DebugView receipts: EXACT picker still only six historical event names, no Play; unsaved edit discarded. CONTAINS unchanged until processed value becomes available.",
       "scope": "native detail-report comparison, not asserted as a session-scoped exploration segment",
       "observed_sessions": {
         "all": 159,
@@ -54,7 +54,8 @@
           "https://support.google.com/analytics/answer/9191807?hl=en",
           "https://support.google.com/analytics/answer/9304353?hl=en"
         ]
-      }
+      },
+      "observed_sessions_snapshot": "2026-10-23 report setup before production release; report date range ends 2026-10-22"
     },
     "date_selection": {
       "date_option": "last28Days",
@@ -65,7 +66,8 @@
       "previous_start": "2026-08-28",
       "previous_end": "2026-09-24",
       "includes_today": false,
-      "property_timezone": "(GMT+03:00) час: Україна"
+      "property_timezone": "(GMT+03:00) час: Україна",
+      "today_debug_event_note": "Oct23 production test events are outside the saved completed-day range ending Oct22; use DebugView/Realtime or temporary Today for diagnostics."
     }
   },
   "requested_event_name": "google_play_click",
@@ -93,7 +95,8 @@
     "no_code_rule_created": false,
     "counting_method": "ONCE_PER_EVENT",
     "default_monetary_value": null,
-    "production_data_verified": false
+    "production_data_verified": true,
+    "production_verification_method": "2026-10-23 production DebugView: one hero click produced one play_store_click; event parameters checked"
   },
   "custom_dimensions": {
     "scope": "EVENT",
@@ -135,10 +138,10 @@
     "value": "internal",
     "state": "TESTING",
     "verified_on": "2026-10-23",
-    "activation": "pending production release and validated marked/unmarked browser tests"
+    "activation": "pending marked versus clean-browser Test data filter name validation after 24–36h processing; remains TESTING"
   },
   "prerequisites": [
-    "Production release completed by user",
+    "Production content verified 2026-10-23 after user push; exact GitHub Actions completion timestamp not verified",
     "Key event play_store_click registered; verify incoming data after production release",
     "Verified internal exclusion active; if still Testing, apply identical validated report-level exclusion",
     "Authorized Data API read access supplied; numeric property ID already verified in GA4 UI",
@@ -308,9 +311,169 @@
     "comparison_option": "lastPeriod",
     "observed_event_count": 0,
     "observed_total_users": 0,
-    "zero_note": "Expected before production release; not evidence of no article readership"
+    "zero_note": "Expected before production release; not evidence of no article readership",
+    "production_background_negative_verified": true
   },
   "property_country": "Україна",
   "property_timezone_verified_on": "2026-10-23",
-  "property_timezone_note": "Literal reporting-timezone label observed read-only in GA4 UI; no IANA identifier inferred and no setting changed."
+  "property_timezone_note": "Literal reporting-timezone label observed read-only in GA4 UI; no IANA identifier inferred and no setting changed.",
+  "production_release": {
+    "content_verified_on": "2026-10-23",
+    "pushed_by": "user",
+    "agent_committed_or_pushed": false,
+    "commit": "99ea8e1b5a108f925b887799e9daebe70ac16e3a",
+    "commit_title": "analytics",
+    "commit_timestamp": "2026-10-23T12:30:56+03:00",
+    "deployment_completed_at": null,
+    "github_actions_status_verified": false,
+    "production_script_versions": {
+      "analytics": "201d46a91e17",
+      "locale": "949e401ce8ae"
+    },
+    "note": "Actual production DOM versions verified. Commit timestamp is not deployment completion time."
+  },
+  "production_qa": {
+    "verified_on": "2026-10-23",
+    "persistent_internal_browser_marked": true,
+    "desktop": {
+      "viewport_width": 1440,
+      "cookie_preferences_position": "fixed",
+      "horizontal_overflow": false
+    },
+    "consent": {
+      "reject_all_then_reload_no_google_scripts": true,
+      "accept_all_loaded_measurement_id": "G-RSXV2Q3WG2",
+      "withdraw_verified": true,
+      "withdraw_then_reload_no_google_scripts": true,
+      "no_script_after_en_to_uk_until_regrant": true,
+      "withdraw_verified_note": "UK same-page Reject All after granted hero event, followed by one seasonal click without reload; >2 minutes later no extra Play."
+    },
+    "initial_debugview_counts": {
+      "page_view": 1,
+      "session_start": 1,
+      "play_store_click": 1
+    },
+    "play_test": {
+      "hero_clicks": 1,
+      "received_events": 1,
+      "traffic_type": "internal",
+      "link_location": "hero",
+      "page_language": "en",
+      "link_url": "full game Google Play app URL verified",
+      "page_location": "https://points.gs/",
+      "debug_and_internal_query_removed": true
+    },
+    "page_view_traffic_type_verified": "internal",
+    "production_alias_campaign_parameters_retained": true,
+    "article_background_test_verified": true,
+    "uk_and_mobile_verified": true,
+    "proof": [
+      ".tmp/analytics-proof/production-cookie-desktop.jpg",
+      ".tmp/analytics-proof/production-play-debug.jpg",
+      ".tmp/analytics-proof/production-pageview-debug.jpg",
+      ".tmp/analytics-proof/production-cookie-mobile.jpg",
+      ".tmp/analytics-proof/production-play-uk-debug.jpg",
+      ".tmp/analytics-proof/production-uk-desktop.jpg",
+      ".tmp/analytics-proof/production-en-mobile.jpg"
+    ],
+    "mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "home_language": "uk",
+      "horizontal_overflow": false,
+      "cookie_preferences": {
+        "position": "fixed",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 844
+        },
+        "fits_viewport": true
+      }
+    },
+    "latest_debugview_counts": {
+      "page_view": 3,
+      "play_store_click": 2
+    },
+    "latest_page_views": [
+      "EN home",
+      "EN article",
+      "UK home"
+    ],
+    "play_language_checks": {
+      "en": true,
+      "uk": true
+    },
+    "hero_click_after_reject_did_not_increment": true,
+    "article_test": {
+      "geometry_percent": 57.9,
+      "background_seconds": 35,
+      "event_after_background": false,
+      "automated_active_seconds_attempt": 35,
+      "automated_positive_event_confirmed": false,
+      "true_focus_under_automation_confirmed": false,
+      "manual_positive_test": "pending user"
+    },
+    "same_page_withdraw_seasonal_click_debug_count": {
+      "verified": true,
+      "seasonal_clicks_after_withdraw": 1,
+      "reload": false,
+      "observed_after_more_than_seconds": 120,
+      "debugview_clock_label": "12:49",
+      "counts": {
+        "play_store_click": 2,
+        "page_view": 3,
+        "session_start": 1
+      },
+      "additional_play_events": 0
+    },
+    "layout_cases": [
+      {
+        "language": "en",
+        "surface": "desktop",
+        "width": 1440,
+        "horizontal_overflow": false
+      },
+      {
+        "language": "uk",
+        "surface": "mobile",
+        "width": 390,
+        "height": 844,
+        "horizontal_overflow": false
+      },
+      {
+        "language": "uk",
+        "surface": "desktop",
+        "width": 1440,
+        "height": 1000,
+        "horizontal_overflow": false,
+        "document_language": "uk",
+        "hero_link_checked": true
+      },
+      {
+        "language": "en",
+        "surface": "mobile",
+        "width": 390,
+        "height": 844,
+        "horizontal_overflow": false,
+        "document_language": "en",
+        "google_script_after_reject": false
+      }
+    ],
+    "positive_play_event_cases": [
+      "EN desktop hero",
+      "UK mobile hero"
+    ],
+    "all_four_layout_cases_verified": true
+  },
+  "clean_comparable_period_start": null,
+  "remaining_validation": [
+    "Positive manual focused article_engaged and deduplication; user response not yet received",
+    "EXACT saved Play comparison after value becomes available in processed data",
+    "Marked versus clean-browser Test data filter name validation, then explicitly activate existing Testing filter",
+    "Production report numerator reconciliation after processing"
+  ]
 }

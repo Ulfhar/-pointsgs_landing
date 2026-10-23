@@ -677,7 +677,10 @@ def build_sitemap(generated, changed_pages, site_url, modified_date, alternates_
     path = ROOT / "sitemap.xml"
     tree = ET.parse(path)
     root = tree.getroot()
-    managed = set(generated) | aliases
+    # The English partnership page is maintained as standalone HTML. Keep its
+    # canonical directory URL in every sitemap rebuild alongside the blog.
+    standalone = ["partners/"]
+    managed = set(generated) | aliases | set(standalone)
     previous_dates = {}
     for entry in list(root):
         location = entry.find("{" + namespace + "}loc")
@@ -687,12 +690,14 @@ def build_sitemap(generated, changed_pages, site_url, modified_date, alternates_
             if previous_date is not None:
                 previous_dates[relative] = previous_date.text
             root.remove(entry)
-    for relative in generated:
+    for relative in [*generated, *standalone]:
         url = ET.SubElement(root, "{" + namespace + "}url")
         ET.SubElement(url, "{" + namespace + "}loc").text = site_url + "/" + relative
         ET.SubElement(url, "{" + namespace + "}lastmod").text = (
             modified_date if relative in changed_pages else previous_dates.get(relative, modified_date))
-        alternates = alternates_by_path[relative]
+        alternates = alternates_by_path.get(relative)
+        if not alternates:
+            continue
         for language, target in alternates.items():
             ET.SubElement(url, "{" + xhtml + "}link", {"rel": "alternate", "hreflang": language, "href": site_url + "/" + target})
         default_language = "en" if "en" in alternates else next(iter(alternates))

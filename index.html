@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="https://points.gs/images/blog/images-cozy-game-article-images-cozy-banner-afd1761e-og.jpg">
 
     <link rel="stylesheet" href="LandingPage.css?v=ca08e75c354a" />
-    <link rel="stylesheet" href="css/header.css?v=e6c2bd2d4671" />
+    <link rel="stylesheet" href="css/header.css?v=22c998810c3e" />
     <link href="https://fonts.googleapis.com/css2?family=Lusitana&family=Roboto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <!-- Swiper CSS for the home screenshots slider. -->
@@ -241,7 +241,13 @@
             outline-offset: 4px;
         }
 
-        #gameplay, #halloween { scroll-margin-top: 80px; }
+        #gameplay, #halloween, #contactForm { scroll-margin-top: 80px; }
+
+        .home-about-unified.partnership-contact-target[data-aos] {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
 
         /* Seasonal spotlight uses the current game's artwork and existing palette. */
         .home-halloween {
@@ -809,6 +815,7 @@
         .home-contact-field label span { color: #e05555; margin-left: 2px; }
 
         .home-contact-field input,
+        .home-contact-field select,
         .home-contact-field textarea {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(32, 178, 170, 0.22);
@@ -829,7 +836,10 @@
             color: rgba(197, 211, 227, 0.35);
         }
 
+        .home-contact-field select option { background: #0d2130; color: #e8f4f8; }
+
         .home-contact-field input:focus,
+        .home-contact-field select:focus,
         .home-contact-field textarea:focus {
             border-color: #20b2aa;
             box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.12);
@@ -922,7 +932,7 @@
       ]
     }
     </script>
-    <script src="js/analytics.js?v=201d46a91e17"></script>
+    <script src="js/analytics.js?v=34f020dd02f5"></script>
     <script id="cookieyes" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js" async></script>
 </head>
 
@@ -930,7 +940,7 @@
 
 <div id="header-placeholder"></div>
 <script>
-fetch("header.html?v=a6f540b44594")
+fetch("header.html?v=91821a0def62")
 .then(r=>r.text())
 .then(d=>{
     var el=document.getElementById("header-placeholder");
@@ -1185,6 +1195,7 @@ fetch("header.html?v=a6f540b44594")
                 <p data-i18n="home_about_pts_p2">We believe a good game is more than a collection of features. Every system should have a reason to exist, connect with the rest of the game, and contribute to the experience as a whole.</p>
                 <p data-i18n="home_about_pts_p3">Our approach combines creativity with a product mindset. We explore ideas, put them in front of players, learn from how people actually play, and keep improving through iteration.</p>
                 <p data-i18n="home_about_pts_p4">We want to create games that feel distinct — not because they follow a formula, but because everything in them belongs together and serves a clear idea.</p>
+                <p><a class="home-teaser-more" href="/partners/" data-i18n="home_partnerships">Partnerships — publishing and growth opportunities →</a></p>
             </div>
 
             <!-- Right: Contact form -->
@@ -1209,6 +1220,13 @@ fetch("header.html?v=a6f540b44594")
                     <div class="home-contact-field">
                         <label data-i18n="home_contact_email">Email <span>*</span></label>
                         <input type="email" name="email" required />
+                    </div>
+                    <div class="home-contact-field">
+                        <label for="contactTopic" data-i18n="home_contact_topic">Topic</label>
+                        <select name="topic" id="contactTopic">
+                            <option value="general" data-i18n="home_contact_topic_general">General inquiry</option>
+                            <option value="partnership" data-i18n="home_contact_topic_partnership">Partnership / request pitch deck</option>
+                        </select>
                     </div>
                     <div class="home-contact-field">
                         <label data-i18n="home_contact_msg">Write a message <span>*</span></label>
@@ -1243,7 +1261,7 @@ fetch("header.html?v=a6f540b44594")
 
 <div id="footer-placeholder"></div>
 <script>
-    fetch("footer.html")
+    fetch("footer.html?v=1ed4eb830f92")
         .then(response => response.text())
         .then(data => {
             document.getElementById("footer-placeholder").innerHTML = data;
@@ -1301,137 +1319,7 @@ fetch("header.html?v=a6f540b44594")
 </script>
 
 <!-- Contact form: validation + honeypot + rate limit -->
-<script>
-(function() {
-    var RATE_LIMIT_MS = 10 * 60 * 1000;
-    var form = document.getElementById('contactForm');
-    var successEl = document.getElementById('contactSuccess');
-    var submitBtn = form.querySelector('.home-contact-submit');
-
-    function trackContact(name) {
-        try {
-            if (window.PointsAnalytics && typeof window.PointsAnalytics.track === 'function') {
-                window.PointsAnalytics.track(name, { form_id: 'contactForm' });
-            }
-        } catch (_) { /* Contact remains available without analytics. */ }
-    }
-
-    function fieldError(input, msg) {
-        input.classList.add('fc-error');
-        var err = input.parentNode.querySelector('.fc-field-error');
-        if (!err) {
-            err = document.createElement('span');
-            err.className = 'fc-field-error';
-            input.parentNode.appendChild(err);
-        }
-        err.textContent = msg;
-        err.classList.add('visible');
-    }
-
-    function fieldOk(input) {
-        input.classList.remove('fc-error');
-        var err = input.parentNode.querySelector('.fc-field-error');
-        if (err) err.classList.remove('visible');
-    }
-
-    function isValidEmail(v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
-    }
-
-    form.querySelectorAll('input, textarea').forEach(function(f) {
-        f.addEventListener('input', function() { fieldOk(f); });
-    });
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Honeypot check
-        if (form.querySelector('[name="website"]').value) return;
-
-        // Rate limit
-        try {
-            var last = localStorage.getItem('pts_contact_ts');
-            if (last && Date.now() - parseInt(last, 10) < RATE_LIMIT_MS) {
-                var rateMsg = form.querySelector('.fc-rate-msg');
-                if (!rateMsg) {
-                    rateMsg = document.createElement('p');
-                    rateMsg.className = 'fc-rate-msg';
-                    submitBtn.after(rateMsg);
-                }
-                rateMsg.textContent = 'Please wait a few minutes before sending another message.';
-                rateMsg.style.display = 'block';
-                return;
-            }
-        } catch (_) {}
-
-        // Validate
-        var fn = form.querySelector('[name="firstName"]');
-        var ln = form.querySelector('[name="lastName"]');
-        var em = form.querySelector('[name="email"]');
-        var mg = form.querySelector('[name="message"]');
-        var ok = true;
-
-        if (!fn.value.trim()) { fieldError(fn, 'Required'); ok = false; } else fieldOk(fn);
-        if (!ln.value.trim()) { fieldError(ln, 'Required'); ok = false; } else fieldOk(ln);
-        if (!isValidEmail(em.value)) { fieldError(em, 'Enter a valid email address'); ok = false; } else fieldOk(em);
-        var msgVal = mg.value.trim();
-        if (msgVal.length < 10) { fieldError(mg, 'Message is too short (min 10 characters)'); ok = false; }
-        else if (msgVal.length > 2000) { fieldError(mg, 'Message is too long (max 2000 characters)'); ok = false; }
-        else fieldOk(mg);
-
-        if (!ok) return;
-
-        // Submit
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
-
-        try { localStorage.setItem('pts_contact_ts', Date.now().toString()); } catch (_) {}
-
-        fetch('https://formspree.io/f/xkjggyon', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-                firstName: fn.value.trim(),
-                lastName:  ln.value.trim(),
-                email:     em.value.trim(),
-                message:   mg.value.trim()
-            })
-        })
-        .then(function(res) {
-            return res.json().then(function(data) {
-                return { ok: res.ok && data.ok === true };
-            });
-        })
-        .then(function(data) {
-            if (data.ok) {
-                trackContact('generate_lead');
-                form.style.display = 'none';
-                successEl.style.display = 'block';
-            } else {
-                trackContact('contact_error');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit';
-                try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
-                var errP = form.querySelector('.fc-send-error');
-                if (!errP) {
-                    errP = document.createElement('p');
-                    errP.className = 'fc-rate-msg';
-                    errP.style.display = 'block';
-                    submitBtn.after(errP);
-                }
-                errP.textContent = 'Something went wrong. Please try again or email us directly at info@points.gs';
-                errP.style.display = 'block';
-            }
-        })
-        .catch(function() {
-            trackContact('contact_error');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-            try { localStorage.removeItem('pts_contact_ts'); } catch (_) {}
-        });
-    });
-})();
-</script>
+<script src="js/home-contact.js?v=116be6e939d2"></script>
 
 <!-- Localization (English by default; switches to UA via footer toggle). -->
 <script src="js/locale.js?v=949e401ce8ae"></script>

@@ -1,20 +1,20 @@
 # Аналітика points.gs
 
-Підготовлено **2026-10-23**. Контролер — `js/analytics.js`, робочий GA4 Measurement ID — `G-RSXV2Q3WG2`. Вхід у GA4 виконано; перевірено ресурс `https://points.gs` (Property ID `492459259`), обліковий запис `175935550`, вебпотік `Points GS` (`11326397500`). Публікація нового коду й завершення решти налаштувань ще не підтверджені. Реальні дати й докази записуються в [журнал запуску](analytics-launch.md).
+Підготовлено **2026-10-23**. Контролер — `js/analytics.js`, робочий GA4 Measurement ID — `G-RSXV2Q3WG2`. Перевірено ресурс `https://points.gs` (Property ID `492459259`), account `175935550`, вебпотік `Points GS` (`11326397500`). Після push користувача новий код підтверджено у production; отримано Play-кліки EN / UK, перевірено чотири мовні / екранні варіанти й відмову та відкликання згоди. Позитивний ручний тест статті, EXACT comparison і Testing-фільтр залишаються очікуваними. Докази — у [журналі запуску](analytics-launch.md).
 
 ## Сім пунктів: поточний стан
 
 | Пункт | Стан | Що ще потрібно |
 | --- | --- | --- |
-| Єдине підключення GA4 | Спільний контролер та ID на актуальних сторінках | Push / реліз користувача й перевірка production |
-| Чистий трафік | Блокування GA4 поза production; браузерна позначка; наявний `Internal Traffic` у Testing підтверджено | Після релізу перевірити internal / звичайний браузер, потім активувати |
-| Переходи Google Play | `play_store_click` погоджено й створено як key event 2026-10-23; попереднє ім'я збережено | Production-перевірка після релізу |
-| Залучені читачі | `article_engaged`: 30 активних секунд + 50% тексту; сім Event-scope dimensions створено | Production-перевірка після релізу |
+| Єдине підключення GA4 | Production-код підтверджено; accept завантажує правильний ID, reject + reload — без tag; після same-page withdraw клік не надсилається | Позитивний article-тест і перевірка відфільтрованих звітів |
+| Чистий трафік | `traffic_type=internal` підтверджено у production page_view / Play; `Internal Traffic` лишається Testing | Перевірити мітку фільтра й чистий браузер, потім Active |
+| Переходи Google Play | Рівно два `play_store_click`: EN desktop hero + UK mobile hero; відмова й same-page withdraw не додали подій | EXACT comparison і звіт після обробки даних |
+| Залучені читачі | `article_engaged`: 30 активних секунд + 50% тексту; сім Event-scope dimensions; фонова вкладка не дала події | Позитивний ручний тест із фокусом і дедуплікація; відповіді користувача ще немає |
 | Звіт ефективності | Обидва звіти опубліковано у `Points — сайт`; збережено точні вигляди Play та читачів | Базовий Play-report скидає вибір на All events; production-звірка обох подій ще потрібна |
 | Search Console | Domain `points.gs` зв'язано з `Points GS`; обидва звіти видимі й заповнені історичними даними 2026-10-23 | Нові дані після релізу перевіряються окремо |
-| Кампанії та дата запуску | UTM-схема, журнал і правила порівняння | Реальний реліз, фактична дата чистого періоду |
+| Кампанії та дата запуску | Production-код підтверджено 2026-10-23; alias-перехід зберігає UTM | Дата чистого періоду після перевірки й Active-фільтра |
 
-Commit / push у цій роботі не виконуються. Дата підготовки не є датою початку збору нових подій.
+Агент не виконував commit / push; код опублікував користувач. Перші підтверджені production-події датовані 2026-10-23; початок чистого порівнюваного періоду ще залежить від internal-фільтра.
 
 ## Production та власні браузери
 
@@ -69,7 +69,7 @@ https://points.gs/?analytics_internal=1&analytics_debug=1
 
 Використовується CookieYes `e6ba3bfedc57c067fa59e14b`. До згоди Google tag не завантажується, дії не відкладаються для надсилання після згоди. Відкликання припиняє наступні відправлення. GA4 вимірює лише доступну за згодою аудиторію.
 
-CookieYes раніше відкривався на `https://points.gs/devlog.html`; на localhost повідомляв про інший зареєстрований домен. Це не перевірка нового релізу. Реальні accept / reject / withdraw перевіряються на points.gs після публікації.
+На production 2026-10-23 перевірено **Reject All / withdraw + reload** — Google scripts відсутні навіть після EN → UK; **Accept All** завантажує правильний Google tag. Відхилений клік перед повторною згодою не збільшив Play-лічильник. **Same-page withdraw** також підтверджено: після відхилення у CookieYes й одного seasonal-кліка без reload лічильник Play залишився 2 через понад дві хвилини. CookieYes має `position: fixed`, mobile-модальне вікно 375×844 у (0, 0) вміщується у viewport. EN / UK перевірено на desktop 1440 px і mobile 390×844 без горизонтального переповнення; позитивні події окремо перевірено для EN desktop і UK mobile. Помилка зареєстрованого домену на localhost не використовується як доказ production-поведінки.
 
 У **Admin → Data streams → вебпотік → Enhanced measurement → налаштування** для контрольованих подій вимкніть **Outbound clicks**, **File downloads**, **Site search**, **Form interactions**. Інакше автоматичні події можуть дублювати дії й передавати власні повні `link_url` / пошукові / формові параметри поза allowlist контролера. Не створюйте `generate_lead` із `form_submit` і не підсумовуйте автоматичні кліки з власними. [Enhanced measurement](https://support.google.com/analytics/answer/9216061?hl=en).
 
@@ -79,7 +79,7 @@ CookieYes раніше відкривався на `https://points.gs/devlog.htm
 
 **Перевірка кабінету 2026-10-23:** GA4 відхилив запитану `google_play_click` під час Create with code: «Введені дані починаються із зарезервованого префікса. Виберіть іншу назву.» Після цього користувач явно погодив **`play_store_click`**, щоб зберегти попереднє ім'я та історію. У коді й звітах використовується лише ця назва. [Правила назв Google](https://support.google.com/analytics/answer/13316687?hl=en).
 
-**Виконано 2026-10-23:** `play_store_click` створено через **Create event → Create with code** як key event, без no-code правила та без грошової вартості, метод підрахунку — **Once per event**. Стан підтверджено в таблиці; стандартну `purchase` залишено. Сповіщення про ще не виявлений потік / нові дані потребує перевірки після релізу й не є підтвердженням надходження подій. Не створюйте ще одне правило копіювання автоматичного `click`. Позначення не перераховує минуле. [Ключові події](https://support.google.com/analytics/answer/13128484?hl=en).
+**Виконано 2026-10-23:** `play_store_click` створено через **Create event → Create with code** як key event, без no-code правила та без грошової вартості, метод підрахунку — **Once per event**. Стандартну `purchase` залишено. Після push у production DebugView отримано **один `play_store_click` після одного hero-кліка**: `traffic_type=internal`, `link_location=hero`, `page_language=en`, повний `link_url` гри, `page_location=https://points.gs/` без debug / internal query. `page_view` також має internal. Не створюйте ще одне правило копіювання автоматичного `click`. Позначення не перераховує минуле. [Ключові події](https://support.google.com/analytics/answer/13128484?hl=en).
 
 `generate_lead` — окрема можлива ключова ціль. У звіті Play обирайте лише `play_store_click`, а не All events. `article_engaged` оцінюється окремо.
 
@@ -109,7 +109,7 @@ CookieYes раніше відкривався на `https://points.gs/devlog.htm
 5. Якщо picker дозволяє, додайте **Session key event rate (play_store_click)** для All sessions. Загальна Session key event rate включає всі ключові події. Якщо окрема метрика недоступна в Explore, залиште обидва counts і обчисліть частку в експорті; не припускайте наявності збереженої формули між колонками сегментів.
 6. Вкладка `Читачі статей`: Rows — Article ID / Page path; Values — **Total users**, Event count; Filter — **Event name exactly matches article_engaged**. Тут event filter доречний: потрібні унікальні читачі конкретної події без конверсійного знаменника. Event count не замінює Total users.
 
-**Збережено й опубліковано 2026-10-23:** [**`Points — залучення статей`**][article-report], ID **`16187635868`**, у колекції `Points — сайт`, тема `Ефективність`; відкриття з навігації перевірено. Основний вимір — Article ID, вторинний — Page language; метрики — **Total users** і Event count. Постійний фільтр **Event name MATCHES REGEX `^article_engaged$`** підтверджено після повторного відкриття. Залишено лише All users comparison, без Play-фільтра; період last28Days / lastPeriod. Поточний нуль нової події до релізу очікуваний і не означає відсутності читачів.
+**Збережено й опубліковано 2026-10-23:** [**`Points — залучення статей`**][article-report], ID **`16187635868`**, у колекції `Points — сайт`, тема `Ефективність`; відкриття з навігації перевірено. Основний вимір — Article ID, вторинний — Page language; метрики — **Total users** і Event count. Постійний фільтр **Event name MATCHES REGEX `^article_engaged$`** підтверджено після повторного відкриття. Залишено лише All users comparison, без Play-фільтра; період last28Days / lastPeriod. Під час налаштування до релізу нова подія мала нуль; це не означає відсутності читачів.
 
 [article-report]: https://analytics.google.com/analytics/web/?pli=1#/a175935550p492459259/reports/explorer?params=_u..nav%3Dmaui%26_u.dateOption%3Dlast28Days%26_u.comparisonOption%3DlastPeriod%26_u..comparisons%3D%5B%7B%22savedComparisonId%22:%2211326407057%22,%22name%22:%22%D0%A3%D1%81%D1%96%20%D0%BA%D0%BE%D1%80%D0%B8%D1%81%D1%82%D1%83%D0%B2%D0%B0%D1%87%D1%96%22,%22isEnabled%22:true,%22filters%22:%5B%5D,%22systemDefinedSavedComparisonType%22:8,%22isSystemDefined%22:true%7D%5D%26_r.explorerCard..seldim%3D%5B%22customDimensionsGroup2Slot03%22,%22customDimensionsGroup2Slot01%22%5D%26_u..built_comparisons_enabled%3Dtrue&collectionId=16187742679&discardConfirmed=true&ruid=9220AE3E-01BC-43D1-8C8B-9E15CCD47769&r=16187635868
 
@@ -119,7 +119,7 @@ CookieYes раніше відкривався на `https://points.gs/devlog.htm
 
 **Обмеження перевірено повторним відкриттям:** базовий report скидає вибір `play_store_click` на **All events**. Користуйтеся [точним збереженим виглядом][play-report], який містить вибір `play_store_click`, Session source / medium + Landing page, All sessions і comparison **`Points — натискання Play Store`** (`16187805052`). Не називайте частку All events часткою Play.
 
-Comparison наразі використовує case-sensitive **Event name CONTAINS `play_store_click`**: picker точного значення ще не знаходить production-подію. Після надходження даних замініть умову на **EXACT**. Зараз у звіті окремі Sessions — **159** для всіх і **0** для comparison; інтерпретацію чисельника ще потрібно звірити з Session segment у Explore після релізу. Native comparison не названо session-scoped segment. Поточний точний вигляд використовує Landing page **із query string**, тому UTM-варіанти можуть розділяти один шлях на рядки; цільова специфікація / Explore вище використовує Landing page без query. [Редагування звіту](https://support.google.com/analytics/answer/10445879?hl=en).
+Comparison наразі використовує case-sensitive **Event name CONTAINS `play_store_click`**. Повторна перевірка після DebugView-подій ще показала в EXACT picker лише шість історичних назв без Play; незбережене редагування скасовано, чинний comparison не змінено. Після обробки й доступності значення замініть умову на **EXACT**. У знімку звіту перед релізом Sessions — **159** для всіх і **0** для comparison; інтерпретацію чисельника ще потрібно звірити з Session segment у Explore. Native comparison не названо session-scoped segment. Поточний точний вигляд використовує Landing page **із query string**, тому UTM-варіанти можуть розділяти один шлях на рядки; цільова специфікація / Explore вище використовує Landing page без query. [Редагування звіту](https://support.google.com/analytics/answer/10445879?hl=en).
 
 Трактування **Sessions** у event comparison як сеансів із кліком — обґрунтований висновок: Google наводить [приклад eventName-фільтра із Sessions](https://developers.google.com/analytics/devguides/reporting/data/v1/basics), а кількість сеансів [оцінює за унікальними session IDs](https://support.google.com/analytics/answer/9191807?hl=en). Це не означає, що фільтр зберігає весь сеанс для інших метрик: engagement time та інші показники comparison не прирівнюйте до Session segment. Production-звірка чисельника лишається кроком запуску.
 
@@ -130,6 +130,8 @@ Comparison наразі використовує case-sensitive **Event name CON
 ### Період
 
 Точний вигляд зберігає **last28Days → lastPeriod**. У datepicker і заголовку 2026-10-23 перевірено **2026-09-25–2026-10-22** проти **2026-08-28–2026-09-24**: сьогодні виключено. Це 28 завершених днів проти попередніх 28. У властивостях ресурсу read-only підтверджено країну **Україна** й Reporting time zone **`(GMT+03:00) час: Україна`**; налаштування не змінювалися. Це значення, показане інтерфейсом на дату перевірки, без припущення про внутрішній IANA-ідентифікатор.
+
+Сьогоднішні тестові події 2026-10-23 не входять у цей збережений період до 2026-10-22. Для діагностики використовуються DebugView / Realtime або тимчасовий діапазон Today; робочий вигляд залишається за завершені дні.
 
 Початок чистого періоду — найпізніша з підтверджених дат: реліз нових подій, ввімкнення `play_store_click` як key event, активація перевіреного internal-фільтра. До накопичення 28 днів період неповний. Порівняння з ранішим часом позначайте як обмежене. Для частки показуйте різницю у процентних пунктах; для сеансів — кількість і відносну зміну.
 
@@ -176,7 +178,7 @@ node tests/check_campaign_navigation.js
 node tests/check_article_share.js
 ```
 
-Користувач публікує перевірені зміни звичайним релізом GitHub Pages. Після цього у внутрішньому браузері перевіряються:
+Для наступних змін користувач публікує перевірений код звичайним релізом GitHub Pages. Контрольні сценарії у внутрішньому браузері (фактичний стан кожного — у журналі):
 
 1. **Reject:** немає Google tag / GA-запитів; дії до згоди не відтворюються після неї.
 2. **Accept:** один `page_view`; `play_store_click` має адресу сторінки, Play, мову, місце кнопки; `google_play_click` / `article_read` не надсилаються.

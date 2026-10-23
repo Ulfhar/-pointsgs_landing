@@ -24,6 +24,9 @@
         play_store_click: ['link_location', 'link_url'],
         press_asset_download: ['asset_type', 'file_name', 'link_location'],
         contact_click: ['link_location'],
+        partnership_contact_click: ['contact_type', 'link_location'],
+        project_overview_download: ['contact_type', 'link_location'],
+        partnership_inquiry_submit: ['form_id', 'contact_type', 'link_location'],
         generate_lead: ['form_id'],
         contact_error: ['form_id'],
         share: ['method', 'content_id', 'content_type'],
@@ -58,6 +61,7 @@
         if (/\/devlog\.html$/.test(path)) return 'blog_index';
         if (/\/about\.html$/.test(path)) return 'about';
         if (/\/press-kit\.html$/.test(path)) return 'press_kit';
+        if (/^\/partners(?:\/(?:index\.html)?|\.html)?$/.test(path)) return 'partnerships';
         if (path === '/' || /\/index\.html$/.test(path)) return 'home';
         return 'other';
     }
@@ -202,7 +206,14 @@
         try {
             var url = new URL(link.href, window.location.href);
             var placement = linkLocation(link);
-            if (url.protocol === 'https:' && url.hostname === 'play.google.com' &&
+            var partnershipContact = link.getAttribute('data-partnership-contact');
+            if ((partnershipContact === 'email' && url.protocol === 'mailto:') ||
+                    (partnershipContact === 'form' && url.origin === window.location.origin)) {
+                track('partnership_contact_click', { contact_type: partnershipContact, link_location: placement });
+            } else if (link.getAttribute('data-project-overview') !== null &&
+                    url.origin === window.location.origin && /\.pdf$/i.test(url.pathname)) {
+                track('project_overview_download', { contact_type: 'pdf', link_location: placement });
+            } else if (url.protocol === 'https:' && url.hostname === 'play.google.com' &&
                     url.pathname === '/store/apps/details' && url.searchParams.get('id') === 'comPointsGameForge.FarFarForest') {
                 track('play_store_click', { link_location: placement, link_url: url.href });
             } else if (url.protocol === 'mailto:') {

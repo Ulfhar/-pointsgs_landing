@@ -507,6 +507,76 @@ test('Mail links have a separate contact event without exposing the recipient', 
     assert.equal(JSON.stringify(page.events()).includes('private@example.com'), false);
 });
 
+test('Partnership form and email links each emit one specific click without duplicate general contact events', () => {
+    const page = setup({ href: 'https://points.gs/partners?utm_source=linkedin&email=private#contact' });
+    page.consent();
+    const form = page.link('/?contact_topic=partnership#contactForm', {
+        'data-partnership-contact': 'form', 'data-analytics-location': 'partners_hero'
+    });
+    page.click(new Element('span', {}, form));
+    page.click(page.link('mailto:info@points.gs?subject=Partnership', {
+        'data-partnership-contact': 'email', 'data-analytics-location': 'partners_contact'
+    }));
+    assert.deepEqual(page.events('partnership_contact_click').map(event => [event.params.contact_type, event.params.link_location]),
+        [['form', 'partners_hero'], ['email', 'partners_contact']]);
+    assert.equal(page.events('contact_click').length, 0);
+    for (const event of page.events('partnership_contact_click')) {
+        assert.equal(event.params.page_type, 'partnerships');
+        assert.equal(event.params.page_location, 'https://points.gs/partners?utm_source=linkedin');
+    }
+    assert.equal(JSON.stringify(page.events()).includes('info@points.gs'), false);
+    assert.equal(JSON.stringify(page.events()).includes('contact_topic'), false);
+    page.click(form, { type: 'auxclick', button: 1 });
+    page.click(form, { button: 2 });
+    page.click(form, { defaultPrevented: true });
+    assert.equal(page.events('partnership_contact_click').length, 3, 'Middle click is counted once; prevented and right clicks are ignored');
+});
+
+test('Project PDF downloads use one specific event and only marked same-origin PDFs qualify', () => {
+    const page = setup({ href: 'https://points.gs/partners/' });
+    page.consent();
+    const marked = { 'data-project-overview': '', 'data-analytics-location': 'partners_overview', class: 'press-asset-download' };
+    page.click(new Element('span', {}, page.link('/public/lumen-grove-overview.pdf?private=secret', marked)));
+    assert.deepEqual(page.events('project_overview_download').map(event => [event.params.contact_type, event.params.link_location]),
+        [['pdf', 'partners_overview']]);
+    assert.equal(page.events('press_asset_download').length, 0);
+    for (const href of ['/public/lumen-grove-overview.pdf', '/public/image.png', 'https://example.org/overview.pdf']) {
+        page.click(page.link(href, href.endsWith('/lumen-grove-overview.pdf') ? {} : { 'data-project-overview': '' }));
+    }
+    assert.equal(page.events('project_overview_download').length, 1);
+    assert.equal(JSON.stringify(page.events()).includes('secret'), false);
+});
+
+test('Business actions respect consent and accept only reporting parameters without form content', () => {
+    const page = setup();
+    const params = { form_id: 'contactForm', contact_type: 'form', link_location: 'home_contact', email: 'private@example.test', message: 'private note' };
+    for (const name of ['partnership_contact_click', 'project_overview_download', 'partnership_inquiry_submit']) {
+        assert.equal(page.track(name, params), false);
+    }
+    page.click(page.link('/?contact_topic=partnership#contactForm', { 'data-partnership-contact': 'form' }));
+    page.consent();
+    assert.equal(page.events('partnership_contact_click').length, 0, 'Pre-consent click is not replayed');
+    assert.equal(page.track('partnership_inquiry_submit', params), true);
+    const event = page.events('partnership_inquiry_submit')[0];
+    assert.equal(event.params.form_id, 'contactForm');
+    assert.equal(event.params.contact_type, 'form');
+    assert.equal(event.params.link_location, 'home_contact');
+    assert.equal('email' in event.params, false);
+    assert.equal('message' in event.params, false);
+    page.consent([]);
+    assert.equal(page.track('partnership_inquiry_submit', params), false);
+    assert.equal(page.events('partnership_inquiry_submit').length, 1);
+});
+
+test('All direct Partnerships routes use one standard page view with the Partnerships page type', () => {
+    for (const path of ['/partners', '/partners/', '/partners/index.html', '/partners.html']) {
+        const page = setup({ href: 'https://points.gs' + path });
+        page.consent();
+        assert.equal(page.events('page_view').length, 1);
+        assert.equal(page.events('page_view')[0].params.page_type, 'partnerships');
+    }
+});
+
 test('Press archives, images and videos report the file type and decoded file name without query values', () => {
     const page = setup({ href: 'https://points.gs/press-kit.html' });
     page.consent();
@@ -626,10 +696,10 @@ test('A completed read awaiting Google is discarded on revocation and can qualif
     assert.equal(page.events('article_engaged').length, 1);
 });
 
-test('Every real root and Ukrainian HTML page has exactly one current shared tag before one CMP', () => {
+test('Every delivered root, Ukrainian and Partnerships page has exactly one current shared tag before one CMP', () => {
     const expectedVersion = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'js/analytics.js'))).digest('hex').slice(0, 12);
     const checked = [];
-    for (const folder of ['', 'uk']) {
+    for (const folder of ['', 'uk', 'partners']) {
         for (const name of fs.readdirSync(path.join(root, folder)).filter(name => name.endsWith('.html'))) {
             const file = path.join(folder, name);
             const html = fs.readFileSync(path.join(root, file), 'utf8');
@@ -640,7 +710,7 @@ test('Every real root and Ukrainian HTML page has exactly one current shared tag
             assert.equal(shared.length, 1, `${file}: one shared analytics script`);
             assert.equal(cmp.length, 1, `${file}: one CookieYes script`);
             assert.ok(shared[0].index < cmp[0].index, `${file}: install consent listeners before CMP`);
-            const prefix = folder ? '../' : '';
+            const prefix = folder === 'partners' ? '/' : folder ? '../' : '';
             assert.ok(shared[0][1].includes(`src="${prefix}js/analytics.js?v=${expectedVersion}"`), `${file}: relative URL and current cache hash`);
             assert.ok(!/\b(?:async|defer)\b/.test(shared[0][1]), `${file}: analytics listeners must initialize before CMP`);
             assert.ok(!/googletagmanager\.com\/gtag\/js|G-[A-Z0-9]{8,}/.test(html), `${file}: no legacy inline Google tag`);
@@ -651,8 +721,49 @@ test('Every real root and Ukrainian HTML page has exactly one current shared tag
     assert.ok(checked.includes(path.join('uk', 'about.html')));
     assert.ok(checked.includes('about.html'));
     assert.ok(checked.includes('press-kit.html'));
+    assert.ok(checked.includes(path.join('partners', 'index.html')));
     assert.ok(checked.includes('ukrainian-game-development-meridian93-history.html'));
     console.log(`Validated shared analytics coverage on ${checked.length} actual pages.`);
+});
+
+test('Delivered Partnerships actions use the real PDF and contact targets and each dispatch one event', () => {
+    const html = fs.readFileSync(path.join(root, 'partners/index.html'), 'utf8');
+    const page = setup({ href: 'https://points.gs/partners/?utm_source=linkedin&utm_campaign=studio_outreach' });
+    page.consent();
+    const anchors = [...html.matchAll(/<a\b([^>]*)>/gi)].map(match => {
+        const attrs = {};
+        for (const attribute of match[1].matchAll(/([\w-]+)(?:\s*=\s*"([^"]*)")?/g)) attrs[attribute[1]] = attribute[2] || '';
+        return attrs;
+    });
+    const actions = anchors.filter(attrs => Object.hasOwn(attrs, 'data-partnership-contact') || Object.hasOwn(attrs, 'data-project-overview'));
+    assert.equal(actions.filter(attrs => attrs['data-partnership-contact'] === 'form').length, 2);
+    assert.equal(actions.filter(attrs => attrs['data-partnership-contact'] === 'email').length, 2);
+    assert.equal(actions.filter(attrs => Object.hasOwn(attrs, 'data-project-overview')).length, 2);
+    for (const attrs of actions) {
+        assert.ok(attrs['data-analytics-location'], 'Every business action identifies its button placement');
+        const url = new URL(attrs.href.replaceAll('&amp;', '&'), page.window.location.href);
+        if (attrs['data-partnership-contact'] === 'form') {
+            assert.equal(url.pathname, '/');
+            assert.equal(url.searchParams.get('contact_topic'), 'partnership');
+            assert.equal(url.hash, '#contactForm');
+            assert.equal([...url.searchParams.keys()].some(key => key.startsWith('utm_')), false, 'Internal form link cannot restart campaign attribution');
+        } else if (attrs['data-partnership-contact'] === 'email') {
+            assert.equal(url.protocol, 'mailto:');
+            assert.equal(url.pathname, 'info@points.gs');
+        } else {
+            assert.equal(url.pathname, '/public/downloads/lumen-grove-project-overview.pdf');
+            assert.ok(fs.existsSync(path.join(root, url.pathname)));
+            assert.ok(Object.hasOwn(attrs, 'download'));
+        }
+        const prior = page.events().length;
+        page.click(new Element('span', {}, page.link(url.href, attrs)));
+        assert.equal(page.events().length, prior + 1, 'One physical action produces one event');
+    }
+    assert.equal(page.events('partnership_contact_click').length, 4);
+    assert.equal(page.events('project_overview_download').length, 2);
+    assert.equal(page.events('contact_click').length, 0);
+    assert.equal(page.events('press_asset_download').length, 0);
+    assert.ok(anchors.filter(attrs => attrs.href?.startsWith('mailto:')).every(attrs => attrs['data-partnership-contact'] === 'email'), 'Footer and direct email links both report partnership contact');
 });
 
 (async () => {

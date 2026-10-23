@@ -370,5 +370,9 @@
   "home_devlog7_meta": "<span class=\"home-teaser-badge\">Щоденник розробки #7</span> <time datetime=\"2026-10-15\">15 жовт. 2026</time>",
   "home_devlog7_title": "Галчина Пошта: як оживають новини в Lumen Grove",
   "home_devlog7_text": "Лісова газета, яку розносять галки: історії гаю, відгук на прогрес гравця та новий спосіб оживити світ Lumen Grove.",
-  "home_devlog7_more": "Читати допис →"
+  "home_devlog7_more": "Читати допис →",
+  "home_partnerships": "Partnerships — видавництво та розвиток гри →",
+  "home_contact_topic": "Тема",
+  "home_contact_topic_general": "Загальне звернення",
+  "home_contact_topic_partnership": "Партнерство / запит презентації"
 }

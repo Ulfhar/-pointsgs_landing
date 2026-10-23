@@ -42,7 +42,7 @@ def prominent_store_links(tree):
     yield from visit(tree)
 
 
-required = {"index.html", "about.html", "uk/about.html", "press-kit.html", "news_4.html"}
+required = {"index.html", "about.html", "uk/about.html", "press-kit.html", "news_4.html", "partners/index.html"}
 manifest = json.loads((ROOT / "blog/posts.json").read_text(encoding="utf-8"))
 for post in manifest["posts"]:
     if post["slug"] in {"news_5", "news_6", "news_7", "news_9", "lore_1", "pillar_1"}:
@@ -52,7 +52,7 @@ for post in manifest["posts"]:
 
 found_pages, icon_paths = set(), set()
 button_count = 0
-for page in sorted([*ROOT.glob("*.html"), *(ROOT / "uk").glob("*.html")]):
+for page in sorted([*ROOT.glob("*.html"), *(ROOT / "uk").glob("*.html"), ROOT / "partners/index.html"]):
     tree = parse(page.read_text(encoding="utf-8"))
     buttons = list(prominent_store_links(tree))
     if not buttons:

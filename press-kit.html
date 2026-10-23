@@ -7,13 +7,13 @@
     <meta name="description" content="The official Lumen Grove press kit from Points Game Studio: game information, features, gameplay, brand assets, and press contacts.">
     <meta name="robots" content="noindex, follow">
     <link rel="icon" type="image/png" href="images/favicon_points.png">
-    <link rel="stylesheet" href="css/header.css?v=e6c2bd2d4671">
+    <link rel="stylesheet" href="css/header.css?v=22c998810c3e">
     <link rel="stylesheet" href="css/press-kit.css?v=0fc0b1fb9975">
     <link rel="stylesheet" href="css/buttons.css?v=bafbfb4b4028">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&family=Roboto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="js/analytics.js?v=201d46a91e17"></script>
+    <script src="js/analytics.js?v=34f020dd02f5"></script>
     <script id="cookieyes" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js" async></script>
 </head>
 <body class="press-page">
@@ -42,6 +42,7 @@
                 <a href="devlog.html">Blog</a>
                 <a href="index.html#about">About Us</a>
                 <a href="press-kit.html" aria-current="page">Press Kit</a>
+                <a href="/partners/">Partnerships</a>
             </nav>
         </div>
     </header>
@@ -337,7 +338,7 @@
             updateCurrentSection();
             window.addEventListener('hashchange', updateCurrentSection);
 
-            fetch('footer.html')
+            fetch('footer.html?v=1ed4eb830f92')
                 .then(response => {
                     if (!response.ok) throw new Error('Footer unavailable');
                     return response.text();

@@ -69,6 +69,10 @@
 @media (min-width: 1024px) {
     .fixed-header .header-inner { padding-inline: 24px !important; }
 }
+/* Keep all four destinations visible without increasing the fixed bar's height. */
+@media (max-width: 640px) {
+    .fixed-header .logo-text { display: none; }
+}
 @media (max-width: 480px) {
     .fixed-header .header-inner { padding-inline: 10px !important; gap: 8px; }
     .fixed-header .logo { gap: 4px; }

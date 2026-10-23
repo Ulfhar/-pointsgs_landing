@@ -60,7 +60,7 @@ def is_social_control(node):
 
 
 pages, controls = 0, 0
-for page in sorted([*ROOT.glob("*.html"), *(ROOT / "uk").glob("*.html")]):
+for page in sorted([*ROOT.glob("*.html"), *(ROOT / "uk").glob("*.html"), ROOT / "partners/index.html"]):
     tree = parse(page.read_text(encoding="utf-8"))
     nodes = list(tree.walk())
     relative = page.relative_to(ROOT).as_posix()
