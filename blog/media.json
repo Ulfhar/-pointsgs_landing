@@ -1410,5 +1410,141 @@
         "bytes": 7194
       }
     ]
+  },
+  "images/halloween/Screenshot_20261101-002922.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3004478,
+    "src": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-480.webp 480w, images/blog/images-halloween-screenshot-20261101-002922-3b78a867-800.webp 800w, images/blog/images-halloween-screenshot-20261101-002922-3b78a867-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-full.webp",
+    "src_bytes": 49252,
+    "full_bytes": 185954,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 21256
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 49252
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 91664
+      }
+    ],
+    "ogsrc": "images/blog/images-halloween-screenshot-20261101-002922-3b78a867-og.jpg",
+    "og_width": 1200,
+    "og_height": 554,
+    "og_bytes": 126043
+  },
+  "images/halloween/Screenshot_20261008-134219.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2241969,
+    "src": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-480.webp 480w, images/blog/images-halloween-screenshot-20261008-134219-006e775d-800.webp 800w, images/blog/images-halloween-screenshot-20261008-134219-006e775d-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-full.webp",
+    "src_bytes": 36502,
+    "full_bytes": 99538,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 18418
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 36502
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261008-134219-006e775d-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 58434
+      }
+    ]
+  },
+  "images/halloween/Screenshot_20261101-193520.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2712561,
+    "src": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-full.webp",
+    "src_bytes": 45824,
+    "full_bytes": 129206,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 22016
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 45824
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193520-73d40f66-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 73178
+      }
+    ]
+  },
+  "images/halloween/Screenshot_20261101-193615.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2724228,
+    "src": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-full.webp",
+    "src_bytes": 45514,
+    "full_bytes": 125496,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 21932
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 45514
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193615-7de9d402-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 74598
+      }
+    ]
   }
 }

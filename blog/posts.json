@@ -34,13 +34,15 @@
       "slug": "news_7",
       "date": "2026-09-26",
       "author": "bogdan",
-      "cover": "images/halloween/h1.png",
-      "cover_alt": {"en": "Lumen Grove during the Halloween seasonal event", "uk": "Lumen Grove під час сезонної події Halloween"},
-      "title": {"en": "Lumen Grove Halloween Update — A New Seasonal Event for Our Cozy Mobile Game", "uk": "Lumen Grove Halloween — перша сезонна подія у нашій затишній мобільній грі"},
-      "seo_title": {"en": "Lumen Grove Halloween Event | Cozy Mobile Game Update", "uk": "Halloween у Lumen Grove — сезонна подія та нова прогресія"},
-      "description": {"en": "Discover Lumen Grove's first Halloween event: seasonal mini-games, quests, decorations, a new lore chapter and a reworked Magic Oak progression system.", "uk": "Перша Halloween-подія у Lumen Grove: сезонні мініігри, завдання, декорації, нова глава лору та оновлена прогресія Чарівного Дуба."},
-      "summary": {"en": "Our first Halloween event brings seasonal adventures and the biggest change yet to Magic Oak progression.", "uk": "Перша Halloween-подія приносить сезонні пригоди та найбільші зміни у прогресії Чарівного Дуба."},
-      "kind": {"en": "DevLog #6", "uk": "Щоденник розробки #6"}
+      "cover": "images/halloween/Screenshot_20261101-002922.png",
+      "cover_alt": {"en": "A festive grove in Lumen Grove, with pumpkins, magical trees and reflections in the water", "uk": "Святковий гай у Lumen Grove: гарбузи, чарівні дерева та відображення у воді"},
+      "title": {"en": "Lumen Grove’s First Halloween: A Cauldron, Pumpkins and a Little Creative Chaos", "uk": "Перший Геловін у Lumen Grove: казан, гарбузи та трохи творчого хаосу"},
+      "seo_title": {"en": "Lumen Grove’s First Halloween: An Event Retrospective", "uk": "Перший Геловін у Lumen Grove — підсумки івенту"},
+      "description": {"en": "Looking back at Lumen Grove’s first Halloween event: the Witch’s Cauldron minigame, seasonal decorations, the Raven King’s story and lessons from development.", "uk": "Враження від першого Геловіну в Lumen Grove: мінігра з відьомським казаном, святкові декорації, історія Короля Воронів і досвід створення сезонного івенту."},
+      "summary": {"en": "What made it into Lumen Grove’s first seasonal event, what needed a different approach, and the joy of creating something new.", "uk": "Що вдалося втілити в першому сезонному івенті Lumen Grove, що довелося переосмислити та як це повернуло радість творчості."},
+      "kind": {"en": "DevLog #6", "uk": "Щоденник розробки #6"},
+      "languages": ["en", "uk"],
+      "modified_date": "2026-11-02"
     },
     {
       "slug": "news_6",

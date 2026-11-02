@@ -612,6 +612,8 @@ def build(modified_date):
                        "publisher": {"@id": org["@id"]}, "isPartOf": {"@type": "Blog", "name": label["blog"], "url": site_url + "/" + page_url("devlog", language)}}
             if len(post["date"]) == 10:
                 article["datePublished"] = post["date"]
+            if post.get("modified_date"):
+                article["dateModified"] = post["modified_date"]
             if post.get("primary_keyword", {}).get(language):
                 article["keywords"] = post["primary_keyword"][language]
             breadcrumbs = {"@type": "BreadcrumbList", "itemListElement": [
@@ -631,6 +633,7 @@ def build(modified_date):
                       "summary": e(post["summary"][language]), "author_block": author_block(post, author, language, media, prefix),
                       "share": share_section(post, language, site_url, media, prefix),
                       "date": post["date"], "date_label": e(date_label(post["date"], language)), "reading_time": e(label["minutes"].format(n=minutes)),
+                      "updated_date": (f'<span aria-hidden="true">·</span><span>{"Оновлено" if language == "uk" else "Updated"}: <time datetime="{e(post["modified_date"])}">{e(date_label(post["modified_date"], language))}</time></span>' if post.get("modified_date") else ""),
                       "cover": cover_tree.html(), "toc": toc, "content": content, "content_label": e(label["content"]), "related": related, "prefix": prefix,
                       "article_id": e(slug),
                       "progress": ' data-reading-progress' if post.get("long_read") else "",
