@@ -1,0 +1,24 @@
+{
+  "halloween": {
+    "colors": {
+      "background_start": "#80340f",
+      "background_middle": "#32180e",
+      "background_end": "#050403",
+      "surface": "#21150f",
+      "surface_hover": "#302016",
+      "text": "#eee1d3",
+      "muted": "#d2b9a5",
+      "heading": "#fff0d9",
+      "accent": "#ffb46e",
+      "accent_hover": "#ffdbad",
+      "border": "#694329"
+    },
+    "decorations": [
+      {"image": "images/halloween/Halloween_decor_sprite_01.png", "slot": "header", "side": "left", "width": 180, "rotate": -12, "top": 60},
+      {"image": "images/halloween/Halloween_decor_sprite_1.png", "slot": "header", "side": "right", "width": 160, "rotate": 12, "top": 130},
+      {"image": "images/halloween/Halloween_decor_sprite_4.png", "slot": "activity", "side": "left", "width": 170, "rotate": -8, "top": 70},
+      {"image": "images/halloween/Halloween_decor_sprite_3.png", "slot": "decorations", "side": "right", "width": 170, "rotate": 9, "top": 45},
+      {"image": "images/halloween/Halloween_decor_sprite_02.png", "slot": "closing", "side": "center", "width": 230, "rotate": 0, "top": 0}
+    ]
+  }
+}

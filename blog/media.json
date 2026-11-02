@@ -1546,5 +1546,272 @@
         "bytes": 74598
       }
     ]
+  },
+  "images/halloween/Screenshot_20261013-003148.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2651028,
+    "src": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-480.webp 480w, images/blog/images-halloween-screenshot-20261013-003148-147be7c1-800.webp 800w, images/blog/images-halloween-screenshot-20261013-003148-147be7c1-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-full.webp",
+    "src_bytes": 46314,
+    "full_bytes": 136010,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 22026
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 46314
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261013-003148-147be7c1-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 78028
+      }
+    ]
+  },
+  "images/halloween/Screenshot_20261027-104449.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2475854,
+    "src": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-480.webp 480w, images/blog/images-halloween-screenshot-20261027-104449-0b069b46-800.webp 800w, images/blog/images-halloween-screenshot-20261027-104449-0b069b46-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-full.webp",
+    "src_bytes": 33704,
+    "full_bytes": 126742,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 15824
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 33704
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261027-104449-0b069b46-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 63618
+      }
+    ]
+  },
+  "images/halloween/Screenshot_20261101-193428.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 3286054,
+    "src": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-full.webp",
+    "src_bytes": 54016,
+    "full_bytes": 200328,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 24404
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 54016
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 102236
+      }
+    ]
+  },
+  "images/halloween/Screenshot_20261101-193437.png": {
+    "width": 3120,
+    "height": 1440,
+    "original_bytes": 2931748,
+    "src": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-800.webp",
+    "srcset": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193437-e56394d4-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193437-e56394d4-1200.webp 1200w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-full.webp",
+    "src_bytes": 55342,
+    "full_bytes": 165714,
+    "full_width": 1920,
+    "full_height": 886,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-480.webp",
+        "width": 480,
+        "height": 222,
+        "bytes": 26490
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-800.webp",
+        "width": 800,
+        "height": 369,
+        "bytes": 55342
+      },
+      {
+        "src": "images/blog/images-halloween-screenshot-20261101-193437-e56394d4-1200.webp",
+        "width": 1200,
+        "height": 554,
+        "bytes": 95280
+      }
+    ]
+  },
+  "images/halloween/Halloween_decor_sprite_01.png": {
+    "width": 680,
+    "height": 659,
+    "original_bytes": 283553,
+    "src": "images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-680.webp",
+    "srcset": "images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-480.webp 480w, images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-680.webp 680w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-full.webp",
+    "src_bytes": 25478,
+    "full_bytes": 25478,
+    "full_width": 680,
+    "full_height": 659,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-480.webp",
+        "width": 480,
+        "height": 465,
+        "bytes": 24900
+      },
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-680.webp",
+        "width": 680,
+        "height": 659,
+        "bytes": 25478
+      }
+    ]
+  },
+  "images/halloween/Halloween_decor_sprite_02.png": {
+    "width": 935,
+    "height": 667,
+    "original_bytes": 380235,
+    "src": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-800.webp",
+    "srcset": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-480.webp 480w, images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-800.webp 800w, images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-935.webp 935w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-full.webp",
+    "src_bytes": 47808,
+    "full_bytes": 45466,
+    "full_width": 935,
+    "full_height": 667,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-480.webp",
+        "width": 480,
+        "height": 342,
+        "bytes": 27414
+      },
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-800.webp",
+        "width": 800,
+        "height": 571,
+        "bytes": 47808
+      },
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-935.webp",
+        "width": 935,
+        "height": 667,
+        "bytes": 45466
+      }
+    ]
+  },
+  "images/halloween/Halloween_decor_sprite_1.png": {
+    "width": 475,
+    "height": 610,
+    "original_bytes": 108952,
+    "src": "images/blog/images-halloween-halloween-decor-sprite-1-8674116c-475.webp",
+    "srcset": "images/blog/images-halloween-halloween-decor-sprite-1-8674116c-475.webp 475w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-halloween-decor-sprite-1-8674116c-full.webp",
+    "src_bytes": 17360,
+    "full_bytes": 17360,
+    "full_width": 475,
+    "full_height": 610,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-1-8674116c-475.webp",
+        "width": 475,
+        "height": 610,
+        "bytes": 17360
+      }
+    ]
+  },
+  "images/halloween/Halloween_decor_sprite_3.png": {
+    "width": 648,
+    "height": 636,
+    "original_bytes": 245997,
+    "src": "images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-648.webp",
+    "srcset": "images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-480.webp 480w, images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-648.webp 648w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-full.webp",
+    "src_bytes": 20812,
+    "full_bytes": 20812,
+    "full_width": 648,
+    "full_height": 636,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-480.webp",
+        "width": 480,
+        "height": 471,
+        "bytes": 22580
+      },
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-648.webp",
+        "width": 648,
+        "height": 636,
+        "bytes": 20812
+      }
+    ]
+  },
+  "images/halloween/Halloween_decor_sprite_4.png": {
+    "width": 507,
+    "height": 539,
+    "original_bytes": 214991,
+    "src": "images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-507.webp",
+    "srcset": "images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-480.webp 480w, images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-507.webp 507w",
+    "sizes": "(max-width: 767px) calc(100vw - 32px), 800px",
+    "fullsrc": "images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-full.webp",
+    "src_bytes": 23738,
+    "full_bytes": 23738,
+    "full_width": 507,
+    "full_height": 539,
+    "variants": [
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-480.webp",
+        "width": 480,
+        "height": 510,
+        "bytes": 26338
+      },
+      {
+        "src": "images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-507.webp",
+        "width": 507,
+        "height": 539,
+        "bytes": 23738
+      }
+    ]
   }
 }

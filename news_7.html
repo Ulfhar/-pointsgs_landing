@@ -30,8 +30,9 @@
     <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://points.gs/#organization", "name": "Points Game Studio", "url": "https://points.gs/", "logo": {"@type": "ImageObject", "url": "https://points.gs/images/new_logo_points.png"}}, {"@type": "Person", "@id": "https://points.gs/#bogdan", "name": "Bogdan", "url": "https://www.linkedin.com/in/bogdan-kagitin-84bb06127/", "jobTitle": "Game Developer"}, {"@type": "Article", "@id": "https://points.gs/news_7.html#article", "url": "https://points.gs/news_7.html", "mainEntityOfPage": "https://points.gs/news_7.html", "headline": "Lumen Grove’s First Halloween: A Cauldron, Pumpkins and a Little Creative Chaos", "description": "Looking back at Lumen Grove’s first Halloween event: the Witch’s Cauldron minigame, seasonal decorations, the Raven King’s story and lessons from development.", "image": "https://points.gs/images/blog/images-halloween-screenshot-20261101-002922-3b78a867-og.jpg", "inLanguage": "en", "author": {"@id": "https://points.gs/#bogdan"}, "publisher": {"@id": "https://points.gs/#organization"}, "isPartOf": {"@type": "Blog", "name": "Blog", "url": "https://points.gs/devlog.html"}, "datePublished": "2026-09-26", "dateModified": "2026-11-02"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Blog", "item": "https://points.gs/devlog.html"}, {"@type": "ListItem", "position": 2, "name": "Lumen Grove’s First Halloween: A Cauldron, Pumpkins and a Little Creative Chaos", "item": "https://points.gs/news_7.html"}]}]}</script>
     <script src="js/analytics.js?v=34f020dd02f5"></script>
     <script id="cookieyes" src="https://cdn-cookieyes.com/client_data/e6ba3bfedc57c067fa59e14b/script.js" async></script>
+    <link rel="stylesheet" href="css/event-article.css?v=fd8626317a5d">
 </head>
-<body class="blog-page" data-static-locale="en">
+<body class="blog-page" data-static-locale="en" data-event-theme="halloween" style="--event-background-start:#80340f;--event-background-middle:#32180e;--event-background-end:#050403;--event-surface:#21150f;--event-surface-hover:#302016;--event-text:#eee1d3;--event-muted:#d2b9a5;--event-heading:#fff0d9;--event-accent:#ffb46e;--event-accent-hover:#ffdbad;--event-border:#694329">
     <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="fixed-header">
     <div class="header-inner">
@@ -54,7 +55,7 @@
         </nav>
         <article class="news-article" data-article-id="news_7">
             <header class="article-header">
-                <p class="article-kind">DevLog #6</p>
+                <p class="article-kind">DevLog #6</p><div class="event-ornaments" aria-hidden="true"><div class="event-decoration event-decoration--left" aria-hidden="true" style="--decor-width:180px;--decor-rotate:-12deg;--decor-top:60px"><img src="images/blog/images-halloween-halloween-decor-sprite-01-e1f02b5e-480.webp" width="480" height="465" alt="" draggable="false" loading="eager" decoding="async"></div><div class="event-decoration event-decoration--right" aria-hidden="true" style="--decor-width:160px;--decor-rotate:12deg;--decor-top:130px"><img src="images/blog/images-halloween-halloween-decor-sprite-1-8674116c-475.webp" width="475" height="610" alt="" draggable="false" loading="eager" decoding="async"></div></div>
                 <h1 class="news-title">Lumen Grove’s First Halloween: A Cauldron, Pumpkins and a Little Creative Chaos</h1>
                 <p class="news-subtitle">What made it into Lumen Grove’s first seasonal event, what needed a different approach, and the joy of creating something new.</p>
                 <aside class="news-author-section" aria-label="About the author">
@@ -76,7 +77,7 @@
             <section class="news-content" aria-label="Article content">
 <p>Lumen Grove’s first event has come to an end, and I wanted to share a few thoughts: what made it into the game, what needed a different approach, and what it was like to work on a seasonal event for the first time.</p>
 
-<p>But first, the main thing: it was a lot of fun.</p>
+<p>But first, the main thing: <strong>it was a lot of fun.</strong></p>
 
 <p>After months of working on analytics, fixes and the experience of players finding their feet in the game, creating fresh content felt like a breath of fresh air. All that day-to-day work matters, but I’ll be honest: it can get boring. This was a chance to come up with ideas, experiment and bring something new into the game’s world again.</p>
 
@@ -84,34 +85,49 @@
 
 <p>Still, the most exciting part is what did make it into the game.</p>
 
+
+
+<section class="event-section" data-event-slot="activity"><div class="event-decoration event-decoration--left" aria-hidden="true" style="--decor-width:170px;--decor-rotate:-8deg;--decor-top:70px"><img src="images/blog/images-halloween-halloween-decor-sprite-4-60fbcc57-480.webp" width="480" height="510" alt="" draggable="false" loading="lazy" decoding="async"></div>
 <h2 id="the-witch-s-cauldron">The Witch’s Cauldron</h2>
 
 <p>Probably my favourite part of the event was the minigame where you brew a potion by remembering its recipe.</p>
 
-<p>There are three difficulty levels, each adding more ingredients to keep in mind. At some point, that little personal challenge kicks in: “Can I get through every level without making a single mistake?”</p>
+<p>There are <strong>three difficulty levels</strong>, each adding more ingredients to keep in mind. At some point, that little personal challenge kicks in: “Can I get through every level without making a single mistake?”</p>
 
 <figure class="news-image"><img src="images/blog/images-halloween-screenshot-20261008-134219-006e775d-800.webp" alt="The Witch’s Cauldron minigame, showing a potion recipe and ingredients" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261008-134219-006e775d-480.webp 480w, images/blog/images-halloween-screenshot-20261008-134219-006e775d-800.webp 800w, images/blog/images-halloween-screenshot-20261008-134219-006e775d-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261008-134219-006e775d-full.webp" loading="lazy" decoding="async"></figure>
 
-<p>For me, it turned into the kind of game that makes you want to come back and try again. There were also no ads in the minigame itself, so players could brew as many potions as they liked without interruptions.</p>
+<p>For me, it turned into the kind of game that makes you want to come back and try again. There were also <strong>no ads in the minigame itself</strong>, so players could brew as many potions as they liked without interruptions.</p>
 
+
+<p>Here’s the Witch’s Cauldron in action:</p>
+<div class="news-video"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/T8LnADoTubI" title="Halloween in Lumen Grove" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe><p><a href="https://youtu.be/T8LnADoTubI" target="_blank" rel="noopener noreferrer">Watch Halloween in Lumen Grove on YouTube</a></p></div>
+</section>
+
+<section class="event-section" data-event-slot="scenery">
 <h2 id="a-little-spooky-still-cozy">A Little Spooky, Still Cozy</h2>
 
 <p>The hub got a Halloween makeover, with pumpkins, little bones and seasonal details. I wanted to add a little spookiness while keeping the cozy feeling of Lumen Grove.</p>
 
-<figure class="news-image"><img src="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp" alt="Halloween decorations in the grove, with pumpkins, cobwebs and bones beneath the ground" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-full.webp" loading="lazy" decoding="async"></figure>
 
-<p>This is definitely easier to show than to describe:</p>
 
-<div class="news-video"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/T8LnADoTubI" title="Halloween in Lumen Grove" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe><p><a href="https://youtu.be/T8LnADoTubI" target="_blank" rel="noopener noreferrer">Watch Halloween in Lumen Grove on YouTube</a></p></div>
 
+
+
+
+<div class="screenshots-slider"><div class="swiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="images/blog/images-halloween-h2-87337033-800.webp" alt="Pumpkins and Halloween decorations in Lumen Grove at night" width="3120" height="1440" srcset="images/blog/images-halloween-h2-87337033-480.webp 480w, images/blog/images-halloween-h2-87337033-800.webp 800w, images/blog/images-halloween-h2-87337033-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-h2-87337033-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-h3-b4fcd731-800.webp" alt="A wide view of the Halloween grove and its river" width="3120" height="1440" srcset="images/blog/images-halloween-h3-b4fcd731-480.webp 480w, images/blog/images-halloween-h3-b4fcd731-800.webp 800w, images/blog/images-halloween-h3-b4fcd731-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-h3-b4fcd731-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261013-003148-147be7c1-800.webp" alt="Pumpkins beneath the trees in the Halloween grove" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261013-003148-147be7c1-480.webp 480w, images/blog/images-halloween-screenshot-20261013-003148-147be7c1-800.webp 800w, images/blog/images-halloween-screenshot-20261013-003148-147be7c1-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261013-003148-147be7c1-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261027-104449-0b069b46-800.webp" alt="A moonlit Halloween grove reflected in the water" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261027-104449-0b069b46-480.webp 480w, images/blog/images-halloween-screenshot-20261027-104449-0b069b46-800.webp 800w, images/blog/images-halloween-screenshot-20261027-104449-0b069b46-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261027-104449-0b069b46-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-800.webp" alt="Pink autumn trees and glowing pumpkins beside the river" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193428-f332e4b7-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261101-193437-e56394d4-800.webp" alt="A player’s Halloween grove with seasonal decorations" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193437-e56394d4-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193437-e56394d4-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193437-e56394d4-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193437-e56394d4-full.webp" loading="lazy" decoding="async"></div></div></div><p class="slider-caption">Different corners and moods of the Halloween grove.</p></div>
+</section>
+
+<section class="event-section" data-event-slot="decorations"><div class="event-decoration event-decoration--right" aria-hidden="true" style="--decor-width:170px;--decor-rotate:9deg;--decor-top:45px"><img src="images/blog/images-halloween-halloween-decor-sprite-3-e3540c26-480.webp" width="480" height="471" alt="" draggable="false" loading="lazy" decoding="async"></div>
 <h2 id="seasonal-decorations">Seasonal Decorations</h2>
 
 <p>Of course, there were new decoration sets too. Some were available to buy, while a selection of unique decorations could be earned in the market by watching an ad.</p>
 
-<figure class="news-image"><img src="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp" alt="Lumen Grove’s seasonal decorations, including a bat, a witch’s hat, a broom and pumpkins" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-full.webp" loading="lazy" decoding="async"></figure>
+<div class="screenshots-slider"><div class="swiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="images/blog/images-halloween-h1-36e8dc00-800.webp" alt="The Halloween decoration collection in Lumen Grove" width="3120" height="1440" srcset="images/blog/images-halloween-h1-36e8dc00-480.webp 480w, images/blog/images-halloween-h1-36e8dc00-800.webp 800w, images/blog/images-halloween-h1-36e8dc00-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-h1-36e8dc00-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp" alt="Halloween decorations in the grove, with pumpkins, cobwebs and bones beneath the ground" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193520-73d40f66-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193520-73d40f66-full.webp" loading="lazy" decoding="async"></div><div class="swiper-slide"><img src="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp" alt="Lumen Grove’s seasonal decorations, including a bat, a witch’s hat, a broom and pumpkins" width="3120" height="1440" srcset="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-480.webp 480w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-800.webp 800w, images/blog/images-halloween-screenshot-20261101-193615-7de9d402-1200.webp 1200w" sizes="(max-width: 767px) calc(100vw - 32px), 800px" data-full-src="images/blog/images-halloween-screenshot-20261101-193615-7de9d402-full.webp" loading="lazy" decoding="async"></div></div></div><p class="slider-caption">Seasonal details for your own corner of the forest.</p></div>
 
 <p>It was lovely to make things players could use to bring a little more Halloween atmosphere to their own corner of the forest.</p>
+</section>
 
+<section class="event-section" data-event-slot="story">
 <h2 id="the-raven-king-s-story">The Raven King’s Story</h2>
 
 <p>Another part of the event was the story of the Raven King, delivered to players through Jackdaw Post.</p>
@@ -120,8 +136,10 @@
 
 <p>At the same time, I really wanted to share it with you already. Jackdaw Post gave me a way to tell the story with the time and tools I had.</p>
 
-<p>I still plan to return to that idea in an interactive, illustrated format. The Raven King deserves pages of his own.</p>
+<p>I still plan to return to that idea in <strong>an interactive, illustrated format</strong>. The Raven King deserves pages of his own.</p>
+</section>
 
+<section class="event-section" data-event-slot="closing"><div class="event-decoration event-decoration--center" aria-hidden="true" style="--decor-width:230px;--decor-rotate:0deg;--decor-top:0px"><img src="images/blog/images-halloween-halloween-decor-sprite-02-d4ae9720-480.webp" width="480" height="342" alt="" draggable="false" loading="lazy" decoding="async"></div>
 <p>This was my first experience of making a seasonal event for Lumen Grove, and it left me feeling inspired. Not everything followed the original plan, but I got to try something new, learn from it, and rediscover the joy of creating little adventures in this world.</p>
 
 <p>It’s a good thing the winter holidays are just around the corner. Halloween left me with plenty of creative energy, and I can’t wait to turn it into something fun for Lumen Grove.</p>
@@ -129,6 +147,7 @@
 <p>Thank you to everyone who joined our first celebration! ❤️</p>
 
 <div class="news-cta"><a href="https://play.google.com/store/apps/details?id=comPointsGameForge.FarFarForest" target="_blank" rel="noopener noreferrer" class="ui-button ui-button--primary play-cta" aria-label="Play Lumen Grove on Google Play"><img class="play-cta__icon" src="images/google-play-icon.svg" width="24" height="24" alt="" aria-hidden="true" loading="lazy" decoding="async" sizes="24px"><span class="play-cta__copy"><span class="play-cta__label">Play</span><span class="play-cta__store">Google Play</span></span></a></div>
+</section>
 
             </section>
             <section class="article-share-block" aria-labelledby="article-share-title"><h2 id="article-share-title">Share Lumen Grove with others</h2><div class="article-share" role="group" aria-label="Share this article" data-article-share

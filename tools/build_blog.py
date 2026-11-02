@@ -17,6 +17,7 @@ from urllib.parse import unquote, urlencode, urlsplit
 
 from html_tree import Node, parse, remove_where, set_text
 from analytics_snippet import analytics_head
+from event_themes import load_themes, body_attributes, header_art, decorate_content
 
 ROOT = Path(__file__).resolve().parents[1]
 BOGDAN_PROFILE_URL = "https://www.linkedin.com/in/bogdan-kagitin-84bb06127/"
@@ -437,7 +438,7 @@ def fill_template(path, values):
     # browser caches without changing URLs or metadata for the articles.
     for asset in ("css/news.css", "css/header.css", "js/locale.js", "js/news.js",
                   "js/particles-bg.js", "js/reading-progress.js", "js/article-share.js",
-                  "css/buttons.css"):
+                  "css/buttons.css", "css/event-article.css"):
         url = values["prefix"] + asset
         version = hashlib.sha256((ROOT / asset).read_bytes()).hexdigest()[:12]
         result = result.replace('="' + url + '"', '="' + url + '?v=' + version + '"')
@@ -452,7 +453,7 @@ def write_generated(path, text):
     return changed
 
 
-def content_for(post, language, strings, media, posts, image_labels):
+def content_for(post, language, strings, media, posts, image_labels, theme=None):
     content_path = ROOT / "blog/content" / (post["slug"] + ".html")
     translated_path = ROOT / "blog/content" / language / (post["slug"] + ".html")
     if translated_path.is_file():
@@ -494,6 +495,7 @@ def content_for(post, language, strings, media, posts, image_labels):
             node.attrs["class"] = " ".join(c for c in node.attrs["class"].split() if c != "reveal")
     process_images(tree, media, "../" if language == "uk" else "")
     rewrite_links(tree, "../" if language == "uk" else "", posts, language)
+    decorate_content(tree, theme, media, "../" if language == "uk" else "")
     words = len(re.findall(r"\b[\w’'-]+\b", tree.text(), re.UNICODE))
     return tree.html(), headings, max(1, math.ceil(words / 200))
 
@@ -552,6 +554,7 @@ def build(modified_date):
     strings = json.loads((ROOT / "js/locales/ua.json").read_text(encoding="utf-8"))
     media = json.loads((ROOT / "blog/media.json").read_text(encoding="utf-8"))
     image_labels = json.loads((ROOT / "blog/image-labels.json").read_text(encoding="utf-8"))
+    event_themes = load_themes(ROOT, posts, media)
     slugs = {post["slug"] for post in posts}
     if len(slugs) != len(posts):
         raise ValueError("Duplicate post slug")
@@ -591,9 +594,10 @@ def build(modified_date):
     for language, label in COPY.items():
         prefix = "../" if language == "uk" else ""
         published = [post for post in posts if language in post_languages(post)]
-        prepared = {post["slug"]: content_for(post, language, strings, media, posts, image_labels) for post in published}
+        prepared = {post["slug"]: content_for(post, language, strings, media, posts, image_labels, event_themes.get(post.get("event_theme"))) for post in published}
         for post in published:
             slug = post["slug"]
+            theme = event_themes.get(post.get("event_theme"))
             content, headings, minutes = prepared[slug]
             header, footer = header_footer(language, post, media, posts, post_languages(post))
             cover_tree = parse(f'<figure class="article-cover"><img src="{e(post["cover"])}" alt="{e(post["cover_alt"][language])}"></figure>')
@@ -627,7 +631,9 @@ def build(modified_date):
             others = [p for p in published if p["slug"] != slug][:2]
             related = f'<nav class="related-articles" aria-label="{e(label["related"])}"><h2>{e(label["related"])}</h2><div class="related-grid">' + "".join(
                 card(p, language, prepared[p["slug"]][2], True) for p in others) + f'</div><a class="back-to-blog" href="devlog.html">← {e(label["back"])}</a></nav>'
-            values = {"language": language, "head": head(post["seo_title"][language], post["description"][language], post, language, image, schema, site_url, post_languages(post)),
+            theme_head = f'\n    <link rel="stylesheet" href="{prefix}css/event-article.css">' if theme else ""
+            values = {"language": language, "head": head(post["seo_title"][language], post["description"][language], post, language, image, schema, site_url, post_languages(post)) + theme_head,
+                      "event_attributes": body_attributes(post.get("event_theme"), theme), "event_header_decorations": header_art(theme, media, prefix),
                       "skip_label": e(label["skip"]), "header": header, "footer": footer, "blog_url": "devlog.html", "blog_label": e(label["blog"]),
                       "breadcrumb_label": e(label["breadcrumb"]), "kind": e(post["kind"][language]), "title": e(post["title"][language]),
                       "summary": e(post["summary"][language]), "author_block": author_block(post, author, language, media, prefix),

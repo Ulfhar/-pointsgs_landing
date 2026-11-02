@@ -3,7 +3,7 @@
 <head>
 {{head}}
 </head>
-<body class="blog-page" data-static-locale="{{language}}">
+<body class="blog-page" data-static-locale="{{language}}"{{event_attributes}}>
     <a class="skip-link" href="#main-content">{{skip_label}}</a>
 {{header}}
     <main id="main-content" tabindex="-1">
@@ -12,7 +12,7 @@
         </nav>
         <article class="news-article" data-article-id="{{article_id}}"{{progress}}>
             <header class="article-header">
-                <p class="article-kind">{{kind}}</p>
+                <p class="article-kind">{{kind}}</p>{{event_header_decorations}}
                 <h1 class="news-title">{{title}}</h1>
                 <p class="news-subtitle">{{summary}}</p>
                 {{author_block}}
