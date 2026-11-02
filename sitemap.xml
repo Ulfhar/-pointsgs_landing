@@ -10,9 +10,10 @@
     <loc>https://points.gs/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/about.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://points.gs/about.html" />
   </url>
   <url>
     <loc>https://points.gs/terms.html</loc>
@@ -31,9 +32,10 @@
   </url>
   <url>
     <loc>https://points.gs/uk/about.html</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://points.gs/about.html" />
     <xhtml:link rel="alternate" hreflang="uk" href="https://points.gs/uk/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://points.gs/about.html" />
   </url>
   <url>
     <loc>https://points.gs/ukrainian-game-development-meridian93-history.html</loc>
