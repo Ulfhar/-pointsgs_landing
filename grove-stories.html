@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Turn your Lumen Grove screenshots into a little story worth sharing.">
+    <title>Grove Stories — Lumen Grove | Points.GS</title>
+    <link rel="icon" type="image/png" href="images/favicon_points.png">
+    <link rel="stylesheet" href="css/header.css?v=22c998810c3e">
+    <link rel="stylesheet" href="css/buttons.css?v=bafbfb4b4028">
+    <link rel="stylesheet" href="css/grove-stories.css?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&family=Roboto+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="js/grove-stories.js?v=1" defer></script>
+</head>
+<body class="stories-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></symbol>
+        <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/></symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+        <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+    </svg>
+    <header class="fixed-header">
+        <div class="header-inner">
+            <a class="logo" href="index.html" aria-label="Points Game Studio — home">
+                <img class="logo-img" src="images/blog/images-new-logo-points-a1d9f4b0-64.webp" alt="" width="64" height="55">
+                <span class="logo-text">POINTS.GS</span>
+            </a>
+            <nav class="header-nav" aria-label="Main navigation">
+                <a href="devlog.html">Blog</a><a href="index.html#about">About Us</a><a href="press-kit.html">Press Kit</a><a href="partners/">Partnerships</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="stories-main" id="main-content" tabindex="-1">
+        <div class="page-topline">
+            <a class="back-link" href="index.html">← Back to Lumen Grove</a>
+            <span class="prototype-tag"><span></span> Prototype</span>
+        </div>
+        <header class="stories-intro">
+            <div>
+                <p class="eyebrow">Lumen Grove · Made by you</p>
+                <h1>Your grove.<br><span>Your story.</span></h1>
+            </div>
+            <div class="intro-copy">
+                <p>A little magic, ready to share.</p>
+                <p>Bring your favourite forest moments together in a collage that feels right at home in Lumen Grove.</p>
+                <div class="intro-game"><img src="images/homePage_images/nur-icon-192.webp" alt="" width="40" height="40"><span>From your grove, with love.</span></div>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <form class="settings" id="story-settings" aria-label="Collage settings">
+                <section class="settings-section" aria-labelledby="screenshots-title">
+                    <div class="section-heading"><h2 id="screenshots-title"><span class="step-number">01</span> Your screenshots</h2><span class="section-meta">Up to 4</span></div>
+                    <input class="visually-hidden" type="file" id="screenshots" name="screenshots" accept="image/png,image/jpeg,image/webp" multiple aria-describedby="upload-help upload-status">
+                    <label class="upload-zone" id="upload-zone" for="screenshots">
+                        <span class="upload-symbol"><svg class="icon" aria-hidden="true"><use href="#icon-upload"/></svg></span>
+                        <strong>Drop screenshots here</strong>
+                        <span>or <span class="upload-link">browse files</span></span>
+                        <small id="upload-help">PNG, JPG or WebP · Max. 15 MB each</small>
+                    </label>
+                    <div class="upload-thumbnails" id="upload-thumbnails" aria-label="Your selected screenshots"></div>
+                    <p class="upload-status" id="upload-status" role="status">Start with your favourite moments.</p>
+                </section>
+
+                <fieldset class="settings-section">
+                    <legend><span class="step-number">02</span> Make it yours</legend>
+                    <p class="field-label">Format</p>
+                    <div class="format-options">
+                        <label class="choice format-choice"><input type="radio" name="format" value="square"><span class="format-shape shape-square"></span><strong>Square</strong><small>1:1</small></label>
+                        <label class="choice format-choice"><input type="radio" name="format" value="post" checked><span class="format-shape shape-post"></span><strong>Post</strong><small>4:5</small></label>
+                        <label class="choice format-choice"><input type="radio" name="format" value="story"><span class="format-shape shape-story"></span><strong>Story</strong><small>9:16</small></label>
+                    </div>
+                    <p class="field-label">Background</p>
+                    <div class="background-options">
+                        <label class="choice background-choice"><input type="radio" name="background" value="forest" checked><span class="background-swatch swatch-forest"><span>✦</span></span><strong>Enchanted</strong></label>
+                        <label class="choice background-choice"><input type="radio" name="background" value="moonlight"><span class="background-swatch swatch-moonlight"><span>☾</span></span><strong>Moonlight</strong></label>
+                        <label class="choice background-choice"><input type="radio" name="background" value="autumn"><span class="background-swatch swatch-autumn"><span>✧</span></span><strong>Autumn</strong></label>
+                    </div>
+                    <p class="field-label">Layout</p>
+                    <div class="layout-options">
+                        <label class="choice layout-choice"><input type="radio" name="layout" value="1"><span class="layout-mark layout-one"><i></i></span><span>Solo</span></label>
+                        <label class="choice layout-choice"><input type="radio" name="layout" value="2" checked><span class="layout-mark layout-two"><i></i><i></i></span><span>Duo</span></label>
+                        <label class="choice layout-choice"><input type="radio" name="layout" value="4"><span class="layout-mark layout-four"><i></i><i></i><i></i><i></i></span><span>Grid</span></label>
+                    </div>
+                </fieldset>
+                <div class="settings-note"><svg class="icon" aria-hidden="true"><use href="#icon-image"/></svg><p>Every screen size is welcome.<br>Your screenshots keep their proportions.</p></div>
+            </form>
+
+            <section class="preview-panel" aria-labelledby="preview-title">
+                <div class="preview-toolbar"><h2 id="preview-title">Your little masterpiece</h2><span class="preview-indicator"><span></span> Live preview</span></div>
+                <div class="preview-stage">
+                    <div class="collage" id="collage" data-background="forest" data-format="post">
+                        <div class="collage-glow" aria-hidden="true"></div>
+                        <svg class="forest-silhouette" viewBox="0 0 1080 1350" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                            <defs><path id="fir-tree" d="M0 0 65 120H38l55 100H54l75 130H16v65h-32v-65h-113l75-130h-39l55-100h-27Z"/></defs>
+                            <g fill="currentColor"><use href="#fir-tree" transform="translate(60 770) scale(1.45)"/><use href="#fir-tree" transform="translate(205 1000) scale(.9)"/><use href="#fir-tree" transform="translate(1010 720) scale(1.7)"/><use href="#fir-tree" transform="translate(855 1020) scale(.9)"/><path d="M0 1240Q220 1170 450 1280T1080 1210V1350H0Z"/></g>
+                        </svg>
+                        <div class="collage-brand"><span class="brand-flourish" aria-hidden="true">✧</span><p>Lumen Grove</p><span class="brand-subtitle">A little forest. A little magic.</span></div>
+                        <div class="collage-slots" id="collage-slots" data-count="2"></div>
+                        <div class="collage-signoff"><span class="signoff-line" aria-hidden="true"></span><span>My little corner of magic</span><span class="signoff-line" aria-hidden="true"></span></div>
+                        <div class="collage-footer"><span>LUMEN GROVE</span><span>points.gs</span></div>
+                    </div>
+                </div>
+                <div class="preview-meta"><span id="output-size">1080 × 1350 px</span><span>PNG <span aria-hidden="true">·</span> <span id="slot-count">2 screenshot slots</span></span></div>
+                <div class="preview-actions"><button class="ui-button ui-button--ghost ui-button--compact" type="button" id="reset-story">↺ Start over</button><button class="ui-button ui-button--primary" type="button" disabled aria-describedby="export-note"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>Download PNG</button></div>
+                <p class="export-note" id="export-note">Preview prototype · Image export is coming next.</p>
+            </section>
+        </div>
+
+        <section class="how-it-works" aria-labelledby="how-title">
+            <div class="how-intro"><svg class="icon" aria-hidden="true"><use href="#icon-spark"/></svg><h2 id="how-title">A moment in your grove.<br>A story to take with you.</h2></div>
+            <ol><li><span>01</span><div><h3>Pick your moments</h3><p>A new discovery, a favourite corner, or a little before and after.</p></div></li><li><span>02</span><div><h3>Add a little atmosphere</h3><p>Choose a background and a format. We’ll bring it all together.</p></div></li><li><span>03</span><div><h3>Share the magic</h3><p>Your finished collage, ready for your next post or story.</p></div></li></ol>
+        </section>
+    </main>
+    <footer class="stories-footer"><a href="index.html">Points Game Studio</a><p>Little worlds. Stories worth sharing.</p><a href="press-kit.html">Explore Lumen Grove <span aria-hidden="true">↗</span></a></footer>
+    <noscript><p class="noscript-note">Enable JavaScript to preview layouts and add your screenshots.</p></noscript>
+</body>
+</html>
