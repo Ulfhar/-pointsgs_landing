@@ -49,7 +49,7 @@
 
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="meta">Effective Date: 15/01/2025 &nbsp;|&nbsp; Last Updated: 12/10/2026</p>
+        <p class="meta">Effective Date: 15/01/2025 &nbsp;|&nbsp; Last Updated: 17/11/2026</p>
 
         <p>This Privacy Policy describes how <strong>Bogdan Kagitin</strong> ("developer," "we," "us"), an individual developer based in Estonia, collects, uses, and shares information when you use the mobile game <strong>Lumen Grove</strong> (the "Game").</p>
 
@@ -65,15 +65,15 @@
         <h3>2.1 Automatically Collected</h3>
         <ul>
             <li>Device information (model, OS version, language)</li>
-            <li>Anonymous user identifier (assigned at first launch; not linked to any name or email)</li>
+            <li>Pseudonymous game account identifier</li>
             <li>Country or region (inferred from your connection)</li>
             <li>Gameplay data (in-game actions, progress, session length)</li>
             <li>Crash reports and error logs</li>
-            <li>Advertising identifier (IDFA/GAID) — only with your consent where required by law</li>
+            <li>Advertising identifier, where available and subject to the applicable consent choices and platform settings</li>
         </ul>
 
         <h3>2.2 Data from Third-Party SDKs</h3>
-        <p>We integrate the following services, which collect data on our behalf and for their own purposes:</p>
+        <p>The Game uses the following third-party services:</p>
         <table>
             <tr>
                 <th>Service</th>
@@ -98,7 +98,12 @@
             <tr>
                 <td>Tenjin SDK</td>
                 <td>Tenjin, Inc. (US)</td>
-                <td>Marketing attribution and user acquisition analytics</td>
+                <td>Optional installation attribution and campaign measurement, including gameplay events, in-app purchase data and advertising impression data</td>
+            </tr>
+            <tr>
+                <td>justtrack SDK (Android)</td>
+                <td>justtrack GmbH (Germany)</td>
+                <td>Optional installation attribution and campaign measurement</td>
             </tr>
             <tr>
                 <td>Firebase Analytics (Google Analytics for Firebase)</td>
@@ -118,15 +123,18 @@
         </table>
         <p>Unity Technologies operates as an <strong>independent data controller</strong> for data collected through Unity SDKs and processes it under their own Privacy Policy: <a href="https://unity.com/legal/privacy-policy" target="_blank">unity.com/legal/privacy-policy</a>.</p>
         <p>Google LLC operates as an <strong>independent data controller</strong> for data collected through Google AdMob, Firebase Analytics, Firebase Crashlytics, and Google Play Games Services, and processes it under Google's Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>. For Firebase-specific data practices, see: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
-        <p>Tenjin, Inc. operates as an <strong>independent data controller</strong> for attribution data and processes it under their Privacy Policy: <a href="https://www.tenjin.com/privacy" target="_blank">tenjin.com/privacy</a>.</p>
 
         <h3>2.3 Anonymous Authentication</h3>
-        <p>The Game assigns a persistent anonymous session ID at first launch. This ID is not linked to your name, email, or payment information. It is used solely to save and restore your progress via Unity Cloud Save.</p>
+        <p>The Game uses a persistent pseudonymous Unity Gaming Services player ID to operate your game account and save your progress. The ID is also used as described above for crash reporting and may be linked to your Play Games account as described below.</p>
 
         <h3>2.4 Google Play Games Services</h3>
         <p>If you are signed in to Google Play Games on your device, the Game signs you in automatically to record and display achievements. Google receives your achievement progress together with your Play Games player ID; your gamer profile (display name and avatar) is managed by Google under its Privacy Policy.</p>
         <p>To keep your progress tied to your account, we link your Play Games player ID to your anonymous game account in Unity Gaming Services: Unity Technologies, Inc. receives a one-time authorisation code and your Play Games player ID for this purpose.</p>
         <p>You can decline sign-in, sign out, or delete your Play Games data at any time in the Google Play Games app. The Game works without Google Play Games sign-in. To remove the link between your Play Games account and your game account, contact <a href="mailto:info@points.gs">info@points.gs</a>.</p>
+
+        <h3>2.5 Optional Ad Measurement</h3>
+        <p>When you allow ad measurement, we use justtrack on Android and Tenjin to understand how players found the Game and measure how our advertising campaigns perform. For these purposes, the SDKs may process device and installation identifiers, including the Android Advertising ID when available, IP address, approximate location inferred from IP, device model, operating system and app version, and installation and app-open information. On Android, this may include Google Play install referrer and campaign information.</p>
+        <p>Tenjin also receives gameplay event data, in-app purchase information such as product, price, currency, transaction ID and purchase verification data, and information about AdMob impressions such as the ad unit and estimated revenue. We use these data to measure what happens after players install the Game and evaluate campaign performance.</p>
 
         <h2>3. Legal Basis for Processing (GDPR)</h2>
         <table>
@@ -146,6 +154,10 @@
                 <td>Advertising and behavioural analytics</td>
                 <td>Consent (Art. 6(1)(a))</td>
             </tr>
+            <tr>
+                <td>Optional ad measurement and installation attribution through justtrack and Tenjin</td>
+                <td>Consent (Art. 6(1)(a))</td>
+            </tr>
         </table>
 
         <h2>4. How We Use Your Data</h2>
@@ -154,26 +166,27 @@
             <li>To display in-game advertisements</li>
             <li>To store and sync your game progress across devices</li>
             <li>To analyse gameplay behaviour for development purposes</li>
+            <li>To measure advertising campaign performance if you allow ad measurement</li>
             <li>To respond to support requests</li>
         </ul>
 
         <h2>5. Children's Privacy</h2>
         <p><strong>The Game requires users to be 13 years of age or older.</strong> At first launch, users must confirm they meet this requirement. We do not knowingly collect data from children under 13 and comply with applicable law, including GDPR and COPPA.</p>
         <ul>
-            <li>We do not collect personally identifiable information (name, email, address) from any user</li>
-            <li>The anonymous identifier assigned by the Game contains no personal details</li>
+            <li>We use pseudonymous identifiers for game accounts and services. If you contact support, we use the contact details and information you provide to respond</li>
             <li>If we become aware that a user is under 13, we will delete any associated data and restrict access to the Game</li>
-            <li>Google AdMob and Tenjin SDK are configured to comply with applicable child-directed advertising regulations</li>
+            <li>Where applicable law requires permission from a parent or legal guardian for optional ad measurement, that permission is required before enabling it</li>
             <li>Parents or guardians who believe their child has accessed the Game or that their child's data has been collected should contact us at <a href="mailto:info@points.gs">info@points.gs</a> — we will promptly investigate and delete such data if confirmed</li>
         </ul>
 
-        <h2>6. Third-Party Services and Independent Data Collection</h2>
-        <p>Our third-party SDK providers collect data under their own privacy policies and terms, independently of our instructions. We are not responsible for their data practices.</p>
+        <h2>6. Third-Party Services and Data Recipients</h2>
+        <p>For the ad measurement described in section 2.5, justtrack GmbH and Tenjin, Inc. process player data on our behalf under their data processing terms. They may use subprocessors to deliver their services. Please contact us to exercise your rights in relation to this data. For provider details, see the <a href="https://justtrack.io/dpa/" target="_blank" rel="noopener noreferrer">justtrack Data Processing Agreement</a> and the <a href="https://tenjin.com/tenjin-inc-data-processing-addendum/" target="_blank" rel="noopener noreferrer">Tenjin Data Processing Addendum</a>.</p>
         <p>Unity Technologies may collect device identifiers and usage data for their own analytics, fraud prevention, and product improvement. We encourage you to review their Privacy Policy at <a href="https://unity.com/legal/privacy-policy" target="_blank">unity.com/legal/privacy-policy</a>.</p>
         <p>Google LLC (Firebase Analytics, Firebase Crashlytics, Google AdMob) may collect device identifiers, gameplay events, crash data, and app diagnostics for their own product improvement and analytics purposes, independently of our instructions. We encourage you to review Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a> and Firebase's privacy documentation at <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
 
         <h2>7. International Data Transfers</h2>
         <p>Unity Technologies, Google LLC, and Tenjin, Inc. are based in the United States. Data processed through their SDKs — including Firebase Analytics and Firebase Crashlytics — may be transferred to the US or other countries outside the EEA. Such transfers are subject to appropriate safeguards, including Standard Contractual Clauses (SCCs) approved by the European Commission. See each provider's Privacy Policy for details.</p>
+        <p>justtrack GmbH is based in Germany. Where its subprocessors process data outside the EEA, the justtrack Data Processing Agreement provides for applicable transfer safeguards, including the European Commission's Standard Contractual Clauses where required. You can contact us at <a href="mailto:info@points.gs">info@points.gs</a> for more information about the safeguards or to request a copy.</p>
 
         <h2>8. Data Retention</h2>
         <table>
@@ -182,12 +195,16 @@
                 <th>Retention period</th>
             </tr>
             <tr>
-                <td>Analytics and gameplay data</td>
+                <td>General game analytics and gameplay data</td>
                 <td>Up to 24 months from collection</td>
             </tr>
             <tr>
-                <td>Anonymous user identifiers</td>
-                <td>Until the Game is uninstalled or deletion is requested</td>
+                <td>Ad measurement data processed by justtrack and Tenjin</td>
+                <td>For the applicable provider retention period, based on the data type and the time needed to attribute installs, measure and report campaign performance, or meet legal obligations</td>
+            </tr>
+            <tr>
+                <td>Pseudonymous game account identifiers</td>
+                <td>While the game account and linked records are maintained. You may request deletion as described in section 9</td>
             </tr>
             <tr>
                 <td>Crash reports</td>
@@ -208,23 +225,24 @@
         <p>Submit requests to <a href="mailto:info@points.gs">info@points.gs</a>. We respond within 30 days.<br>
         You also have the right to lodge a complaint with the Estonian Data Protection Inspectorate: <a href="https://www.aki.ee" target="_blank">aki.ee</a></p>
 
-        <h2>10. Analytics and Advertising Opt-Out</h2>
-        <p>You may opt out of analytics and personalised advertising at any time:</p>
+        <h2>10. Ad Measurement and Other Privacy Choices</h2>
+        <p>In versions of the Game that offer the optional ad measurement choice, it is off until you allow it. You can play with it off. If your version has an ad measurement switch in Settings, use it to change your choice at any time. If you need help withdrawing your consent, contact <a href="mailto:info@points.gs">info@points.gs</a>. Turning off ad measurement stops future measurement through justtrack and Tenjin. You can request deletion of previously collected personal data as described in section 9.</p>
+        <p>The Game and your device also offer the following privacy choices:</p>
         <ul>
             <li><strong>Android (ad personalisation):</strong> Settings → Google → Ads → Opt out of Ads Personalisation</li>
-            <li><strong>Firebase Analytics:</strong> the Game does not provide an in-app analytics toggle. To disable Firebase Analytics data collection, you may contact us at <a href="mailto:info@points.gs">info@points.gs</a> or delete and refrain from reinstalling the Game. Advertising features (ad_storage, ad_personalization) are already disabled in this application.</li>
-            <li><strong>Firebase Crashlytics:</strong> crash reports are collected to maintain game stability. Crashlytics uses a pseudonymous installation ID and cannot be linked back to you personally.</li>
+            <li><strong>Firebase Analytics:</strong> for questions about Firebase Analytics or requests relating to its data, contact <a href="mailto:info@points.gs">info@points.gs</a>. Firebase Analytics advertising features (ad_storage, ad_personalization) are disabled in the Game.</li>
+            <li><strong>Firebase Crashlytics:</strong> we collect crash reports to maintain game stability. Reports may include the pseudonymous identifiers described in section 2.2.</li>
             <li>Or contact us directly at <a href="mailto:info@points.gs">info@points.gs</a></li>
         </ul>
 
         <h2>11. Consent Records</h2>
-        <p>Where we rely on your consent to process data, your acceptance is recorded via Unity Cloud Save solely to confirm agreement and ensure compliance. You may withdraw consent at any time — withdrawal does not affect the lawfulness of processing that occurred before withdrawal.</p>
+        <p>We store your ad measurement choice, the version of the notice shown and the time of your choice on your device. The Game records acceptance of the Terms separately and may sync that record through Unity Cloud Save. Withdrawing consent does not affect the lawfulness of processing carried out before withdrawal.</p>
 
         <h2>12. Push Notifications</h2>
         <p>We may send push notifications about game updates. You can disable them at any time in your device settings.</p>
 
         <h2>13. Changes to This Policy</h2>
-        <p>We may update this Policy at any time. The "Last Updated" date at the top will reflect changes. Continued use of the Game after changes constitutes acceptance.</p>
+        <p>We will update the date above when we revise this Policy. If a change requires a new consent choice, we will ask for it before processing data for that purpose.</p>
 
         <h2>14. Contact</h2>
         <p>
